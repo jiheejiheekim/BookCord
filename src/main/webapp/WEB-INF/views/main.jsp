@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BookCord</title>
+<link rel="stylesheet" href="resources/css/main.css">
 </head>
 <body>
-	<h1>하이</h1>
+	<!-- TOP -->
+	<div class="top">
+		<table class="toptable">
+			<tr>
+				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top2"><a href="/notice/notice">공지사항</a></td>
+				<td class="top3"><a href="/login/login">로그인</a></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
