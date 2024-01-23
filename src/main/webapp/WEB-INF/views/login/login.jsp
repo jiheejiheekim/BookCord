@@ -19,7 +19,32 @@
 		</table>
 	</div>
 	
+	<br><br>
 	
+	<div class="login">
+		<table class="loginTable">
+			<tr>
+				<td>아이디</td>
+				<td><input class="loginId" type="text"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input class="loginPw" type="password"></td>
+				<td><button class="loginButton"><a href="">로그인</a></button></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="signUp">
+		<table>
+			<tr>
+				<td><a><img class="snsImg" src="resources/images/kakaoLogin.png"></a></td>
+				<td><a><img class="snsImg" src="resources/images/naverLogin.png"></a></td>
+				<td><button><a href="login/signUp">회원가입</a></button></td>
+			</tr>
+		</table>
+	</div>
 	
 </body>
 </html>

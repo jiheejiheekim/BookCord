@@ -42,3 +42,32 @@ a{
 	padding-right:1em;
 }
 
+.loginTable tr td, .signUp table tr td{
+	border:1px solid black;
+}
+
+.login{
+	width:100%;
+	font-size:1.5em;
+}
+.loginTable{
+	width:35%;
+	margin:auto;
+}
+.login table tr td{
+	text-align:left;
+}
+.loginId, .loginPw{
+	width:20em;
+	height:3em;
+	border:none;
+	border-radius:15px;
+	background-color:#EDEDED;
+}
+.loginButton {
+	box-shadow: 2px 2px 3px 1px #898383;
+	background-color:#2D9462;
+	color:white;
+	margin:0.5em;
+	padding:0.7em;
+}
