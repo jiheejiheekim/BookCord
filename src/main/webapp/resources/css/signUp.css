@@ -32,83 +32,64 @@ a{
 .top1{
 	text-align:left;
 }
-.top2{
-	text-align:right;
-	padding-right:1em;
-}
-.top3{
-	width:3em;
-	text-align:right;
-	padding-right:1em;
-}
 
 button:hover{
 	box-shadow: 2px 2px 3px 1px #898383;
 }
 
-/* .loginTable tr td, .signUp table tr td{
-	border:1px solid black;
-} */
+.signUp table tr td{
+	/* border:1px solid black; */
+}
 
-.login{
-	width:100%;
-	font-size:1.5em;
-	margin-top:5em;
+td{
+	text-align:left;
 }
-.loginTable{
-	width:45%;
-	margin:auto;
+table tr td:nth-child(1){
+	width:25%;
 }
-.loginTable tr td:nth-child(1){
-	width:20%;
-}
-.loginTable tr td:nth-child(3){
+table tr td:nth-child(3){
 	width:15%;
 }
-.login table tr td{
-	text-align:left;
-	padding-bottom:0.6em;
-}
-.loginId, .loginPw{
-	text-align:left;
-	font-size:0.8em;
-	min-width:30%;
-	width:85%;
-	min-width:30%;
-	height:3em;
-	border:none;
-	border-radius:15px;
-	background-color:#EDEDED;
-}
-.loginButton {
-	border:none;
-	box-shadow: 2px 3px #898383;
-	background-color:#2D9462;
-	border-radius:15px;
-	color:white;
-	margin:0.5em;
-	padding:0.7em;
-	font-size:0.8em;
-	min-width:35%;
-}
-
 .signUp{
+	margin-top:5em;
 	width:100%;
 }
 .signUpTable{
-	width:45%;
+	background-color:#EDEDED;
 	margin:auto;
+	width:40%;
+	padding:1.3em;
+	font-size:1.1em;
 }
-.signUpTable tr td:nth-child(1),
-.signUpTable tr td:nth-child(2){
+.signUpTable tr td{
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+}
+.id, .pw, .pwCheck, .nickName{
+	width:90%;
 	text-align:left;
-	max-width:30%;
+	height:2.2em;
+	border:none;
 }
-.snsKImg, .snsNImg{
-	width:180px;
+.pwImg{
+	margin-top:2px;
+	width:20px;	
+}
+.idCheck, .NickNameCheck{
+	border:none;
+	box-shadow: 2px 3px #898383;
+	background-color:#2D9462;
+	border-radius:15px;
+	color:white;
+	padding:0.7em;
+	font-size:0.7em;
+	min-width:35%;
+}
+
+.finalSingUp{
+	margin-top:3em;
 }
 .signUpButton{
-	width:90%;
 	border:none;
 	box-shadow: 2px 3px #898383;
 	background-color:#2D9462;
@@ -116,5 +97,14 @@ button:hover{
 	color:white;
 	margin:0.5em;
 	padding:0.7em;
-	font-size:1.1em;
+	font-size:0.9em;
+	width:15%;
+}
+.text1, .text2{
+	color:#2D9462;
+	font-size:0.8em;
+}
+.text3{
+	color:red;
+	font-size:0.8em;
 }

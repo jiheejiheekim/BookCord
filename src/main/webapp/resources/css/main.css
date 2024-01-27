@@ -42,6 +42,10 @@ a{
 	padding-right:1em;
 }
 
+button:hover{
+	box-shadow: 2px 2px 3px 1px #898383;
+}
+
 .mid{
 	width:100%;
 	height:5em;
@@ -76,6 +80,7 @@ a{
 }
 
 
+
 .bestseller .newBooks{
 	width:100%;
 	margin:auto;
@@ -93,7 +98,7 @@ a{
 	padding:0.7em;
 	border:none;
 	border-radius:15px;
-	box-shadow: 2px 2px 3px 1px #898383;
+	box-shadow: 2px 3px #898383;
 	font-size:1em;
 	/* text-align:right; */
 }
