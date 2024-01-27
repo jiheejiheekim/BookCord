@@ -76,11 +76,13 @@
 				</table>
 			</div>
 		</div>
-	
-	
-	
-	
+		<br>
 	
 	</div>
+	
+		<div class="finalEdit">
+			<button class="EditButton"><a href="">회원정보 수정</a></button>
+		</div>
+	
 </body>
 </html>
