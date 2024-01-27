@@ -74,8 +74,8 @@ button:hover {
 }
 
 .navi {
-	width: 14%;
-	height: 250px;
+	width: 13%;
+	height: 300px;
 	padding-top: 1em;
 	padding-left: 1.5em;
 	background-color: #2D9462;
@@ -113,7 +113,7 @@ button:hover {
 
 .memberEdit{
 	/*border:1px solid black; */
-	width:70%;
+	width:80%;
 	margin-left:2.5em;
 	margin-top:1em;
 }
@@ -122,29 +122,35 @@ button:hover {
 }
 .Edit{
 	/* border:1px solid black; */
-	width:65%;
+	width:70%;
 	margin-top:1.5em;
 	background-color:#EDEDED;
 	font-size:1.1em;
 	padding:1em;
 }
+.EditTable{
+	width:70%;
+	margin-bottom:1.5em;
+}
 .Edit tr td{
-	border:1px solid black;
-	padding:0.7em;
+	/* border:1px solid black; */
+}
+.Edit tr td:not(.text1, .text2) {
+	padding-top:1.2em;
 	padding-left:0.7em;
 	padding-right:0.7em;
 }
 .EditTable tr td:nth-child(1){
-	width:20%;
+	width:15%;
 }
 .EditTable tr td:nth-child(2){
-	width:40%;
+	width:30%;
 }
 .EditTable tr td:nth-child(3){
 	width:10%;
 }
 .pw, .pwCheck, .nickName{
-	width:80%;
+	width:95%;
 	text-align:left;
 	height:2.2em;
 	border:none;
@@ -166,8 +172,10 @@ button:hover {
 .text1{
 	color:#2D9462;
 	font-size:0.8em;
+	padding-left:1em;
 }
 .text2{
 	color:red;
 	font-size:0.8em;
+	padding-left:1em;
 }

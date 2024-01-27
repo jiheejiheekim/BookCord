@@ -61,9 +61,8 @@ table tr td:nth-child(3){
 	padding:1.3em;
 	font-size:1.1em;
 }
-.signUpTable tr td{
-	padding-top:0.5em;
-	padding-bottom:0.5em;
+.signUpTable tr td:not(.text1, .text2, .text3){
+	padding-top:1em;
 }
 .id, .pw, .pwCheck, .nickName{
 	width:90%;
