@@ -179,7 +179,7 @@
 		<table class="bookMarkpageTable">
 			<tr>
 				<td class="pageLogotd"><a><img class="pageLogo" src="resources/images/pageLeft.png"></a></td>
-				<td><a  class="bold">1</a></td>
+				<td><a class="bold">1</a></td>
 				<td><a href="">2</a></td>
 				<td><a href="">3</a></td>
 				<td><a href="">4</a></td>
