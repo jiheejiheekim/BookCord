@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookCord - MybookMark</title>
+<title>BookCord - MyBookMark</title>
 <link rel="stylesheet" href="resources/css/myBookMark.css">
 </head>
 <body>
