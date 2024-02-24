@@ -13,7 +13,7 @@
 		<table class="toptable">
 			<tr>
 				<td class="top1" colspan="5"><a href="main"><img
-						class="logo" src="resources/images/logo.png"></a></td>
+						class="logo" src="resources/images/logo.png"></a></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3"><a href="memberEdit">마이페이지</a></td>
 				<td class="top4"><a href="login">로그아웃</a></td>
@@ -42,7 +42,17 @@
 		<!-- navi -->
 		
 		<div class="myReview">
-			<span class="myReviewSpan">종합</span>
+		
+			<div class="bshead">
+				<table class="bsBtTable">
+					<tr>
+						<td class="myReviewSpan">종합</td>
+						<td><button class="week"><a href="">주간 베스트</a></button></td>
+						<td><button class="month"><a href="">월간 베스트</a></button></td>
+						<td><button class="year"><a href="">연간 베스트</a></button></td>
+					</tr>
+				</table>
+			</div>
 
 			<div class="reviewTableDiv">
 				<table class="reviewTable">
@@ -50,7 +60,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">1.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkO.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkO.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -78,7 +88,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">2.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -106,7 +116,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">3.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -134,7 +144,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">4.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -162,7 +172,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">5.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -190,7 +200,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">6.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -218,7 +228,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">7.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -246,7 +256,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">8.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -274,7 +284,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">9.</td>
-						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -302,7 +312,7 @@
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">10.</td>
-						<td class="myReview1td3"><a href=""><img class="bookMarkImg" src="resources/images/bookmarkX.png"></td>
+						<td class="myReview1td3"><a href=""><img class="bookMarkImg" src="resources/images/bookmarkX.png"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -337,14 +347,14 @@
 		<table class="reviewPageTable">
 			<tr>
 				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageLeft.png"></a></td>
+						src="resources/images/pageLeft.png"></a></a></td>
 				<td><a class="bold">1</a></td>
 				<td><a href="">2</a></td>
 				<td><a href="">3</a></td>
 				<td><a href="">4</a></td>
 				<td><a href="">5</a></td>
 				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageRight.png"></a></td>
+						src="resources/images/pageRight.png"></a></a></td>
 			</tr>
 		</table>
 	</div>
