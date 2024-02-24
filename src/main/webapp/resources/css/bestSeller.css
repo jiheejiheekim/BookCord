@@ -52,6 +52,10 @@ a {
 	padding-right: 1em;
 }
 
+button:hover{
+	box-shadow: 2px 2px 3px 1px #898383;
+}
+
 .content{
 	display:inline-flex;
 	width:100%;
@@ -72,14 +76,14 @@ a {
 	width: 100%;
 }
 .navi1{
-	font-size: 1.5em;
+	font-size: 1.2em;
 }
 .navi2 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
+	color: black;
 }
 .navi3 {
-	color: black;
 	padding-top: 0.8em;
 	padding-left: 1.5em;
 }
@@ -90,7 +94,7 @@ a {
 .naviA{
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
     display: inline-block;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .naviA:hover {
 	transform: translate(2px, 2px);
@@ -104,6 +108,7 @@ a {
 .myReviewSpan{
 	font-size:2em;
 }
+
 
 .reviewTableDiv{
 	width:100%;
@@ -131,41 +136,30 @@ a {
 	width:15%;
 }
 .myReview1td2{
+	font-size:14px;
+}
+.myReview1td3{
+	width:3%
+}
+.myReview2td2{
 	font-size:16px;
 }
-.myReview2td2, .myReview6td2{
-	font-size:13px;
-}
 .myReview3td2{
-	font-size:11px;
+	font-size:12px;
 }
 .myReview4td2{
-	font-size:13px;
+	font-size:12px;
 }
 .myReview5td2{
-	font-size:13px;
+	font-size:12px;
+}
+.myReview6td2{
 	color:#2D9462;
+	font-size:12px;
 }
-
-.reviewPage{
-	/* width:100%; */
-	margin-top:2em;
-	margin-left:41%;
+.black{
+	color:black;
 }
-.reviewPageTable{
-	margin-bottom:1.5em;
-}
-.reviewPageTable tr td{
-	text-align:center;
-	/* border:solid 1px black; */
-	width:0.5em;
-}
-.bold{
-	font-weight: bold;
-}
-.pageLogotd{
-	padding-top:5px;
-}
-.pageLogo{
-	width:28px;
+.bookMarkImg{
+	width:20px;
 }
