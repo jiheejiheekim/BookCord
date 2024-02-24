@@ -36,11 +36,12 @@
 					<td class="navi3"><a class="naviA" href="myReview">나의 리뷰</a></td>
 				</tr>
 				<tr>
-					<td class="navi4"><a class="naviA" href="mybookMark">나의
+					<td class="navi4"><a class="naviA" href="myBookMark">나의
 							북마크</a></td>
 				</tr>
 			</table>
 		</div>
+		<!-- navi -->
 
 		<div class="myReview">
 			<span class="myReviewSpan">나의 리뷰</span>
@@ -58,7 +59,7 @@
 					</tr>
 					<tr class="myReview3">
 						<!-- <td></td> -->
-						<td class="myReview3td2"></td>
+						<td class="myReview3td2">　</td>
 					</tr>
 					<tr class="myReview4">
 						<!-- <td></td> -->
@@ -86,7 +87,7 @@
 					</tr>
 					<tr class="myReview3">
 						<!-- <td></td> -->
-						<td class="myReview3td2"></td>
+						<td class="myReview3td2">　</td>
 					</tr>
 					<tr class="myReview4">
 						<!-- <td></td> -->
@@ -114,7 +115,7 @@
 					</tr>
 					<tr class="myReview3">
 						<!-- <td></td> -->
-						<td class="myReview3td2"></td>
+						<td class="myReview3td2">　</td>
 					</tr>
 					<tr class="myReview4">
 						<!-- <td></td> -->
@@ -130,24 +131,29 @@
 					</tr>
 				</table>
 			</div>
+			<!-- reviewTableDiv -->
 
-		</div><!-- myReview -->
-		
+		</div>
+		<!-- myReview -->
+
+	</div>
+	<!-- content -->
+
 	<div class="reviewPage">
 		<table class="reviewPageTable">
 			<tr>
-				<td class="pageLogotd"><a><img class="pageLogo" src="resources/images/pageLeft.png"></a></td>
+				<td class="pageLogotd"><a><img class="pageLogo"
+						src="resources/images/pageLeft.png"></a></td>
 				<td><a class="bold">1</a></td>
 				<td><a href="">2</a></td>
 				<td><a href="">3</a></td>
 				<td><a href="">4</a></td>
 				<td><a href="">5</a></td>
-				<td class="pageLogotd"><a><img class="pageLogo" src="resources/images/pageRight.png"></a></td>
+				<td class="pageLogotd"><a><img class="pageLogo"
+						src="resources/images/pageRight.png"></a></td>
 			</tr>
 		</table>
 	</div>
-
-	</div><!-- content -->
 
 </body>
 </html>

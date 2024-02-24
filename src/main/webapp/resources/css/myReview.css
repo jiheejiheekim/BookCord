@@ -111,7 +111,7 @@ a {
 	margin-bottom:1em;
 }
 .reviewTable{
-	width:80%;
+	width:70%;
 	padding:0.5em;
 	margin-bottom:2%;
 	margin-right:3%;
@@ -119,10 +119,8 @@ a {
 }
 .reviewTable tr td{
 	/* border:1px solid black; */
-	padding-left:1px;
-}
-.reviewTable tr{
-	padding:1px;
+	padding-right:5px;
+	padding-left:5px;
 }
 .bookImg{
 	background-color:#D9D9D9;
@@ -130,7 +128,7 @@ a {
 	height:130px;
 }
 .myReviewtd1{
-	width:11%;
+	width:15%;
 }
 .myReview1td2{
 	font-size:16px;
@@ -150,6 +148,7 @@ a {
 }
 
 .reviewPage{
+	/* width:100%; */
 	margin-top:2em;
 	margin-left:41%;
 }
