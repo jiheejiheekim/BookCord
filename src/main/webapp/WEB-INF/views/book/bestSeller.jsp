@@ -325,18 +325,29 @@
 						<td class="myReview6td2">★★★★★　<span class="black">(9)</span></td>
 					</tr>
 				</table>
-				
-
-				
 			</div>
 			<!-- reviewTableDiv -->
-
 		</div>
 		<!-- myReview -->
 
-
 	</div>
 	<!-- content -->
+	
+	<div class="reviewPage">
+		<table class="reviewPageTable">
+			<tr>
+				<td class="pageLogotd"><a><img class="pageLogo"
+						src="resources/images/pageLeft.png"></a></td>
+				<td><a class="bold">1</a></td>
+				<td><a href="">2</a></td>
+				<td><a href="">3</a></td>
+				<td><a href="">4</a></td>
+				<td><a href="">5</a></td>
+				<td class="pageLogotd"><a><img class="pageLogo"
+						src="resources/images/pageRight.png"></a></td>
+			</tr>
+		</table>
+	</div>
 
 </body>
 </html>

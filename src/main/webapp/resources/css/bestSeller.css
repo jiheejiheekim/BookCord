@@ -66,7 +66,7 @@ button:hover{
 }
 .navi {
 	width: 13%;
-	height: 300px;
+	/* height: 300px; */	/* 네비바 높이 */
 	padding-top: 1em;
 	padding-left: 1.5em;
 	background-color: #2D9462;
@@ -162,4 +162,27 @@ button:hover{
 }
 .bookMarkImg{
 	width:20px;
+}
+
+.reviewPage{
+	/* width:100%; */
+	margin-top:2em;
+	margin-left:41%;
+}
+.reviewPageTable{
+	margin-bottom:1.5em;
+}
+.reviewPageTable tr td{
+	text-align:center;
+	/* border:solid 1px black; */
+	width:0.5em;
+}
+.bold{
+	font-weight: bold;
+}
+.pageLogotd{
+	padding-top:5px;
+}
+.pageLogo{
+	width:28px;
 }
