@@ -97,24 +97,24 @@ button:hover{
 }
 
 
-.bs{
+.nb{
 	width:80%;
 	margin-left:2.6em;
 	margin-top:1em;
 }
-.bsSpan{
+.nbSpan{
 	font-size:2em;
 }
 
-.bshead{
+.nbhead{
 	display:inline-flex;
 	width:100%;
 }
-.bsBtTable tr td{
+.nbBtTable tr td{
 	/* border:1px solid black; */
 	padding-right:10px;
 }
-.week, .month, .year{
+.day, .name, .star{
 	background-color:#2D9462;
 	color:white;
 	margin-left:0.5em;
@@ -124,26 +124,26 @@ button:hover{
 	box-shadow: 2px 3px #898383;
 	font-size:1em;
 }
-.week{
+.day{
 	border:1px solid gray;
 	transform: translateY(2px);
     box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
 }
 
 
-.bsTableDiv{
+.nbTableDiv{
 	width:100%;
 	margin-top:1.7em;
 	margin-bottom:1em;
 }
-.bsTable{
+.nbTable{
 	width:70%;
 	padding:0.5em;
 	margin-bottom:2%;
 	margin-right:3%;
 	background-color:#EDEDED;
 }
-.bsTable tr td{
+.nbTable tr td{
 	/* border:1px solid black; */
 	padding-right:5px;
 	padding-left:5px;
@@ -153,28 +153,28 @@ button:hover{
 	width:100%;
 	height:130px;
 }
-.bstd1{
+.nbtd1{
 	width:15%;
 }
-.bs1td2{
+.nb1td2{
 	font-size:14px;
 }
-.bs1td3{
+.nb1td3{
 	width:3%
 }
-.bs2td2{
+.nb2td2{
 	font-size:16px;
 }
-.bs3td2{
+.nb3td2{
 	font-size:12px;
 }
-.bs4td2{
+.nb4td2{
 	font-size:12px;
 }
-.bs5td2{
+.nb5td2{
 	font-size:12px;
 }
-.bs6td2{
+.nb6td2{
 	color:#2D9462;
 	font-size:12px;
 }

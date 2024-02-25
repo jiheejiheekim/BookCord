@@ -41,7 +41,7 @@
 		<table class="bshead">
 			<tr>
 				<td class="bshead1" colspan="4">　베스트 셀러</td>
-				<td class="bshead2"><button class="bsbutton"><a href="/book/bestSeller">더보기　　></a></button></td>
+				<td class="bshead2"><button class="bsbutton"><a href="bestSeller">더보기　　></a></button></td>
 			</tr>
 		</table>
 		
@@ -73,7 +73,7 @@
 		<table class="bshead">
 			<tr>
 				<td class="bshead1" colspan="4">　신간 도서</td>
-				<td class="bshead2"><button class="bsbutton"><a href="/book/newBooks">더보기　　></a></button></td>
+				<td class="bshead2"><button class="bsbutton"><a href="newBooks">더보기　　></a></button></td>
 			</tr>
 		</table>
 		
