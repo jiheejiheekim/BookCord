@@ -68,8 +68,8 @@ button:hover{
 	margin:auto;
 	width:80%;
 }
-.dTable2 tr td, .dTable3 tr td, .dTable4 tr td {
-	/* border: 1px solid black; */
+/* .dTable2 tr td, .dTable3 tr td,  */.dTable4 tr td {
+	border: 1px solid black;
 }
 .d1td1{
 	width:25%;
@@ -112,10 +112,44 @@ button:hover{
 .d2td2, .d3td2, .d4td2{
 	width:75%;
 }
+.radioTable{
+	width:100%;
+}
+.radioTabletr{
+	width:70%;
+}
 .star{
 	width:18px;
 	padding-top:2px;
 }
-.radioTable tr td{
-	padding-right:15px;
+.rTextareatd{
+	width:70%;
+}
+.rTextarea{
+	padding:1px;
+	background-color: #EDEDED;
+	border:none;
+	border-radius:15px 15px 15px 15px;
+	width:100%;
+	margin:5px;
+	font-size:15px;
+}
+.rSubmitbt{
+	background-color:#2D9462;
+	color:white;
+	margin-left:1em;
+	padding:0.9em;
+	border:none;
+	border-radius:15px;
+	box-shadow: 2px 3px #898383;
+	font-size:1em;
+	width:35%;
+	height:98px;
+}
+.rSubmittd{
+	width:20%;
+}
+
+.reviewTabletr{
+	width:100%;
 }

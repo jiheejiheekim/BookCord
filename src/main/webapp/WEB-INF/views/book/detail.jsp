@@ -109,10 +109,10 @@
 			
 			<table class="dTable4">
 				<tr>
-					<td class="d4td1">리뷰</td>
+					<td class="d4td1" rowspan="11">리뷰</td>
 					<td class="d4td2">
 						<table class="radioTable">
-							<tr>
+							<tr class="radioTabletr">
 								<td><input type="radio" name="radio">
 									<img class="star" src="resources/images/star.png">
 								</td>
@@ -139,12 +139,37 @@
 									<img class="star" src="resources/images/star.png">
 								</td>
 							</tr>
+							
+							<tr>
+								<td class="rTextareatd" colspan="5"><textarea class="rTextarea" name="rTextarea" rows="5" cols="30"></textarea></td>
+								<td class="rSubmittd"><button class="rSubmitbt"><a href="">등록</a></button></td>
+							</tr>
+							
+							<tr>
+								<td class="d1td14" colspan="10"><hr color="#2D9462"></td>
+							</tr>
+							
+							<tr class="reviewTabletr">
+								<td colspan="2">
+									<img class="star" src="resources/images/star.png">
+									<img class="star" src="resources/images/star.png">
+									<img class="star" src="resources/images/star.png">
+									<img class="star" src="resources/images/star.png">
+								</td>
+								<td colspan="2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
+							</tr>
+							<tr class="reviewTabletr">
+								<td colspan="2"></td>
+								<td>bookcord123</td>
+								<td>2024-01-20</td>
+							</tr>
+						
+							
 						</table>
 					</td>
 				</tr>
-				<tr>
-					<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
-				</tr>
+				
+				
 			</table>
 			
 		</div>	<!-- detail -->
