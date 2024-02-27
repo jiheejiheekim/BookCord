@@ -69,7 +69,7 @@ button:hover{
 	width:80%;
 }
 .dTable2 tr td, .dTable3 tr td,  .dTable4 tr td {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 .d1td1{
 	width:25%;
@@ -110,8 +110,7 @@ button:hover{
 	font-size:30px;
 }
 .d4td1{
-	/* display:inline-block;
-	justify-content: flex-start; */
+	vertical-align: top;
 	width:25%;
 	font-size:30px;
 }
@@ -155,21 +154,21 @@ button:hover{
 	border-radius:15px;
 	box-shadow: 2px 3px #898383;
 	font-size:1em;
-	width:100%;
-	height:98px;
+	width:97%;
+	height:114px;
 }
 
-
-.dTable4 table tr td{
-	/* padding-right:1px;
-	padding-top:1px;
-	padding-bottom:1px; */
+.dTable4{
+	font-size:18px;
 }
 .reviewTabletr{
 	width:15%;
 }
-.reviewTabletd1, .reviewTabletd2{
+.reviewTabletd0, .reviewTabletd1, .reviewTabletd2{
 	font-size:14px;
+	padding-top:3px;
+	padding-bottom:20px;
+	color:#6C6A6A;
 }
 .reviewTabletd1{
 	width:20%;

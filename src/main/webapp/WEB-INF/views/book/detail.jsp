@@ -151,7 +151,7 @@
 				</tr>
 				
 				<tr>
-					<td class="reviewTabletr">
+					<td class="reviewTabletd">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -160,12 +160,12 @@
 					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd0"></td>
 					<td class="reviewTabletd1">bookcord123</td>
 					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr">
+					<td class="reviewTabletd">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -175,12 +175,12 @@
 					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd0"></td>
 					<td class="reviewTabletd1">bookcord123</td>
 					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr">
+					<td class="reviewTabletd">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -189,12 +189,12 @@
 					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd0"></td>
 					<td class="reviewTabletd1">bookcord123</td>
 					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr">
+					<td class="reviewTabletd">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -204,12 +204,12 @@
 					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다. 후이바오와 루이바오 둘 다 건강하게 자라렴!</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd0"></td>
 					<td class="reviewTabletd1">bookcord123</td>
 					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr">
+					<td class="reviewTabletd">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -219,7 +219,7 @@
 					<td colspan="3">가지마 푸공주야ㅠㅠㅠ</td>
 				</tr>
 				<tr>
-					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd0"></td>
 					<td class="reviewTabletd1">bookcord123</td>
 					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
