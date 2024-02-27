@@ -68,7 +68,7 @@ button:hover{
 	margin:auto;
 	width:80%;
 }
-/* .dTable2 tr td, .dTable3 tr td,  */.dTable4 tr td {
+.dTable2 tr td, .dTable3 tr td,  .dTable4 tr td {
 	border: 1px solid black;
 }
 .d1td1{
@@ -103,14 +103,24 @@ button:hover{
 	color:black;
 }
 
-.d2td1, .d3td1, .d4td1{
+.d2td1, .d3td1{
 	display:inline-block;
 	justify-content: flex-start;
-	width:45%;
+	width:100%;
 	font-size:30px;
 }
-.d2td2, .d3td2, .d4td2{
+.d4td1{
+	/* display:inline-block;
+	justify-content: flex-start; */
+	width:25%;
+	font-size:30px;
+}
+.d2td2, .d3td2 {
 	width:75%;
+}
+
+.d4td2{
+	width:100%;
 }
 .radioTable{
 	width:100%;
@@ -123,7 +133,7 @@ button:hover{
 	padding-top:2px;
 }
 .rTextareatd{
-	width:70%;
+	width:50%;
 }
 .rTextarea{
 	padding:1px;
@@ -143,13 +153,46 @@ button:hover{
 	border-radius:15px;
 	box-shadow: 2px 3px #898383;
 	font-size:1em;
-	width:35%;
+	width:50%;
 	height:98px;
 }
 .rSubmittd{
-	width:20%;
+	width:30%;
 }
 
+.dTable4 table tr td{
+	/* padding-right:1px;
+	padding-top:1px;
+	padding-bottom:1px; */
+}
 .reviewTabletr{
-	width:100%;
+	/* width:100%; */
+	/* margin-bottom:3px; */
+}
+.reviewTabletd{
+	font-size:14px;
+}
+
+
+.Page{
+	/* width:100%; */
+	margin-top:2em;
+	margin-left:41%;
+}
+.PageTable{
+	margin-bottom:1.5em;
+}
+.PageTable tr td{
+	text-align:center;
+	/* border:solid 1px black; */
+	width:0.5em;
+}
+.bold{
+	font-weight: bold;
+}
+.pageLogotd{
+	padding-top:5px;
+}
+.pageLogo{
+	width:28px;
 }
