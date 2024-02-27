@@ -112,29 +112,29 @@
 					<td class="d4td1" rowspan="13">리 뷰</td>
 					<td class="d4td2" colspan="4">
 						<input type="radio" name="radio">
-							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">　
 					
 						<input type="radio" class="radio" name="radio">
 							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">　
+						
+						<input type="radio" class="radio" name="radio">
 							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">　
 						
 						<input type="radio" class="radio" name="radio">
 							<img class="star" src="resources/images/star.png">
 							<img class="star" src="resources/images/star.png">
 							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">　
 						
 						<input type="radio" class="radio" name="radio">
 							<img class="star" src="resources/images/star.png">
 							<img class="star" src="resources/images/star.png">
 							<img class="star" src="resources/images/star.png">
 							<img class="star" src="resources/images/star.png">
-						
-						<input type="radio" class="radio" name="radio">
-							<img class="star" src="resources/images/star.png">
-							<img class="star" src="resources/images/star.png">
-							<img class="star" src="resources/images/star.png">
-							<img class="star" src="resources/images/star.png">
-							<img class="star" src="resources/images/star.png">
+							<img class="star" src="resources/images/star.png">　
 								
 							
 							<!-- radioTable -->
@@ -142,74 +142,74 @@
 				</tr>
 				
 				<tr>
-					<td class="rTextareatd" colspan="2"><textarea class="rTextarea" name="rTextarea" rows="5" cols="30"></textarea></td>
-					<td class="rSubmittd"><button class="rSubmitbt"><a href="">등록</a></button></td>
+					<td class="rTextareatd" colspan="3"><textarea class="rTextarea" name="rTextarea" rows="5" cols="30"></textarea></td>
+					<td class="rSubmittd" colspan="2"><button class="rSubmitbt"><a href="">등 록</a></button></td>
 				</tr>
 				
 				<tr>
 					<td class="d1td14" colspan="10"><hr color="#2D9462"></td>
 				</tr>
 				
-				<tr class="reviewTabletr">
-					<td>
+				<tr>
+					<td class="reviewTabletr">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 					</td>
-					<td>아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
+					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
 				</tr>
-				<tr class="reviewTabletr">
-					<td></td>
-					<td class="reviewTabletd">bookcord123</td>
-					<td class="reviewTabletd">2024-03-20</td>
+				<tr>
+					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd1">bookcord123</td>
+					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
-				<tr class="reviewTabletr">
-					<td>
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-					</td>
-					<td>푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다</td>
-				</tr>
-				<tr class="reviewTabletr">
-					<td></td>
-					<td class="reviewTabletd">bookcord123</td>
-					<td class="reviewTabletd">2024-03-20</td>
-				</tr>
-				<tr class="reviewTabletr">
-					<td>
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-						<img class="star" src="resources/images/star.png">
-					</td>
-					<td>아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-				</tr>
-				<tr class="reviewTabletr">
-					<td></td>
-					<td class="reviewTabletd">bookcord123</td>
-					<td class="reviewTabletd">2024-03-20</td>
-				</tr>
-				<tr class="reviewTabletr">
-					<td>
+				<tr>
+					<td class="reviewTabletr">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 					</td>
-					<td>푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다. 후이바오와 루이바오 둘 다 건강하게 자라렴!</td>
+					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다</td>
 				</tr>
-				<tr class="reviewTabletr">
-					<td></td>
-					<td class="reviewTabletd">bookcord123</td>
-					<td class="reviewTabletd">2024-03-20</td>
+				<tr>
+					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd1">bookcord123</td>
+					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
-				<tr class="reviewTabletr">
-					<td colspan="2">
+				<tr>
+					<td class="reviewTabletr">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+					</td>
+					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
+				</tr>
+				<tr>
+					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd1">bookcord123</td>
+					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
+				</tr>
+				<tr>
+					<td class="reviewTabletr">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+						<img class="star" src="resources/images/star.png">
+					</td>
+					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다. 후이바오와 루이바오 둘 다 건강하게 자라렴!</td>
+				</tr>
+				<tr>
+					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd1">bookcord123</td>
+					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
+				</tr>
+				<tr>
+					<td class="reviewTabletr">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
 						<img class="star" src="resources/images/star.png">
@@ -218,10 +218,10 @@
 					</td>
 					<td colspan="3">가지마 푸공주야ㅠㅠㅠ</td>
 				</tr>
-				<tr class="reviewTabletr">
-					<td></td>
-					<td class="reviewTabletd">bookcord123</td>
-					<td class="reviewTabletd">2024-03-20</td>
+				<tr>
+					<td class="reviewTabletr"></td>
+					<td class="reviewTabletd1">bookcord123</td>
+					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
 				</tr>
 		</table>
 			

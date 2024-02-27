@@ -133,32 +133,32 @@ button:hover{
 	padding-top:2px;
 }
 .rTextareatd{
-	width:50%;
+	/* width:70%; */
 }
 .rTextarea{
-	padding:1px;
+	padding:5px;
 	background-color: #EDEDED;
 	border:none;
 	border-radius:15px 15px 15px 15px;
-	width:100%;
-	margin:5px;
-	font-size:15px;
+	width:90%;
+	margin:10px;
+	font-size:16px;
+}
+.rSubmittd{
+	width:35%;
 }
 .rSubmitbt{
 	background-color:#2D9462;
 	color:white;
-	margin-left:1em;
-	padding:0.9em;
+	padding:1em;
 	border:none;
 	border-radius:15px;
 	box-shadow: 2px 3px #898383;
 	font-size:1em;
-	width:50%;
+	width:100%;
 	height:98px;
 }
-.rSubmittd{
-	width:30%;
-}
+
 
 .dTable4 table tr td{
 	/* padding-right:1px;
@@ -166,13 +166,15 @@ button:hover{
 	padding-bottom:1px; */
 }
 .reviewTabletr{
-	/* width:100%; */
-	/* margin-bottom:3px; */
+	width:15%;
 }
-.reviewTabletd{
+.reviewTabletd1, .reviewTabletd2{
 	font-size:14px;
 }
-
+.reviewTabletd1{
+	width:20%;
+	
+}
 
 .Page{
 	/* width:100%; */
