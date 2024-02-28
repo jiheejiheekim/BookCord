@@ -97,13 +97,12 @@ button:hover{
 .bsbutton{
 	background-color:#2D9462;
 	color:white;
-	margin:0.5em;
+	margin-left:0.5em;
 	padding:0.7em;
 	border:none;
 	border-radius:15px;
-	box-shadow: 2px 3px #898383;
+	box-shadow: 5px 5px #898383;
 	font-size:1em;
-	/* text-align:right; */
 }
 .bshead1{
 	text-align:left;
