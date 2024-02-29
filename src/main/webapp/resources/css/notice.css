@@ -8,17 +8,20 @@
 		url('https://cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf')
 		format('opentype');
 }
+
 * {
 	font-family: 'DNFForgedBlade';
 	font-weight: 1em;
 	/* text-align:center; */
 }
+
 a {
 	text-decoration: none;
 	color: inherit;
 }
+
 .top {
-	font-size:1.2em;
+	font-size: 1.2em;
 	width: 100%;
 	height: 2.7em;
 	background-color: #EDEDED;
@@ -27,10 +30,12 @@ a {
 .toptable {
 	width: 100%;
 }
+
 .toptable tr td {
 	/* border:1px solid black; */
 	
 }
+
 .logo {
 	height: 2.5em;
 }
@@ -38,32 +43,37 @@ a {
 .top1 {
 	text-align: left;
 }
+
 .top2 {
 	text-align: right;
 	padding-right: 1em;
 }
+
 .top3 {
 	width: 5.5em;
 	text-align: center;
 }
+
 .top4 {
 	width: 4em;
 	text-align: right;
 	padding-right: 1em;
 }
 
-button:hover{
+button:hover {
 	box-shadow: 2px 2px 3px 1px #898383;
 }
 
-.content{
-	display:inline-flex;
-	width:100%;
+.content {
+	display: inline-flex;
+	width: 100%;
 }
 
 .naviTable tr td {
 	/* border: 1px solid black; */
+	
 }
+
 .navi {
 	width: 13%;
 	height: 300px;
@@ -72,96 +82,142 @@ button:hover{
 	background-color: #2D9462;
 	color: white;
 }
+
 .naviTable {
 	width: 100%;
 }
-.navi1{
+
+.navi1 {
 	font-size: 1.5em;
 }
+
 .navi2 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
 }
+
 .navi3 {
 	color: black;
 	padding-top: 0.8em;
 	padding-left: 1.5em;
 }
+
 .navi4 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
 }
-.naviA{
+
+.naviA {
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
-    display: inline-block;
-    font-size: 1.3em;
+	display: inline-block;
+	font-size: 1.3em;
 }
+
 .naviA:hover {
 	transform: translate(2px, 2px);
 }
 
-.noticeHead{
-	width:70%;
-	margin-left:2.6em;
-	margin-top:1em;
-}
-.noticeHeadSpan{
-	font-size:2em;
+.noticeHead {
+	width: 70%;
+	margin-left: 2.6em;
+	margin-top: 1em;
 }
 
-.nhTable1 tr td, .nhTable2 tr td{
-	border:1px solid black;
+.noticeHeadSpan {
+	font-size: 2em;
 }
-.content{
-	display:inline-flex;
-	width:100%;
+
+.nhTable1 tr td, .nhTable2 tr td {
+	/* border: 1px solid black; */
 }
-.nhTableDiv{
-	width:100%;
+
+.content {
+	display: inline-flex;
+	width: 100%;
 }
-.nhTable1, .nhTable2{
-	width:70%;
+
+.nhTableDiv {
+	width: 100%;
 }
-.nht1r2d1{
-	width:18%;
+
+.nhTable1, .nhTable2 {
+	width: 70%;
 }
-.noticeBt{
-	background-color:#2D9462;
-	color:white;
-	padding:0.7em;
-	border:none;
-	border-radius:15px;
-	font-size:1em;
-	border:1px solid #808080;
+
+.nht1r2d1 {
+	width: 18%;
+}
+
+.noticeBt {
+	background-color: #2D9462;
+	color: white;
+	padding: 0.7em;
+	border: none;
+	border-radius: 15px;
+	font-size: 1em;
+	border: 1px solid #808080;
 	transform: translateY(2px);
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-    width:70%;
-}
-.qnaBt{
-	background-color:#2D9462;
-	color:white;
-	padding:0.7em;
-	border:none;
-	border-radius:15px;
-	box-shadow: 5px 5px #898383;
-	font-size:1em;
-	width:15%;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+	width: 70%;
 }
 
-.nht2r1d1{
-	background-color:#EDEDED;
+.qnaBt {
+	background-color: #2D9462;
+	color: white;
+	padding: 0.7em;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 5px 5px #898383;
+	font-size: 1em;
+	width: 15%;
+}
+
+.nht2r1d1 {
+	background-color: #EDEDED;
+	width: 20%;
+	color:#616161;
+}
+.select {
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	border: none;
+
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url('../images/option.png');
+	background-size: 17px 17px;
+	background-color: #EDEDED;
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 8px;
+}
+.optionImg {
+	width: 18px;
+}
+
+.nht2r1d2{
+	width: 60%;
+	color:#616161;
+	background-color: #EDEDED;
+}
+.search{
+	width:80%;
+	padding:12px;
+	background-color: #EDEDED;
+	font-size: 20px;
+	border: none;
+}
+.searchImg {
+	width: 25px;
+	height:25px;
+}
+.nht2r1d2Span{
+	background-color: #EDEDED;
+	border-top:5px solid black;
+	margin-top:5px;
+}
+.nht2r1d3{
 	width:20%;
-}
-.select{
-	text-align:center;
-	width:100%;
-	font-size:20px;
-	border:none;
-}
-.optionImg{
-	display:inline-block;
-	justify-content:left;
-}
-.searchImg{
-	width:18px;
 }

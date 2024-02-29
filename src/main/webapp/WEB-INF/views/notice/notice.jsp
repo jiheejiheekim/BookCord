@@ -60,12 +60,13 @@
 								<option value="제목" selected>제 목</option>
 								<option value="글내용">글내용</option>
 							</select>
-							<span class="optionImg"><img src="resources/images/option.png"></span>
 						</td>
 						<td class="nht2r1d2">
 							<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
-							<a href=""><img class="searchImg" src="resources/images/search.png"></a>
-						</td>
+							<span class="nht2r1d2Span">
+								<a href=""><img class="searchImg" src="resources/images/search.png"></a>
+							</span>
+						<td class="nht2r1d3"></td>
 					</tr>
 					
 					
