@@ -18,12 +18,11 @@ a {
 	color: inherit;
 }
 .top {
-	font-size:1.2em;
+	font-size: 1.2em;
 	width: 100%;
 	height: 2.7em;
 	background-color: #EDEDED;
 }
-
 .toptable {
 	width: 100%;
 }
@@ -34,7 +33,6 @@ a {
 .logo {
 	height: 2.5em;
 }
-
 .top1 {
 	text-align: left;
 }
@@ -52,6 +50,217 @@ a {
 	padding-right: 1em;
 }
 
-button:hover{
+button:hover {
 	box-shadow: 2px 2px 3px 1px #898383;
+}
+
+.content {
+	display: inline-flex;
+	width: 100%;
+}
+
+.naviTable tr td {
+	/* border: 1px solid black; */
+	
+}
+.navi {
+	width: 13%;
+	height: 300px;
+	padding-top: 1em;
+	padding-left: 1.5em;
+	background-color: #2D9462;
+	color: white;
+}
+.naviTable {
+	width: 100%;
+}
+.navi1 {
+	font-size: 1.5em;
+}
+.navi2 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+}
+.navi3 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+	color: black;
+}
+.navi4 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+}
+.naviA {
+	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
+	display: inline-block;
+	font-size: 1.3em;
+}
+.naviA:hover {
+	transform: translate(2px, 2px);
+}
+
+.noticeHead {
+	width: 70%;
+	margin-left: 2.6em;
+	margin-top: 1em;
+}
+.noticeHeadSpan {
+	font-size: 2em;
+}
+.nhTable1 tr td, .nhTable2 tr td {
+	/* border: 1px solid black; */
+}
+
+.content {
+	display: inline-flex;
+	width: 100%;
+}
+
+.nhTableDiv {
+	width: 100%;
+}
+.nhTable1, .nhTable2, .nhTable3 {
+	width: 70%;
+}
+.nht1r2d1 {
+	width: 18%;
+}
+.noticeBt {
+	background-color: #2D9462;
+	color: white;
+	padding: 0.7em;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 5px 5px #898383;
+	font-size: 1em;
+	width: 70%;
+}
+.qnaBt {
+	background-color: #2D9462;
+	color: white;
+	padding: 0.7em;
+	border: none;
+	border-radius: 15px;
+	font-size: 1em;
+	border: 1px solid #808080;
+	transform: translateY(2px);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+	width: 15%;
+}
+
+.nht2r1d1 {
+	background-color: #EDEDED;
+	width: 20%;
+	color:#616161;
+	padding-right: 5px;
+}
+.select {
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	border: none;
+	color:#616161;
+
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url('../images/option.png');
+	background-size: 17px 17px;
+	background-color: #EDEDED;
+	background-repeat: no-repeat;
+	background-position: right center;
+	padding-right: 9px;
+}
+.optionImg {
+	width: 18px;
+}
+
+.nht2r1d2{
+	width: 80%;
+	color:#616161;
+	background-color: #EDEDED;
+	border-left:5px white solid;
+	display: inline-flex;
+	align-items : center;
+	justify-content: center;
+}
+.search{
+	width:80%;
+	padding:12px;
+	background-color: #EDEDED;
+	font-size: 20px;
+	border: none;
+}
+.searchImg {
+	width: 25px;
+	height: 27px;
+}
+
+.nht2r1d3{
+	width:20%;
+}
+
+
+.nhTable3{
+	border-collapse: collapse;
+}
+.nhTable3 tr td{
+	padding:10px;
+	/* border:1px solid black;	 */
+}
+.nht3tr2{
+	width:40%;
+	font-size:21px;
+	text-align:center;
+}
+.nht3tr2 td{
+	border-top:2px solid #2D9462;
+	border-bottom:2px solid #2D9462;
+}
+.nht3tr3 td{
+	border-bottom:1px solid #2D9462;
+}
+.nht3r2d1{
+	width:10%;
+	text-align:left;
+}
+.nht3r2d2{
+	width:50%;
+	
+}
+.nht3r2d3{
+	width:10%;
+}
+.nht3r2d4{
+	width:20%;
+}
+..nht3r2d5{
+	width:10%;
+}
+
+.nht3r3d3, .nht3r3d4, .nht3r3d5{
+	text-align:center;
+}
+
+.reviewPage{
+	/* width:100%; */
+	margin-top:2em;
+	margin-left:41%;
+}
+.reviewPageTable{
+	margin-bottom:1.5em;
+}
+.reviewPageTable tr td{
+	text-align:center;
+	/* border:solid 1px black; */
+	width:0.5em;
+}
+.bold{
+	font-weight: bold;
+}
+.pageLogotd{
+	padding-top:5px;
+}
+.pageLogo{
+	width:28px;
 }
