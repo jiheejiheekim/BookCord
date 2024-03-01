@@ -8,12 +8,12 @@
     <title>Search Results</title>
 </head>
 <body>
-    <h2>Search Results</h2>
-    
+    <h2>New Books</h2>
+
     <c:if test="${empty books}">
-        <p>검색 결과가 없습니다.</p>
+        <p>No new books found.</p>
     </c:if>
-    
+
     <c:forEach items="${books}" var="book">
         <div>
             <h3>Title: ${book.title}</h3>
