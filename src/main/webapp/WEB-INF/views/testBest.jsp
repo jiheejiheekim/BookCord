@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Results</title>
+    <title>TestBest</title>
 </head>
 <body>
     <h2>Search Results</h2>
@@ -18,14 +18,14 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Publisher</th>
-                    <th>ISBN</th>
+                    <th>Cover</th>
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
                         <td>${book.title}</td>
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
-                        <td>${book.isbn}</td>
+                        <td>${book.cover}</td>
                     </tr>
                 </c:forEach>
             </table>

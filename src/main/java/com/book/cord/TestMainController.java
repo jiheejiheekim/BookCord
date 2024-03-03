@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.book.cord.BookVO.BestSeller;
+import com.book.cord.BookVO.NewBooks;
+
 @Controller
 public class TestMainController {
 
@@ -13,14 +16,27 @@ public class TestMainController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/testmain")
-    public String main(Model model) {
-        BookService.SearchResult searchResult = bookService.getNewBooks();
+    @GetMapping("/testNew")
+    public String New(Model model) {
+        NewBooks searchResult = bookService.getNewBooks();
         if (searchResult != null) {
             model.addAttribute("books", searchResult.getItem());
         } else {
-            model.addAttribute("books", null); // 검색 결과가 없을 경우, books를 null로 설정
+            model.addAttribute("books", null);
         }
-        return "testmain";
+        return "testNew";
     }
+    
+    
+    @GetMapping("/testBest")
+    public String Best(Model model) {
+    	BestSeller searchResult = bookService.getBestSeller();
+    	if (searchResult != null) {
+    		model.addAttribute("books", searchResult.getItem());
+    	} else {
+    		model.addAttribute("books", null);
+    	}
+    	return "testBest";
+    }
+    
 }
