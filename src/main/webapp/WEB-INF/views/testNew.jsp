@@ -19,6 +19,7 @@
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Cover</th>
+                    <th>customerReviewRank</th>
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
@@ -26,6 +27,7 @@
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
                         <td><img src="${book.cover}"></td>
+                        <td>${book.customerReviewRank}</td>
                     </tr>
                 </c:forEach>
             </table>

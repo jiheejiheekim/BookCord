@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,13 +20,17 @@
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Cover</th>
+                    <th>Customer Review Rank</th>
+                    <th>Pubdate</th>
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
                         <td>${book.title}</td>
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
-                        <td>${book.cover}</td>
+                        <td><img src="${book.cover}"></td>
+                        <td>${book.customerReviewRank}</td>
+                        <td>${book.pubDate}</td>
                     </tr>
                 </c:forEach>
             </table>
