@@ -18,6 +18,12 @@ public class BookVO {
     	private List<Book> item;
     	private String errorCode;
     }
+    
+    @Data
+    public static class SearchBooks {
+    	private List<Book> item;
+    	private String errorCode;
+    }
 
     @Data
     public static class Book {
