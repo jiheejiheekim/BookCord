@@ -48,7 +48,7 @@ public class TestMainController {
         return "search"; 
     }
     
-    @PostMapping("/searchBooks") // POST 방식으로 요청을 처리하는 엔드포인트
+    @PostMapping("/searchBooks")
     public String searchBooks(@RequestParam("query") String query, Model model) {
         SearchBooks searchResult = bookService.getSearchBooks(query);
         if (searchResult != null && searchResult.getItem() != null && !searchResult.getItem().isEmpty()) {
@@ -56,7 +56,7 @@ public class TestMainController {
         } else {
             model.addAttribute("books", null);
         }
-        return "searchBooks"; // 검색 결과를 표시하는 searchBooks.jsp 파일을 나타냄
+        return "searchBooks";
     }
 
 
