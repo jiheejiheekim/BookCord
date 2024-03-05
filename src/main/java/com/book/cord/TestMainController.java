@@ -3,10 +3,12 @@ package com.book.cord;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.book.cord.BookVO.BestSeller;
+import com.book.cord.BookVO.DetailBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
 
@@ -60,7 +62,16 @@ public class TestMainController {
     }
 
 
-    
+    @GetMapping("/bookDetail/{isbn}")
+    public String detail(@PathVariable("isbn") String isbn ,Model model) {
+    	DetailBooks searchResult = bookService.getDetailBooks(isbn);
+    	if (searchResult != null) {
+    		model.addAttribute("books", searchResult.getItem());
+    	} else {
+    		model.addAttribute("books", null);
+    	}
+    	return "bookDetail";
+    }
     
     
 }

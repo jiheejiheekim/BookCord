@@ -24,6 +24,12 @@ public class BookVO {
     	private List<Book> item;
     	private String errorCode;
     }
+    
+    @Data
+    public static class DetailBooks {
+    	private List<Book> item;
+    	private String errorCode;
+    }
 
     @Data
     public static class Book {
@@ -37,6 +43,9 @@ public class BookVO {
         private String publisher;		//출판사(제작자/출시사)
         private String cover;			//커버
         private int customerReviewRank;	//회원리뷰평점평균
+        
+        private int itemPage;			//페이지수
+        
         
     }
 }
