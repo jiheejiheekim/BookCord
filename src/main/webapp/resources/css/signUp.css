@@ -34,7 +34,7 @@ a{
 }
 
 button:hover{
-	box-shadow: 2px 2px 3px 1px #898383;
+	/* box-shadow: 2px 2px 3px 1px #898383; */
 }
 
 .signUp table tr td{
@@ -76,7 +76,7 @@ table tr td:nth-child(3){
 }
 .idCheck, .NickNameCheck{
 	border:none;
-	box-shadow: 2px 3px #898383;
+	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;
@@ -90,7 +90,7 @@ table tr td:nth-child(3){
 }
 .signUpButton{
 	border:none;
-	box-shadow: 2px 3px #898383;
+	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;

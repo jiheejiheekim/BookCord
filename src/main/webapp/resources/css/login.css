@@ -43,7 +43,7 @@ a{
 }
 
 button:hover{
-	box-shadow: 2px 2px 3px 1px #898383;
+	/* box-shadow: 2px 2px 3px 1px #898383; */
 }
 
 /* .loginTable tr td, .signUp table tr td{
@@ -82,7 +82,7 @@ button:hover{
 }
 .loginButton {
 	border:none;
-	box-shadow: 2px 3px #898383;
+	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;
@@ -110,7 +110,7 @@ button:hover{
 .signUpButton{
 	width:90%;
 	border:none;
-	box-shadow: 2px 3px #898383;
+	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;
