@@ -27,8 +27,9 @@ public class BookVO {
     
     @Data
     public static class DetailBooks {
-    	private List<Book> item;
-    	private String errorCode;
+    	private Book item;
+    	private Book subInfo;
+        private String errorCode;
     }
 
     @Data
@@ -39,6 +40,7 @@ public class BookVO {
         private String description;		//상품설명(요약)
         private int pricesales;			//판매가
         private int pricestandard;		//정가
+        private String isbn;			//ISBN(10자리 ISBN)
         
         private String publisher;		//출판사(제작자/출시사)
         private String cover;			//커버
