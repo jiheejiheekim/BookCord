@@ -25,7 +25,8 @@
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><a href="/bc/bookDetail/${book.isbn}">${book.title}</a></td>
+                        <td><a href="/bc/bookDetail/${book.isbn13}">${book.title}</a></td>
+                        <td><a href="/bc/bookDetail/${book.isbn13}">${book.isbn13}</a></td>
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
                         <td><img src="${book.cover}"></td>

@@ -62,8 +62,8 @@ public class TestMainController {
     }
 
 
-    @GetMapping("/bookDetail/{isbn}")
-    public String detail(@PathVariable("isbn") String isbn ,Model model) {
+    @GetMapping("/bookDetail/{isbn13}")
+    public String detail(@PathVariable("isbn13") String isbn ,Model model) {
     	DetailBooks searchResult = bookService.getDetailBook(isbn);
     	if (searchResult != null) {
     		model.addAttribute("books", searchResult.getItem());
