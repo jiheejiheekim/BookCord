@@ -9,15 +9,18 @@
 </head>
 <body>
 	<h1>도서 상세페이지</h1>
-    <c:if test="${not empty books}">
-        <c:forEach var="book" items="${books}">
-            <p>도서명: ${book.title}</p>
-            <p>저자: ${book.author}</p>
-            <!-- 기타 도서 정보 표시 -->
-        </c:forEach>
-    </c:if>
-    <c:if test="${empty books}">
-        <p>도서 정보를 찾을 수 없습니다.</p>
-    </c:if>
+	
+	<c:if test="${not empty items}">
+	    <c:forEach var="book" items="${items}">
+	        <p><img src="${book.cover}"></p>
+	        <p>도서명: ${book.title}</p>
+	        <p>저자: ${book.author}</p>
+	        <p>페이지수: ${book.itemPage}</p>
+	        <p>목차: ${book.toc}</p>
+	        <p>무게: ${book.weight}g</p>
+	    </c:forEach>
+	</c:if>
+	
+	 
 </body>
 </html>

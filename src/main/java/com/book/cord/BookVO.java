@@ -29,6 +29,7 @@ public class BookVO {
     public static class DetailBooks {
     	private Book[] item;
     	private Book subInfo;
+    	private Book packing;
         private String errorCode;
     }
 
@@ -43,13 +44,20 @@ public class BookVO {
         private int pricestandard;		//정가
         private String isbn13;			//ISBN(13자리 ISBN)
         private String publisher;		//출판사(제작자/출시사)
-        private String cover;			//커버
+        private String cover;			//커버이미지
         private int customerReviewRank;	//알라딘회원리뷰평점(별점 평균):0~10점(별0.5개당 1점)
         
+        private String categoryIdList;	//주)전체 분야 정보 - 카테고리 명
+        private String categoryInfo;	//categoryIdList < categoryInfo < categoryName
+        private String categoryName;		
+        
         //subInfo의 하위정보
-        private int itemPage;			//페이지수
-        private String toc;				//목차
+        private Integer itemPage;		//상품의쪽수(정수x 숫자o)
+        private String toc;				//주)목차
         
+        //packing의 하위정보
+        private int weight;				//무게(그램 기준)
         
+        /*주)는 알라딘 API에서 일반적인 스펙에는 포함되지 않고, 별도로 협의 후 제공*/
     }
 }

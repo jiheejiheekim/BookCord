@@ -63,15 +63,20 @@ public class TestMainController {
 
 
     @GetMapping("/bookDetail/{isbn13}")
-    public String detail(@PathVariable("isbn13") String isbn ,Model model) {
-    	DetailBooks searchResult = bookService.getDetailBook(isbn);
-    	if (searchResult != null) {
-    		model.addAttribute("books", searchResult.getItem());
-    	} else {
-    		model.addAttribute("books", null);
-    	}
-    	return "bookDetail";
+    public String detail(@PathVariable("isbn13") String isbn13 ,Model model) {
+        DetailBooks searchResult = bookService.getDetailBook(isbn13);
+        if (searchResult != null) {
+            model.addAttribute("items", searchResult.getItem());
+			/*
+			model.addAttribute("subInfo", searchResult.getSubInfo());
+			model.addAttribute("packing", searchResult.getPacking());
+			 */
+        } else {
+            model.addAttribute("items", null);
+        }
+        return "bookDetail";
     }
+
     
     
 }
