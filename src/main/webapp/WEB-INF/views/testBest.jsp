@@ -17,21 +17,25 @@
             <table border="1">
                 <tr>
                     <th>Title</th>
+                    <th>isbn13</th>
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Cover</th>
                     <th>Customer Review Rank</th>
+                    <th>itemPage</th>
                     <th>Pubdate</th>
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
                         <td><a href="/bc/bookDetail/${book.isbn13}">${book.title}</a></td>
-                        <td><a href="/bc/bookDetail/${book.isbn13}">${book.isbn13}</a></td>
+                        <td>${book.isbn13}</td>
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
                         <td><img src="${book.cover}"></td>
                         <td>${book.customerReviewRank}</td>
-                        <td>${book.pubDate}</td>
+                        <td>${book.itemPage}</td>
+						<fmt:formatDate value="${book.pubDate}" pattern="yyyy-MM-dd" var="formattedDate" />
+                        <td>${formattedDate}</td>
                     </tr>
                 </c:forEach>
             </table>

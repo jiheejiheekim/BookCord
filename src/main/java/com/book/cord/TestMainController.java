@@ -67,10 +67,10 @@ public class TestMainController {
         DetailBooks searchResult = bookService.getDetailBook(isbn13);
         if (searchResult != null) {
             model.addAttribute("items", searchResult.getItem());
-			/*
+			
 			model.addAttribute("subInfo", searchResult.getSubInfo());
 			model.addAttribute("packing", searchResult.getPacking());
-			 */
+			
         } else {
             model.addAttribute("items", null);
         }

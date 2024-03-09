@@ -48,7 +48,8 @@ public class BookServiceImpl implements BookService {
     
     @Override	//도서상세페이지
     public DetailBooks getDetailBook(String isbn13) {
-    	String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20131101&OptResult=ebookList,usedList,reviewList";
+    	String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20131101"
+    			+ "&OptResult=ebookList,usedList,reviewList,fulldescription,Toc,categoryIdList,authors,ratingInfo,packing,subInfo,Story";
     	return restTemplate.getForObject(url, DetailBooks.class);
     }
     
