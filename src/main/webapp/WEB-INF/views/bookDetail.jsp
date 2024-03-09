@@ -25,8 +25,8 @@
 	        <p>분야: ${book.categoryName}</p>
 	       
 	       	<br>item의 하위정보인데 안나옴------------------------
-	        <p>정가: ${book.pricestandard}원</p>
-	        <p>판매가: ${book.pricesales}원</p>
+	        <p>정가: ${book.priceStandard}원</p>
+	        <p>판매가: ${book.priceSales}원</p>
 	        
 	 <%--    </c:forEach>
 	</c:if>

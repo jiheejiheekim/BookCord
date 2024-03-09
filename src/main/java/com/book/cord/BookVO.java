@@ -47,8 +47,8 @@ public class BookVO {
         private String cover;			//커버이미지
         private int customerReviewRank;	//알라딘회원리뷰평점(별점 평균):0~10점(별0.5개당 1점)
         
-        private int pricesales;			//판매가
-        private int pricestandard;		//정가
+        private int priceSales;			//판매가
+        private int priceStandard;		//정가
         
         //주)전체 분야 정보 - 카테고리 명
         private String categoryName;		
