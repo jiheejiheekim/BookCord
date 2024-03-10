@@ -36,7 +36,7 @@ public class BookServiceImpl implements BookService {
     
     @Override	//베스트셀러
     public BestSeller getBestSeller() {
-    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15&start=1&SearchTarget=Book&output=js&Version=20131101";
     	return restTemplate.getForObject(url, BestSeller.class);
     }
     

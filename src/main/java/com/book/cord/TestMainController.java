@@ -68,8 +68,10 @@ public class TestMainController {
         if (searchResult != null) {
             model.addAttribute("items", searchResult.getItem());
 			
-			model.addAttribute("subInfo", searchResult.getSubInfo());
-			model.addAttribute("packing", searchResult.getPacking());
+			/*
+			 * model.addAttribute("subInfo", searchResult.getSubInfo());
+			 * model.addAttribute("packing", searchResult.getPacking());
+			 */
 			
         } else {
             model.addAttribute("items", null);

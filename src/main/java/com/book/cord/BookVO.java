@@ -28,11 +28,11 @@ public class BookVO {
     @Data
     public static class DetailBooks {
     	private Book []item;
-    	private Book subInfo;
+    	/*private Book subInfo;
     	private Book packing;
     	private Book ratingScore;
     	private Book ratingInfo;
-        private String errorCode;
+        private String errorCode;*/
     }
 
     @Data
@@ -54,16 +54,42 @@ public class BookVO {
         private String categoryName;		
         
         //subInfo의 하위정보
-        private int itemPage;			//상품의쪽수(정수x 숫자o)
-        private String toc;				//주)목차
+        private SubInfo subInfo;
+        private SubInfo itemPage;		//상품의쪽수(정수x 숫자o) => Integer 시 에러
+        private SubInfo toc;         	//주)목차
         
         //ratingScore의 하위정보
-        private double ratingScore;		//상품의별평점
-        private double ratingCount;		//상품에별을남긴개수
+        private RatingInfo ratingScore;		//상품의별평점
+        private RatingInfo ratingCount;		//상품에별을남긴개수
         
         //packing의 하위정보
-        private int weight;				//무게(그램 기준)
+        private Packing weight;				//무게(그램 기준)
         
-        /*주)는 알라딘 API에서 일반적인 스펙에는 포함되지 않고, 별도로 협의 후 제공*/
+        //*주)는 알라딘 API에서 일반적인 스펙에는 포함되지 않고, 별도로 협의 후 제공*/
     }
+    
+    @Data
+    public static class SubInfo {
+        // subInfo의 하위정보
+        private Integer itemPage;		//상품의쪽수(정수x 숫자o)
+        private String toc;         	//주)목차
+        
+        private RatingInfo ratingInfo;
+        private Packing packing;
+        
+    }
+    
+    @Data
+    public static class RatingInfo {
+    	// ratingScore의 하위정보
+    	private float ratingScore;		//상품의별평점
+        private int ratingCount;		//상품에별을남긴개수
+    }
+    
+    @Data
+    public static class Packing {
+    	// packing의 하위정보
+    	private int weight;				//무게(그램 기준)
+    }
+    
 }

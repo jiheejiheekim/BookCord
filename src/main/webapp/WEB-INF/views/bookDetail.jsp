@@ -24,33 +24,21 @@
 	        <p>알라딘평점: ${book.customerReviewRank}</p>
 	        <p>분야: ${book.categoryName}</p>
 	       
-	       	<br>item의 하위정보인데 안나옴------------------------
+	       	<br>item의 하위정보인데 안나옴 ->해결------------------------
 	        <p>정가: ${book.priceStandard}원</p>
 	        <p>판매가: ${book.priceSales}원</p>
 	        
-	 <%--    </c:forEach>
-	</c:if>
-	
-	<c:if test="${not empty subInfo}">
-	    <c:forEach var="subInfo" items="${subInfo}"> --%>
 	        <br>subInfo의 하위정보----------------------------
-	        <p>상품의쪽수: ${book.itemPage} 페이지</p>
-	        <p>목차: ${book.toc}</p>
-	    <%-- </c:forEach>
-	</c:if>
-		    
-	<c:if test="${not empty packing}">
-	    <c:forEach var="packing" items="${packing}"> --%>
-	        <br>packing의 하위정보-------------------------
-	        	<p>무게: ${book.weight} g</p>
-<%-- 	    </c:forEach>
-	</c:if>
-	
-	<c:if test="${not empty ratingInfo}">
-	    <c:forEach var="ratingInfo" items="${ratingInfo}"> --%>
+	        <p>상품의쪽수: ${book.subInfo.itemPage} 페이지</p>
+	        <p>목차: ${book.subInfo.toc}</p>
+	    	
 	        <br>ratingScore의 하위정보-----------------------------
-	        <p>상품의별평점: ${book.ratingScore}</p>
-	        <p>상품에별을남긴개수: ${book.ratingCount}</p>
+	        <p>상품의별평점: ${book.subInfo.ratingInfo.ratingScore}</p>
+	        <p>상품에별을남긴개수: ${book.subInfo.ratingInfo.ratingCount}</p>
+	        
+	        <br>packing의 하위정보-------------------------
+	        	<p>무게: ${book.subInfo.packing.weight} g</p>
+			
 	        
 	        
 	    </c:forEach>
