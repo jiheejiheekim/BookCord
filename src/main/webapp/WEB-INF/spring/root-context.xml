@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+          
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 		
-	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+	<!-- <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/> -->
+	
+	
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <constructor-arg>
+            <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
+        </constructor-arg>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+	
+	
 	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
 		
 </beans>

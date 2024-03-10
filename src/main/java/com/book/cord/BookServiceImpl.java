@@ -1,5 +1,14 @@
 package com.book.cord;
 
+import java.util.Collections;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,33 +33,47 @@ public class BookServiceImpl implements BookService {
 
     private final RestTemplate restTemplate;
 
+    @Autowired
     public BookServiceImpl(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    	this.restTemplate = restTemplate;
+    	restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
     @Override	//신간도서
     public NewBooks getNewBooks() {
-        String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
+        String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20070901";
         return restTemplate.getForObject(url, NewBooks.class);
     }
     
     @Override	//베스트셀러
     public BestSeller getBestSeller() {
-    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15&start=1&SearchTarget=Book&output=js&Version=20131101";
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15"
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101";
     	return restTemplate.getForObject(url, BestSeller.class);
     }
     
     @Override	//상품 검색 제목+저자(기본값)
     public SearchBooks getSearchBooks(String query) {
-    	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
+    	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20070901";
     	return restTemplate.getForObject(url, SearchBooks.class);
     }
     
     @Override	//도서상세페이지
     public DetailBooks getDetailBook(String isbn13) {
-    	String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20131101"
+    	/*String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20070901"
     			+ "&OptResult=ebookList,usedList,reviewList,fulldescription,Toc,categoryIdList,authors,ratingInfo,packing,subInfo,Story";
-    	return restTemplate.getForObject(url, DetailBooks.class);
+    	return restTemplate.getForObject(url, DetailBooks.class);*/
+    	
+    	 HttpHeaders headers = new HttpHeaders();
+    	    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    	    
+    	    HttpEntity<?> entity = new HttpEntity<>(headers);
+    	    
+    	    String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId=" + isbn13
+    	                + "&output=js&Version=20070901&OptResult=fulldescription";
+    	    
+    	    ResponseEntity<DetailBooks> response = restTemplate.exchange(url, HttpMethod.GET, entity, DetailBooks.class);
+    	    return response.getBody();
     }
     
     

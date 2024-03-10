@@ -27,7 +27,7 @@ public class BookVO {
     
     @Data
     public static class DetailBooks {
-    	private Book []item;
+    	private List<Book> item;
     	/*private Book subInfo;
     	private Book packing;
     	private Book ratingScore;
@@ -46,17 +46,16 @@ public class BookVO {
         private String publisher;		//출판사(제작자/출시사)
         private String cover;			//커버이미지
         private int customerReviewRank;	//알라딘회원리뷰평점(별점 평균):0~10점(별0.5개당 1점)
-        
         private int priceSales;			//판매가
         private int priceStandard;		//정가
-        
-        //주)전체 분야 정보 - 카테고리 명
-        private String categoryName;		
+        private String categoryName;	//주)전체 분야 정보 - 카테고리 명
+        private String fullDescription;	//주)책소개
         
         //subInfo의 하위정보
         private SubInfo subInfo;
         private SubInfo itemPage;		//상품의쪽수(정수x 숫자o) => Integer 시 에러
         private SubInfo toc;         	//주)목차
+        private SubInfo subTitle;       //부제
         
         //ratingScore의 하위정보
         private RatingInfo ratingScore;		//상품의별평점
@@ -73,6 +72,8 @@ public class BookVO {
         // subInfo의 하위정보
         private Integer itemPage;		//상품의쪽수(정수x 숫자o)
         private String toc;         	//주)목차
+        private String originalTitle;   //원제
+        private String subTitle;      	//부제
         
         private RatingInfo ratingInfo;
         private Packing packing;
