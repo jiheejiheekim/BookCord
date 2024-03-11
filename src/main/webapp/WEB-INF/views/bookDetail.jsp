@@ -35,7 +35,7 @@
 	        <p>전체 subInfo: ${book.subInfo}</p>
 	        <br>
 	        <p>상품의쪽수: ${book.subInfo.itemPage} 페이지</p>
-	        <p>목차: ${book.subInfo.toc}</p>
+	        <p>목차: ${book.bookInfo.toc}</p>
 	    	
 	        <br>ratingScore의 하위정보-----------------------------
 	        <p>상품의별평점: ${book.subInfo.ratingInfo.ratingScore}</p>

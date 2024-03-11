@@ -10,29 +10,21 @@ public class BookVO {
     @Data
     public static class NewBooks {
         private List<Book> item;
-        private String errorCode;
     }
     
     @Data
     public static class BestSeller {
     	private List<Book> item;
-    	private String errorCode;
     }
     
     @Data
     public static class SearchBooks {
     	private List<Book> item;
-    	private String errorCode;
     }
     
     @Data
     public static class DetailBooks {
     	private List<Book> item;
-    	/*private Book subInfo;
-    	private Book packing;
-    	private Book ratingScore;
-    	private Book ratingInfo;
-        private String errorCode;*/
     }
 
     @Data
@@ -42,6 +34,7 @@ public class BookVO {
         private String author;			//저자/아티스트
         private Date pubDate;			//출간일
         private String description;		//상품설명(요약)
+        private String isbn;			//ISBN(10자리 ISBN)
         private String isbn13;			//ISBN(13자리 ISBN)
         private String publisher;		//출판사(제작자/출시사)
         private String cover;			//커버이미지
@@ -54,7 +47,10 @@ public class BookVO {
         //subInfo의 하위정보
         private SubInfo subInfo;
         private SubInfo itemPage;		//상품의쪽수(정수x 숫자o) => Integer 시 에러
-        private SubInfo toc;         	//주)목차
+        
+        
+        private Bookinfo bookinfo;         	//주)목차
+        private Bookinfo toc;         	//주)목차
         private SubInfo subTitle;       //부제
         
         //ratingScore의 하위정보
@@ -78,6 +74,17 @@ public class BookVO {
         private RatingInfo ratingInfo;
         private Packing packing;
         
+    }
+    
+    @Data
+    public static class Bookinfo {
+    	// subInfo의 하위정보
+    	private Integer itemPage;		//상품의쪽수(정수x 숫자o)
+    	private String toc;         	//주)목차
+    	private String originalTitle;   //원제
+    	private String subTitle;      	//부제
+    	
+    	
     }
     
     @Data

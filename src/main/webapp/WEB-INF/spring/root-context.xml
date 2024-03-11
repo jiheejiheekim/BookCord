@@ -4,27 +4,21 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans.xsd">
           
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-		
-	<!-- <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/> -->
-	
-	
+    <!-- Root Context: defines shared resources visible to all other web components -->
 
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <constructor-arg>
-            <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory"/>
-        </constructor-arg>
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
 
-	
-	
-	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
-		
+        
+	<!-- <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" /> -->
+<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+    <property name="messageConverters">
+        <list>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
+        </list>
+    </property>
+    <!-- 기타 설정 -->
+</bean>
+    
+    <bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" />
+        
 </beans>

@@ -12,7 +12,7 @@
 
     <c:choose>
         <c:when test="${empty books}">
-            <p>No search results found.</p>
+            <p>데이터 없음</p>
         </c:when>
         <c:otherwise>
 
@@ -22,7 +22,7 @@
         
                 <tr>
                     <th>Title</th>
-                    <th>isbn13</th>
+                    <th>isbn</th>
                     <th>Author</th>
                     <th>Publisher</th>
                     <th>Cover</th>
@@ -32,8 +32,8 @@
                 </tr>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><a href="/bc/bookDetail/${book.isbn13}">${book.title}</a></td>
-                        <td>${book.isbn13}</td>
+                        <td><a href="/bc/bookDetail/${book.isbn}">${book.title}</a></td>
+                        <td>${book.isbn}</td>
                         <td>${book.author}</td>
                         <td>${book.publisher}</td>
                         <td><img src="${book.cover}"></td>
