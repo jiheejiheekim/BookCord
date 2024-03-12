@@ -41,24 +41,21 @@ public class BookVO {
         private int customerReviewRank;	//알라딘회원리뷰평점(별점 평균):0~10점(별0.5개당 1점)
         private int priceSales;			//판매가
         private int priceStandard;		//정가
+        
         private String categoryName;	//주)전체 분야 정보 - 카테고리 명
-        private String fullDescription;	//주)책소개
         
         //subInfo의 하위정보
         private SubInfo subInfo;
         private SubInfo itemPage;		//상품의쪽수(정수x 숫자o) => Integer 시 에러
-        
-        
-        private Bookinfo bookinfo;         	//주)목차
-        private Bookinfo toc;         	//주)목차
+        private SubInfo toc;         	//주)목차
         private SubInfo subTitle;       //부제
         
         //ratingScore의 하위정보
-        private RatingInfo ratingScore;		//상품의별평점
-        private RatingInfo ratingCount;		//상품에별을남긴개수
+        private RatingInfo ratingScore;	//상품의별평점
+        private RatingInfo ratingCount;	//상품에별을남긴개수
         
         //packing의 하위정보
-        private Packing weight;				//무게(그램 기준)
+        private Packing weight;			//무게(그램 기준)
         
         //*주)는 알라딘 API에서 일반적인 스펙에는 포함되지 않고, 별도로 협의 후 제공*/
     }
@@ -75,18 +72,7 @@ public class BookVO {
         private Packing packing;
         
     }
-    
-    @Data
-    public static class Bookinfo {
-    	// subInfo의 하위정보
-    	private Integer itemPage;		//상품의쪽수(정수x 숫자o)
-    	private String toc;         	//주)목차
-    	private String originalTitle;   //원제
-    	private String subTitle;      	//부제
-    	
-    	
-    }
-    
+       
     @Data
     public static class RatingInfo {
     	// ratingScore의 하위정보
@@ -99,5 +85,6 @@ public class BookVO {
     	// packing의 하위정보
     	private int weight;				//무게(그램 기준)
     }
+    
     
 }

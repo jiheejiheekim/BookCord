@@ -77,12 +77,16 @@ button:hover{
 }
 .cover{
 	width:100%;
-	height:320px;
+	height:330px;
 	background-color:#D9D9D9;
 	margin:auto;
 }
 .d1td2{
 	font-size:23px;
+}
+.d1td2, .d1td4, .d1td5{
+	padding-top:5px;
+	padding-bottom:5px;
 }
 .d1td7, .d1td14{
 	padding-top:10px;
@@ -92,22 +96,37 @@ button:hover{
 	width:5%;
 	text-align:center;
 }
-.d1td8{
+.d1td8, .d1td9, .d1td10{
 	font-size:16px;
-	padding-bottom:10px;
+	padding-bottom:7px;
 }
 .d1td13{
 	color:#2D9462;
+	padding-top:8px;
 }
 .black{
 	color:black;
 }
 
-.d2td1, .d3td1{
+.dTable2{
+	display:flex;
+	justify-content: flex-start;
+	margin-top:3px;
+}
+.d2td1{
+	font-size:30px;
+	width:25%;
+}
+.d2td1, .d2td2{
+	min-height: 200px;	
 	display:inline-block;
 	justify-content: flex-start;
-	width:100%;
-	font-size:30px;
+	
+}
+.d2td2{
+	font-size:17px;
+	letter-spacing: 1px;
+	line-height:1.5;
 }
 .d4td1{
 	vertical-align: top;
@@ -115,7 +134,7 @@ button:hover{
 	font-size:30px;
 }
 .d2td2, .d3td2 {
-	width:75%;
+	width:72%;
 }
 
 .d4td2{

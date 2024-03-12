@@ -52,24 +52,11 @@ public class BookServiceImpl implements BookService {
     }
     
     @Override	// 도서상세페이지
-    public DetailBooks getDetailBook(String isbn) {
-    	/*String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20131101"
-    			+ "&OptResult=ebookList,usedList,reviewList,fulldescription,Toc,categoryIdList,authors,ratingInfo,packing,subInfo,Story";*/
-    	//String url = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=" + API_KEY + "&cover=big&ItemId=" + isbn + "&output=js";
-    	String url = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=" + API_KEY + "&cover=big&ItemId=" + isbn + "&output=xml";
-
-        // Set up a new RestTemplate instance that supports XML
-    	RestTemplate xmlRestTemplate = new RestTemplate();
-        xmlRestTemplate.getMessageConverters().add(new MappingJackson2XmlHttpMessageConverter());
-
-        // Create a response entity with DetailBooks type to handle XML response
-        ResponseEntity<DetailBooks> responseEntity = xmlRestTemplate.getForEntity(url, DetailBooks.class);
-
-        // Extract DetailBooks from response entity
-        DetailBooks detailBooks = responseEntity.getBody();
-
-        return detailBooks;
-    	//return restTemplate.getForObject(url, DetailBooks.class);
+    public DetailBooks getDetailBook(String isbn13) {
+    	String url = API_URL3 + "?ttbkey=" + API_KEY + "&itemIdType=ISBN13&ItemId="+ isbn13 +"&output=js&Version=20131101"
+    			+ "&OptResult=ebookList,usedList,reviewList,bestSellerRank,fulldescription,toc,categoryIdList,authors,ratingInfo,packing,subInfo,Story";
+    	
+    	return restTemplate.getForObject(url, DetailBooks.class);
     }
     
     
