@@ -38,12 +38,13 @@ public class BookServiceImpl implements BookService {
     }
     
     @Override	// 베스트셀러
-    public BestSeller getBestSeller() {
+    public BestSeller getBestSeller(int year, int month) {
     	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15"
-    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101";
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&Year=" + year +"&Month=" + month + "&Week=2";
     	return restTemplate.getForObject(url, BestSeller.class);
-    	
+        
     }
+    
     
     @Override	// 상품 검색 제목+저자(기본값)
     public SearchBooks getSearchBooks(String query) {

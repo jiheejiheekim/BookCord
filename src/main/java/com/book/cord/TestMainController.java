@@ -34,8 +34,8 @@ public class TestMainController {
     
     
     @GetMapping("/testBest")
-    public String Best(Model model) {
-    	BestSeller searchResult = bookService.getBestSeller();
+    public String Best(@RequestParam("year") Integer year, @RequestParam("month") Integer month, Model model) {
+    	BestSeller searchResult = bookService.getBestSeller(year, month);
     	if (searchResult != null) {
     		model.addAttribute("books", searchResult.getItem());
     	} else {
@@ -43,6 +43,18 @@ public class TestMainController {
     	}
     	return "testBest";
     }
+    
+    @GetMapping("/testBestYear")
+    public String bestYear() {
+        return "testBestYear";
+    }
+    
+    @PostMapping("/testBestYear")
+    public String postBestYear(@RequestParam("year") int year, @RequestParam("month") int month) {
+        // POST 요청을 받은 후에 testBest.jsp로 리다이렉션
+        return "redirect:/testBest?year=" + year + "&month=" + month;
+    }
+
     
     
     @GetMapping("/search")
