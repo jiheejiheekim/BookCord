@@ -37,10 +37,17 @@ public class BookServiceImpl implements BookService {
         return restTemplate.getForObject(url, NewBooks.class);
     }
     
+    @Override	//메인 - 베스트셀러
+    public BestSeller getMainBestSeller(int year, int month) {
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=4"
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&Year=" + year +"&Month=" + month + "&Week=3";
+    	return restTemplate.getForObject(url, BestSeller.class);
+    }
+    
     @Override	// 베스트셀러
     public BestSeller getBestSeller(int year, int month) {
     	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15"
-    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&Year=" + year +"&Month=" + month + "&Week=2";
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&Year=" + year +"&Month=" + month + "&Week=3";
     	return restTemplate.getForObject(url, BestSeller.class);
         
     }

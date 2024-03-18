@@ -44,28 +44,41 @@
 				<td class="bshead2"><button class="bsbutton"><a href="bestSeller">더보기　　></a></button></td>
 			</tr>
 		</table>
-		
-		<table class="bslist">
-			<tr>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-			</tr>
-			<tr>
-				<td>책제목</td>
-				<td>책제목</td>
-				<td>책제목</td>
-				<td>책제목</td>
-			</tr>
-			<tr>
-				<td>작가</td>
-				<td>작가</td>
-				<td>작가</td>
-				<td>작가</td>
-			</tr>
-		</table>
-	</div>
+		<div class="bsDiv">
+			<table class="bslist">
+					<c:forEach items="${books}" var="book">
+					
+							<tr>
+								<td class="bsTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
+							</tr>
+							<tr>
+								<td class="bsTd">
+									<script type="text/javascript">
+							            var title = "${book.title}";
+							            if (title.length > 10) {
+							                title = title.substring(0, 10) + '..';
+							            }
+							            document.write(title);
+							        </script>
+								</td>
+							</tr>
+							<tr>
+								<td class="bsTd">
+									<script type="text/javascript">
+							            var author = "${book.author}";
+							            if (author.length > 10) {
+							            	author = author.substring(0, 10) + '..';
+							            }
+							            document.write(author);
+							        </script>
+								
+								</td>
+							</tr>
+						
+					</c:forEach>
+			</table>
+		</div>	<!-- bsDiv -->
+	</div>	<!-- bestseller -->
 	
 	<br><br>
 	

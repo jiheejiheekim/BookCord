@@ -10,17 +10,18 @@
     <h2>Select Year</h2>
     <form action="/bc/testBestYear" method="post"> <!-- 수정된 부분 -->
         <label for="year">Year:</label>
-        <select id="year" name="year">
-            <c:forEach begin="2000" end="2024" var="i">
-                <option value="${i}">${i}</option>
-            </c:forEach>
-        </select>
+	       <select id="year" name="year">
+			   <c:forEach begin="2000" end="2024" var="i">
+			       <option value="${i}" <c:if test="${i eq 2024}">selected</c:if>>${i}</option>
+			   </c:forEach>
+			</select>
+		
         <label for="month">Month:</label>
-        <select id="month" name="month">
-            <c:forEach begin="1" end="12" var="i">
-                <option value="${i}">${i}</option>
-            </c:forEach>
-        </select>
+	        <select id="month" name="month">
+	            <c:forEach begin="1" end="12" var="i">
+	                <option value="${i}" <c:if test="${i eq 3}">selected</c:if>>${i}</option>
+	            </c:forEach>
+	        </select>
         <br><br>
         <input type="submit" value="Submit">
     </form>

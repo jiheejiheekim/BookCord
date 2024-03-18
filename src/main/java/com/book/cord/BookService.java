@@ -8,6 +8,7 @@ import com.book.cord.BookVO.SearchBooks;
 public interface BookService {
 	
     NewBooks getNewBooks();			//신간도서
+    BestSeller getMainBestSeller(int year, int month);	//메인 - 베스트셀러
     BestSeller getBestSeller(int year, int month);		//베스트셀러
     SearchBooks getSearchBooks(String query);	//상품검색
     DetailBooks getDetailBook(String isbn13);	//도서상세페이지
