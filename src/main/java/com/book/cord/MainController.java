@@ -53,26 +53,5 @@ public class MainController {
         return "main";
     }
     
-    /*
-    public String mainBest(Model model) {
-    	BestSeller searchResult = bookService.getMainBestSeller();
-    	if (searchResult != null) {
-    		model.addAttribute("bestSeller", searchResult.getItem());
-    	} else {
-    		model.addAttribute("bestSeller", null);
-    	}
-    	return "main";
-    }
     
-    @GetMapping("/main")
-    public String mainNew(Model model) {
-        NewBooks searchResult = bookService.getNewBooks();
-        if (searchResult != null) {
-            model.addAttribute("newBook", searchResult.getItem());
-        } else {
-            model.addAttribute("newBook", null);
-        }
-        return "main";
-    }
-    */
 }

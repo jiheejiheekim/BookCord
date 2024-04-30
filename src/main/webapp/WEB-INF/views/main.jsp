@@ -49,7 +49,7 @@
 				<table class="bslist">
 					
 							<tr>
-								<td class="bsTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
+								<td class="bsTd"><a href="/bc/detail/${book.isbn13}"><img class="bookimg" src="${book.cover}"></a></td>
 							</tr>
 							<tr>
 								<td class="bsTd1">
@@ -94,7 +94,7 @@
 				<table class="nblist">
 					
 							<tr>
-								<td class="nbTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
+								<td class="nbTd"><a href="/bc/detail/${book.isbn13}"><img class="bookimg" src="${book.cover}"></a></td>
 							</tr>
 							<tr>
 								<td class="nbTd1">

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,81 +27,79 @@
 	<div class="content">
 	
 		<div class="detail">	<!-- 추후 API 사용 -->
-			<table class="dTable1">
-				<tr>
-					<td class="d1td1" rowspan="11"><div class="cover"></div></td>
-					<td class="d1td2">푸바오, 언제나 사랑해</td>
-					<td class="d1td3"><a href=""><img class="bookMarkImg" src="../resources/images/bookmarkO.png"></td>
-				</tr>
-				<tr>
-					<td class="d1td4" colspan="2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-				</tr>
-				<tr>
-					<td class="d1td5">시공주니어 | 2024년 1월 25일</td>
-				</tr>
-				<tr>
-					<td class="d1td6">정가 23,000원</td>
-				</tr>
-				<tr>
-					<td class="d1td7" colspan="2"><hr color="#2D9462"></td>
-				</tr>
-				<tr class="d1td8">
-					<td class="d1td8">180쪽 | 270g</td>
-				</tr>
-				<tr>
-					<td class="d1td9">ISBN : 9791171253128</td>
-				</tr>
-				<tr>
-					<td class="d1td10">국내도서 > 에세이 > 사진/그림 에세이</td>
-				</tr>
-				
-				<tr>
-					<td class="d1td12" colspan="2"><hr color="#2D9462"></td>
-				</tr>
-				<tr>
-					<td class="d1td13">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<span class="black">(9)</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
-				</tr>
-			</table><!-- dTable1 -->
+		<c:if test="${not empty items}">
+	    	<c:forEach var="book" items="${items}">
+				<table class="dTable1">
+					<tr>
+						<td class="d1td1" rowspan="11"><img class="cover" src="${book.cover}"></td>
+						<td class="d1td2">${book.title}</td>
+						<td class="d1td3"><a href=""><img class="bookMarkImg" src="../resources/images/bookmarkO.png"></td>
+					</tr>
+					<tr>
+						<td class="d1td4" colspan="2">${book.author}</td>
+					</tr>
+					<tr>
+						<fmt:formatDate value="${book.pubDate}" pattern="yyyy년 MM월 dd일" var="formattedDate" />
+						<td class="d1td5">${book.publisher} | ${formattedDate}</td>
+					</tr>
+					<tr>
+						<fmt:parseNumber value="${book.priceStandard}" pattern="#,##0" var="formattedPriceStandard" />
+						<fmt:parseNumber value="${book.priceSales}" pattern="#,##0" var="formattedPriceSales" />
+						<td class="d1td6">정가 <fmt:formatNumber value="${formattedPriceStandard}" />원 → 판매가 <span class="priceSales"><fmt:formatNumber value="${formattedPriceSales}" /></span>원</td>
+					</tr>
+					<tr>
+						<td class="d1td7" colspan="2"><hr color="#2D9462"></td>
+					</tr>
+					<tr class="d1td8">
+						<td class="d1td8">${book.subInfo.itemPage}쪽 | ${book.subInfo.packing.weight}g</td>
+					</tr>
+					<tr>
+						<td class="d1td9">ISBN13 : ${book.isbn13}</td>
+					</tr>
+					<tr>
+						<td class="d1td10">${book.categoryName}</td>
+					</tr>
+					
+					<tr>
+						<td class="d1td12" colspan="2"><hr color="#2D9462"></td>
+					</tr>
+					<tr>
+						<td class="d1td13">
+							<c:if test="${book.subInfo.ratingInfo.ratingScore >= 9.5}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 9.5 and book.subInfo.ratingInfo.ratingScore >= 9.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+							<span class="black">${book.subInfo.ratingInfo.ratingScore}</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
+					</tr>
+				</table><!-- dTable1 -->
+
+				<table class="dTable2">
+					<tr>
+						<td class="d2td1">책 소개</td>
+						<td class="d2td2">${book.description}
+						</td>
+					</tr>
+					<tr>
+						<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
+					</tr>
+				</table>
+
+			</c:forEach>
+		</c:if>
 			
-			<table class="dTable2">
-				<tr>
-					<td class="d2td1">책 소개</td>
-					<td class="d2td2">푸바오의 작은할부지 송바오가 전하는 판다월드 바오패밀리의 귀엽고 사랑스러운 일상 포토에세이. 
-					20년차 사육사이자 푸바오의 영원한 작은할부지 ‘송바오’ 송영관 작가는 푸바오를 향한 애정에 보답하고, 
-					푸바오와 판다월드의 이야기를 전하고자 《전지적 푸바오 시점》을 출간한다.
-					</td>
-				</tr>
-				<tr>
-					<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
-				</tr>
-			</table>
-			<!-- 
-			<table class="dTable3">
-				<tr>
-					<td class="d3td1">목 차</td>
-					<td class="d3td2">Prologue<br>
-					Part1 푸바오, 영원한 아기 판다<br>
-					부록 우리는 바오 가족<br>
-					Part2 러바오, 신사가 된 소년<br>
-					Part3 아이바오, 나의 영원한 사랑<br>
-					Part4 루이바오와 후이바오, 또 다른 선물<br>
-					부록 판다월드의 구석구석</td>
-				</tr>
-				<tr>
-					<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
-				</tr>
-			</table>
-			 -->
 			<table class="dTable4">
 				<tr class="dTabletr">
 					<td class="d4td1" rowspan="13">리 뷰</td>

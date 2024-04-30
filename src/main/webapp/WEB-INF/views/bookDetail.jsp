@@ -36,7 +36,7 @@
 	        
 	        	<p>무게: ${book.subInfo.packing.weight} g</p>
 	        
-	       </c:forEach>
+	    </c:forEach>
 	    
 	</c:if>
 	
