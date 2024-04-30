@@ -45,8 +45,8 @@
 			</tr>
 		</table>
 		<div class="bsDiv">
-			<c:forEach items="${books}" var="book">
-				<table class="bslist1">
+			<c:forEach items="${bestSeller}" var="book">
+				<table class="bslist">
 					
 							<tr>
 								<td class="bsTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
@@ -56,7 +56,7 @@
 									<script type="text/javascript">
 							            var title = "${book.title}";
 							            if (title.length > 10) {
-							                title = title.substring(0, 12) + '..';
+							                title = title.substring(0, 13) + '..';
 							            }
 							            document.write(title);
 							        </script>
@@ -67,7 +67,7 @@
 									<script type="text/javascript">
 							            var author = "${book.author}";
 							            if (author.length > 10) {
-							            	author = author.substring(0, 15) + '..';
+							            	author = author.substring(0, 12) + '..';
 							            }
 							            document.write(author);
 							        </script>
@@ -83,34 +83,47 @@
 	<br><br>
 	
 	<div class="newBooks">
-		<table class="bshead">
+		<table class="nbhead">
 			<tr>
-				<td class="bshead1" colspan="4">　신간 도서</td>
-				<td class="bshead2"><button class="bsbutton"><a href="newBooks">더보기　　></a></button></td>
+				<td class="nbhead1" colspan="4">　신간 도서</td>
+				<td class="nbhead2"><button class="nbbutton"><a href="newBooks">더보기　　></a></button></td>
 			</tr>
 		</table>
-		
-		<table class="bslist">
-			<tr>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-				<td><div class="bookimg"></div></td>
-			</tr>
-			<tr>
-				<td>책제목</td>
-				<td>책제목</td>
-				<td>책제목</td>
-				<td>책제목</td>
-			</tr>
-			<tr>
-				<td>작가</td>
-				<td>작가</td>
-				<td>작가</td>
-				<td>작가</td>
-			</tr>
-		</table>
-	</div>
+		<div class="nbDiv">
+			<c:forEach items="${newBook}" var="book">
+				<table class="nblist">
+					
+							<tr>
+								<td class="nbTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
+							</tr>
+							<tr>
+								<td class="nbTd1">
+									<script type="text/javascript">
+							            var title = "${book.title}";
+							            if (title.length > 10) {
+							                title = title.substring(0, 13) + '..';
+							            }
+							            document.write(title);
+							        </script>
+								</td>
+							</tr>
+							<tr>
+								<td class="nbTd2">
+									<script type="text/javascript">
+							            var author = "${book.author}";
+							            if (author.length > 10) {
+							            	author = author.substring(0, 12) + '..';
+							            }
+							            document.write(author);
+							        </script>
+								
+								</td>
+							</tr>
+						
+				</table>
+			</c:forEach>
+		</div>	<!-- bsDiv -->
+	</div>	<!-- newBooks -->
 	
 	<br><br>
 	

@@ -89,11 +89,11 @@ button:hover{
 	margin:auto;
 	
 }
-.bshead{
+.bshead, .nbhead{
 	width:65%;
 	margin:auto;
 }
-.bsbutton{
+.bsbutton, .nbbutton{
 	background-color:#2D9462;
 	color:white;
 	margin-left:0.5em;
@@ -101,21 +101,21 @@ button:hover{
 	border:none;
 	border-radius:15px;
 	/* box-shadow: 5px 5px #898383; */
-	font-size:1em;
+	font-size:0.8em;
 }
-.bshead1{
+.bshead1, .nbhead1{
 	text-align:left;
 	font-size:1.4em;
 }
-.bshead2{
+.bshead2, .nbhead2{
 	text-align:right;
 	font-size:1.2em;
 }
 .bestseller table tr td{
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 
-.bsDiv{
+.bsDiv, .nbDiv{
 	background-color:#EDEDED;
 	width:65%;
 	margin:auto;
@@ -123,33 +123,33 @@ button:hover{
 }
 
 
-.bslist1 {
+.bslist, .nblist {
    width: 15%;
    display: inline-table;
-   padding-right: 2%;
-   padding-left: 2%;
-   padding-top: 5%;
-   padding-bottom: 5%;
+   padding-right: 3%;
+   padding-left: 3%;
+   padding-top: 6%;
+   padding-bottom: 6%;
 }
 
-.bslist tr td {
+.bslist tr td, .nblist tr td {
 	text-align:left;
 	padding-bottom:0.5em
 }
 .bookimg{
 	text-align:center;
 	background-color:#D9D9D9;
-	width:9em;
-	height:10em;
+	width:9.5em;
+	height:13em;
 }
-.bsTd1{
+.bsTd1, .nbTd1{
 	font-size:15px;
 	text-align:left;
-	padding-top:5px;
+	padding-top:4px;
 	padding-bottom:2px;
 }
-.bsTd2{
+.bsTd2, .nbTd2{
 	font-size:14px;
 	text-align:left;
-	padding-top:5px;
+	padding-top:3px;
 }

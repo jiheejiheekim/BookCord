@@ -21,7 +21,7 @@
                     <th>Cover</th>
                     <th>customerReviewRank</th>
                 </tr>
-                <c:forEach items="${books}" var="book">
+                <c:forEach items="${newBooks}" var="book">
                     <tr>
                         <td>${book.title}</td>
                         <td>${book.author}</td>

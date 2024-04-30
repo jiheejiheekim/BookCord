@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.book.cord.BookVO.BestSeller;
+import com.book.cord.BookVO.NewBooks;
 
 @Controller
 public class MainController {
@@ -31,23 +32,47 @@ public class MainController {
         this.bookService = bookService;
     }
 
-    /*
-	@GetMapping("/main") 
-	public String main() { 
-		return "main"; 
-	}
-	 */
-
 	
-    @GetMapping("/main")
-    public String mainBest(Integer year, Integer month, Model model) {
-    	BestSeller searchResult = bookService.getMainBestSeller(2024, 3);
-    	if (searchResult != null) {
-    		model.addAttribute("books", searchResult.getItem());
+	@GetMapping("/main")
+	public String mainBest(Model model) {
+		//베스트셀러
+    	BestSeller searchResult1 = bookService.getMainBestSeller();
+    	if (searchResult1 != null) {
+    		model.addAttribute("bestSeller", searchResult1.getItem());
     	} else {
-    		model.addAttribute("books", null);
+    		model.addAttribute("bestSeller", null);
+    	}
+    	
+    	//신간도서
+        NewBooks searchResult2 = bookService.getNewBooks();
+        if (searchResult2 != null) {
+            model.addAttribute("newBook", searchResult2.getItem());
+        } else {
+            model.addAttribute("newBook", null);
+        }
+        return "main";
+    }
+    
+    /*
+    public String mainBest(Model model) {
+    	BestSeller searchResult = bookService.getMainBestSeller();
+    	if (searchResult != null) {
+    		model.addAttribute("bestSeller", searchResult.getItem());
+    	} else {
+    		model.addAttribute("bestSeller", null);
     	}
     	return "main";
     }
-
+    
+    @GetMapping("/main")
+    public String mainNew(Model model) {
+        NewBooks searchResult = bookService.getNewBooks();
+        if (searchResult != null) {
+            model.addAttribute("newBook", searchResult.getItem());
+        } else {
+            model.addAttribute("newBook", null);
+        }
+        return "main";
+    }
+    */
 }
