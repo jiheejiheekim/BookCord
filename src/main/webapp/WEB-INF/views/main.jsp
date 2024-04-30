@@ -45,29 +45,29 @@
 			</tr>
 		</table>
 		<div class="bsDiv">
-			<table class="bslist">
-					<c:forEach items="${books}" var="book">
+			<c:forEach items="${books}" var="book">
+				<table class="bslist1">
 					
 							<tr>
 								<td class="bsTd"><img class="bookimg" src="${book.cover}"></td>	<!-- div였던 자리 -->
 							</tr>
 							<tr>
-								<td class="bsTd">
+								<td class="bsTd1">
 									<script type="text/javascript">
 							            var title = "${book.title}";
 							            if (title.length > 10) {
-							                title = title.substring(0, 10) + '..';
+							                title = title.substring(0, 12) + '..';
 							            }
 							            document.write(title);
 							        </script>
 								</td>
 							</tr>
 							<tr>
-								<td class="bsTd">
+								<td class="bsTd2">
 									<script type="text/javascript">
 							            var author = "${book.author}";
 							            if (author.length > 10) {
-							            	author = author.substring(0, 10) + '..';
+							            	author = author.substring(0, 15) + '..';
 							            }
 							            document.write(author);
 							        </script>
@@ -75,8 +75,8 @@
 								</td>
 							</tr>
 						
-					</c:forEach>
-			</table>
+				</table>
+			</c:forEach>
 		</div>	<!-- bsDiv -->
 	</div>	<!-- bestseller -->
 	
@@ -113,6 +113,7 @@
 	</div>
 	
 	<br><br>
+	
 	
 	
 </body>

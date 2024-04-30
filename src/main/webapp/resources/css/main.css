@@ -87,9 +87,7 @@ button:hover{
 .bestseller .newBooks{
 	width:100%;
 	margin:auto;
-	display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+	
 }
 .bshead{
 	width:65%;
@@ -121,32 +119,21 @@ button:hover{
 	background-color:#EDEDED;
 	width:65%;
 	margin:auto;
-	
-	display: flex; /* Flexbox를 사용합니다. */
-    justify-content: space-between; /* 요소들을 동일한 간격으로 배치합니다. */
-    flex-wrap: wrap; /* 요소들이 넘치면 다음 줄로 내려가도록 설정합니다. */
+
 }
 
-.bestseller .bsDiv .bslist {
-    display: flex; /* Flexbox를 사용하여 요소들을 수평으로 배치합니다. */
-    flex-wrap: wrap; /* 요소들이 넘치면 다음 줄로 내려가도록 설정합니다. */
-    justify-content: space-between; /* 요소들을 동일한 간격으로 배치합니다. */
-    align-items: flex-start; /* 요소들을 수직으로 상단 정렬합니다. */
-}
 
-.bslist {
-    flex: 0 0 calc(25% - 1em); /* 각 요소의 너비를 25%로 설정하고 좌우 마진을 1em씩 빼서 겹치지 않게 합니다. */
-    margin: 0.5em; /* 각 요소 사이의 간격을 조절합니다. */
-    padding: 2em; /* 요소 내부의 여백을 설정합니다. */
-    display: flex; /* 각 항목을 수평으로 배치하기 위해 Flexbox를 사용합니다. */
-    flex-direction: column; /* 항목을 세로로 배열합니다. */
-    align-items: center; /* 각 항목을 수평으로 가운데 정렬합니다. */
-    text-align: center; /* 텍스트를 가운데 정렬합니다. */
+.bslist1 {
+   width: 15%;
+   display: inline-table;
+   padding-right: 2%;
+   padding-left: 2%;
+   padding-top: 5%;
+   padding-bottom: 5%;
 }
 
 .bslist tr td {
 	text-align:left;
-	/* padding-left:2.5em; */
 	padding-bottom:0.5em
 }
 .bookimg{
@@ -155,6 +142,14 @@ button:hover{
 	width:9em;
 	height:10em;
 }
-.bsTd{
-	width:15%;
+.bsTd1{
+	font-size:15px;
+	text-align:left;
+	padding-top:5px;
+	padding-bottom:2px;
+}
+.bsTd2{
+	font-size:14px;
+	text-align:left;
+	padding-top:5px;
 }
