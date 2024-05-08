@@ -22,6 +22,7 @@
         
                 <tr>
                     <th>Title</th>
+                    <th>bestRank</th>
                     <th>isbn13</th>
                     <th>Author</th>
                     <th>Publisher</th>

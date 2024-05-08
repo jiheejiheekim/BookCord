@@ -34,7 +34,7 @@ public class MainController {
 
 	
 	@GetMapping("/main")
-	public String mainBest(Model model) {
+	public String mainBooks(Model model) {
 		//베스트셀러
     	BestSeller searchResult1 = bookService.getMainBestSeller();
     	if (searchResult1 != null) {

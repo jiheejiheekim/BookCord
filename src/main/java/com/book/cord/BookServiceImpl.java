@@ -1,12 +1,11 @@
 package com.book.cord;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.book.cord.BookVO.BestSeller;
 import com.book.cord.BookVO.DetailBooks;
+import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
 
@@ -25,6 +24,8 @@ public class BookServiceImpl implements BookService {
     private static final String API_KEY = "ttbfldpf20031555001";
 
     private final RestTemplate restTemplate;
+    
+    private int genreId;
 
     
     public BookServiceImpl(RestTemplate restTemplate) {
@@ -69,5 +70,19 @@ public class BookServiceImpl implements BookService {
     	return restTemplate.getForObject(url, DetailBooks.class);
     }
     
+    /*
+    @Override	//장르별 베스트셀러 페이지
+    public GenresBestSeller getGenresBestSeller(int genreId) {
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=10"
+    	+ "&start=1&SearchTarget=Book&output=js&Version=20131101&CategoryId="+ genreId;	//카테고리아이디 : 종합(), 건강/취미/레저(55890)
+    	return restTemplate.getForObject(url, GenresBestSeller.class);
+    }*/
+    
+    @Override	//장르별 베스트셀러 페이지
+    public GenresBestSeller getGenresBestSeller() {
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=10"
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&CategoryId=";	//카테고리아이디 : 종합(), 건강/취미/레저(55890)
+    	return restTemplate.getForObject(url, GenresBestSeller.class);
+    }
     
 }

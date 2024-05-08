@@ -26,11 +26,17 @@ public class BookVO {
     public static class DetailBooks {
     	private List<Book> item;
     }
+    
+    @Data
+    public static class GenresBestSeller {
+    	private List<Book> item;
+    }
 
     @Data
     public static class Book {
     	//item의 하위정보
         private String title;			//상품명
+        private int bestRank;			//(베스트셀러인 경우만 노출) 베스트셀러 순위 정보
         private String author;			//저자/아티스트
         private Date pubDate;			//출간일
         private String description;		//상품설명(요약)

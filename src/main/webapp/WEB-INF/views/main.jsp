@@ -56,7 +56,7 @@
 									<script type="text/javascript">
 							            var title = "${book.title}";
 							            if (title.length > 10) {
-							                title = title.substring(0, 13) + '..';
+							                title = title.substring(0, 12) + '..';
 							            }
 							            document.write(title);
 							        </script>
@@ -101,7 +101,7 @@
 									<script type="text/javascript">
 							            var title = "${book.title}";
 							            if (title.length > 10) {
-							                title = title.substring(0, 13) + '..';
+							                title = title.substring(0, 12) + '..';
 							            }
 							            document.write(title);
 							        </script>

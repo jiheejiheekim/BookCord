@@ -65,7 +65,7 @@
 					</tr>
 					<tr>
 						<td class="d1td13">
-							<c:if test="${book.subInfo.ratingInfo.ratingScore >= 9.5}">
+							<c:if test="${book.subInfo.ratingInfo.ratingScore >= 9.5}">	<!-- ratingScore:알라딘상품별평점 -->
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
@@ -77,6 +77,19 @@
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/halfStar.png">
+					        </c:if>
+					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 9.0 and book.subInfo.ratingInfo.ratingScore >= 8.5}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 8.5 and book.subInfo.ratingInfo.ratingScore >= 8.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/halfStar.png">
 					        </c:if>
 							<span class="black">${book.subInfo.ratingInfo.ratingScore}</span>
 						</td>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.book.cord.BookVO.BestSeller;
 import com.book.cord.BookVO.DetailBooks;
+import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
 
@@ -87,6 +88,17 @@ public class TestMainController {
         return "bookDetail";
     }
 
+    
+    @GetMapping("/testGenres")
+    public String testGenres(Model model) {
+    	GenresBestSeller searchResult = bookService.getGenresBestSeller();
+        if (searchResult != null) {
+            model.addAttribute("books", searchResult.getItem());
+        } else {
+            model.addAttribute("books", null);
+        }
+        return "testGenres";
+    }
     
     
 }

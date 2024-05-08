@@ -79,18 +79,17 @@ button:hover{
 	font-size: 1.2em;
 }
 .navi2 {
-	padding-top: 0.8em;
-	padding-left: 1.5em;
 	color: black;
 }
-.navi3, .navi4, .navi {
-	padding-top: 0.8em;
-	padding-left: 1.5em;
+.navi3 {
+	color: white;
 }
 .naviA{
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
     display: inline-block;
     font-size: 1em;
+    padding-top: 0.8em;
+	padding-left: 1.5em;
 }
 .naviA:hover {
 	transform: translate(2px, 2px);
@@ -187,8 +186,18 @@ button:hover{
 }
 .black{
 	color:black;
+	margin-bottom: 5px;
+	font-size: 15px;
 }
-
+.star{
+	width:18px;
+	padding-top:2px;
+}
+.starh{
+	width:19px;
+	height:18px;
+	padding-top:2.5px;
+}
 
 .Page{
 	/* width:100%; */
