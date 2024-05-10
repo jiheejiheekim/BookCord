@@ -25,8 +25,9 @@ public class BookServiceImpl implements BookService {
 
     private final RestTemplate restTemplate;
     
-    private int genreId;
-
+	/*
+	 * private int genreId;
+	 */
     
     public BookServiceImpl(RestTemplate restTemplate) {
     	this.restTemplate = restTemplate;
@@ -79,9 +80,9 @@ public class BookServiceImpl implements BookService {
     }*/
     
     @Override	//장르별 베스트셀러 페이지
-    public GenresBestSeller getGenresBestSeller() {
+    public GenresBestSeller getGenresBestSeller(Integer genreId) {
     	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=10"
-    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&CategoryId=";	//카테고리아이디 : 종합(), 건강/취미/레저(55890)
+    			+ "&start=1&SearchTarget=Book&output=js&Version=20131101&CategoryId=" + genreId;	//카테고리아이디 : 종합(), 건강/취미/레저(55890)
     	return restTemplate.getForObject(url, GenresBestSeller.class);
     }
     

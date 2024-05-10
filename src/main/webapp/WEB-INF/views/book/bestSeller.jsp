@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>BookCord - BestSeller</title>
 <link rel="stylesheet" href="resources/css/bestSeller.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<!-- TOP -->
@@ -31,97 +32,97 @@
 					<td class="navi1">베스트셀러</td>
 				</tr>
 				<tr>
-					<td class="navi2"><a class="naviA" href="" onclick="changeMenu('navi2')">종합</a></td>
+					<td class="navi2"><a class="naviA" onclick="getBooksByGenre()">종합</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">건강/취미</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(55890)">건강/취미</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">경제경영</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(170)">경제경영</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">고전</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(2105)">고전</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">과학</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(987)">과학</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">대학교재/전문서적</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(8257)">대학교재/전문서적</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">만화</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(2551)">만화</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">달력/기타</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(4395)">달력/기타</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">사회과학</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(798)">사회과학</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">소설/시/희곡</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1)">소설/시/희곡</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">수험서/자격증</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1383)">수험서/자격증</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">어린이</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1108)">어린이</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">에세이</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(55889)">에세이</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">여행</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1196)">여행</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">역사</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(74)">역사</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">예술/대중문화</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(517)">예술/대중문화</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">요리/살림</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1230)">요리/살림</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">외국어</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1322)">외국어</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">유아</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(13789)">유아</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">인문학</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(656)">인문학</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">자기계발</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(336)">자기계발</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">장르소설</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(112011)">장르소설</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">잡지</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(2913)">잡지</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">전집/중고전집</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(17195)">전집/중고전집</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">종교/역학</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1237)">종교/역학</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">좋은부모</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(2030)">좋은부모</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">청소년</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(1137)">청소년</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">컴퓨터/모바일</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(351)">컴퓨터/모바일</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">초등학교참고서</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(50246)">초등학교참고서</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">중학교참고서</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(77541)">중학교참고서</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="">고등학교참고서</a></td>
+					<td class="navi3"><a class="naviA" onclick="getBooksByGenre(76001)">고등학교참고서</a></td>
 				</tr>
 			</table>
 		</div>
@@ -478,9 +479,30 @@
 		</table>
 	</div>
 
-<script>
 
+<script>
+console.log("장르별 책 목록 요청 중...");
+
+    function getBooksByGenre(genreId) {
+    	console.log("장르별 책 목록 요청 중..."+genreId);
+    	
+        $.ajax({
+            url: '/getBooks', // 서버의 API 엔드포인트 주소
+            method: 'GET', // 또는 'POST'
+            data: { genreId: genreId }, // 전송할 데이터
+            success: function(response) {
+            	alert('장르가 호출되었습니다');
+                // 서버로부터 받은 응답을 이용하여 페이지 일부분을 업데이트
+                $('.bsTableDiv').html(response);
+                
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
 </script>
+
 
 </body>
 </html>
