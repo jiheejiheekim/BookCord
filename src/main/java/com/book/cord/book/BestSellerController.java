@@ -49,22 +49,11 @@ public class BestSellerController {
 	            model.addAttribute("books", books);
 	        }
 	    }
-	    return "book/bestSeller"; // 장르별 책 목록을 보여줄 JSP 페이지 이름
+	    return "book/bestSeller";
 	}
 
 	
 
-	@ResponseBody
-	public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam("genreId") Integer genreId) {
-	    GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId);
-	    if (searchResult != null) {
-	        List<Book> books = searchResult.getItem();
-	        if (books != null) {
-	            return ResponseEntity.ok(books);
-	        }
-	    }
-	    return ResponseEntity.notFound().build();
-	}
-
+	
 
 }
