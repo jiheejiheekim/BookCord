@@ -2,12 +2,12 @@ package com.book.cord.book;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.book.cord.BookService;
 import com.book.cord.BookVO.Book;
@@ -25,7 +25,12 @@ public class BestSellerController {
 	
 	@GetMapping("/bestSeller")
     public String bestSeller(Model model, @RequestParam(required = false) Integer genreId) {
-    	GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId);	// 특정 장르의 베스트셀러 가져오기
+    	GenresBestSeller searchResult;
+    	if (genreId != null) {
+    		searchResult = bookService.getGenresBestSeller(genreId);	// 특정 장르의 베스트셀러 가져오기
+    	} else {
+    		searchResult = bookService.getGenresBestSeller(null); // 전체 베스트셀러 가져오기
+    	}
     	
         if (searchResult != null) {
             model.addAttribute("books", searchResult.getItem());
@@ -40,9 +45,26 @@ public class BestSellerController {
 	    GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId);
 	    if (searchResult != null) {
 	        List<Book> books = searchResult.getItem();
-	        model.addAttribute("books", books);
+	        if (books != null) {
+	            model.addAttribute("books", books);
+	        }
 	    }
 	    return "book/bestSeller"; // 장르별 책 목록을 보여줄 JSP 페이지 이름
 	}
+
+	
+
+	@ResponseBody
+	public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam("genreId") Integer genreId) {
+	    GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId);
+	    if (searchResult != null) {
+	        List<Book> books = searchResult.getItem();
+	        if (books != null) {
+	            return ResponseEntity.ok(books);
+	        }
+	    }
+	    return ResponseEntity.notFound().build();
+	}
+
 
 }
