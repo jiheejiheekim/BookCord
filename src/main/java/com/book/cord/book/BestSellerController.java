@@ -24,12 +24,12 @@ public class BestSellerController {
 	
 	
 	@GetMapping("/bestSeller")
-    public String bestSeller(Model model, @RequestParam(required = false) Integer genreId) {
+    public String bestSeller(Model model, @RequestParam(required = false) Integer genreId, Integer pageNumber) {
     	GenresBestSeller searchResult;
     	if (genreId != null) {
-    		searchResult = bookService.getGenresBestSeller(genreId);	// 특정 장르의 베스트셀러 가져오기
+    		searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
     	} else {
-    		searchResult = bookService.getGenresBestSeller(null); // 전체 베스트셀러 가져오기
+    		searchResult = bookService.getGenresBestSeller_1(null, null);
     	}
     	
         if (searchResult != null) {
@@ -41,8 +41,8 @@ public class BestSellerController {
     }
 	
 	@GetMapping("/getBooks")
-	public String getBooksByGenre(@RequestParam("genreId") Integer genreId, Model model) {
-	    GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId);
+	public String getBooksByGenre(Model model, @RequestParam("genreId") Integer genreId, Integer pageNumber) {
+	    GenresBestSeller searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
 	    if (searchResult != null) {
 	        List<Book> books = searchResult.getItem();
 	        if (books != null) {
@@ -53,7 +53,6 @@ public class BestSellerController {
 	}
 
 	
-
 	
 
 }

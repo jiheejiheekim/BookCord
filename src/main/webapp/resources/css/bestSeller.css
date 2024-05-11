@@ -76,23 +76,25 @@ button:hover{
 	width: 100%;
 }
 .navi1{
-	font-size: 1.2em;
+	font-size: 1.3em;
 }
 .navi2 {
 	color: black;
 }
-.navi3 {
-	
-}
+
 .naviA{
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.1em;
     padding-top: 0.8em;
 	padding-left: 1.5em;
 }
 .naviA:hover {
 	transform: translate(2px, 2px);
+	color: black;
+}
+.naviBlack {
+	color: black !important;
 }
 
 

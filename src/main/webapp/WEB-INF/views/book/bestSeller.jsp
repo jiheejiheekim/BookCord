@@ -9,6 +9,7 @@
 <title>BookCord - BestSeller</title>
 <link rel="stylesheet" href="resources/css/bestSeller.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 	<!-- TOP -->
@@ -32,97 +33,97 @@
 					<td class="navi1">베스트셀러</td>
 				</tr>
 				<tr>
-					<td class="navi2"><a  id="total" class="naviA" href="" onclick="getBooksByGenre(0,'종합')">종합</a></td>
+					<td class="navi2"><a class="naviA" href="" onclick="genreBestSeller(0,'종합')">종합</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="" onclick="getBooksByGenre(55890,'건강/취미/레저')">건강/취미/레저</a></td>
+					<td class="navi3"><a class="naviA" href="" onclick="genreBestSeller(55890,'건강/취미/레저')">건강/취미/레저</a></td>
 				</tr>
 				<tr>
-					<td class="navi4"><a class="naviA" href="" onclick="getBooksByGenre(170,'경제경영')">경제경영</a></td>
+					<td class="navi4"><a class="naviA" href="" onclick="genreBestSeller(170,'경제경영')">경제경영</a></td>
 				</tr>
 				<tr>
-					<td class="navi5"><a class="naviA" href="" onclick="getBooksByGenre(2105,'고전')">고전</a></td>
+					<td class="navi5"><a class="naviA" href="" onclick="genreBestSeller(2105,'고전')">고전</a></td>
 				</tr>
 				<tr>
-					<td class="navi6"><a class="naviA" href="" onclick="getBooksByGenre(987,'과학')">과학</a></td>
+					<td class="navi6"><a class="naviA" href="" onclick="genreBestSeller(987,'과학')">과학</a></td>
 				</tr>
 				<tr>
-					<td class="navi7"><a class="naviA" href="" onclick="getBooksByGenre(8257,'대학교재/전문서적')">대학교재/전문서적</a></td>
+					<td class="navi7"><a class="naviA" href="" onclick="genreBestSeller(8257,'대학교재/전문서적')">대학교재/전문서적</a></td>
 				</tr>
 				<tr>
-					<td class="navi8"><a class="naviA" href="" onclick="getBooksByGenre(2551,'만화')">만화</a></td>
+					<td class="navi8"><a class="naviA" href="" onclick="genreBestSeller(2551,'만화')">만화</a></td>
 				</tr>
 				<tr>
-					<td class="navi9"><a class="naviA" href="" onclick="getBooksByGenre(4395,'달력/기타')">달력/기타</a></td>
+					<td class="navi9"><a class="naviA" href="" onclick="genreBestSeller(4395,'달력/기타')">달력/기타</a></td>
 				</tr>
 				<tr>
-					<td class="navi10"><a class="naviA" href="" onclick="getBooksByGenre(798,'사회과학')">사회과학</a></td>
+					<td class="navi10"><a class="naviA" href="" onclick="genreBestSeller(798,'사회과학')">사회과학</a></td>
 				</tr>
 				<tr>
-					<td class="navi11"><a class="naviA" href="" onclick="getBooksByGenre(1,'소설/시/희곡')">소설/시/희곡</a></td>
+					<td class="navi11"><a class="naviA" href="" onclick="genreBestSeller(1,'소설/시/희곡')">소설/시/희곡</a></td>
 				</tr>
 				<tr>
-					<td class="navi12"><a class="naviA" href="" onclick="getBooksByGenre(1383,'수험서/자격증')">수험서/자격증</a></td>
+					<td class="navi12"><a class="naviA" href="" onclick="genreBestSeller(1383,'수험서/자격증')">수험서/자격증</a></td>
 				</tr>
 				<tr>
-					<td class="navi13"><a class="naviA" href="" onclick="getBooksByGenre(1108,'어린이')">어린이</a></td>
+					<td class="navi13"><a class="naviA" href="" onclick="genreBestSeller(1108,'어린이')">어린이</a></td>
 				</tr>
 				<tr>
-					<td class="navi14"><a class="naviA" href="" onclick="getBooksByGenre(55889,'에세이')">에세이</a></td>
+					<td class="navi14"><a class="naviA" href="" onclick="genreBestSeller(55889,'에세이')">에세이</a></td>
 				</tr>
 				<tr>
-					<td class="navi15"><a class="naviA" href="" onclick="getBooksByGenre(1196,'여행')">여행</a></td>
+					<td class="navi15"><a class="naviA" href="" onclick="genreBestSeller(1196,'여행')">여행</a></td>
 				</tr>
 				<tr>
-					<td class="navi16"><a class="naviA" href="" onclick="getBooksByGenre(74,'역사')">역사</a></td>
+					<td class="navi16"><a class="naviA" href="" onclick="genreBestSeller(74,'역사')">역사</a></td>
 				</tr>
 				<tr>
-					<td class="navi17"><a class="naviA" href="" onclick="getBooksByGenre(517,'예술/대중문화')">예술/대중문화</a></td>
+					<td class="navi17"><a class="naviA" href="" onclick="genreBestSeller(517,'예술/대중문화')">예술/대중문화</a></td>
 				</tr>
 				<tr>
-					<td class="navi18"><a class="naviA" href="" onclick="getBooksByGenre(1230,'요리/살림')">요리/살림</a></td>
+					<td class="navi18"><a class="naviA" href="" onclick="genreBestSeller(1230,'요리/살림')">요리/살림</a></td>
 				</tr>
 				<tr>
-					<td class="navi19"><a class="naviA" href="" onclick="getBooksByGenre(1322,'외국어')">외국어</a></td>
+					<td class="navi19"><a class="naviA" href="" onclick="genreBestSeller(1322,'외국어')">외국어</a></td>
 				</tr>
 				<tr>
-					<td class="navi20"><a class="naviA" href="" onclick="getBooksByGenre(13789,'유아')">유아</a></td>
+					<td class="navi20"><a class="naviA" href="" onclick="genreBestSeller(13789,'유아')">유아</a></td>
 				</tr>
 				<tr>
-					<td class="navi21"><a class="naviA" href="" onclick="getBooksByGenre(656,'인문학')">인문학</a></td>
+					<td class="navi21"><a class="naviA" href="" onclick="genreBestSeller(656,'인문학')">인문학</a></td>
 				</tr>
 				<tr>
-					<td class="navi22"><a class="naviA" href="" onclick="getBooksByGenre(336,'자기계발')">자기계발</a></td>
+					<td class="navi22"><a class="naviA" href="" onclick="genreBestSeller(336,'자기계발')">자기계발</a></td>
 				</tr>
 				<tr>
-					<td class="navi23"><a class="naviA" href="" onclick="getBooksByGenre(112011,'장르소설')">장르소설</a></td>
+					<td class="navi23"><a class="naviA" href="" onclick="genreBestSeller(112011,'장르소설')">장르소설</a></td>
 				</tr>
 				<tr>
-					<td class="navi24"><a class="naviA" href="" onclick="getBooksByGenre(2913,'잡지')">잡지</a></td>
+					<td class="navi24"><a class="naviA" href="" onclick="genreBestSeller(2913,'잡지')">잡지</a></td>
 				</tr>
 				<tr>
-					<td class="navi25"><a class="naviA" href="" onclick="getBooksByGenre(17195,'전집/중고전집')">전집/중고전집</a></td>
+					<td class="navi25"><a class="naviA" href="" onclick="genreBestSeller(17195,'전집/중고전집')">전집/중고전집</a></td>
 				</tr>
 				<tr>
-					<td class="navi26"><a class="naviA" href="" onclick="getBooksByGenre(1237,'종교/역학')">종교/역학</a></td>
+					<td class="navi26"><a class="naviA" href="" onclick="genreBestSeller(1237,'종교/역학')">종교/역학</a></td>
 				</tr>
 				<tr>
-					<td class="navi27"><a class="naviA" href="" onclick="getBooksByGenre(2030,'좋은부모')">좋은부모</a></td>
+					<td class="navi27"><a class="naviA" href="" onclick="genreBestSeller(2030,'좋은부모')">좋은부모</a></td>
 				</tr>
 				<tr>
-					<td class="navi28"><a class="naviA" href="" onclick="getBooksByGenre(1137,'청소년')">청소년</a></td>
+					<td class="navi28"><a class="naviA" href="" onclick="genreBestSeller(1137,'청소년')">청소년</a></td>
 				</tr>
 				<tr>
-					<td class="navi29"><a class="naviA" href="" onclick="getBooksByGenre(351,'컴퓨터/모바일')">컴퓨터/모바일</a></td>
+					<td class="navi29"><a class="naviA" href="" onclick="genreBestSeller(351,'컴퓨터/모바일')">컴퓨터/모바일</a></td>
 				</tr>
 				<tr>
-					<td class="navi30"><a class="naviA" href="" onclick="getBooksByGenre(50246,'초등학교참고서')">초등학교참고서</a></td>
+					<td class="navi30"><a class="naviA" href="" onclick="genreBestSeller(50246,'초등학교참고서')">초등학교참고서</a></td>
 				</tr>
 				<tr>
-					<td class="navi31"><a class="naviA" href="" onclick="getBooksByGenre(77541,'중학교참고서')">중학교참고서</a></td>
+					<td class="navi31"><a class="naviA" href="" onclick="genreBestSeller(77541,'중학교참고서')">중학교참고서</a></td>
 				</tr>
 				<tr>
-					<td class="navi32"><a class="naviA" href="" onclick="getBooksByGenre(76001,'고등학교참고서')">고등학교참고서</a></td>
+					<td class="naviA"><a href="" onclick="genreBestSeller(76001,'고등학교참고서')">고등학교참고서</a></td>
 				</tr>
 			</table>
 		</div>
@@ -202,258 +203,7 @@
 				</table>
 				
 				
-				<!-- <table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">2.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">3.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">4.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">5.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">6.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">7.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">8.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">9.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table>
-				<table class="bsTable">
-					
-					<tr class="bs1">
-						<td class="bstd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="bs1td2">10.</td>
-						<td class="bs1td3"><a href=""><img class="bookMarkImg" src="resources/images/bookmarkX.png"></a></td>
-					</tr>
-					<tr class="bs2">
-						<td></td>
-						<td class="bs2td2">푸바오, 언제나 사랑해</td>
-					</tr>
-					<tr class="bs3">
-						<td></td>
-						<td class="bs3td2">강철원(에버랜드 동물원)(지은이), 류정훈(에버랜드 커뮤니케이션 그룹)(사진)</td>
-					</tr>
-					<tr class="bs4">
-						<td></td>
-						<td class="bs4td2">시공주니어 | 2024년 1월</td>
-					</tr>
-					<tr class="bs5">
-						<td></td>
-						<td class="bs5td2">　</td>
-					</tr>
-					<tr class="bs6">
-						<td></td>
-						<td class="bs6td2">★★★★★　<span class="black">(9)</span></td>
-					</tr>
-				</table> -->
+				
 				
 			</div>
 			<!-- bsTableDiv -->
@@ -468,11 +218,11 @@
 			<tr>
 				<td class="pageLogotd"><a><img class="pageLogo"
 						src="resources/images/pageLeft.png"></a></td>
-				<td><a class="bold">1</a></td>
-				<td><a href="">2</a></td>
-				<td><a href="">3</a></td>
-				<td><a href="">4</a></td>
-				<td><a href="">5</a></td>
+				<td class="bold"><a class="pageNum" data-genreId="${genreId}" onclick="page(this)">1</a></td>
+				<td><a class="pageNum" href="" data-genreId="${genreId}" onclick="page(this)">2</a></td>
+				<td><a class="pageNum" href="" data-genreId="${genreId}" onclick="page(this)">3</a></td>
+				<td><a class="pageNum" href="" data-genreId="${genreId}" onclick="page(this)">4</a></td>
+				<td><a class="pageNum" href="" data-genreId="${genreId}" onclick="page(this)">5</a></td>
 				<td class="pageLogotd"><a><img class="pageLogo"
 						src="resources/images/pageRight.png"></a></td>
 			</tr>
@@ -483,42 +233,35 @@
 <script>
 
 	$('.naviA').click(function(event) {
+	    console.log('1. 새로운 장르 클릭');
 	    event.preventDefault(); 
-	    console.log("클릭 이벤트 발생");
+	        
+	    $('.naviA').css('color', 'white');
 	    
-	    var naviItems = document.querySelectorAll('.naviA');
-	    var total = document.getElementById('total');
-	    var clickedMenuItem = event.target.textContent.trim();
-
-        // 모든 메뉴의 색상을 기본값으로 설정 (흰색)
-        naviItems.forEach(function(item) {
-            item.style.color = "white";
-        });
-
-        // 클릭된 메뉴 아이템의 색상을 검은색으로 설정
-        event.target.style.color = "black !important";
-
-        // 종합 메뉴의 색상을 흰색으로 설정
-        total.style.color = "white";
+	    $(this).css('color', 'black');
+		/*
+	    var genreId = $(this).attr('data-genreId');
+	    var name = $(this).text();*/
+	    
 	});
-	
 
-
-
-    function getBooksByGenre(genreId, name) {
-    	console.log('2.장르별 책 목록 요청 중');
-    	alert('3.장르아이디 : '+genreId+', '+name);
-    	console.log('4.카테고리아이디 : ' + genreId + ' / 카테고리명 : '+name);
+    function genreBestSeller(genreId, name) {
+    	console.log('2. 장르별 책 목록 요청 중');
+    	console.log('3.카테고리아이디 : '+genreId+' / 카테고리명 : '+name);
     	
         $.ajax({
             url: '/bc/getBooks', 
             method: 'GET', 
             data: { genreId: genreId },
             success: function(response) {
-                
-                $('body').html(response);
+            	 var $response = $(response);
+                 var newBsContent = $response.find('.bs').html();
+                 
+                /* $('.bs').html(response);
+                $('body').html(response);*/
+                $('.bs').html(newBsContent);
                 $('.bsSpan').html(name);
-                
+                               
             },
             
             error: function(xhr, status, error) {
@@ -527,6 +270,43 @@
         });
     }
     
+	$('.pageNum').click(function(event) {
+		event.preventDefault(); 
+    	$('.pageNum').css('font-weight', 'none');
+    	$(this).css('font-weight', 'bold');
+	});
+    
+	
+	function page(element) {
+		var genreId = $('.pageNum').first().data('genreId'); // 첫 번째 페이지 번호에 해당하는 장르 아이디 값 사용
+	    var pageNumber = $(element).text();
+
+	    console.log('페이지 ' + pageNumber + ' 요청 중');
+	    console.log('페이지 장르 값 ' + genreId);
+
+	    
+	    
+	    /* // AJAX를 통해 해당 페이지의 책 목록을 요청합니다.
+	    $.ajax({
+	        url: '/bc/getBooks',
+	        method: 'GET',
+	        data: { genreId: genreId, pageNumber: pageNumber },
+	        success: function(response) {
+	            console.log('페이지 ' + pageNumber + ' 요청 성공');
+	            var $response = $(response);
+	            var newBsContent = $response.find('.bs').html();
+
+	            // 가져온 책 목록으로 화면을 업데이트합니다.
+	            $('.bs').html(newBsContent);
+	            $('.bsSpan').html($('.naviA.active').text());
+
+	        },
+	        error: function(xhr, status, error) {
+	            console.error(error);
+	        }
+	    }); */
+	}
+
  	
  
 </script>

@@ -14,6 +14,6 @@ public interface BookService {
     SearchBooks getSearchBooks(String query);	//상품검색
     DetailBooks getDetailBook(String isbn13);	//도서상세페이지
     
-    GenresBestSeller getGenresBestSeller(Integer genreId);
+    GenresBestSeller getGenresBestSeller_1(Integer genreId, Integer pageNumber);
     
 }
