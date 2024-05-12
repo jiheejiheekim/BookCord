@@ -41,7 +41,8 @@ public class BestSellerController {
     }
 	
 	@GetMapping("/getBooks")
-	public String getBooksByGenre(Model model, @RequestParam("genreId") Integer genreId, Integer pageNumber) {
+	public String getBooksByGenre(Model model, @RequestParam("genreId") Integer genreId, 
+			@RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber) {
 	    GenresBestSeller searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
 	    if (searchResult != null) {
 	        List<Book> books = searchResult.getItem();
