@@ -274,11 +274,10 @@
 	    selectedGenreName = $(this).text();
 	    console.log("- 선택된 장르 ID:", selectedGenreId);
 	    console.log("- 선택된 장르 이름:", selectedGenreName);
-
-			
-		$('.pageNum').css('font-weight', 'normal');
-		$(this).css('font-weight', 'bold');
-	    
+			    
+	    currentPage=1;
+	    updatePageNum();
+	    bold();
 	});
 
     function genreBestSeller(genreId, name, pageNumber) {
@@ -309,13 +308,12 @@
         });
     }
     
-	/* $('.pageNum').click(function(event) {
+	$('.pageNum').click(function(event) {
 		event.preventDefault(); 
     	$('.pageNum').css('font-weight', 'normal');
     	$(this).css('font-weight', 'bold');
-	}); */
+	});
     
-	
 	function page(pageNumber) {
 	    console.log('페이지 ' + pageNumber + ' 요청 중');
 	    
@@ -326,16 +324,17 @@
 	    genreBestSeller(selectedGenreId, selectedGenreName, pageNumber);
 	    currentPage = pageNumber;
 	    updatePageNum();
-	    
+	    bold();
+	}
+	
+	function bold() {
+	    console.log('페이지 ' + currentPage + ' bold 처리 중');
 	    $('.pageNum').css('font-weight', 'normal');
 	    
 	    $('.pageNum').filter(function() {
-	        return $(this).text() == pageNumber;
+	        return $(this).text() == currentPage;
 	    }).css('font-weight', 'bold');
-	    
 	}
-	
-
 
 	function prevPage() {
 		event.preventDefault(); 
