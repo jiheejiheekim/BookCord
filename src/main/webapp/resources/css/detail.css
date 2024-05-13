@@ -69,7 +69,7 @@ button:hover{
 	width:80%;
 }
 .dTable1 tr td, .dTable2 tr td, .dTable3 tr td, .dTable4 tr td {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 .d1td1{
 	width:25%;

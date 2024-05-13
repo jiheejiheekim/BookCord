@@ -15,11 +15,11 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img
+				<td class="top1" colspan="5"><a href="/bc/main"><img
 						class="logo" src="../resources/images/logo.png"></a></td>
-				<td class="top2"><a href="notice">공지사항</a></td>
-				<td class="top3"><a href="memberEdit">마이페이지</a></td>
-				<td class="top4"><a href="login">로그아웃</a></td>
+				<td class="top2"><a href="/bc/notice">공지사항</a></td>
+				<td class="top3"><a href="/bc/memberEdit">마이페이지</a></td>
+				<td class="top4"><a href="/bc/login">로그아웃</a></td>
 			</tr>
 		</table>
 	</div>
@@ -65,31 +65,52 @@
 					</tr>
 					<tr>
 						<td class="d1td13">
-							<c:if test="${book.subInfo.ratingInfo.ratingScore >= 9.5}">	<!-- ratingScore:알라딘상품별평점 -->
+							<c:if test="${book.customerReviewRank == 10}">	<!-- customerReviewRank:알라딘평점 -->
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					        </c:if>
-					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 9.5 and book.subInfo.ratingInfo.ratingScore >= 9.0}">
+					        <c:if test="${book.customerReviewRank < 10 and book.customerReviewRank >= 9.0}">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="starh" src="../resources/images/halfStar.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 9.0 and book.customerReviewRank >= 8.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 8.0 and book.customerReviewRank >= 7.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="starh" src="../resources/images/halfStar.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 7.0 and book.customerReviewRank >= 6.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 6.0 and book.customerReviewRank >= 5.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="starh" src="../resources/images/halfStar.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 5.0 and book.customerReviewRank >= 4.0}">
+					            <img class="star" src="../resources/images/star.png">
+					            <img class="star" src="../resources/images/star.png">
+					        </c:if>
+					        <c:if test="${book.customerReviewRank < 4.0 and book.customerReviewRank >= 3.0}">
 					            <img class="star" src="../resources/images/star.png">
 					            <img class="star" src="../resources/images/halfStar.png">
 					        </c:if>
-					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 9.0 and book.subInfo.ratingInfo.ratingScore >= 8.5}">
+					        <c:if test="${book.customerReviewRank < 3.0 and book.customerReviewRank >= 2.0}">
 					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/star.png">
-					        </c:if>
-					        <c:if test="${book.subInfo.ratingInfo.ratingScore < 8.5 and book.subInfo.ratingInfo.ratingScore >= 8.0}">
-					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/star.png">
-					            <img class="star" src="../resources/images/halfStar.png">
 					        </c:if>
 							<span class="black">${book.subInfo.ratingInfo.ratingScore}</span>
 						</td>
