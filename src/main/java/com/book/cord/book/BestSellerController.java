@@ -27,9 +27,9 @@ public class BestSellerController {
     public String bestSeller(Model model, @RequestParam(required = false) Integer genreId, Integer pageNumber) {
     	GenresBestSeller searchResult;
     	if (genreId != null) {
-    		searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
+    		searchResult = bookService.getGenresBestSeller(genreId, pageNumber);
     	} else {
-    		searchResult = bookService.getGenresBestSeller_1(null, null);
+    		searchResult = bookService.getGenresBestSeller(null, null);
     	}
     	
         if (searchResult != null) {
@@ -40,10 +40,10 @@ public class BestSellerController {
         return "book/bestSeller";
     }
 	
-	@GetMapping("/getBooks")
-	public String getBooksByGenre(Model model, @RequestParam("genreId") Integer genreId, 
+	@GetMapping("/getBestBooks")
+	public String getBestGenre(Model model, @RequestParam("genreId") Integer genreId, 
 			@RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber) {
-	    GenresBestSeller searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
+	    GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId, pageNumber);
 	    if (searchResult != null) {
 	        List<Book> books = searchResult.getItem();
 	        if (books != null) {

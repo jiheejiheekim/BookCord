@@ -31,6 +31,11 @@ public class BookVO {
     public static class GenresBestSeller {
     	private List<Book> item;
     }
+    
+    @Data
+    public static class GenresNewBooks {
+    	private List<Book> item;
+    }
 
     @Data
     public static class Book {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
@@ -16,8 +16,8 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img
-						class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5">
+					<a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3"><a href="memberEdit">마이페이지</a></td>
 				<td class="top4"><a href="login">로그아웃</a></td>
@@ -260,7 +260,7 @@
 	var currentPage = 1;
 	var pageNumber = 1;
 	
-	console.log('c페이지 ' + currentPage + ' 요청 중');
+	console.log('페이지 로드! ' + currentPage + ' 요청 중');
 
 	$('.naviA').click(function(event) {
 	    console.log('4. 새로운 장르 클릭');
@@ -292,7 +292,7 @@
     	console.log('3. 카테고리명 : '+name);
     	
         $.ajax({
-            url: '/bc/getBooks',
+            url: '/bc/getBestBooks',
             method: 'GET', 
             data: { genreId: genreId, pageNumber: pageNumber },
             success: function(response) {
@@ -328,7 +328,6 @@
 	}
 	
 	function bold() {
-	    console.log('페이지 ' + currentPage + ' bold 처리 중');
 	    $('.pageNum').css('font-weight', 'normal');
 	    
 	    $('.pageNum').filter(function() {
@@ -339,7 +338,7 @@
 	function prevPage() {
 		event.preventDefault(); 
 	    if (currentPage > 1) {
-	        currentPage -= 5;
+	        currentPage = 5;
 	        updatePageNum();
 	        page(currentPage);
 	    }

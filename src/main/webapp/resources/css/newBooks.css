@@ -76,24 +76,25 @@ button:hover{
 	width: 100%;
 }
 .navi1{
-	font-size: 1.2em;
+	font-size: 1.3em;
 }
 .navi2 {
-	padding-top: 0.8em;
-	padding-left: 1.5em;
 	color: black;
 }
-.navi3, .navi4, .navi {
-	padding-top: 0.8em;
-	padding-left: 1.5em;
-}
+
 .naviA{
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.1em;
+    padding-top: 0.8em;
+	padding-left: 1.5em;
 }
 .naviA:hover {
 	transform: translate(2px, 2px);
+	color: black;
+}
+.naviBlack {
+	color: black !important;
 }
 
 
@@ -114,15 +115,16 @@ button:hover{
 	/* border:1px solid black; */
 	padding-right:10px;
 }
-.name, .star{
+.name, .starRank{
 	background-color:#2D9462;
 	color:white;
 	margin-left:0.5em;
 	padding:0.7em;
 	border:none;
 	border-radius:15px;
-	/* box-shadow: 5px 5px #898383; */
+	box-shadow: 5px 5px #898383;
 	font-size:1em;
+	width:6em;
 }
 .day{
 	background-color:#2D9462;
@@ -134,8 +136,8 @@ button:hover{
 	font-size:1em;
 	border:1px solid #808080;
 	transform: translateY(2px);
-    /* box-shadow: 1px 1px 3px rgba(0,0,0,0.4); */
-    box-shadow: -2px -1px #898383;	/* 등록일 순 선택시 */
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    width:6em;
 }
 
 
@@ -188,8 +190,18 @@ button:hover{
 }
 .black{
 	color:black;
+	margin-bottom: 5px;
+	font-size: 15px;
 }
-
+.star{
+	width:18px;
+	padding-top:2px;
+}
+.starh{
+	width:19px;
+	height:18px;
+	padding-top:2.5px;
+}
 
 .Page{
 	/* width:100%; */
@@ -210,6 +222,6 @@ button:hover{
 .pageLogotd{
 	padding-top:5px;
 }
-.pageLogo{
+.pageLogo1, .pageLogo2{
 	width:28px;
 }

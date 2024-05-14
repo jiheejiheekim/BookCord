@@ -92,7 +92,7 @@ public class TestMainController {
     @GetMapping("/testGenres")
     public String testGenres(Model model, @RequestParam("genreId") Integer genreId, 
 			@RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber) {
-    	GenresBestSeller searchResult = bookService.getGenresBestSeller_1(genreId, pageNumber);
+    	GenresBestSeller searchResult = bookService.getGenresBestSeller(genreId, pageNumber);
         if (searchResult != null) {
             model.addAttribute("books", searchResult.getItem());
         } else {
