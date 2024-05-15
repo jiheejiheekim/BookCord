@@ -145,81 +145,81 @@
 			<div class="nbTableDiv">
 				<table class="nbTable">
 					<c:forEach items="${books}" var="book" varStatus="j">
-					<tr class="nb1">
-						<td class="nbtd1" rowspan="6"><img class="bookImg" src="${book.cover}"></td>
-						<td class="nb1td2">.</td>
-						<td class="nb1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkO.png"></a></td>
-					</tr>
-					<tr class="nb2">
-						<!-- <td></td> -->
-						<td class="nb2td2"><a href="/bc/detail/${book.isbn13}">${book.title}</a></td>
-					</tr>
-					<tr class="nb3">
-						<!-- <td></td> -->
-						<td class="nb3td2">${book.author}</td>
-					</tr>
-					<tr class="nb4">
-						<!-- <td></td> -->
-						<fmt:formatDate value="${book.pubDate}" pattern="yyyy-MM-dd" var="formattedDate" />
-						<td class="nb4td2">${book.publisher} | ${formattedDate}</td>
-					</tr>
-					<tr class="nb5">
-						<!-- <td></td> -->
-						<td class="nb5td2">　</td>
-					</tr>
-					<tr class="nb6">
-						<!-- <td></td> -->
-						<td class="nb6td2">
-							<c:if test="${book.customerReviewRank == 10}">	<!-- customerReviewRank:알라딘평점 -->
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 10 and book.customerReviewRank >= 9.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="starh" src="resources/images/halfStar.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 9.0 and book.customerReviewRank >= 8.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 8.0 and book.customerReviewRank >= 7.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="starh" src="resources/images/halfStar.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 7.0 and book.customerReviewRank >= 6.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 6.0 and book.customerReviewRank >= 5.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="starh" src="resources/images/halfStar.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 5.0 and book.customerReviewRank >= 4.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/star.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 4.0 and book.customerReviewRank >= 3.0}">
-					            <img class="star" src="resources/images/star.png">
-					            <img class="star" src="resources/images/halfStar.png">
-					        </c:if>
-					        <c:if test="${book.customerReviewRank < 3.0 and book.customerReviewRank >= 2.0}">
-					            <img class="star" src="resources/images/star.png">
-					        </c:if>
-							<span class="black"> ${book.customerReviewRank}</span>
-						</td>
-					</tr>
+						<tr class="nb1">
+							<td class="nbtd1" rowspan="6"><img class="bookImg" src="${book.cover}"></td>
+							<td class="nb1td2"></td>
+							<td class="nb1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkO.png"></a></td>
+						</tr>
+						<tr class="nb2">
+							<!-- <td></td> -->
+							<td class="nb2td2"><a href="/bc/detail/${book.isbn13}">${book.title}</a></td>
+						</tr>
+						<tr class="nb3">
+							<!-- <td></td> -->
+							<td class="nb3td2">${book.author}</td>
+						</tr>
+						<tr class="nb4">
+							<!-- <td></td> -->
+							<fmt:formatDate value="${book.pubDate}" pattern="yyyy-MM-dd" var="formattedDate" />
+							<td class="nb4td2">${book.publisher} | ${formattedDate}</td>
+						</tr>
+						<tr class="nb5">
+							<!-- <td></td> -->
+							<td class="nb5td2">　</td>
+						</tr>
+						<tr class="nb6">
+							<!-- <td></td> -->
+							<td class="nb6td2">
+								<c:if test="${book.customerReviewRank == 10}">	<!-- customerReviewRank:알라딘평점 -->
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 10 and book.customerReviewRank >= 9.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="starh" src="resources/images/halfStar.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 9.0 and book.customerReviewRank >= 8.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 8.0 and book.customerReviewRank >= 7.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="starh" src="resources/images/halfStar.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 7.0 and book.customerReviewRank >= 6.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 6.0 and book.customerReviewRank >= 5.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="starh" src="resources/images/halfStar.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 5.0 and book.customerReviewRank >= 4.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/star.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 4.0 and book.customerReviewRank >= 3.0}">
+						            <img class="star" src="resources/images/star.png">
+						            <img class="star" src="resources/images/halfStar.png">
+						        </c:if>
+						        <c:if test="${book.customerReviewRank < 3.0 and book.customerReviewRank >= 2.0}">
+						            <img class="star" src="resources/images/star.png">
+						        </c:if>
+								<span class="black"> ${book.customerReviewRank}</span>
+							</td>
+						</tr>
 					</c:forEach>
 				</table>
 				
@@ -254,12 +254,23 @@
 	
 <script>
 
+	var currentPage = 1;
+	var ranking;
+	
+	function rank(currentPage) {
+	    for (i = 1; i <= 10; i++) {
+	        ranking = (currentPage - 1) * 10 + i;
+	        $('.nb1td2').eq(i - 1).html(ranking + '.');
+	    }
+	}
+	
+		
+	
 	$(document).ready(function() {
 	    $('.pageNum').first().css('font-weight', 'bold');
-	    rank(1);
+	    rank(currentPage);
 	});
 	
-	var currentPage = 1;
     var selectedGenreId;
 	var selectedGenreName;
 	var pageNumber = 1;
@@ -304,6 +315,7 @@
                 var newBs = $response.find('.nb').html();
                 $('.nb').html(newBs);
                 $('.nbSpan').html(name);
+                rank(currentPage);
             },
             
             error: function(xhr, status, error) {
@@ -311,9 +323,6 @@
             }
         });
     }
-    
-	
-	
     
 	function page(pageNumber) {
 		event.preventDefault();
@@ -328,29 +337,15 @@
 	    updatePageNum();
 	    bold();
 	    
+	    
 	    $('.pageNum').click(function(event) {
 			event.preventDefault(); 
 	    	$('.pageNum').css('font-weight', 'normal');
 	    	$(this).css('font-weight', 'bold');
-	    	
 		});
-	    	rank(pageNumber);
-	    
-	    
+	    	rank(currentPage);
 	}
 	
-
-	function rank(pageNumber) {
-	    var startIndex = (pageNumber - 1) * 10 + 1;
-	    var rows = $('.nbTable tr');
-	    for (var i = 0; i < rows.length; i++) {
-	        if (i < 10) {
-	            var rank = startIndex + i;
-	            $(rows[i]).find('.nb1td2').html(rank + '.');
-	        }
-	    }
-	}
-
 
 	
 	function bold() {
