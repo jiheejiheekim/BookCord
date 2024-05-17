@@ -8,15 +8,22 @@
         http://www.springframework.org/schema/security/spring-security.xsd">
     
     <security:http>
-        <security:form-login/>
+    	<security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+    	<security:intercept-url pattern="/vip" access="hasRole('ROLE_USER')"/>
+    	<security:intercept-url pattern="/**" access="permitAll"/>
+        <security:form-login 
+        	username-parameter="username" 
+        	password-parameter="password" 
+        	login-page="/loginPage"
+        	default-target-url="/"
+        />
     </security:http>
 
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
                <security:user name="admin" password="{noop}1234" authorities="ROLE_USER, ROLE_ADMIN" />
-               <security:user name="guest" password="{noop}1234" authorities="ROLE_USER" />
-               <security:user name="guest2" password="{noop}a1234" authorities="ROLE_USER" />
+               <security:user name="vip" password="{noop}1234" authorities="ROLE_USER" />
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>

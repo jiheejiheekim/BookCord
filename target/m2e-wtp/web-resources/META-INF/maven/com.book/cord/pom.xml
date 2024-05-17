@@ -221,7 +221,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!-- -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -234,6 +233,12 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>org.springframework.security</groupId>
+		   <artifactId>spring-security-taglibs</artifactId>
+		   <version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Ajax JSON (json,xml,yaml,csv) -->
