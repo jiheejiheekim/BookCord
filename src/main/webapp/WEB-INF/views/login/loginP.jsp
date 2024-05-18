@@ -21,14 +21,12 @@
 	</div>
 	
 	<div class="login">
-		<form name="login" action="/bc/loginGo" method="post">
-		<c:if test="${param.ng!=null}">
-			<p> error : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/> </p>
-		</c:if>
+		<form name="f" action="/bc/login" method="post">
+		<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
 			<table class="loginTable">
 				<tr>
-					<td>이메일</td>
-					<td><input name="id" class="loginId" type="text" placeholder="　abcd@naver.com"></td>
+					<td>아이디</td>
+					<td><input name="id" class="loginId" type="text" placeholder="　ID"></td>
 					<td></td>
 				</tr>
 				<tr>

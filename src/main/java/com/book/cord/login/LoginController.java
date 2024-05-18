@@ -2,30 +2,13 @@ package com.book.cord.login;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
-	/*
-	@GetMapping("/login") 
-	public String login() { 
 		
-		
-		
-		return "login/login"; 
-	}
-	
-	@GetMapping("/vip")
-	public String vip() {
-		return "login/vip";
-	}
-	
-	@GetMapping("/admin")
-	public String admin() {
-		return "login/admin";
-	}	
-	*/
-	
 	@RequestMapping("/vip")
 	public String vip(Model model) {
 		return "vip";
@@ -36,14 +19,21 @@ public class LoginController {
 		return "admin";
 	}
 	
-	@RequestMapping("/hahaha")
+	@RequestMapping("/index")
 	public String index(Model model) {
-		return "hahaha";
+		return "index";
 	}
 	
 	@RequestMapping("/loginPage")	
 	public String login(Model model) {
 		return "loginPage";
 	}
+	
+	@RequestMapping("/loginP")	
+	public String loginP(Model model) {
+		return "login/loginP";
+	}
+	
+	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,14 @@
 			<tr>
 				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
-				<td class="top3"><a href="login">로그인</a></td>
+				<td class="top3">
+					<sec:authorize access="isAnonymous()">
+						<a href="loginP">로그인</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="loginP">로그아웃</a>
+					</sec:authorize>
+				</td>
 			</tr>
 		</table>
 	</div>

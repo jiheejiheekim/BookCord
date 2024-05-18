@@ -20,48 +20,51 @@
 	</div>
 	
 	<div class="signUp">
-		<table class="signUpTable">
-			<tr>
-				<td>아이디</td>
-				<td><input class="id" type="text"></td>
-				<td><button class="idCheck"><a href="">중복확인</a></button></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td class="text1">사용 가능한 아이디 입니다.</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input class="pw" type="password" placeholder="영문/숫자 조합 6~15자"></td>
-				<td><img class="pwImg" src="resources/images/pwCheckO.png"></td>
-			</tr>
-			<tr>
-				<td>비밀번호 확인</td>
-				<td><input class="pwCheck" type="password"></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td class="text2">비밀번호가 일치합니다</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>닉네임</td>
-				<td><input class="nickName" type="text"></td>
-				<td><button class="NickNameCheck"><a href="">중복확인</a></button></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td class="text3">이미 사용 중인 닉네임 입니다</td>
-				<td></td>
-			</tr>
-		</table>
-	</div>
-	
-	<div class="finalSingUp">
-		<button class="signUpButton"><a href="">회원가입</a></button>
-	</div>
-
+		<form name="member" action="/bc/register" method="post">
+			<div>
+				<table class="signUpTable">
+					<tr>
+						<td>아이디</td>
+						<td><input name="id" class="id" type="text"></td>
+						<td><button class="idCheck"><a href="">중복확인</a></button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="text1">사용 가능한 아이디 입니다.</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input name="pwd" class="pw" type="password" placeholder="영문/숫자 조합 6~15자"></td>
+						<td><img class="pwImg" src="resources/images/pwCheckO.png"></td>
+					</tr>
+					<tr>
+						<td>비밀번호 확인</td>
+						<td><input class="pwCheck" type="password"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="text2">비밀번호가 일치합니다</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td><input name="name" class="nickName" type="text"></td>
+						<td><button class="NickNameCheck"><a href="">중복확인</a></button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="text3">이미 사용 중인 닉네임 입니다</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		
+			<div class="finalSingUp">
+				<button type="submit" class="signUpButton">회원가입</button>
+			</div>
+		</form>
+	</div>	<!-- .SignUp -->
 </body>
 </html>

@@ -15,7 +15,11 @@
 
 	<sec:authorize access="isAnonymous()">
 		<h5><a href='<c:url value="/loginPage"/>'>LOGIN </a> 로그인 해주세요.</h5>
-	</sec:authorize>	
+	</sec:authorize>
+	<sec:authorize access="hasRole('ROLE_USER')">
+		<h5><a href='<c:url value="/loginPage"/>'>LOGOUT </a> 로그아웃 해주세요.</h5>
+	</sec:authorize>
+
 
 	<div>
 		<h4><a href="admin">ADMIN</a></h4>
