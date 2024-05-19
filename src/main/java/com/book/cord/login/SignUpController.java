@@ -2,6 +2,7 @@ package com.book.cord.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +17,10 @@ public class SignUpController {
     private MemberDAO memberDAO;
     
     @GetMapping("/signUp") 
-    public String signUpForm() { 
+    public String signUpForm(Model model) { 
         return "login/signUp"; 
     }
     
-    @GetMapping("/join")
-    public String join(){
-        return "login/join";
-    }
     
    
     @PostMapping("/register")

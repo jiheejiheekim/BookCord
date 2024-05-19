@@ -21,6 +21,7 @@
 	
 	<div class="signUp">
 		<form name="member" action="/bc/register" method="post">
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<div>
 				<table class="signUpTable">
 					<tr>
