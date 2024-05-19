@@ -4,7 +4,6 @@
 <!-- com/book/cord/login/MemberMapper.xml -->
 <mapper namespace="com.book.cord.login.MemberDAO">
     <insert id="insertMember" parameterType="com.book.cord.login.MemberVO">
-        INSERT INTO member (id, pwd, name) VALUES (#{id}, #{pwd}, #{name})
+        INSERT INTO member (id, pwd, name, reg_date, member_num) VALUES (#{id}, #{pwd}, #{name}, SYSDATE, member_num_seq.NEXTVAL)
     </insert>
 </mapper>
-

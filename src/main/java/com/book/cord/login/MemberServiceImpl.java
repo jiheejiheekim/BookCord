@@ -1,5 +1,6 @@
 package com.book.cord.login;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void registerMember(MemberVO member) {
+    	//member.setReg_date(new Date(System.currentTimeMillis())); 
+        
         memberMapper.insertMember(member);
     }
 }
