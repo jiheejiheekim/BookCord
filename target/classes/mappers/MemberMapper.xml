@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- com/book/cord/login/MemberMapper.xml -->
+<mapper namespace="com.book.cord.login.MemberDAO">
+    <insert id="insertMember" parameterType="com.book.cord.login.MemberVO">
+        INSERT INTO member (id, pwd, name) VALUES (#{id}, #{pwd}, #{name})
+    </insert>
+</mapper>
+

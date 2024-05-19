@@ -2,7 +2,6 @@ package com.book.cord.login;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,13 +24,20 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/loginPage")	
-	public String login(Model model) {
+	public String loginPage(Model model) {
 		return "loginPage";
 	}
 	
 	@RequestMapping("/loginP")	
 	public String loginP(Model model) {
 		return "login/loginP";
+	}
+	
+	@PostMapping("login")
+	public String login(Model model) {
+		
+		
+		return null;
 	}
 	
 	

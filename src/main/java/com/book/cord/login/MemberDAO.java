@@ -1,5 +1,5 @@
 package com.book.cord.login;
 
-public interface MemberMapper {
+public interface MemberDAO {
     void insertMember(MemberVO member);
 }

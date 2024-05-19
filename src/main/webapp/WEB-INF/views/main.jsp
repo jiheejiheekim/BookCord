@@ -17,9 +17,8 @@
 				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3">
-					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
-					</sec:authorize>
+					<a href="loginP">로그인</a>
+					
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="loginP">로그아웃</a>
 					</sec:authorize>
