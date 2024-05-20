@@ -12,8 +12,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void registerMember(MemberVO member) {
-    	//member.setReg_date(new Date(System.currentTimeMillis())); 
-        
         memberMapper.insertMember(member);
     }
+    
+    @Override
+    public MemberVO read(String id) {
+    	return memberMapper.read(id);
+    }
+    
 }

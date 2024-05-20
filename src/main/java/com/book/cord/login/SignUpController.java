@@ -25,7 +25,7 @@ public class SignUpController {
    
     @PostMapping("/register")
     public String registerMember(@ModelAttribute MemberVO member) {
-    	System.out.println("===============회원가입 처리 중");
+    	System.out.println("===============회원가입 처리 중"+member);
         memberDAO.insertMember(member);
         return "redirect:/loginP"; // 회원가입 후 로그인 페이지로 리다이렉트
     }

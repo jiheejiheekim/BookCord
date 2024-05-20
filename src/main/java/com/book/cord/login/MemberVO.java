@@ -1,6 +1,7 @@
 package com.book.cord.login;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,15 +15,14 @@ public class MemberVO {
     private Date reg_date;		// 가입일
     private int member_num;     // 사용자 번호
     
+    private List<AuthVO> role; // 권한 (예: ROLE_USER, ROLE_ADMIN)
     
-    /*
+    
     private String email;       // 이메일
-    private String role;        // 권한 (예: ROLE_USER, ROLE_ADMIN)
     private String provider;    // 로그인 제공자 (local, kakao, naver)
     private String provider_id; // 소셜 로그인 사용자 ID
     private String profile_img; // 프로필 이미지
-    	
-    private boolean enabled;
-    private List<AuthVO> authList;
-    */
+    
+    //private List<AuthVO> authList;
+   
 }
