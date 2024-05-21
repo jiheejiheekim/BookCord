@@ -240,6 +240,8 @@
 		   <artifactId>spring-security-taglibs</artifactId>
 		   <version>${org.springframework-version}</version>
 		</dependency>
+		
+	
 
 		<!-- Ajax JSON (json,xml,yaml,csv) -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->

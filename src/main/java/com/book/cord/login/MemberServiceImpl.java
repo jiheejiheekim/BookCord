@@ -1,6 +1,5 @@
 package com.book.cord.login;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +13,9 @@ public class MemberServiceImpl implements MemberService {
     public void registerMember(MemberVO member) {
         memberMapper.insertMember(member);
     }
-    
+
     @Override
-    public MemberVO read(String id) {
-    	return memberMapper.read(id);
+    public MemberVO readMember(String id) {
+        return memberMapper.read(id);
     }
-    
 }

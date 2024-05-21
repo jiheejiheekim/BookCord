@@ -1,8 +1,5 @@
 package com.book.cord.login;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,7 +16,7 @@ public class MemberDAOImpl implements MemberDAO {
     }
     
     @Override
-    public MemberVO readMember(String id) {
+    public MemberVO read(String id) {
         return sqlSession.selectOne("com.book.cord.login.MemberMapper.read", id);
     }
     

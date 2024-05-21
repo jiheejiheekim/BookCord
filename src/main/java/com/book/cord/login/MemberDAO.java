@@ -2,7 +2,7 @@ package com.book.cord.login;
 
 public interface MemberDAO {
 	
-    void insertMember(MemberVO member);
-    MemberVO readMember(String id);
+    public void insertMember(MemberVO member);
+    public MemberVO read(String id);
     
 }

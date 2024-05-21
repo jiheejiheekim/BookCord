@@ -5,7 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
 
-
+	<bean id="CustomAccessDenied" class="com.book.cord.login.CustomAccessDeniedHandler" />
+	<bean id="CustomLoginsuccess" class="com.book.cord.login.CustomLoginsuccessHandler" />
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<bean id="customUserDetailsService" class="com.book.cord.login.CustomUserDetailsService"/>
 
