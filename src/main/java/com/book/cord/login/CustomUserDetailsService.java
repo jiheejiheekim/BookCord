@@ -11,14 +11,26 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private MemberMapper memberMapper;
+    
+    @Autowired
+    private MemberService memberService;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         // DB에서 사용자 정보를 가져오는 로직을 구현
-        MemberVO vo = memberMapper.read(id);
+        //MemberVO vo = memberMapper.read(id);
+    	
+    	MemberVO member = memberMapper.read(id);
 
-        System.out.println("queried by member mapper : "+vo);
+    	if (member == null) {
+            throw new UsernameNotFoundException("---------------아이디 못 찾음 : " + id);
+        }
+    	
+    	
+    	
+        System.out.println("-------> [로그인 한 유저의 정보] : "+member);
         
-        return vo == null ? null:new CustomUser(vo);
+        //return new CustomUser(member);
+        return new CustomUserDetails(member);
     }
 }

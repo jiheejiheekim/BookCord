@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Custom Access Denied Handler -->
+    <bean id="customAccessDeniedHandler" class="com.book.cord.login.CustomAccessDeniedHandler" />
+
+    <!-- Custom Login Handlers -->
+    <bean id="customLoginsuccessHandler" class="com.book.cord.login.CustomLoginsuccessHandler" />
+    <bean id="customLoginFailHandler" class="com.book.cord.login.CustomLoginFailHandler"/>
+
+    <!-- Password Encoder -->
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- Custom User Details Service -->
+    <bean id="customUserDetailsService" class="com.book.cord.login.CustomUserDetailsService"/>
+    
+    <security:http auto-config="true" use-expressions="true">
+        
+        <!-- URL 접근 제한 설정 -->
+        <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/vip" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/**" access="permitAll"/>
+        <security:intercept-url pattern="/register" access="permitAll"/>
+            
+        <!-- Form 로그인 설정 -->
+        <security:form-login 
+            login-page="/loginP"
+            login-processing-url="/login"
+            default-target-url="/index"
+            username-parameter="id"
+            password-parameter="pwd"
+            authentication-success-handler-ref="customLoginsuccessHandler"
+            authentication-failure-handler-ref="customLoginFailHandler" />
+        
+        <!-- 로그아웃 설정 -->
+        <security:logout logout-success-url="/main" />
+            
+        <!-- 접근 거부 핸들러 설정 -->
+        <security:access-denied-handler ref="customAccessDeniedHandler" />
+    </security:http>
+    
+    <!-- Authentication Manager 설정 -->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailsService" >
+            <security:password-encoder ref="bcryptPasswordEncoder" />
+        </security:authentication-provider>
+    </security:authentication-manager>
+    
+</beans>

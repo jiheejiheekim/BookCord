@@ -16,18 +16,38 @@ public class SignUpController {
     @Autowired
     private MemberDAO memberDAO;
     
+    @Autowired
+    private MemberMapper memberMapper;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder; 
+  
+    
     @GetMapping("/signUp") 
     public String signUpForm(Model model) { 
         return "login/signUp"; 
     }
     
-    
    
     @PostMapping("/register")
     public String registerMember(@ModelAttribute MemberVO member) {
-    	System.out.println("===============회원가입 처리 중 ===> "+member+" !!!");
-        //memberDAO.insertMember(member);
-    	memberService.registerMember(member);
-        return "redirect:/loginP"; // 회원가입 후 로그인 페이지로 리다이렉트
+        System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
+        try {
+            //memberService.registerMember(member);
+        	//memberMapper.insertMember(member);
+        		
+        	
+        	String encodedPassword = passwordEncoder.encode(member.getPwd());
+            member.setPwd(encodedPassword);
+            memberMapper.insertMember(member);
+            //memberService.registerMember(member);
+        	System.out.println("컨트롤러에서 매퍼 호출!!!");
+        	
+            return "redirect:/index";
+        } catch (Exception e) {
+            System.out.println("예 외 발 생 Exception in registerMember: " + e.getMessage());
+            e.printStackTrace();
+            return "redirect:/loginP";
+        }
     }
 }

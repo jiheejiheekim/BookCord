@@ -18,13 +18,14 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 			HttpServletResponse response, Authentication auth) 
 		throws IOException, ServletException {
 		
-		System.out.println("Login Success");
+		System.out.println("!!!!로그인 성공!!!! Login Success");
 		
 		List<String> roleNames = new ArrayList<>();
 		
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});
+		System.out.println(">>>>>>> roleNames : "+roleNames);
 		
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/admin");

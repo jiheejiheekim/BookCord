@@ -6,6 +6,6 @@
 <!-- mybatis-config.xml -->
 <configuration>
     <mappers>
-        <mapper resource="config/mappers/MemberMapper.xml"/>
+        <mapper class="com.book.cord.login.MemberMapper"/>
     </mappers>
 </configuration>
