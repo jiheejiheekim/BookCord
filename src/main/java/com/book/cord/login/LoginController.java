@@ -35,11 +35,5 @@ public class LoginController {
 		return "login/loginP";
 	}
 	
-	/*
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(HttpServletRequest request) {
-        // 로그인 처리를 위해 Spring Security가 설정한 로그인 처리 URL로 리디렉션
-        return "redirect:/index";
-    }
-	*/
+	
 }

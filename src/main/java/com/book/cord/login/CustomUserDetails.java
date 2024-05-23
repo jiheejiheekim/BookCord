@@ -12,7 +12,6 @@ public class CustomUserDetails implements UserDetails {
 
     private MemberVO member;
 	private boolean enabled;
-    
 
     public CustomUserDetails(MemberVO member) {
         this.member = member;

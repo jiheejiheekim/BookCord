@@ -22,7 +22,7 @@
 					</sec:authorize>
 					
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="loginP">로그아웃</a>
+						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>
 				</td>
 			</tr>
@@ -136,7 +136,22 @@
 	
 	<br><br>
 	
-	
+<script type="text/javascript">
+	function logout() {
+		var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/bc/logout';
+        
+        var csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '${_csrf.parameterName}';
+        csrfToken.value = '${_csrf.token}';
+        
+        form.appendChild(csrfToken);
+        document.body.appendChild(form);
+        form.submit();
+      }
+</script>
 	
 </body>
 </html>

@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.User;
 
 import lombok.Data;
 
-@Data
-public class CustomUser extends User {
-	
+//@Data
+public class CustomUser /* extends User */ {
+	/*
 	private static long serialVersionUID = 1L;
 	
 	private MemberVO member;
@@ -25,5 +25,5 @@ public class CustomUser extends User {
 		
 		this.member=vo;
 	}
-	
+	*/
 }

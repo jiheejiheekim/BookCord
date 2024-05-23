@@ -34,7 +34,6 @@ public class SignUpController {
         System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
         try {
             //memberService.registerMember(member);
-        	//memberMapper.insertMember(member);
         		
         	String encodedPassword = passwordEncoder.encode(member.getPwd());
             member.setPwd(encodedPassword);
@@ -50,4 +49,5 @@ public class SignUpController {
             return "redirect:/loginP";
         }
     }
+    
 }

@@ -31,14 +31,14 @@
         <security:form-login 
             login-page="/loginP"
             login-processing-url="/login"
-            default-target-url="/index"
+            default-target-url="/"
             username-parameter="id"
             password-parameter="pwd"
             authentication-success-handler-ref="customLoginsuccessHandler"
             authentication-failure-handler-ref="customLoginFailHandler" />
         
         <!-- 로그아웃 설정 -->
-        <security:logout logout-success-url="/main" />
+        <security:logout logout-url="/logout" logout-success-url="/main" invalidate-session="true" delete-cookies="JSESSIONID" />
             
         <!-- 접근 거부 핸들러 설정 -->
         <security:access-denied-handler ref="customAccessDeniedHandler" />
