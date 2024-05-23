@@ -20,7 +20,7 @@ public class SignUpController {
     private MemberMapper memberMapper;
     
     @Autowired
-    private PasswordEncoder passwordEncoder; 
+    private CustomPasswordEncoder passwordEncoder; 
   
     
     @GetMapping("/signUp") 
@@ -36,9 +36,9 @@ public class SignUpController {
             //memberService.registerMember(member);
         	//memberMapper.insertMember(member);
         		
-        	
         	String encodedPassword = passwordEncoder.encode(member.getPwd());
             member.setPwd(encodedPassword);
+            member.setEnabled(true); // enabled 필드를 true로 설정
             memberMapper.insertMember(member);
             //memberService.registerMember(member);
         	System.out.println("컨트롤러에서 매퍼 호출!!!");

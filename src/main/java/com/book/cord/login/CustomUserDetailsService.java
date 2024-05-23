@@ -26,8 +26,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("---------------아이디 못 찾음 : " + id);
         }
     	
-    	
-    	
         System.out.println("-------> [로그인 한 유저의 정보] : "+member);
         
         //return new CustomUser(member);

@@ -15,7 +15,7 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
     
     @Autowired
-    private PasswordEncoder passwordEncoder; // 암호화를 위한 PasswordEncoder 빈 주입
+    private CustomPasswordEncoder passwordEncoder; // 암호화를 위한 PasswordEncoder 빈 주입
 
     @Override
     public void registerMember(MemberVO member) {

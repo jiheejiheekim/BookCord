@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class CustomUserDetails implements UserDetails {
 
     private MemberVO member;
-	private boolean isEnabled;
+	private boolean enabled;
     
 
     public CustomUserDetails(MemberVO member) {
@@ -52,13 +52,10 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
     
-    public void setEnabled(boolean isEnabled) {
-		this.isEnabled = isEnabled;
-	}
-    
+       
     // false: 비활성화 상태
     @Override
     public boolean isEnabled() {
-    	return isEnabled;
+    	return true;
     }
 }

@@ -13,8 +13,9 @@
     <bean id="customLoginFailHandler" class="com.book.cord.login.CustomLoginFailHandler"/>
 
     <!-- Password Encoder -->
-    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
+    <!-- <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/> -->
+    <bean id="customPasswordEncoder" class="com.book.cord.login.CustomPasswordEncoder"/>
+    
     <!-- Custom User Details Service -->
     <bean id="customUserDetailsService" class="com.book.cord.login.CustomUserDetailsService"/>
     
@@ -44,10 +45,11 @@
     </security:http>
     
     <!-- Authentication Manager 설정 -->
-    <security:authentication-manager>
-        <security:authentication-provider user-service-ref="customUserDetailsService" >
-            <security:password-encoder ref="bcryptPasswordEncoder" />
-        </security:authentication-provider>
-    </security:authentication-manager>
+	<security:authentication-manager>
+	    <security:authentication-provider user-service-ref="customUserDetailsService">
+	        <security:password-encoder ref="customPasswordEncoder" />
+	    </security:authentication-provider>
+	</security:authentication-manager>
+
     
 </beans>
