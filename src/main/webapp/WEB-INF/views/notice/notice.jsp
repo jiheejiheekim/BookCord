@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +73,7 @@
 				
 				<table class="nhTable3">	<!-- tr12개 td5개 -->
 					<tr class="nht3tr1">
-						<td class="nht3r1d1">10 개</td>
+							<td class="nht3r1d1">총 ${totalCount} 개</td>
 					</tr>
 					
 					<tr class="nht3tr2">
@@ -82,76 +84,17 @@
 						<td class="nht3r2d5">조회수</td>
 					</tr>
 					
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">10</td>
-						<td class="nht3r3d2">북코드 공지사항 10번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">9</td>
-						<td class="nht3r3d2">북코드 공지사항 9번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">8</td>
-						<td class="nht3r3d2">북코드 공지사항 8번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">7</td>
-						<td class="nht3r3d2">북코드 공지사항 7번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">6</td>
-						<td class="nht3r3d2">북코드 공지사항 6번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">5</td>
-						<td class="nht3r3d2">북코드 공지사항 5번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">4</td>
-						<td class="nht3r3d2">북코드 공지사항 4번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">3</td>
-						<td class="nht3r3d2">북코드 공지사항 3번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">2</td>
-						<td class="nht3r3d2">북코드 공지사항 2번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">1</td>
-						<td class="nht3r3d2">북코드 공지사항 1번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
+					<c:forEach items="${list}" var="lists">
+						<tr class="nht3tr3">
+							<td class="nht3r3d1">${lists.notice_num}</td>
+							<td class="nht3r3d2">${lists.title}</td>
+							<td class="nht3r3d3">${lists.member_id}</td>
+							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
+							<td class="nht3r3d4">${formattedDate}</td>
+							<td class="nht3r3d5">${lists.hit}</td>
+						</tr>
+					</c:forEach>
+					
 				</table>
 				
 			</div>	<!-- nhTableDiv -->
@@ -160,21 +103,27 @@
 	
 	</div>	<!-- content -->
 	
-	<div class="reviewPage">
-		<table class="reviewPageTable">
-			<tr>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageLeft.png"></a></td>
-				<td><a class="bold">1</a></td>
-				<td><a href="">2</a></td>
-				<td><a href="">3</a></td>
-				<td><a href="">4</a></td>
-				<td><a href="">5</a></td>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageRight.png"></a></td>
-			</tr>
-		</table>
-	</div>
+	<div class="low">
+		<div class="reviewPage">
+			<table class="reviewPageTable">
+				<tr>
+					<td class="pageLogotd"><a><img class="pageLogo"
+							src="resources/images/pageLeft.png"></a></td>
+					<td><a class="bold">1</a></td>
+					<td><a href="">2</a></td>
+					<td><a href="">3</a></td>
+					<td><a href="">4</a></td>
+					<td><a href="">5</a></td>
+					<td class="pageLogotd"><a><img class="pageLogo"
+							src="resources/images/pageRight.png"></a></td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="write">
+			<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>
+		</div>
+	</div>	<!-- low -->
 
 </body>
 </html>

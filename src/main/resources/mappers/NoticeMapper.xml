@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.cord.notice.NoticeMapper">
+
+    <select id="listNotice" resultType="com.book.cord.notice.NoticeVO">
+	    SELECT NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
+	    FROM NOTICE 
+	    ORDER BY NOTICE_NUM DESC
+	</select>
+
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<select id="getListPaging" resultType="com.book.cord.notice.NoticeVO">
+		<![CDATA[
+			SELECT 
+				NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
+			FROM (
+				    select  
+				    rownum rn, notice_num, title, content, member_id, reg_date
+				    from NOTICE
+				    where rownum <= #{pageNum} * #{amount}
+				)
+			WHERE rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+  
+</mapper>

@@ -31,7 +31,8 @@
         <constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"/>
     </bean>
     
-    <mybatis-spring:scan base-package="com.book.cord.login"/>
+    <mybatis-spring:scan base-package="com.book.cord"/>
+     <!-- <mybatis-spring:scan base-package="com.book.cord.notice"/> -->
     
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
 </beans>
