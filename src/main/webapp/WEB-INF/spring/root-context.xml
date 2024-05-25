@@ -22,7 +22,7 @@
     </bean>
     
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.book.cord.login"/>
+        <property name="basePackage" value="com.book.cord.login,com.book.cord.notice,com.book.cord.book"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
@@ -31,7 +31,7 @@
         <constructor-arg ref="sqlSessionFactory" name="sqlSessionFactory"/>
     </bean>
     
-    <mybatis-spring:scan base-package="com.book.cord"/>
+    <!-- <mybatis-spring:scan base-package="com.book.cord"/> -->
      <!-- <mybatis-spring:scan base-package="com.book.cord.notice"/> -->
     
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>

@@ -1,14 +1,17 @@
 package com.book.cord.login;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
-@Service
+@Service("memberServiceImpl")
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
+	@Qualifier("memberDAO") 
     private MemberDAO memberDAO;
     
     @Autowired
@@ -24,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
             
             String encodedPassword = passwordEncoder.encode(member.getPwd());
             member.setPwd(encodedPassword);
-
+            member.setEnabled(true);
             memberDAO.insertMember(member); // MemberDAO를 통해 회원 추가
             
         } catch (Exception e) {

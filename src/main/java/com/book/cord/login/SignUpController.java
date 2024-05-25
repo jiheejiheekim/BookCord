@@ -1,6 +1,7 @@
 package com.book.cord.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SignUpController {
     
     @Autowired
+    @Qualifier("memberServiceImpl")
     private MemberService memberService;
     
     @Autowired
@@ -33,13 +35,11 @@ public class SignUpController {
     public String registerMember(@ModelAttribute MemberVO member) {
         System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
         try {
-            //memberService.registerMember(member);
-        		
-        	String encodedPassword = passwordEncoder.encode(member.getPwd());
+        	/*String encodedPassword = passwordEncoder.encode(member.getPwd());
             member.setPwd(encodedPassword);
-            member.setEnabled(true); // enabled 필드를 true로 설정
-            memberMapper.insertMember(member);
-            //memberService.registerMember(member);
+            member.setEnabled(true);*/ // enabled 필드를 true로 설정
+            //memberMapper.insertMember(member);
+            memberService.registerMember(member);
         	System.out.println("컨트롤러에서 매퍼 호출!!!");
         	
             return "redirect:/index";

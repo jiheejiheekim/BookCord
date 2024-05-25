@@ -1,6 +1,7 @@
 package com.book.cord;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,12 @@ public class MainController {
     
     private static final String API_KEY = "ttbfldpf20031555001";
 
-    public final RestTemplate restTemplate = new RestTemplate();
+    public RestTemplate restTemplate = new RestTemplate();
 
-	private final BookService bookService;
+	private BookService bookService;
 	
 	@Autowired // BookService 주입
-    public MainController(BookService bookService) {
+    public MainController(@Qualifier("bookServiceImpl") BookService bookService) {
         this.bookService = bookService;
     }
 

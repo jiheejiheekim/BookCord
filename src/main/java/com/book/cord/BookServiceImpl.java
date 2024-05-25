@@ -1,5 +1,6 @@
 package com.book.cord;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,7 +11,7 @@ import com.book.cord.BookVO.GenresNewBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
 
-@Service
+@Service("bookServiceImpl")
 public class BookServiceImpl implements BookService {
 	
 	// 상품 리스트 API
