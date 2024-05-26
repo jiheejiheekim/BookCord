@@ -111,11 +111,6 @@ button:hover {
 	/* border: 1px solid black; */
 }
 
-.content {
-	display: inline-flex;
-	width: 100%;
-}
-
 .nhTableDiv {
 	width: 100%;
 }

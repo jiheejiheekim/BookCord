@@ -56,5 +56,10 @@ public class NoticeController {
 		return "notice/notice";
 	}
 	
+	@GetMapping("/writeNotice")
+	public String writeNotice() {
+		return "notice/writeNotice";
+	}
+	
 
 }

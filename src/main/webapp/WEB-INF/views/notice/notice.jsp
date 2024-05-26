@@ -116,7 +116,7 @@
 				
 			</div>	<!-- nhTableDiv -->
 			
-		</div>	<!-- myReview -->
+		</div>	<!-- noticeHead -->
 	
 	</div>	<!-- content -->
 	
