@@ -13,17 +13,17 @@
 		SELECT COUNT(*) FROM NOTICE
 	</select>
 	
-	<select id="getListPaging" resultType="com.book.cord.notice.NoticeVO">
+	<select id="getListWithPaging" resultType="com.book.cord.notice.NoticeVO">
 		<![CDATA[
 			SELECT 
 				NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
 			FROM (
 				    select  
-				    rownum rn, notice_num, title, content, member_id, reg_date
+				    rownum rn, NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
 				    from NOTICE
-				    where rownum <= #{pageNum} * #{amount}
+				    where rownum <= #{pageNum} * #{amount} ORDER BY NOTICE_NUM DESC
 				)
-			WHERE rn > (#{pageNum}-1) * #{amount}
+			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY NOTICE_NUM DESC
 		]]>
 	</select>
   

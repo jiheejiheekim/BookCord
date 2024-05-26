@@ -36,8 +36,7 @@
 					<td class="navi3"><a class="naviA" href="myReview">나의 리뷰</a></td>
 				</tr>
 				<tr>
-					<td class="navi4"><a class="naviA" href="myBookMark">나의
-							북마크</a></td>
+					<td class="navi4"><a class="naviA" href="myBookMark">나의 북마크</a></td>
 				</tr>
 			</table>
 		</div>

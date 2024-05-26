@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface NoticeMapper {
     public List<NoticeVO> listNotice();
     public int totalCount();
-    public List<NoticeVO> getListPaging(Criteria cri);
+    public List<NoticeVO> getListWithPaging(Criteria cri);
 }

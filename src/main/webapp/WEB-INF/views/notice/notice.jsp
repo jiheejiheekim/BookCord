@@ -8,6 +8,23 @@
 <meta charset="UTF-8">
 <title>BookCord - Notice</title>
 <link rel="stylesheet" href="resources/css/notice.css">
+<!-- jQuery 추가 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+    	var actionForm = $("#actionForm");
+    	$(".paginate_button a").on("click", function(e) {
+        	e.preventDefault();
+            
+            console.log('click');
+            
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+    	
+    });
+    });
+</script>
+
 </head>
 <body>
 	<!-- TOP -->
@@ -107,18 +124,31 @@
 		<div class="reviewPage">
 			<table class="reviewPageTable">
 				<tr>
-					<td class="pageLogotd"><a><img class="pageLogo"
-							src="resources/images/pageLeft.png"></a></td>
-					<td><a class="bold">1</a></td>
-					<td><a href="">2</a></td>
-					<td><a href="">3</a></td>
-					<td><a href="">4</a></td>
-					<td><a href="">5</a></td>
-					<td class="pageLogotd"><a><img class="pageLogo"
-							src="resources/images/pageRight.png"></a></td>
+					<c:if test="${pageMaker.prev}">
+						<td class="pageLogotd, paginate_button previous">
+							<a href="${pageMaker.startPage-1}"><img class="pageLogo1" src="resources/images/pageLeft.png"></a>
+						</td>
+					</c:if>
+
+					 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+					 	<td class="paginate_button ${pageMaker.cri.pageNum == num ? 'bold' : ''}">
+					 		<a href="${num}">${num}</a>
+					 	</td>
+					 </c:forEach>
+					 
+					<c:if test="${pageMaker.next}">
+						<td class="pageLogotd, paginate_button next">
+							<a href="${pageMaker.endPage+1}"><img class="pageLogo2" src="resources/images/pageRight.png"></a>
+						</td>
+					</c:if>
 				</tr>
 			</table>
 		</div>
+		
+		<form id="actionForm" action="/bc/notice" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		</form>
 		
 		<div class="write">
 			<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>

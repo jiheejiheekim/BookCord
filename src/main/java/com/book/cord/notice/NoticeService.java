@@ -8,5 +8,6 @@ public interface NoticeService {
 
     public int count() throws Exception;
     
-
+    //책 추가
+    public List<NoticeVO> getList(Criteria cri);
 }

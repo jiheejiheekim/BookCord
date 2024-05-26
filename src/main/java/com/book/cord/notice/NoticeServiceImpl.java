@@ -23,5 +23,11 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("Service 호출");
 		return dao.count();
 	}
+	
+	@Override
+	public List<NoticeVO> getList(Criteria cri) {
+		System.out.println("Service 호출");
+		return dao.getList(cri);
+	}
 
 }

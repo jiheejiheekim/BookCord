@@ -269,11 +269,16 @@ button:hover {
 .bold{
 	font-weight: bold;
 }
-.pageLogotd{
+.pageLogotd1{
 	padding-top:5px;
 }
-.pageLogo{
+.pageLogo1{
+	margin-top:4px;
 	width:28px;
+}
+.pageLogo2{
+	margin-top:6px;
+	width:25px;
 }
 
 .write{

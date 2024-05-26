@@ -32,5 +32,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 		System.out.println("DAO 호출");
 		return sqlSession.selectOne(NAMESPACE+".totalCount");
 	}
+	
+	public List<NoticeVO> getList(Criteria cri) { 
+		System.out.println("DAO 호출");
+		return sqlSession.selectList(NAMESPACE+".getListWithPaging", cri);
+}
 
 }
