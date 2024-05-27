@@ -17,7 +17,7 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     public void insertMember(MemberVO member) {
-    	System.out.println("DAO 지나가기 : " +member);
+    	System.out.println("DAO.insertMember 지나가기 : " +member);
         sqlSession.insert(NAMESPACE + ".insertMember", member);
     }
 /*
@@ -26,5 +26,11 @@ public class MemberDAOImpl implements MemberDAO {
     	System.out.println("DAO 지나가기 : " +id);
         return sqlSession.selectOne(NAMESPACE + ".read", id);
     }*/
+    
+    @Override
+    public int searchId(String id) {
+    	System.out.println("DAO.searchId 지나가기 : "+id);
+    	return sqlSession.selectOne(NAMESPACE + ".searchId", id);
+    }
 }
 

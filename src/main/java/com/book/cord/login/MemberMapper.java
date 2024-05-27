@@ -8,5 +8,6 @@ public interface MemberMapper {
     void insertMember(MemberVO member);
     MemberVO readMember(String id);
     void updateDate(String id);
+    int searchId(String id);
     
 }

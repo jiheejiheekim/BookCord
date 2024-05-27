@@ -41,4 +41,12 @@ public class MemberServiceImpl implements MemberService {
     	System.out.println("서비스 >>>>> id : "+id);
         return memberDAO.read(id);
     }*/
+    
+    @Override
+    public int idCheck(String id) {
+    	System.out.println("id 중복체크 서비스");
+    	int result=memberDAO.searchId(id);
+    	System.out.println("중복체크 결과 : "+result);
+    	return result;
+    }
 }

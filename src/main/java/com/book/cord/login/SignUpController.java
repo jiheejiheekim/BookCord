@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SignUpController {
@@ -35,10 +37,7 @@ public class SignUpController {
     public String registerMember(@ModelAttribute MemberVO member) {
         System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
         try {
-        	/*String encodedPassword = passwordEncoder.encode(member.getPwd());
-            member.setPwd(encodedPassword);
-            member.setEnabled(true);*/ // enabled 필드를 true로 설정
-            //memberMapper.insertMember(member);
+        	
             memberService.registerMember(member);
         	System.out.println("컨트롤러에서 서비스 호출!!!");
         	
@@ -48,6 +47,14 @@ public class SignUpController {
             e.printStackTrace();
             return "redirect:/loginP";
         }
+    }
+    
+    @ResponseBody
+    @GetMapping("/idCheck")
+    public int idCheck(@RequestParam String id) {
+    	System.out.println("===============id 중복 체크 중  ===> "+id);
+    	int result=memberService.idCheck(id);
+    	return result;
     }
     
 }

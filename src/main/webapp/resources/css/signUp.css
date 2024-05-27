@@ -38,7 +38,7 @@ button:hover{
 }
 
 .signUp table tr td{
-	/* border:1px solid black; */
+	border:1px solid black;
 }
 
 td{
@@ -61,7 +61,7 @@ table tr td:nth-child(3){
 	padding:1.3em;
 	font-size:1.1em;
 }
-.signUpTable tr td:not(.text1, .text2, .text3){
+.signUpTable tr td:not(.idCheckResult, .pwdCheckResult, .nameCheckResult){
 	padding-top:1em;
 }
 .id, .pw, .pwCheck, .nickName{
@@ -99,11 +99,11 @@ table tr td:nth-child(3){
 	font-size:0.9em;
 	width:15%;
 }
-.text1, .text2{
+.text1{	/* 중복 체크 성공 */
 	color:#2D9462;
 	font-size:0.8em;
 }
-.text3{
+.text2{	/* 중복 체크 실패 */
 	color:red;
 	font-size:0.8em;
 }

@@ -38,4 +38,8 @@
     	UPDATE MEMBER SET UPDATE_DATE = SYSDATE WHERE ID=#{id}
     </update>
     
+    <select id="searchId" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM MEMBER WHERE id=#{id}
+    </select>
+    
 </mapper>
