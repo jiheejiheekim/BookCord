@@ -32,11 +32,9 @@ public class CustomPasswordEncoder implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        // Check if the encoded password is SHA-256
         if (encodedPassword.length() == 64 && encodedPassword.matches("[a-fA-F0-9]+")) {
             return encodeWithSHA256(rawPassword.toString()).equals(encodedPassword);
         } else {
-            // Otherwise, assume it's BCrypt
             return bcrypt.matches(rawPassword, encodedPassword);
         }
     }

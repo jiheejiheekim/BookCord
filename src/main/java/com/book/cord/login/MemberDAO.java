@@ -3,6 +3,6 @@ package com.book.cord.login;
 public interface MemberDAO {
 	
     void insertMember(MemberVO member);
-    MemberVO read(String id);
+    //MemberVO read(String id);
     
 }

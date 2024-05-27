@@ -24,7 +24,7 @@
         <result property="auth" column="role" />
     </resultMap>
     
-    <select id="read" parameterType="string" resultMap="memberMap">
+    <select id="readMember" parameterType="string" resultMap="memberMap">
         SELECT
             m.id, pwd, name,
             enabled, reg_date, update_date, role
@@ -33,5 +33,9 @@
             ON m.id=r.member_id
         WHERE m.id=#{id}
     </select>
+    
+    <update id="updateDate" parameterType="string">
+    	UPDATE MEMBER SET UPDATE_DATE = SYSDATE WHERE ID=#{id}
+    </update>
     
 </mapper>

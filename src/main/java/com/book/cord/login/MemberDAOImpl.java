@@ -20,11 +20,11 @@ public class MemberDAOImpl implements MemberDAO {
     	System.out.println("DAO 지나가기 : " +member);
         sqlSession.insert(NAMESPACE + ".insertMember", member);
     }
-
+/*
     @Override
     public MemberVO read(String id) {
     	System.out.println("DAO 지나가기 : " +id);
         return sqlSession.selectOne(NAMESPACE + ".read", id);
-    }
+    }*/
 }
 

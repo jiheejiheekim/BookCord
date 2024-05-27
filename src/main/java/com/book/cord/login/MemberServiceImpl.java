@@ -34,10 +34,11 @@ public class MemberServiceImpl implements MemberService {
             log.error("Exception in registerMember", e);
         }
     }
-
+/*
     @Override
     public MemberVO getMemberById(String id) {
-        return memberMapper.read(id);
-        //return memberDAO.read(id);
-    }
+        //return memberMapper.read(id);
+    	System.out.println("서비스 >>>>> id : "+id);
+        return memberDAO.read(id);
+    }*/
 }

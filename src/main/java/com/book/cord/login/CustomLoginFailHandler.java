@@ -24,8 +24,8 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException accessException) throws IOException, ServletException {
 	
-		System.out.println(">>>>> Access Denied Handler");
-		System.out.println(">>>>>>>>>>>Redirect....");
+		System.out.println(">>>>>>>>>>> 로그인 실패");
+		System.out.println(">>>>>>>>>>> Redirect....");
 		
 		if (accessException instanceof AuthenticationServiceException) {
 			//request.setAttribute("error", "존재하지 않는 사용자입니다.");

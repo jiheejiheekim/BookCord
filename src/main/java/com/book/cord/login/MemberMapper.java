@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
 	
     void insertMember(MemberVO member);
-    MemberVO read(String id);
+    MemberVO readMember(String id);
+    void updateDate(String id);
     
 }

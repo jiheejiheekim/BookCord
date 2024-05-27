@@ -19,7 +19,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    	// MemberVO의 roleList에서 권한을 가져와 SimpleGrantedAuthority 객체로 변환
         List<GrantedAuthority> authorities = member.getRoleList().stream()
             .map(role -> new SimpleGrantedAuthority(role.getAuth()))
             .collect(Collectors.toList());

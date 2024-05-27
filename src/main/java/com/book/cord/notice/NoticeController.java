@@ -57,5 +57,10 @@ public class NoticeController {
 		}
 	}
 	
+	@GetMapping("/detailNotice")
+	public String detailNotice() {
+		return "notice/detailNotice";
+	}
+	
 
 }

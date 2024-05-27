@@ -21,7 +21,7 @@
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));
             actionForm.submit();
     	
-    });
+    	});
     });
 </script>
 
@@ -104,7 +104,7 @@
 					<c:forEach items="${list}" var="lists">
 						<tr class="nht3tr3">
 							<td class="nht3r3d1">${lists.notice_num}</td>
-							<td class="nht3r3d2">${lists.title}</td>
+							<td class="nht3r3d2"><a href="detailNotice">${lists.title}</a></td>
 							<td class="nht3r3d3">${lists.member_id}</td>
 							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
 							<td class="nht3r3d4">${formattedDate}</td>
