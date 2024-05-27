@@ -4,10 +4,12 @@ import java.util.List;
 
 public interface NoticeDAO {
 	
-	public List<NoticeVO> list() throws Exception;
+	//public List<NoticeVO> list() throws Exception;
 	
-	public int count() throws Exception;
+	public int totalCount();
 	
-	public List<NoticeVO> getList(Criteria cri);
+	public List<NoticeVO> getListWithPaging(Criteria cri);
+	
+	public void insertNotice(NoticeVO notice);
 
 }

@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface NoticeMapper {
-    public List<NoticeVO> listNotice();
+    //public List<NoticeVO> listNotice();
     public int totalCount();
     public List<NoticeVO> getListWithPaging(Criteria cri);
+    
+    public void insertNotice(NoticeVO notice);
 }

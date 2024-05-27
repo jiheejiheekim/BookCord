@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class NoticeController {
@@ -17,28 +19,7 @@ public class NoticeController {
 	
 	@Autowired
 	NoticeMapper mapper;
-	
-	/*
-	@GetMapping("/notice") 
-	public String memberEdit() { 
-		return "notice/notice"; 
-	}
-	*/
-	/*@GetMapping("/notice") 
-	public String list(Model model) throws Exception {
-		List<NoticeVO> list = service.list();
-		int totalCount = service.count();
-
-	    System.out.println("컨트롤러 로그 출력 Notices: " + list); // 로그 출력
-	    //model.addAttribute("list", list);
-
-	    //책 추가
-	    model.addAttribute("list", service.getList(null));
-	    model.addAttribute("totalCount", totalCount);
-	    
-		return "notice/notice";
-	}*/
-	
+			
 	@GetMapping("/notice") 
 	public String list(Criteria cri, Model model) throws Exception {
 		System.out.println("컨트롤러 로그 출력 Notices: " + cri); // 로그 출력
@@ -59,6 +40,21 @@ public class NoticeController {
 	@GetMapping("/writeNotice")
 	public String writeNotice() {
 		return "notice/writeNotice";
+	}
+	
+	@PostMapping("/insertNotice")
+	public String insertNotice(@ModelAttribute("notice") NoticeVO notice){
+		System.out.println("===============공지사항 작성 중 ===> " + notice + " !!!");
+		try {
+			service.write(notice);
+		
+			System.out.println("컨트롤러에서 서비스.inserNotice 호출!!!");
+			return "redirect:/notice";
+		} catch (Exception e) {
+			System.out.println(" 실패 >>>>> 컨트롤러에서 inserNotice");
+			e.printStackTrace();
+			return "redirect:/";
+		}
 	}
 	
 

@@ -40,7 +40,7 @@ public class SignUpController {
             member.setEnabled(true);*/ // enabled 필드를 true로 설정
             //memberMapper.insertMember(member);
             memberService.registerMember(member);
-        	System.out.println("컨트롤러에서 매퍼 호출!!!");
+        	System.out.println("컨트롤러에서 서비스 호출!!!");
         	
             return "redirect:/index";
         } catch (Exception e) {

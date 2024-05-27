@@ -4,10 +4,12 @@ import java.util.List;
 
 public interface NoticeService {
 	
-	public List<NoticeVO> list() throws Exception;
+	//public List<NoticeVO> list();
 
-    public int count() throws Exception;
+    public int count();
     
     //책 추가
     public List<NoticeVO> getList(Criteria cri);
+    
+    public void write(NoticeVO notice);
 }

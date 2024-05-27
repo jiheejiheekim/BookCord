@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.book.cord.login.MemberMapper;
 
-@Repository
+@Repository("noticeDAO")
 @Primary
 public class NoticeDAOImpl implements NoticeDAO {
 	
@@ -20,22 +20,29 @@ public class NoticeDAOImpl implements NoticeDAO {
 
     @Autowired	
     private SqlSession sqlSession;
-    
+    /*
 	@Override
 	public List<NoticeVO> list() throws Exception {
 		System.out.println("DAO 호출");
 		return sqlSession.selectList(NAMESPACE+".listNotice");
 	}
-	
+	*/
 	@Override
-	public int count() throws Exception {
-		System.out.println("DAO 호출");
+	public int totalCount(){
+		System.out.println("DAO count 호출");
 		return sqlSession.selectOne(NAMESPACE+".totalCount");
 	}
 	
-	public List<NoticeVO> getList(Criteria cri) { 
-		System.out.println("DAO 호출");
+	@Override
+	public List<NoticeVO> getListWithPaging(Criteria cri) { 
+		System.out.println("DAO getList 호출");
 		return sqlSession.selectList(NAMESPACE+".getListWithPaging", cri);
-}
+	}
+	
+	@Override
+	public void insertNotice(NoticeVO notice) {
+		System.out.println("DAO write 호출" + notice);
+		sqlSession.insert(NAMESPACE+".insertNotice", notice);
+	}
 
 }

@@ -42,35 +42,36 @@
 		
 		<div class="writeNoticeHead">
 			<span class="wrHeadSpan">공지사항</span>
-			
-			<div class="wrTableDiv">
-				<table class="wrTable1">
-					<tr class="wrt1tr">
-						<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-					</tr>
-					<tr class="wrt1tr2">
-						<td class="wrt1r2d1">작성자</td>
-						<td class="wrt1r2d2"><input type="text" class="writer" value="관리자"></td>
-					</tr>
-					<tr class="wrt1tr3">
-						<td class="wrt1r3d1">제목</td>
-						<td class="wrt1r3d2"><input type="text" class="title"></td>
-					</tr>
-					<tr class="wrt1tr4">
-						<td class="wrt1r4d1">내용</td>
-						<td class="wrt1r4d2"><textarea class="noticeContent" rows="15" cols="8"></textarea></td>
-					</tr>
-					<tr class="wrt1tr5">
-						<td class="wrt1r5d1">첨부파일</td>
-						<td class="wrt1r5d2"><input type="file" class="file"></td>
-					</tr>
-				</table>
-			</div><!-- wrTableDiv -->
-			
-			<div class="submit">
-				<button type="submit" class="writeBt"><a href="/bc/detailNotice">글쓰기</a></button>
-			</div>
-			
+			<form name="notice" action="/bc/insertNotice" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<div class="wrTableDiv">
+					<table class="wrTable1">
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+						<tr class="wrt1tr2">
+							<td class="wrt1r2d1">작성자</td>
+							<td class="wrt1r2d2"><input type="text" class="writer" value="관리자" name="member_id"></td>
+						</tr>
+						<tr class="wrt1tr3">
+							<td class="wrt1r3d1">제목</td>
+							<td class="wrt1r3d2"><input type="text" class="title" name="title"></td>
+						</tr>
+						<tr class="wrt1tr4">
+							<td class="wrt1r4d1">내용</td>
+							<td class="wrt1r4d2"><textarea class="noticeContent" rows="15" cols="8" name="content"></textarea></td>
+						</tr>
+						<tr class="wrt1tr5">
+							<td class="wrt1r5d1">첨부파일</td>
+							<td class="wrt1r5d2"><input type="file" class="file" name="files"></td>
+						</tr>
+					</table>
+				</div><!-- wrTableDiv -->
+				
+				<div class="submit">
+					<button type="submit" class="writeBt">글쓰기</button>
+				</div>
+			</form>
 		</div>	<!-- writeNoticeHead -->
 	</div>	<!-- content -->
 </body>

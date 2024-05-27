@@ -3,11 +3,11 @@
 
 <mapper namespace="com.book.cord.notice.NoticeMapper">
 
-    <select id="listNotice" resultType="com.book.cord.notice.NoticeVO">
+    <!-- <select id="listNotice" resultType="com.book.cord.notice.NoticeVO">
 	    SELECT NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
 	    FROM NOTICE 
 	    ORDER BY NOTICE_NUM DESC
-	</select>
+	</select> -->
 
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(*) FROM NOTICE
@@ -26,5 +26,10 @@
 			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY NOTICE_NUM DESC
 		]]>
 	</select>
-  
+	
+	<insert id="insertNotice" parameterType="com.book.cord.notice.NoticeVO">
+			INSERT INTO NOTICE (NOTICE_NUM, MEMBER_ID, TITLE, CONTENT, FILES) 
+			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
+	</insert>
+	
 </mapper>
