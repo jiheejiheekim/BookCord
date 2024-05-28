@@ -37,10 +37,8 @@ public class SignUpController {
     public String registerMember(@ModelAttribute MemberVO member) {
         System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
         try {
-        	
             memberService.registerMember(member);
-        	System.out.println("컨트롤러에서 서비스 호출!!!");
-        	
+            System.out.println("컨트롤러에서 회원가입 처리");
             return "redirect:/index";
         } catch (Exception e) {
             System.out.println("예 외 발 생 Exception in registerMember: " + e.getMessage());
@@ -56,5 +54,15 @@ public class SignUpController {
     	int result=memberService.idCheck(id);
     	return result;
     }
+    
+    @ResponseBody
+    @GetMapping("/nameCheck")
+    public int nameCheck(@RequestParam String name) {
+    	System.out.println("===============name 중복 체크 중  ===> "+name);
+    	int result=memberService.nameCheck(name);
+    	return result;
+    }
+    
+    
     
 }

@@ -38,7 +38,7 @@ button:hover{
 }
 
 .signUp table tr td{
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 
 td{
@@ -64,17 +64,22 @@ table tr td:nth-child(3){
 .signUpTable tr td:not(.idCheckResult, .pwdCheckResult, .nameCheckResult){
 	padding-top:1em;
 }
-.id, .pw, .pwCheck, .nickName{
+.id, .pwd1, .pwd2, .name{
 	width:90%;
 	text-align:left;
 	height:2.2em;
 	border:none;
 }
 .pwImg{
-	margin-top:2px;
+	margin-top:4px;
 	width:20px;	
 }
-.idCheck, .NickNameCheck{
+.pwImg2{
+	margin-top:4px;
+	margin-left:2.5px;
+	width:15px;	
+}
+.idCheck, .nameCheck{
 	border:none;
 	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;

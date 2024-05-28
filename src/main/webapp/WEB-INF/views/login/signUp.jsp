@@ -9,12 +9,16 @@
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+	
 	function idCheck() {
-		var id=$(".id").val();
+		event.preventDefault();
+		
+		var id = $(".id").val();
 		if (id == "") {
 			alert("아이디를 입력하세요"+id);
 			$(".id").focus();
-			return;
+			/* return; */
 		}
 		$.ajax({
 			type:"get",
@@ -22,10 +26,11 @@
 			data:{"id":id},
 			dataType: "JSON",
 			success:function(result){
-				if(result == 1){
+				if(result >= 1){
 					$("#checkText").html("이미 사용중인 아이디입니다");
 					$("#checkText").addClass("text2");
 					$("#checkText").removeClass("text1");
+					$(".id").focus();
 				}else{
 					$("#checkText").html("사용할 수 있는 아이디입니다");
 					$("#checkText").addClass("text1");
@@ -38,6 +43,103 @@
 			}
 		}) 
 	}
+	
+
+	function nameCheck() {
+		event.preventDefault();
+		
+		var name = $('.name').val();
+		if(name == ""){
+			alert("닉네임을 입력하세요");
+			$(".name").focus();
+			return;
+		}
+		$.ajax({
+			type:"get",
+			url:"/bc/nameCheck",
+			data:{"name":name},
+			dataType:"json",
+			success:function(result){
+				if(result >= 1){
+					$("#checkText3").html("이미 사용중인 닉네임입니다");
+					$("#checkText3").addClass("text2");
+					$("#checkText3").removeClass("text1");
+					$(".name").focus();
+				}else{
+					$("#checkText3").html("사용할 수 있는 닉네임입니다");
+					$("#checkText3").addClass("text1");
+					$("#checkText3").removeClass("text2");
+				}
+			},
+			error:function(err){
+				alert('요청 실패 : '+err);
+				console.log(err);
+			}
+		})
+	}
+	
+	function pwdCharCheck() {
+		var pwd1 = $(".pwd1").val();
+		var pwdCharCheck = $("#pwdCharCheck");
+		
+		pwdCharCheck.empty();
+		if(pwd1.length >= 6 && pwd1.length <= 15){
+			var img = $("<img>").attr("src", "resources/images/pwCheckO.png").addClass("pwImg")
+			pwdCharCheck.append(img);
+		}else{
+			var img = $("<img>").attr("src", "resources/images/pwCheckX.png").addClass("pwImg2")
+			pwdCharCheck.append(img);
+		}
+		
+	}
+	
+	function pwdCheck() {
+		var pwd1 = $(".pwd1").val();
+		var pwd2 = $(".pwd2").val();
+		
+		if(pwd1 == "" && pwd2 ==""){
+			$("#checkText2").html(" ");
+			$("#checkText2").removeClass("text1");
+			$("#checkText2").removeClass("text2");
+		}else if(pwd1 != null && pwd2 !=null && pwd1 == pwd2){
+			$("#checkText2").html("비밀번호가 일치합니다");
+			$("#checkText2").addClass("text1");
+			$("#checkText2").removeClass("text2");
+		}else if(pwd1 != null && pwd2 !=null && pwd1 != pwd2){
+			$("#checkText2").html("비밀번호가 일치하지 않습니다");
+			$("#checkText2").addClass("text2");
+			$("#checkText2").removeClass("text1");
+		}else if(pwd1 != null && pwd2 == "" && pwd1 != pwd2){
+			$("#checkText2").html("비밀번호가 일치하지 않습니다");
+			$("#checkText2").addClass("text2");
+			$("#checkText2").removeClass("text1");
+		}else{
+			alert('다시 시도하세요');
+			return;
+		}
+		
+	}
+	
+
+	
+	function signUp(){	
+		
+		var id = $(".id").val();
+		var name = $('.name').val();
+		var pwd1 = $(".pwd1").val();
+		var pwd2 = $(".pwd2").val();
+		
+		if(id=="" || name=="" || pwd1=="" || pwd2=="") {
+			alert('입력해주세요');
+			return;
+		}
+		if(pwd2==""){
+			alert('입력해주세요');
+			return;
+		}
+	}
+	
+	
 </script>
 </head>
 <body>
@@ -60,7 +162,7 @@
 					<tr>
 						<td>아이디</td>
 						<td><input name="id" class="id" type="text"></td>
-						<td><button type="button" class="idCheck" onclick="idCheck()">중복확인</button></td>
+						<td><button type="button" class="idCheck" onclick="idCheck()"><a href="#">중복확인</a></button></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -69,34 +171,34 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input name="pwd" class="pw" type="password" placeholder="영문/숫자 조합 6~15자"></td>
-						<td><img class="pwImg" src="resources/images/pwCheckO.png"></td>
+						<td><input name="pwd" class="pwd1" type="password" placeholder="영문/숫자 조합 6~15자" onchange="pwdCharCheck()"></td>
+						<td><span id="pwdCharCheck"></span></td>	<!-- <img class="pwImg" src="resources/images/pwCheckO.png"> -->
 					</tr>
 					<tr>
 						<td>비밀번호 확인</td>
-						<td><input class="pwCheck" type="password"></td>
+						<td><input class="pwd2" type="password" onchange="pwdCheck()"></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td class="pwdCheckResult">비밀번호가 일치합니다</td>
+						<td class="pwdCheckResult"><span id="checkText2"></span></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>닉네임</td>
-						<td><input name="name" class="nickName" type="text"></td>
-						<td><button class="NickNameCheck"><a href="">중복확인</a></button></td>
+						<td><input name="name" class="name" type="text"></td>
+						<td><button class="nameCheck" onclick="nameCheck()"><a href="#">중복확인</a></button></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td class="nameCheckResult">이미 사용 중인 닉네임 입니다</td>
+						<td class="nameCheckResult"><span id="checkText3"></span></td>
 						<td></td>
 					</tr>
 				</table>
 			</div>
 		
 			<div class="finalSingUp">
-				<button type="submit" class="signUpButton">회원가입</button>
+				<button type="submit" class="signUpButton" onclick="signUp()">회원가입</button>
 			</div>
 		</form>
 	</div>	<!-- .SignUp -->

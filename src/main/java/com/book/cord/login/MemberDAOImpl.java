@@ -32,5 +32,11 @@ public class MemberDAOImpl implements MemberDAO {
     	System.out.println("DAO.searchId 지나가기 : "+id);
     	return sqlSession.selectOne(NAMESPACE + ".searchId", id);
     }
+    
+    @Override
+    public int searchName(String name) {
+    	System.out.println("DAO.searchId 지나가기 : "+name);
+    	return sqlSession.selectOne(NAMESPACE + ".searchName", name);
+    }
 }
 

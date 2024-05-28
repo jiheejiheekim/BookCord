@@ -42,4 +42,8 @@
     	SELECT COUNT(*) FROM MEMBER WHERE id=#{id}
     </select>
     
+    <select id="searchName" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM MEMBER WHERE name=#{name}
+    </select>
+    
 </mapper>

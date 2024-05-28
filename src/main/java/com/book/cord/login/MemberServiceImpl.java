@@ -46,7 +46,16 @@ public class MemberServiceImpl implements MemberService {
     public int idCheck(String id) {
     	System.out.println("id 중복체크 서비스");
     	int result=memberDAO.searchId(id);
-    	System.out.println("중복체크 결과 : "+result);
+    	System.out.println("ID 중복체크 결과 : "+result);
     	return result;
     }
+    
+    @Override
+    public int nameCheck(String name) {
+    	System.out.println("name 중복체크 서비스");
+    	int result=memberDAO.searchName(name);
+    	System.out.println("NAME 중복체크 결과 : "+result);
+    	return result;
+    }
+    
 }
