@@ -27,7 +27,7 @@
 			dataType: "JSON",
 			success:function(result){
 				if(result >= 1){
-					$("#checkText").html("이미 사용중인 아이디입니다");
+					$("#checkText").html("사용할 수 없는 아이디입니다");
 					$("#checkText").addClass("text2");
 					$("#checkText").removeClass("text1");
 					$(".id").focus();
@@ -123,20 +123,76 @@
 
 	
 	function signUp(){	
-		
 		var id = $(".id").val();
 		var name = $('.name').val();
 		var pwd1 = $(".pwd1").val();
 		var pwd2 = $(".pwd2").val();
+		var check = $("#checkText").text();
+		var check2 = $("#checkText2").text();
+		var check3 = $("#checkText3").text();
+						
+		if(!id) {
+			alert('아이디를 입력해주세요');
+			member.id.focus();
+			return;
+		}
+		if(!pwd1) {
+			alert('비밀번호를 입력해주세요');
+			member.pwd.focus();
+			return;
+		}
+		if(!pwd2) {
+			alert('비밀번호를 입력해주세요');
+			member.pwd2.focus();
+			return;
+		}
+		if(!name) {
+			alert('닉네임을 입력해주세요');
+			member.name.focus();
+			return;
+		}
 		
-		if(id=="" || name=="" || pwd1=="" || pwd2=="") {
-			alert('입력해주세요');
+		if(pwd1 != pwd2) {
+			alert('비밀번호가 일치하지 않습니다');
+			member.pwd2.focus();
 			return;
 		}
-		if(pwd2==""){
-			alert('입력해주세요');
+		
+		if(pwd1.length < 6 || pwd1.length > 15){
+			alert('비밀번호 형식이 일치하지 않습니다');
+			member.pwd.focus();
 			return;
 		}
+		if(pwd2.length < 6 || pwd2.length > 15){
+			alert('비밀번호 형식이 일치하지 않습니다');
+			member.pwd.focus();
+			return;
+		}
+		
+		if(check != '사용할 수 있는 아이디입니다'){
+			alert('아이디를 확인하세요');
+			member.id.focus();
+			return;
+		}
+		
+		if(check2 != '비밀번호가 일치합니다'){
+			alert('비밀번호를 확인하세요');
+			member.pwd2.focus();
+			return;
+		}
+		
+		if(check3 != '사용할 수 있는 닉네임입니다'){
+			alert('닉네임을 확인하세요');
+			member.name.focus();
+			return;
+		}
+		
+		idCheck();
+		pwdCharCheck();
+		nameCheck();
+		
+		member.submit();
+		
 	}
 	
 	
@@ -176,7 +232,7 @@
 					</tr>
 					<tr>
 						<td>비밀번호 확인</td>
-						<td><input class="pwd2" type="password" onchange="pwdCheck()"></td>
+						<td><input name="pwd2" class="pwd2" type="password" onchange="pwdCheck()"></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -198,7 +254,7 @@
 			</div>
 		
 			<div class="finalSingUp">
-				<button type="submit" class="signUpButton" onclick="signUp()">회원가입</button>
+				<button type="button" class="signUpButton" onclick="signUp()">회원가입</button>
 			</div>
 		</form>
 	</div>	<!-- .SignUp -->

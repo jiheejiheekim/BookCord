@@ -37,13 +37,16 @@ public class SignUpController {
     public String registerMember(@ModelAttribute MemberVO member) {
         System.out.println("===============회원가입 처리 중 ===> " + member + " !!!");
         try {
-            memberService.registerMember(member);
-            System.out.println("컨트롤러에서 회원가입 처리");
-            return "redirect:/index";
+        	if(member != null) {
+        		memberService.registerMember(member);
+        		System.out.println("컨트롤러에서 회원가입 처리");
+        		System.out.println(">>>>>>> 회원가입 성공 ID : "+member.getId());
+        	}
+        	return "redirect:/loginP";
         } catch (Exception e) {
             System.out.println("예 외 발 생 Exception in registerMember: " + e.getMessage());
             e.printStackTrace();
-            return "redirect:/loginP";
+            return "redirect:/signUp";
         }
     }
     
@@ -51,16 +54,26 @@ public class SignUpController {
     @GetMapping("/idCheck")
     public int idCheck(@RequestParam String id) {
     	System.out.println("===============id 중복 체크 중  ===> "+id);
-    	int result=memberService.idCheck(id);
-    	return result;
+    	int result;
+    	if(id != "") {
+    		result=memberService.idCheck(id);
+    		return result;
+    	}else {
+    		return 1;
+    	}
     }
     
     @ResponseBody
     @GetMapping("/nameCheck")
     public int nameCheck(@RequestParam String name) {
     	System.out.println("===============name 중복 체크 중  ===> "+name);
-    	int result=memberService.nameCheck(name);
-    	return result;
+    	int result;
+    	if(name != "") {
+    		result=memberService.nameCheck(name);
+    		return result;
+    	}else {
+    		return 1;
+    	}
     }
     
     

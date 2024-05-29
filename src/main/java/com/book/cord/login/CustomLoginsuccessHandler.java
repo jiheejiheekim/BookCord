@@ -25,7 +25,7 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		 String username = auth.getName();
 	     memberMapper.updateDate(username); //로그인 시 update_date 업데이트
 		
-		System.out.println(">>>>>>> 로그인 성공");
+		System.out.println(">>>>>>> 로그인 성공 ID : "+username);
 		
 		List<String> roleNames = new ArrayList<>();
 		
