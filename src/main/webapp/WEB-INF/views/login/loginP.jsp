@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>BookCord - Login</title>
 <link rel="stylesheet" href="resources/css/login.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 </head>
 <body>
 	<!-- TOP -->
@@ -43,7 +45,9 @@
 	<div class="signUp">
 		<table class="signUpTable">
 			<tr>
-				<td><a><img class="snsKImg" src="resources/images/kakaoLogin.png"></a></td>
+				<td><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=7602202d7ab3fef830a0c7ae34debe13&redirect_uri=https://localhost:9089/bc/kakao_callback">
+					<img class="snsKImg" src="resources/images/kakaoLogin.png">
+				</a></td>
 				<td><a><img class="snsNImg" src="resources/images/naverLogin.png"></a></td>
 				<td><button class="signUpButton"><a href="signUp">회원가입</a></button></td>
 			</tr>

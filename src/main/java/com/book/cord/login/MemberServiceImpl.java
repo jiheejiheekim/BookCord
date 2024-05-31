@@ -24,7 +24,9 @@ public class MemberServiceImpl implements MemberService {
     public void registerMember(MemberVO member) {
         try {
             log.debug("Service: {}~~ ~~", member);
-            
+            if (member.getProvider() == null || member.getProvider().isEmpty()) {
+                member.setProvider("local");
+            }
             String encodedPassword = passwordEncoder.encode(member.getPwd());
             member.setPwd(encodedPassword);
             member.setEnabled(true);
@@ -57,5 +59,13 @@ public class MemberServiceImpl implements MemberService {
     	System.out.println("NAME 중복체크 결과 : "+result);
     	return result;
     }
+    /*
+    @Override
+    public String kakaoLogin(String authorizedCode) {
+    	log.info("카카오 로그인 서비스 !");
+    	return null;
+    }
+    */
+    
     
 }

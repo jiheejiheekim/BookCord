@@ -5,4 +5,5 @@ public interface MemberService {
     //MemberVO getMemberById(String id);
     int idCheck(String id);
     int nameCheck(String name);
+
 }

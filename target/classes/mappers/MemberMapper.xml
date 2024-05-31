@@ -5,7 +5,7 @@
 
     <insert id="insertMember" parameterType="com.book.cord.login.MemberVO">
         INSERT INTO member (id, pwd, name, reg_date, provider) 
-        VALUES (#{id}, #{pwd}, #{name}, SYSDATE, 'local')
+        VALUES (#{id}, #{pwd}, #{name}, SYSDATE, #{provider})
     </insert>
     
     <resultMap type="com.book.cord.login.MemberVO" id="memberMap">
