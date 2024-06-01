@@ -45,7 +45,7 @@
 	<div class="signUp">
 		<table class="signUpTable">
 			<tr>
-				<td><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=7602202d7ab3fef830a0c7ae34debe13&redirect_uri=https://localhost:9089/bc/kakao_callback">
+				<td><a href="https://kauth.kakao.com/oauth/authorize?client_id=7602202d7ab3fef830a0c7ae34debe13&redirect_uri=http://localhost:9089/bc/kakaoLogin&response_type=code">
 					<img class="snsKImg" src="resources/images/kakaoLogin.png">
 				</a></td>
 				<td><a><img class="snsNImg" src="resources/images/naverLogin.png"></a></td>

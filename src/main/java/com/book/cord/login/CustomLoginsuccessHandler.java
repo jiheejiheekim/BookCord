@@ -7,9 +7,15 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
@@ -34,6 +40,17 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		});
 		System.out.println(">>>>>>> 로그인 한 유저의 권한 : "+roleNames);
 		
+		///////////////////////////////////////////
+		// 사용자의 인증 정보를 가져옴
+	    UserDetails userDetails = (UserDetails) auth.getPrincipal();
+	    // 세션에 사용자 정보를 추가
+	    HttpSession session = request.getSession();
+	    session.setAttribute("userDetails", userDetails);
+	    // 사용자의 Authentication 객체를 SecurityContext에 설정
+	    SecurityContextHolder.getContext().setAuthentication(auth);
+	    ///////////////////////////////////////////
+	    
+		
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/bc/admin");
 			return;
@@ -46,5 +63,7 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		
 		response.sendRedirect("/");
 	}
+	
+	
 
 }

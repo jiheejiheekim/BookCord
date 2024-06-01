@@ -19,6 +19,12 @@
     <!-- Custom User Details Service -->
     <bean id="customUserDetailsService" class="com.book.cord.login.CustomUserDetailsService"/>
     
+    <!-- Kakao Authentication Provider -->
+    <bean id="kakaoAuthenticationProvider" class="com.book.cord.login.KakaoAuthenticationProvider">
+	    <constructor-arg ref="customUserDetailsService" />
+	    <constructor-arg ref="customPasswordEncoder" />
+	</bean>
+    
     <security:http auto-config="true" use-expressions="true">
         
         <!-- URL 접근 제한 설정 -->
@@ -50,6 +56,8 @@
 	    <security:authentication-provider user-service-ref="customUserDetailsService">
 	        <security:password-encoder ref="customPasswordEncoder" />
 	    </security:authentication-provider>
+	    <!-- Kakao Authentication Provider 추가 -->
+        <security:authentication-provider ref="kakaoAuthenticationProvider" />
 	</security:authentication-manager>
 
     
