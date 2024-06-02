@@ -8,6 +8,9 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
+	// Serializable 인터페이스를 구현하여 직렬화 가능
+	private static final long serialVersionUID = 1L;
+	
 	private String id;          // 사용자 아이디
     private String pwd;    		// 비밀번호
     private String name;        // 이름(닉네임)

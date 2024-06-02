@@ -18,6 +18,7 @@ public class SignUpController {
     private MemberService memberService;
     
     @Autowired
+	@Qualifier("memberDAOImpl")
     private MemberDAO memberDAO;
     
     @Autowired

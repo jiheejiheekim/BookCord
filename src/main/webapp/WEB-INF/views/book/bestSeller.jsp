@@ -9,7 +9,6 @@
 <title>BookCord - BestSeller</title>
 <link rel="stylesheet" href="resources/css/bestSeller.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 	<!-- TOP -->
@@ -148,7 +147,11 @@
 					<tr class="bs1">
 						<td class="bstd1" rowspan="6"><img class="bookImg" src="${book.cover}"></td>
 						<td class="bs1td2">${book.bestRank}.</td>
-						<td class="bs1td3"><a class="bookMarkImg" href=""><img src="resources/images/bookmarkO.png"></a></td>
+						<td class="bs1td3">
+							<a href="javascript:void(0)" onclick="bookmark('${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
+								<img class="bookMarkImg" src="resources/images/bookmarkO.png">
+							</a>
+						</td>
 					</tr>
 					<tr class="bs2">
 						<!-- <td></td> -->
@@ -379,7 +382,11 @@
 	    $('.pageNum').first().css('font-weight', 'bold');
 	});
 
- 
+	
+	function bookmark(title, author, isbn13, cover) {
+		alert('제목 : '+title+'\n작가 : '+author+'\nisbn13 : '+isbn13+'\ncover : '+cover);
+	}
+	
 </script>
 
 

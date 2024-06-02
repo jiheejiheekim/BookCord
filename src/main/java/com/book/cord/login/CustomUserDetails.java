@@ -17,7 +17,7 @@ public class CustomUserDetails implements UserDetails {
         this.member = member;
     }
 
-    @Override
+	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = member.getRoleList().stream()
             .map(role -> new SimpleGrantedAuthority(role.getAuth()))

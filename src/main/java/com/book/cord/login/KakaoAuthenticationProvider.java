@@ -3,6 +3,8 @@ package com.book.cord.login;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +22,9 @@ public class KakaoAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private MemberMapper memberMapper;
+	
+	@Autowired
+	private HttpSession httpSession;
 
 	private final CustomUserDetailsService customUserDetailsService;
 	private final CustomPasswordEncoder customPasswordEncoder;
@@ -43,14 +48,16 @@ public class KakaoAuthenticationProvider implements AuthenticationProvider {
 		
 		memberMapper.updateDate(email); //로그인 시 update_date 업데이트
 		System.out.println(">>>>>>> 로그인 성공 ID : "+email);
-		
 		//권한 설정
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		System.out.println(">>>>>>> 로그인 한 유저의 권한 : "+authorities);
-
+		
 		//UserDetails 생성
 		UserDetails userDetails = new User(user.getId(), user.getPwd(), authorities);
+	
+		// 세션에 사용자 ID 저장
+		httpSession.setAttribute("member", userDetails); // 세션에 사용자 ID 저장
 
 		return new UsernamePasswordAuthenticationToken(userDetails, user.getPwd(), authorities);
 	}

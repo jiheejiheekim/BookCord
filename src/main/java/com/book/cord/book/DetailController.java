@@ -1,6 +1,7 @@
 package com.book.cord.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,8 @@ public class DetailController {
 
     public final RestTemplate restTemplate = new RestTemplate();
 
+    @Autowired
+	@Qualifier("bookServiceImpl")
 	private final BookService bookService;
 	
 	@Autowired // BookService 주입
@@ -45,6 +48,7 @@ public class DetailController {
         DetailBooks searchResult = bookService.getDetailBook(isbn13);
         if (searchResult != null) {
             model.addAttribute("items", searchResult.getItem());
+            System.out.println(searchResult.getItem());
         } else {
             model.addAttribute("items", null);
         }

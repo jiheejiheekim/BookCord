@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>BookCord - Detail</title>
 <link rel="stylesheet" href="../resources/css/detail.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<!-- TOP -->
@@ -26,14 +27,18 @@
 	
 	<div class="content">
 	
-		<div class="detail">	<!-- 추후 API 사용 -->
+		<div class="detail">
 		<c:if test="${not empty items}">
 	    	<c:forEach var="book" items="${items}">
 				<table class="dTable1">
 					<tr>
 						<td class="d1td1" rowspan="11"><img class="cover" src="${book.cover}"></td>
 						<td class="d1td2">${book.title}</td>
-						<td class="d1td3"><a href=""><img class="bookMarkImg" src="../resources/images/bookmarkO.png"></td>
+						<td class="d1td3">
+							<a  onclick="bookmark('${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
+								<img class="bookMarkImg" src="../resources/images/bookmarkO.png">
+							</a>
+						</td>
 					</tr>
 					<tr>
 						<td class="d1td4" colspan="2">${book.author}</td>
@@ -271,6 +276,52 @@
 			</tr>
 		</table>
 	</div>
+	
+<%-- 	<!-- 세션에 저장된 멤버 정보 확인 -->
+	<c:if test="${not empty sessionScope.member}">
+	    <p>Member ID: ${sessionScope.member.username}</p> <!-- 변경된 부분 -->
+	</c:if>
+	
+	<c:if test="${empty sessionScope.member}">
+	    <p>No member object found in session.</p>
+	</c:if> --%>
+
+<script>
+function bookmark(title, author, isbn13, cover) {
+
+    var member_id = "<c:out value='${sessionScope.member.username}'/>";
+    
+    alert('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
+    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
+    
+    $.ajax({
+        type: 'POST',
+        url: '/bookmark',
+        contentType: "application/json",
+        data: {
+            member_id: member_id,
+            title: title,
+            author: author,
+            isbn13: isbn13,
+            cover: cover
+        },
+        success: function(response) {
+            console.log('Success:', response);
+            alert(JSON.stringify(response));
+            if (response === 'success') {
+                alert('북마크 성공');
+            } else {
+                alert('북마크 실패');
+            }
+        },
+        error:function(request,status,error){     
+            alert("실패 > code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            console.log("실패 > code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+
+}
+</script>
 
 </body>
 </html>

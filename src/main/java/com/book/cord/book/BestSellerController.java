@@ -2,6 +2,8 @@ package com.book.cord.book;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import com.book.cord.BookVO.GenresBestSeller;
 @Controller
 public class BestSellerController {
 	
+	@Autowired
+	@Qualifier("bookServiceImpl")
 	private final BookService bookService;
 	
 	public BestSellerController(BookService bookService) {

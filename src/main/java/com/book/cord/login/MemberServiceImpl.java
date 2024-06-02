@@ -244,10 +244,11 @@ public class MemberServiceImpl implements MemberService {
 	        Authentication authentication = kakaoAuthenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(userInfo.get("email").toString(), ""));
 	        // 사용자 인증이 성공한 경우, SecurityContext에 인증 정보를 설정
 	        SecurityContextHolder.getContext().setAuthentication(authentication);
-	
+	/*
 	        // 세션에 사용자 아이디 저장
 	        HttpSession session = request.getSession();
 	        session.setAttribute("userid", userInfo.get("email").toString());
+	*/
 	    } catch (AuthenticationException e) {
 	        // 사용자 인증이 실패한 경우에 대한 처리
 	        e.printStackTrace();

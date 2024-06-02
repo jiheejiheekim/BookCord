@@ -28,8 +28,8 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 			HttpServletResponse response, Authentication auth) 
 		throws IOException, ServletException {
 		
-		 String username = auth.getName();
-	     memberMapper.updateDate(username); //로그인 시 update_date 업데이트
+		String username = auth.getName();
+	    memberMapper.updateDate(username); //로그인 시 update_date 업데이트
 		
 		System.out.println(">>>>>>> 로그인 성공 ID : "+username);
 		
@@ -40,17 +40,22 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		});
 		System.out.println(">>>>>>> 로그인 한 유저의 권한 : "+roleNames);
 		
-		///////////////////////////////////////////
-		// 사용자의 인증 정보를 가져옴
-	    UserDetails userDetails = (UserDetails) auth.getPrincipal();
-	    // 세션에 사용자 정보를 추가
-	    HttpSession session = request.getSession();
-	    session.setAttribute("userDetails", userDetails);
-	    // 사용자의 Authentication 객체를 SecurityContext에 설정
-	    SecurityContextHolder.getContext().setAuthentication(auth);
-	    ///////////////////////////////////////////
-	    
+		// 세션에 사용자 정보를 추가
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		HttpSession session = request.getSession();
+		session.setAttribute("member", userDetails);
 		
+		// 디버깅 메시지 추가
+		if (session.getAttribute("member") != null) {
+		    System.out.println(">>>>>>> 세션에 저장된 유저 정보: " + session.getAttribute("member"));
+		} else {
+		    System.out.println(">>>>>>> 세션에 유저 정보를 저장하지 못했습니다.");
+		}
+        
+
+        // 사용자의 Authentication 객체를 SecurityContext에 설정
+        SecurityContextHolder.getContext().setAuthentication(auth);
+	    
 		if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/bc/admin");
 			return;
