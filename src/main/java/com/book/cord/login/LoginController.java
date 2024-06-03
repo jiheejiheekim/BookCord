@@ -52,7 +52,6 @@ public class LoginController {
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	        if (authentication != null) {
 	            HttpSession session = request.getSession(true);
-	            //session.setAttribute("userDetails", authentication.getPrincipal());
 	            session.setAttribute("member", authentication.getPrincipal());
 	        }
 		}

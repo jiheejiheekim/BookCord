@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,62 @@
 <title>BookCord - Detail</title>
 <link rel="stylesheet" href="../resources/css/detail.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+var csrfToken = "${_csrf.token}";
+var csrfParameterName = "${_csrf.parameterName}";
+
+console.log("csrfToken >> "+csrfToken);
+console.log("csrfParameterName >> "+csrfParameterName);
+
+
+function bookmark(title, author, isbn13, cover) {
+
+    var member_id = "<c:out value='${sessionScope.member.username}'/>";
+    
+    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
+    
+    var data = {
+			member_id: member_id,
+			title: title,
+			author: author,
+			isbn13: isbn13,
+			cover: cover
+		};
+
+ 	// CSRF 토큰을 데이터에 추가
+    data[csrfParameterName] = csrfToken;
+ 
+    $.ajax({
+    	type: "POST",
+        url: "/bc/bookmark",
+        data: data,
+        dataType: "JSON",
+        success: function(response) {
+            alert('북마크 성공');
+        },
+        error:function(request,status,error){
+            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+        }
+    });
+   
+}
+
+function logout() {
+	var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/bc/logout';
+    
+    var csrfToken = document.createElement('input');
+    csrfToken.type = 'hidden';
+    csrfToken.name = '${_csrf.parameterName}';
+    csrfToken.value = '${_csrf.token}';
+    
+    form.appendChild(csrfToken);
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
 </head>
 <body>
 	<!-- TOP -->
@@ -20,7 +76,15 @@
 						class="logo" src="../resources/images/logo.png"></a></td>
 				<td class="top2"><a href="/bc/notice">공지사항</a></td>
 				<td class="top3"><a href="/bc/memberEdit">마이페이지</a></td>
-				<td class="top4"><a href="/bc/login">로그아웃</a></td>
+				<td class="top4">
+					<sec:authorize access="isAnonymous()">
+						<a href="/bc/loginP">로그인</a>
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="javascript:logout()">로그아웃</a>
+					</sec:authorize>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -36,7 +100,7 @@
 						<td class="d1td2">${book.title}</td>
 						<td class="d1td3">
 							<a  onclick="bookmark('${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
-								<img class="bookMarkImg" src="../resources/images/bookmarkO.png">
+								<img class="bookMarkImg" src="../resources/images/bookmarkO.png"><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							</a>
 						</td>
 					</tr>
@@ -285,43 +349,6 @@
 	<c:if test="${empty sessionScope.member}">
 	    <p>No member object found in session.</p>
 	</c:if> --%>
-
-<script>
-function bookmark(title, author, isbn13, cover) {
-
-    var member_id = "<c:out value='${sessionScope.member.username}'/>";
-    
-    alert('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
-    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
-    
-    $.ajax({
-        type: 'POST',
-        url: '/bookmark',
-        contentType: "application/json",
-        data: {
-            member_id: member_id,
-            title: title,
-            author: author,
-            isbn13: isbn13,
-            cover: cover
-        },
-        success: function(response) {
-            console.log('Success:', response);
-            alert(JSON.stringify(response));
-            if (response === 'success') {
-                alert('북마크 성공');
-            } else {
-                alert('북마크 실패');
-            }
-        },
-        error:function(request,status,error){     
-            alert("실패 > code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            console.log("실패 > code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-        }
-    });
-
-}
-</script>
 
 </body>
 </html>

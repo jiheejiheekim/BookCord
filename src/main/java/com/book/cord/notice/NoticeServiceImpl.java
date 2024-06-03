@@ -15,13 +15,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Autowired
 	@Qualifier("noticeDAO") 
 	private NoticeDAO dao;
-	/*
-	@Override
-	public List<NoticeVO> list() throws Exception {
-		System.out.println("Service 호출");
-		return dao.list();
-	}
-	*/
+
 	@Override
 	public int count() {
 		System.out.println("Service count 호출");

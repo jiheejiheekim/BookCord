@@ -20,13 +20,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 
     @Autowired	
     private SqlSession sqlSession;
-    /*
-	@Override
-	public List<NoticeVO> list() throws Exception {
-		System.out.println("DAO 호출");
-		return sqlSession.selectList(NAMESPACE+".listNotice");
-	}
-	*/
+    
 	@Override
 	public int totalCount(){
 		System.out.println("DAO count 호출");

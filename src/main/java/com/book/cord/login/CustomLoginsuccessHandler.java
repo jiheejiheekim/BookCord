@@ -40,6 +40,7 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		});
 		System.out.println(">>>>>>> 로그인 한 유저의 권한 : "+roleNames);
 		
+		
 		// 세션에 사용자 정보를 추가
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		HttpSession session = request.getSession();
@@ -47,11 +48,10 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		
 		// 디버깅 메시지 추가
 		if (session.getAttribute("member") != null) {
-		    System.out.println(">>>>>>> 세션에 저장된 유저 정보: " + session.getAttribute("member"));
+			System.out.println(">>>>>>> 세션에 저장된 유저 정보: " + session.getAttribute("member"));
 		} else {
-		    System.out.println(">>>>>>> 세션에 유저 정보를 저장하지 못했습니다.");
+			System.out.println(">>>>>>> 세션에 유저 정보를 저장하지 못했습니다.");
 		}
-        
 
         // 사용자의 Authentication 객체를 SecurityContext에 설정
         SecurityContextHolder.getContext().setAuthentication(auth);

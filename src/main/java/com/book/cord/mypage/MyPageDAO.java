@@ -1,7 +1,12 @@
 package com.book.cord.mypage;
 
+import java.util.List;
+
+import com.book.cord.notice.Criteria;
+
 public interface MyPageDAO {
 	
-	//public void insertBookMark(String member_id, String title, String author, String isbn13, String cover);
-	public void insertBookMark(BookMarkVO bookmarkRequest);
+	public void insertBookMark(BookMarkVO vo);
+	public int totalCount(String member_id);
+	public List<BookMarkVO> getListWithPaging(Criteria cri, String member_id);
 }
