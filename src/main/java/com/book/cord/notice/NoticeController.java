@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -57,8 +58,12 @@ public class NoticeController {
 		}
 	}
 	
-	@GetMapping("/detailNotice")
-	public String detailNotice() {
+	@GetMapping("/detailNotice/{notice_num}")
+	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model) {
+		NoticeVO vo = service.getNotice(notice_num);
+		if(vo != null) {
+			model.addAttribute("notice", vo);
+		}
 		return "notice/detailNotice";
 	}
 	

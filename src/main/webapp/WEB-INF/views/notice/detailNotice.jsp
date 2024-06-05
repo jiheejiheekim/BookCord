@@ -1,13 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>BookCord - DetailNotice</title>
-<link rel="stylesheet" href="resources/css/writeNotice.css">
+<link rel="stylesheet" href="../resources/css/detailNotice.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function logout() {
+		var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/bc/logout';
+        
+        var csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '${_csrf.parameterName}';
+        csrfToken.value = '${_csrf.token}';
+        
+        form.appendChild(csrfToken);
+        document.body.appendChild(form);
+        form.submit();
+      }
+	
+	function update(){
+		e.preventDefault();
+		var 
+	}
+	
+	function delte() {
+		e.preventDefault();	
+	}
+</script>
 </head>
 <body>
 	<!-- TOP -->
@@ -15,10 +43,18 @@
 		<table class="toptable">
 			<tr>
 				<td class="top1" colspan="5"><a href="main"><img
-						class="logo" src="resources/images/logo.png"></a></td>
-				<td class="top2"><a href="notice">공지사항</a></td>
-				<td class="top3"><a href="memberEdit">마이페이지</a></td>
-				<td class="top4"><a href="login">로그아웃</a></td>
+						class="logo" src="../resources/images/logo.png"></a></td>
+				<td class="top2"><a href="/bc/notice">공지사항</a></td>
+				<td class="top3"><a href="/bc/memberEdit">마이페이지</a></td>
+				<td class="top4">
+					<sec:authorize access="isAnonymous()">
+						<a href="loginP">로그인</a>
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="javascript:logout()">로그아웃</a>
+					</sec:authorize>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -38,51 +74,51 @@
 			</table>
 		</div>	<!-- navi -->
 		
-		<div class="writeNoticeHead">
-			<span class="wrHeadSpan">공지사항</span>
-			<form name="notice" action="/bc/insertNotice" method="post">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-				<div class="wrTableDiv">
-					<table class="wrTable1">
-						<tr class="wrt1tr">
-							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-						</tr>
-						<tr class="wrt1tr2">
-							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"></td>
-						</tr>
-						<tr class="wrt1tr">
-							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-						</tr>
-						<tr class="wrt1tr3">
-							<td class="wrt1r3d1">제목</td>
-							<td class="wrt1r3d2"></td>
-						</tr>
-						<tr class="wrt1tr">
-							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-						</tr>
-						<tr class="wrt1tr4">
-							<td class="wrt1r4d1">내용</td>
-							<td class="wrt1r4d2"></td>
-						</tr>
-						<tr class="wrt1tr">
-							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-						</tr>
-						<tr class="wrt1tr5">
-							<td class="wrt1r5d1">첨부파일</td>
-							<td class="wrt1r5d2"></td>
-						</tr>
-						<tr class="wrt1tr">
-							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-						</tr>
-					</table>
-				</div><!-- wrTableDiv -->
-				
-				<div class="submit">
-					<button type="submit" class="writeBt">글쓰기</button>
-				</div>
-			</form>
-		</div>	<!-- writeNoticeHead -->
+		
+			<div class="writeNoticeHead">
+				<span class="wrHeadSpan">공지사항</span>
+					<div class="wrTableDiv">
+						<table class="wrTable1">
+							<tr class="wrt1tr">
+								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+							</tr>
+							<tr class="wrt1tr2">
+								<td class="wrt1r2d1">작성자</td>
+								<td class="wrt1r2d2">${notice.member_id}</td>
+							</tr>
+							<tr class="wrt1tr">
+								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+							</tr>
+							<tr class="wrt1tr3">
+								<td class="wrt1r3d1">제목</td>
+								<td class="wrt1r3d2">${notice.title}</td>
+							</tr>
+							<tr class="wrt1tr">
+								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+							</tr>
+							<tr class="wrt1tr4">
+								<td class="wrt1r4d1">내용</td>
+								<td class="wrt1r4d2">${notice.content}</td>
+							</tr>
+							<tr class="wrt1tr">
+								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+							</tr>
+							<tr class="wrt1tr5">
+								<td class="wrt1r5d1">첨부파일</td>
+								<td class="wrt1r5d2">${notice.files}</td>
+							</tr>
+							<tr class="wrt1tr">
+								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+							</tr>
+						</table>
+					</div><!-- wrTableDiv -->
+					
+					<div class="submit">
+						<button type="submit" class="updateBt"><a href="" onclick="update()">수정</a></button>
+						<button type="submit" class="deleteBt"><a href="" onclick="delete()">삭제</a></button>
+					</div>
+			</div>	<!-- writeNoticeHead -->
+	
 	</div>	<!-- content -->
 </body>
 </html>

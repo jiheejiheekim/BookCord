@@ -11,5 +11,7 @@ public interface NoticeDAO {
 	public List<NoticeVO> getListWithPaging(Criteria cri);
 	
 	public void insertNotice(NoticeVO notice);
+	
+	public NoticeVO getNoticeDetail(int notice_num);
 
 }

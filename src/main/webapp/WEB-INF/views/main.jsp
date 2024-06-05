@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,23 @@
 <meta charset="UTF-8">
 <title>BookCord</title>
 <link rel="stylesheet" href="resources/css/main.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	function logout() {
+		var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/bc/logout';
+        
+        var csrfToken = document.createElement('input');
+        csrfToken.type = 'hidden';
+        csrfToken.name = '${_csrf.parameterName}';
+        csrfToken.value = '${_csrf.token}';
+        
+        form.appendChild(csrfToken);
+        document.body.appendChild(form);
+        form.submit();
+      }
+</script>
 </head>
 <body>
 	<!-- TOP -->
@@ -135,23 +152,6 @@
 	</div>	<!-- newBooks -->
 	
 	<br><br>
-	
-<script type="text/javascript">
-	function logout() {
-		var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '/bc/logout';
-        
-        var csrfToken = document.createElement('input');
-        csrfToken.type = 'hidden';
-        csrfToken.name = '${_csrf.parameterName}';
-        csrfToken.value = '${_csrf.token}';
-        
-        form.appendChild(csrfToken);
-        document.body.appendChild(form);
-        form.submit();
-      }
-</script>
 	
 </body>
 </html>

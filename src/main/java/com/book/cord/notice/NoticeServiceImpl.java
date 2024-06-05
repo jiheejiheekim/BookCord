@@ -39,5 +39,11 @@ public class NoticeServiceImpl implements NoticeService {
 			 log.error("Exception in registerMember", e);
 		 }
 	}
+	
+	@Override
+	public NoticeVO getNotice(int notice_num) {
+		System.out.println("Service getNotice 호출");
+		return dao.getNoticeDetail(notice_num);
+	}
 
 }

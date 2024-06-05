@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,20 @@
 <link rel="stylesheet" href="resources/css/writeNotice.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+    	var actionForm = $("#actionForm");
+    	$(".paginate_button a").on("click", function(e) {
+        	e.preventDefault();
+            
+            console.log('click');
+            
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+    	
+    	});
+    });
+</script>
 </head>
 <body>
 	<!-- TOP -->
@@ -20,7 +35,15 @@
 						class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3"><a href="memberEdit">마이페이지</a></td>
-				<td class="top4"><a href="login">로그아웃</a></td>
+				<td class="top4">
+					<sec:authorize access="isAnonymous()">
+						<a href="loginP">로그인</a>
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="javascript:logout()">로그아웃</a>
+					</sec:authorize>
+				</td>
 			</tr>
 		</table>
 	</div>

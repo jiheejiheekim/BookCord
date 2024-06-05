@@ -38,5 +38,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 		System.out.println("DAO write 호출" + notice);
 		sqlSession.insert(NAMESPACE+".insertNotice", notice);
 	}
+	
+	@Override
+	public NoticeVO getNoticeDetail(int notice_num) {
+		System.out.println("DAO write 호출" + notice_num);
+		return sqlSession.selectOne(NAMESPACE+".getNoticeDetail", notice_num);
+	}
 
 }

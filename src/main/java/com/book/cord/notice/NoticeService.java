@@ -12,4 +12,6 @@ public interface NoticeService {
     public List<NoticeVO> getList(Criteria cri);
     
     public void write(NoticeVO notice);
+    
+    public NoticeVO getNotice(int notice_num);
 }

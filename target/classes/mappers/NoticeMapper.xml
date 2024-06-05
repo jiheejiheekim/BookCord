@@ -32,4 +32,8 @@
 			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
 	</insert>
 	
+	<select id="getNoticeDetail" resultType="com.book.cord.notice.NoticeVO" parameterType="int">
+		SELECT * FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+	</select>
+	
 </mapper>
