@@ -13,5 +13,7 @@ public interface NoticeDAO {
 	public void insertNotice(NoticeVO notice);
 	
 	public NoticeVO getNoticeDetail(int notice_num);
+	
+	public int deleteNotice(String notice_num);
 
 }

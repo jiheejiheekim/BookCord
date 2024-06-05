@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class NoticeController {
@@ -60,12 +62,32 @@ public class NoticeController {
 	
 	@GetMapping("/detailNotice/{notice_num}")
 	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model) {
+		System.out.println("===============클릭 한 공지사항 글 번호 ===> " + notice_num + " !!!");
 		NoticeVO vo = service.getNotice(notice_num);
 		if(vo != null) {
 			model.addAttribute("notice", vo);
 		}
 		return "notice/detailNotice";
 	}
+	
+	@GetMapping("/deleteNotice/{notice_num}")
+    public String deleteNotice(@PathVariable("notice_num") String notice_num, Model model) {
+		System.out.println("===============삭제 할 공지사항 글 번호 ===> " + notice_num + " !!!");
+		/*try {*/
+			int result = service.delNotice(notice_num);
+			if(result > 0){
+				System.out.println("컨트롤러 ====> " + notice_num + "번 게시물 삭제 완료");
+				return "redirect:/notice";
+			} else {
+				System.out.println(" 실패 >>>>> 컨트롤러에서 deleteNotice");
+				return "redirect:/";
+				
+				  } //} catch(Exception e) {
+				 
+			//System.out.println(" Exception 발생 실패 >>>>> 컨트롤러에서 deleteNotice");
+			//return "redirect:/";
+		//}
+    }
 	
 
 }

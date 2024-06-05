@@ -45,5 +45,11 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("Service getNotice 호출");
 		return dao.getNoticeDetail(notice_num);
 	}
+	
+	@Override
+	public int delNotice(String notice_num) {
+		System.out.println("Service delNotice 호출");
+		return dao.deleteNotice(notice_num);
+	}
 
 }

@@ -12,6 +12,7 @@
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+
 	function logout() {
 		var form = document.createElement('form');
         form.method = 'POST';
@@ -27,14 +28,26 @@
         form.submit();
       }
 	
-	function update(){
-		e.preventDefault();
-		var 
+	function upNotice() {
+		//e.preventDefault();
+		
 	}
 	
-	function delte() {
-		e.preventDefault();	
+	function delNotice(notice_num) {
+	    console.log('==> ' + notice_num + '번 게시물 삭제 요청');
+
+	    if(confirm('게시물을 삭제하시겠습니까?')){
+	        // 게시물 삭제 요청
+	        location.href = '/bc/deleteNotice/' + notice_num;
+	        alert('삭제 완료');
+	    } else {
+	        alert('삭제를 취소했습니다.');
+	    }
+	    
 	}
+	
+
+
 </script>
 </head>
 <body>
@@ -66,59 +79,60 @@
 					<td class="navi1">공지사항</td>
 				</tr>
 				<tr>
-					<td class="navi2"><a class="naviA" href="notice">공지사항</a></td>
+					<td class="navi2"><a class="naviA" href="/bc/notice">공지사항</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="qna">문의하기</a></td>
+					<td class="navi3"><a class="naviA" href="/bc/qna">문의하기</a></td>
 				</tr>
 			</table>
 		</div>	<!-- navi -->
 		
 		
-			<div class="writeNoticeHead">
-				<span class="wrHeadSpan">공지사항</span>
-					<div class="wrTableDiv">
-						<table class="wrTable1">
-							<tr class="wrt1tr">
-								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-							</tr>
-							<tr class="wrt1tr2">
-								<td class="wrt1r2d1">작성자</td>
-								<td class="wrt1r2d2">${notice.member_id}</td>
-							</tr>
-							<tr class="wrt1tr">
-								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-							</tr>
-							<tr class="wrt1tr3">
-								<td class="wrt1r3d1">제목</td>
-								<td class="wrt1r3d2">${notice.title}</td>
-							</tr>
-							<tr class="wrt1tr">
-								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-							</tr>
-							<tr class="wrt1tr4">
-								<td class="wrt1r4d1">내용</td>
-								<td class="wrt1r4d2">${notice.content}</td>
-							</tr>
-							<tr class="wrt1tr">
-								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-							</tr>
-							<tr class="wrt1tr5">
-								<td class="wrt1r5d1">첨부파일</td>
-								<td class="wrt1r5d2">${notice.files}</td>
-							</tr>
-							<tr class="wrt1tr">
-								<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
-							</tr>
-						</table>
-					</div><!-- wrTableDiv -->
-					
-					<div class="submit">
-						<button type="submit" class="updateBt"><a href="" onclick="update()">수정</a></button>
-						<button type="submit" class="deleteBt"><a href="" onclick="delete()">삭제</a></button>
-					</div>
-			</div>	<!-- writeNoticeHead -->
-	
+		<div class="writeNoticeHead">
+			<span class="wrHeadSpan">공지사항</span>
+				<form name="form" method="post">
+				<div class="wrTableDiv">
+					<table class="wrTable1">
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+						<tr class="wrt1tr2">
+							<td class="wrt1r2d1">작성자</td>
+							<td class="wrt1r2d2">${notice.member_id}</td>
+						</tr>
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+						<tr class="wrt1tr3">
+							<td class="wrt1r3d1">제목</td>
+							<td class="wrt1r3d2">${notice.title}</td>
+						</tr>
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+						<tr class="wrt1tr4">
+							<td class="wrt1r4d1">내용</td>
+							<td class="wrt1r4d2">${notice.content}</td>
+						</tr>
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+						<tr class="wrt1tr5">
+							<td class="wrt1r5d1">첨부파일</td>
+							<td class="wrt1r5d2">${notice.files}</td>
+						</tr>
+						<tr class="wrt1tr">
+							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
+						</tr>
+					</table>
+				</div><!-- wrTableDiv -->
+				
+				<div class="submit">
+					<button type="submit" class="updateBt"><a href="" onclick="upNotice()">수정</a></button>
+					<button type="submit" class="deleteBt"><a href="" onclick="delNotice(${notice.notice_num})">삭제</a></button>
+				</div>
+			</form>
+		</div>	<!-- writeNoticeHead -->
 	</div>	<!-- content -->
 </body>
 </html>

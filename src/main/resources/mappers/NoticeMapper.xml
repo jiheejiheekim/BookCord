@@ -36,4 +36,13 @@
 		SELECT * FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
 	</select>
 	
+	<update id="updateNotice">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENT=#{content}, FILES=#{files} 
+		WHERE NOTICE_NUM=#{notice_num}
+	</update>
+	
+	<delete id="deleteNotice">
+		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+	</delete>
+	
 </mapper>

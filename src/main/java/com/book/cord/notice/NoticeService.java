@@ -14,4 +14,6 @@ public interface NoticeService {
     public void write(NoticeVO notice);
     
     public NoticeVO getNotice(int notice_num);
+    
+    public int delNotice(String notice_num);
 }

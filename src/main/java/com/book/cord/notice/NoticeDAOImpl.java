@@ -29,20 +29,26 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 	@Override
 	public List<NoticeVO> getListWithPaging(Criteria cri) { 
-		System.out.println("DAO getList 호출");
+		System.out.println("DAO getListWithPaging 호출");
 		return sqlSession.selectList(NAMESPACE+".getListWithPaging", cri);
 	}
 	
 	@Override
 	public void insertNotice(NoticeVO notice) {
-		System.out.println("DAO write 호출" + notice);
+		System.out.println("DAO write 호출 " + notice);
 		sqlSession.insert(NAMESPACE+".insertNotice", notice);
 	}
 	
 	@Override
 	public NoticeVO getNoticeDetail(int notice_num) {
-		System.out.println("DAO write 호출" + notice_num);
+		System.out.println("DAO getNoticeDetail 호출 " + notice_num);
 		return sqlSession.selectOne(NAMESPACE+".getNoticeDetail", notice_num);
+	}
+	
+	@Override
+	public int deleteNotice(String notice_num) {
+		System.out.println("DAO deleteNotice 호출 " + notice_num);
+		return sqlSession.update(NAMESPACE+".deleteNotice", notice_num);
 	}
 
 }
