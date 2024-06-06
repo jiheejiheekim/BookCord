@@ -15,5 +15,6 @@ public interface NoticeService {
     
     public NoticeVO getNotice(int notice_num);
     
-    public int delNotice(String notice_num);
+    //public int delNotice(String notice_num);
+    public int delNotice(int notice_num);
 }

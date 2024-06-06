@@ -47,7 +47,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	
 	@Override
-	public int delNotice(String notice_num) {
+	public int delNotice(int notice_num) {
 		System.out.println("Service delNotice 호출");
 		return dao.deleteNotice(notice_num);
 	}

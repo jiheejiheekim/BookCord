@@ -33,6 +33,7 @@
         <security:intercept-url pattern="/**" access="permitAll"/>
         <security:intercept-url pattern="/register" access="permitAll"/>
         <security:intercept-url pattern="/kakaoLogin" access="permitAll"/>
+        <security:intercept-url pattern="/deleteNotice/**" access="permitAll"/>
             
         <!-- Form 로그인 설정 -->
         <security:form-login 

@@ -46,7 +46,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 	
 	@Override
-	public int deleteNotice(String notice_num) {
+	public int deleteNotice(int notice_num) {
 		System.out.println("DAO deleteNotice 호출 " + notice_num);
 		return sqlSession.update(NAMESPACE+".deleteNotice", notice_num);
 	}

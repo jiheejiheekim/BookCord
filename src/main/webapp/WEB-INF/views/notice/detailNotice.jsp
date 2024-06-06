@@ -34,16 +34,19 @@
 	}
 	
 	function delNotice(notice_num) {
+		//e.preventDefault();
 	    console.log('==> ' + notice_num + '번 게시물 삭제 요청');
 
 	    if(confirm('게시물을 삭제하시겠습니까?')){
 	        // 게시물 삭제 요청
-	        location.href = '/bc/deleteNotice/' + notice_num;
+	        location.href = '/bc/deleteNotice?notice_num='+notice_num;
+	        
 	        alert('삭제 완료');
 	    } else {
 	        alert('삭제를 취소했습니다.');
 	    }
 	    
+	   
 	}
 	
 
@@ -129,7 +132,7 @@
 				
 				<div class="submit">
 					<button type="submit" class="updateBt"><a href="" onclick="upNotice()">수정</a></button>
-					<button type="submit" class="deleteBt"><a href="" onclick="delNotice(${notice.notice_num})">삭제</a></button>
+					<button type="submit" class="deleteBt"><a href="#" onclick="delNotice(${notice.notice_num})">삭제</a></button>
 				</div>
 			</form>
 		</div>	<!-- writeNoticeHead -->

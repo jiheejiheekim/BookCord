@@ -12,5 +12,5 @@ public interface NoticeMapper {
     
     public void insertNotice(NoticeVO notice);
     public NoticeVO getNoticeDetail(int notice_num);
-    public int deleteNotice(String notice_num);
+    public int deleteNotice(int notice_num);
 }
