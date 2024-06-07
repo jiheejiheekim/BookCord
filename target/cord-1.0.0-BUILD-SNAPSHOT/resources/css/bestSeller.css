@@ -1,0 +1,225 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url('https://cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf')
+		format('opentype');
+}
+* {
+	font-family: 'DNFForgedBlade';
+	font-weight: 1em;
+	/* text-align:center; */
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+.top {
+	font-size:1.2em;
+	width: 100%;
+	height: 2.7em;
+	background-color: #EDEDED;
+}
+
+.toptable {
+	width: 100%;
+}
+.toptable tr td {
+	/* border:1px solid black; */
+	
+}
+.logo {
+	height: 2.5em;
+}
+
+.top1 {
+	text-align: left;
+}
+.top2 {
+	text-align: right;
+	padding-right: 1em;
+}
+.top3 {
+	width: 5.5em;
+	text-align: center;
+}
+.top4 {
+	width: 4em;
+	text-align: right;
+	padding-right: 1em;
+}
+
+button:hover{
+	/* box-shadow: 2px 2px 3px 1px #898383; */
+}
+
+.content{
+	display:inline-flex;
+	width:100%;
+}
+
+.naviTable tr td {
+	/* border: 1px solid black; */
+}
+.navi {
+	width: 13%;
+	/* height: 300px; */	/* 네비바 높이 */
+	padding-top: 1em;
+	padding-left: 1.5em;
+	background-color: #2D9462;
+	color: white;
+}
+.naviTable {
+	width: 100%;
+}
+.navi1{
+	font-size: 1.3em;
+}
+.navi2 {
+	color: black;
+}
+
+.naviA{
+	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
+    display: inline-block;
+    font-size: 1.1em;
+    padding-top: 0.8em;
+	padding-left: 1.5em;
+}
+.naviA:hover {
+	transform: translate(2px, 2px);
+	color: black;
+}
+.naviBlack {
+	color: black !important;
+}
+
+
+.bs{
+	width:80%;
+	margin-left:2.6em;
+	margin-top:1em;
+}
+.bsSpan{
+	font-size:2em;
+}
+
+.bshead{
+	display:inline-flex;
+	width:100%;
+}
+.bsBtTable tr td{
+	/* border:1px solid black; */
+	padding-right:10px;
+}
+.month, .year{
+	background-color:#2D9462;
+	color:white;
+	margin-left:0.5em;
+	padding:0.7em;
+	border:none;
+	border-radius:15px;
+	box-shadow: 5px 5px #898383;
+	font-size:1em;
+}
+.week{
+	background-color:#2D9462;
+	color:white;
+	margin-left:0.5em;
+	padding:0.7em;
+	border:none;
+	border-radius:15px;
+	font-size:1em;
+	border:1px solid #808080;
+	transform: translateY(2px);
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+
+.bsTableDiv{
+	width:100%;
+	margin-top:1.7em;
+	margin-bottom:1em;
+}
+.bsTable{
+	width:70%;
+	padding:0.5em;
+	margin-bottom:2%;
+	margin-right:3%;
+	background-color:#EDEDED;
+}
+.bsTable tr td{
+	/* border:1px solid black; */
+	padding-right:5px;
+	padding-left:5px;
+}
+.bookImg{
+	background-color:#D9D9D9;
+	width:100%;
+	height:130px;
+}
+.bstd1{
+	width:15%;
+}
+.bs1td2{
+	font-size:14px;
+}
+.bs1td3{
+	width:3%
+}
+.bs2td2{
+	font-size:16px;
+}
+.bs3td2{
+	font-size:12px;
+}
+.bs4td2{
+	font-size:12px;
+}
+.bs5td2{
+	font-size:12px;
+}
+.bs6td2{
+	color:#2D9462;
+	font-size:12px;
+}
+.black{
+	color:black;
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+.star{
+	width:18px;
+	padding-top:2px;
+}
+.starh{
+	width:19px;
+	height:18px;
+	padding-top:2.5px;
+}
+
+.Page{
+	/* width:100%; */
+	margin-top:2em;
+	margin-left:41%;
+}
+.PageTable{
+	margin-bottom:1.5em;
+}
+.PageTable tr td{
+	text-align:center;
+	/* border:solid 1px black; */
+	width:0.5em;
+}
+.bold{
+	font-weight: bold;
+}
+.pageLogotd{
+	padding-top:5px;
+}
+.pageLogo1, .pageLogo2{
+	width:28px;
+}

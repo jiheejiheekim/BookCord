@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 300;
+	src: url('https://cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
+}
+
+* {
+	font-family: 'DNFForgedBlade';
+	font-weight: 1em;
+	text-align:center;
+}	
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.top{
+	font-size:1.2em;
+	width:100%;
+	height:2.7em;
+	background-color:#EDEDED;
+}
+.toptable{
+	width:100%;
+}
+.logo {
+	height: 2.5em;
+}
+.top1{
+	text-align:left;
+}
+.top2{
+	text-align:right;
+	padding-right:1em;
+}
+.top3{
+	width:3em;
+	text-align:right;
+	padding-right:1em;
+}
+
+button:hover{
+	/* box-shadow: 2px 2px 3px 1px #898383; */
+}
+
+/* .loginTable tr td, .signUp table tr td{
+	border:1px solid black;
+} */
+
+.login{
+	width:100%;
+	font-size:1.5em;
+	margin-top:5em;
+}
+.loginTable{
+	width:45%;
+	margin:auto;
+}
+.loginTable tr td:nth-child(1){
+	width:20%;
+}
+.loginTable tr td:nth-child(3){
+	width:15%;
+}
+.login table tr td{
+	text-align:left;
+	padding-bottom:0.6em;
+}
+.loginId, .loginPw{
+	text-align:left;
+	font-size:0.7em;
+	min-width:30%;
+	width:85%;
+	min-width:30%;
+	height:3em;
+	border:none;
+	border-radius:15px;
+	background-color:#EDEDED;
+}
+.loginButton {
+	border:none;
+	/* box-shadow: 2px 3px #898383; */
+	background-color:#2D9462;
+	border-radius:15px;
+	color:white;
+	margin:0.5em;
+	padding:0.7em;
+	font-size:0.8em;
+	min-width:35%;
+}
+
+.signUp{
+	width:100%;
+}
+.signUpTable{
+	width:45%;
+	margin:auto;
+}
+.signUpTable tr td:nth-child(1),
+.signUpTable tr td:nth-child(2){
+	text-align:left;
+	max-width:30%;
+}
+.snsKImg, .snsNImg{
+	width:180px;
+}
+.signUpButton{
+	width:90%;
+	border:none;
+	/* box-shadow: 2px 3px #898383; */
+	background-color:#2D9462;
+	border-radius:15px;
+	color:white;
+	margin:0.5em;
+	padding:0.7em;
+	font-size:1.1em;
+}

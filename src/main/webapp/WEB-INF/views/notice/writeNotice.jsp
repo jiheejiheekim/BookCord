@@ -21,7 +21,6 @@
             
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));
             actionForm.submit();
-    	
     	});
     });
 </script>
@@ -65,8 +64,8 @@
 		
 		<div class="writeNoticeHead">
 			<span class="wrHeadSpan">공지사항</span>
-			<form name="notice" action="/bc/insertNotice" method="post">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<form name="notice" action="/bc/insertNotice" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="wrTableDiv">
 					<table class="wrTable1">
 						<tr class="wrt1tr">
@@ -74,7 +73,7 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"><input type="text" class="writer" value="관리자" name="member_id"></td>
+							<td class="wrt1r2d2"><input type="text" class="writer" value="admin" name="member_id"></td>
 						</tr>
 						<tr class="wrt1tr3">
 							<td class="wrt1r3d1">제목</td>
@@ -86,7 +85,7 @@
 						</tr>
 						<tr class="wrt1tr5">
 							<td class="wrt1r5d1">첨부파일</td>
-							<td class="wrt1r5d2"><input type="file" class="file" name="files"></td>
+							<td class="wrt1r5d2"><input type="file" class="file" name="uploadFiles" multiple></td>
 						</tr>
 					</table>
 				</div><!-- wrTableDiv -->

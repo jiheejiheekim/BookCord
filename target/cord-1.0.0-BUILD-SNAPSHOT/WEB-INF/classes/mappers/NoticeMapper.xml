@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.cord.notice.NoticeMapper">
+
+    <!-- <select id="listNotice" resultType="com.book.cord.notice.NoticeVO">
+	    SELECT NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
+	    FROM NOTICE 
+	    ORDER BY NOTICE_NUM DESC
+	</select> -->
+
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.book.cord.notice.NoticeVO">
+		<![CDATA[
+			SELECT 
+				NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
+			FROM (
+				    select  
+				    rownum rn, NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
+				    from NOTICE
+				    where rownum <= #{pageNum} * #{amount} ORDER BY NOTICE_NUM DESC
+				)
+			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY NOTICE_NUM DESC
+		]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="com.book.cord.notice.NoticeVO">
+			INSERT INTO NOTICE (NOTICE_NUM, MEMBER_ID, TITLE, CONTENT, FILES) 
+			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
+	</insert>
+	
+	<select id="getNoticeDetail" resultType="com.book.cord.notice.NoticeVO" parameterType="int">
+		SELECT * FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+	</select>
+	
+	<update id="updateNotice">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENT=#{content}, FILES=#{files} 
+		WHERE NOTICE_NUM=#{notice_num}
+	</update>
+	
+	<delete id="deleteNotice">
+		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+	</delete>
+	
+</mapper>

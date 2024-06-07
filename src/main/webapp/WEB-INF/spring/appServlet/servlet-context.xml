@@ -23,6 +23,13 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- 파일 업로드를 위한 MultipartResolver 빈 등록=========================== -->
+	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
+	인식하질 못한다.  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize"  value="100000000" />
+		<beans:property name="maxInMemorySize"  value="100000000" />
+	</beans:bean>
 
-	
+
 </beans:beans>

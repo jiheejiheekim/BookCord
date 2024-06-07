@@ -2,6 +2,8 @@ package com.book.cord.notice;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface NoticeService {
 	
 	//public List<NoticeVO> list();
@@ -15,6 +17,5 @@ public interface NoticeService {
     
     public NoticeVO getNotice(int notice_num);
     
-    //public int delNotice(String notice_num);
     public int delNotice(int notice_num);
 }

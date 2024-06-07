@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 300;
+	src:
+		url('https://cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf')
+		format('opentype');
+}
+* {
+	font-family: 'DNFForgedBlade';
+	font-weight: 1em;
+	/* text-align:center; */
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+.top {
+	font-size: 1.2em;
+	width: 100%;
+	height: 2.7em;
+	background-color: #EDEDED;
+}
+.toptable {
+	width: 100%;
+}
+.toptable tr td {
+	/* border:1px solid black; */
+	
+}
+.logo {
+	height: 2.5em;
+}
+.top1 {
+	text-align: left;
+}
+.top2 {
+	text-align: right;
+	padding-right: 1em;
+}
+.top3 {
+	width: 5.5em;
+	text-align: center;
+}
+.top4 {
+	width: 4em;
+	text-align: right;
+	padding-right: 1em;
+}
+
+button:hover {
+	/* box-shadow: 2px 2px 3px 1px #898383; */
+}
+
+.content {
+	display: inline-flex;
+	width: 100%;
+}
+
+.naviTable tr td {
+	/* border: 1px solid black; */
+	
+}
+.navi {
+	width: 13%;
+	height: 300px;
+	padding-top: 1em;
+	padding-left: 1.5em;
+	background-color: #2D9462;
+	color: white;
+}
+.naviTable {
+	width: 100%;
+}
+.navi1 {
+	font-size: 1.5em;
+}
+.navi2 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+	color: black;
+}
+.navi3 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+}
+.navi4 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+}
+.naviA {
+	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용합니다 */
+	display: inline-block;
+	font-size: 1.3em;
+}
+.naviA:hover {
+	transform: translate(2px, 2px);
+}
+
+.writeNoticeHead {
+	width: 70%;
+	margin-left: 2.6em;
+	margin-top: 1em;
+}
+.wrHeadSpan {
+	font-size: 2em;
+}
+
+.wrTableDiv {
+	width: 100%;
+}
+.wrTable1 {
+	width: 80%;
+}
+.wrTable1 tr td{
+	/* border: 1px solid black; */
+}
+.wrt1tr2, .wrt1tr3, .wrt1tr4, .wrt1tr5 {
+	
+}
+.wrt1r2d1, .wrt1r3d1, .wrt1r4d1, .wrt1r5d1{
+	width:23%;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:10px;
+}
+.wrt1r2d2, .wrt1r3d2, .wrt1r4d2, .wrt1r5d2{
+	padding:10px;
+}
+.writer, .title, .noticeContent, .file{
+	font-size:19px;
+	background-color: #EDEDED;
+	border-radius: 15px;
+	border:none;
+	padding-left:10px;
+}
+.writer{
+	height:38px;
+	width:55%;
+}
+.title{
+	height:38px;
+	width:85%;
+}
+.noticeContent{
+	height:15em;
+	width:85%;
+	padding-top:12px;
+	font-size:18px;
+}
+.file{
+	height:38px;
+	width:85%;
+	padding-top:8px;
+	font-size:18px;
+}
+
+.submit{
+	/* border:1px solid black; */
+	display:inline-flex;
+	width:80%;
+	margin-top:15px;
+	margin-bottom:15px;
+	justify-content: flex-end
+}
+.updateBt, .deleteBt {
+	background-color: #2D9462;
+	color: white;
+	padding: 0.6em;
+	border: none;
+	border-radius: 15px;
+	font-size: 0.9em;
+	width: 13%;
+	margin-left:20px;
+}

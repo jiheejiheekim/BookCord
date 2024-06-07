@@ -2,6 +2,8 @@ package com.book.cord.notice;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface NoticeDAO {
 	
 	//public List<NoticeVO> list() throws Exception;

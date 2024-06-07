@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'DNFForgedBlade';
+	font-style: normal;
+	font-weight: 300;
+	src: url('https://cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
+}
+
+* {
+	font-family: 'DNFForgedBlade';
+	font-weight: 1em;
+	text-align:center;
+}	
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.top{
+	font-size:1.2em;
+	width:100%;
+	height:2.7em;
+	background-color:#EDEDED;
+}
+.toptable{
+	width:100%;
+}
+.logo {
+	height: 2.5em;
+}
+.top1{
+	text-align:left;
+}
+
+button:hover{
+	/* box-shadow: 2px 2px 3px 1px #898383; */
+}
+
+.signUp table tr td{
+	/* border:1px solid black; */
+}
+
+td{
+	text-align:left;
+}
+table tr td:nth-child(1){
+	width:25%;
+}
+table tr td:nth-child(3){
+	width:15%;
+}
+.signUp{
+	margin-top:5em;
+	width:100%;
+}
+.signUpTable{
+	background-color:#EDEDED;
+	margin:auto;
+	width:40%;
+	padding:1.3em;
+	font-size:1.1em;
+}
+.signUpTable tr td:not(.idCheckResult, .pwdCheckResult, .nameCheckResult){
+	padding-top:1em;
+}
+.id, .pwd1, .pwd2, .name{
+	width:90%;
+	text-align:left;
+	height:2.2em;
+	border:none;
+}
+.pwImg{
+	margin-top:4px;
+	width:20px;	
+}
+.pwImg2{
+	margin-top:4px;
+	margin-left:2.5px;
+	width:15px;	
+}
+.idCheck, .nameCheck{
+	border:none;
+	/* box-shadow: 2px 3px #898383; */
+	background-color:#2D9462;
+	border-radius:15px;
+	color:white;
+	padding:0.7em;
+	font-size:0.7em;
+	min-width:35%;
+}
+
+.finalSingUp{
+	margin-top:3em;
+}
+.signUpButton{
+	border:none;
+	/* box-shadow: 2px 3px #898383; */
+	background-color:#2D9462;
+	border-radius:15px;
+	color:white;
+	margin:0.5em;
+	padding:0.7em;
+	font-size:0.9em;
+	width:15%;
+}
+.text1{	/* 중복 체크 성공 */
+	color:#2D9462;
+	font-size:0.8em;
+}
+.text2{	/* 중복 체크 실패 */
+	color:red;
+	font-size:0.8em;
+}

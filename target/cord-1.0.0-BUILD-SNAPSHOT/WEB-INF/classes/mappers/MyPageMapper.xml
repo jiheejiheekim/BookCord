@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.cord.mypage.MyPageMapper">
+
+    <insert id="insertBookMark">
+        INSERT INTO bookmark (bookmark_num, member_id, title, author, isbn13, cover)
+        VALUES (bookmark_num_seq.nextval, #{member_id}, #{title}, #{author}, #{isbn13}, #{cover})
+    </insert>
+    
+    <select id="totalCount" resultType="int">
+		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id}
+	</select>
+
+	<select id="getListWithPaging" parameterType="map" resultType="com.book.cord.mypage.BookMarkVO">
+    <![CDATA[
+        SELECT 
+            BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
+        FROM (
+            SELECT 
+                rownum rn, BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
+            FROM 
+                BOOKMARK
+            WHERE 
+                member_id = #{member_id, jdbcType=VARCHAR}
+                AND rownum <= #{pageNum} * #{amount}
+            ORDER BY 
+                BOOKMARK_NUM DESC
+        )
+        WHERE 
+            rn > (#{pageNum} - 1) * #{amount}
+        ORDER BY 
+            BOOKMARK_NUM DESC
+    ]]>
+</select>
+
+    
+</mapper>

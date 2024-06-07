@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.book.cord.login.MemberMapper">
+
+    <insert id="insertMember" parameterType="com.book.cord.login.MemberVO">
+        INSERT INTO member (id, pwd, name, reg_date, provider, profile_img) 
+        VALUES (#{id}, #{pwd}, #{name}, SYSDATE, #{provider}, #{profile_img})
+    </insert>
+    
+    <resultMap type="com.book.cord.login.MemberVO" id="memberMap">
+        <id property="id" column="id" />
+        <result property="pwd" column="pwd" />
+        <result property="name" column="name" />
+        <result property="member_num" column="member_num" />
+        <result property="provider" column="provider" />
+        <result property="enabled" column="enabled" />
+        <result property="reg_date" column="reg_date" />
+        <collection property="roleList" resultMap="authMap" />
+    </resultMap>
+    
+    <resultMap type="com.book.cord.login.AuthVO" id="authMap">
+        <result property="id" column="id" />
+        <result property="auth" column="role" />
+    </resultMap>
+    
+    <select id="readMember" parameterType="string" resultMap="memberMap">
+        SELECT
+            m.id, pwd, name,
+            enabled, reg_date, update_date, role
+        FROM
+            member m LEFT OUTER JOIN member_role r 
+            ON m.id=r.member_id
+        WHERE m.id=#{id}
+    </select>
+    
+    <update id="updateDate" parameterType="string">
+    	UPDATE MEMBER SET UPDATE_DATE = SYSDATE WHERE ID=#{id}
+    </update>
+    
+    <select id="searchId" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM MEMBER WHERE id=#{id}
+    </select>
+    
+    <select id="searchName" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM MEMBER WHERE name=#{name}
+    </select>
+    
+</mapper>
