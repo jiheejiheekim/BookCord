@@ -17,8 +17,8 @@ public class NoticeVO {
 	private String member_id;	//작성자
 	private Date reg_date;		//작성일 => TIMESTAMP
 	private int hit;			//조회수
-	private String files;  //첨부파일명
-   // private MultipartFile files;   //첨부파일
+	private String files;  		//첨부파일명
+	
     
 	// 파일 배열을 콤마로 구분된 문자열로 설정
     public void setFilesFromMultipartFileArray(MultipartFile[] files) {

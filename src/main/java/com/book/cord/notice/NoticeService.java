@@ -20,5 +20,7 @@ public interface NoticeService {
     public int delNotice(int notice_num);
     
     public int upNotice(NoticeVO notice);
+    
+    public int upHit(int notice_num);
         
 }

@@ -57,5 +57,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 		System.out.println("DAO updateNotice 호출 " + notice);
 		return sqlSession.update(NAMESPACE+".updateNotice", notice);
 	}
+	
+	@Override
+	public int updateHit(int notice_num) {
+		System.out.println("DAO updateNotice 호출 " + notice_num);
+		return sqlSession.update(NAMESPACE+".updateHit", notice_num);
+	}
 
 }

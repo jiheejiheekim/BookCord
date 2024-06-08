@@ -138,6 +138,7 @@ public class NoticeController {
 	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model)  throws Exception {
 		System.out.println("===============클릭한 공지사항 글 번호 ===> " + notice_num + " !!!");
 		NoticeVO vo = service.getNotice(notice_num);
+		service.upHit(notice_num);
 		if (vo != null) {
 			model.addAttribute("notice", vo);
 		}

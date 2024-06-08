@@ -68,5 +68,11 @@ public class NoticeServiceImpl implements NoticeService {
 			return 0;
 		}
 	}
+	
+	@Override
+	public int upHit(int notice_num) {
+		System.out.println("Service delNotice 호출");
+		return dao.updateHit(notice_num);
+	}
 
 }
