@@ -64,8 +64,9 @@
 		
 		<div class="writeNoticeHead">
 			<span class="wrHeadSpan">공지사항</span>
-			<form name="notice" action="/bc/insertNotice" method="post">
+			<form name="notice" action="/bc/updateNoticeSubmit" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<input type="hidden" name="notice_num" value="${notice.notice_num}">
 				<div class="wrTableDiv">
 					<table class="wrTable1">
 						<tr class="wrt1tr">
@@ -86,8 +87,8 @@
 						<tr class="wrt1tr5">
 							<td class="wrt1r5d1">첨부파일</td>
 							<td class="wrt1r5d2">
-								${notice.files}
-                                <input type="file" class="file" name="files">
+								<c:forEach var="fileName" items="${notice.files.split(',')}">${fileName}<br><br></c:forEach>
+                                <input type="file" class="file" name="uploadFiles" multiple>
                             </td>
 						</tr>
 					</table>

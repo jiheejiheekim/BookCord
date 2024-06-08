@@ -30,16 +30,15 @@
 	<insert id="insertNotice">
 			INSERT INTO NOTICE (NOTICE_NUM, MEMBER_ID, TITLE, CONTENT, FILES) 
 			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
-<!-- 			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{filesFileName}) -->
 	</insert>
 	
 	<select id="getNoticeDetail" resultType="com.book.cord.notice.NoticeVO" parameterType="int">
 		SELECT * FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
 	</select>
 	
-	<update id="updateNotice">
+	<update id="updateNotice" parameterType="com.book.cord.notice.NoticeVO">
 		UPDATE NOTICE SET TITLE=#{title}, CONTENT=#{content}, FILES=#{files} 
-		WHERE NOTICE_NUM=#{notice_num}
+		WHERE NOTICE_NUM = #{notice_num}
 	</update>
 	
 	<delete id="deleteNotice">

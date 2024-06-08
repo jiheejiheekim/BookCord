@@ -135,7 +135,7 @@ public class NoticeController {
 
 	// 공지사항 확인
 	@GetMapping("/detailNotice/{notice_num}")
-	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model) {
+	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model)  throws Exception {
 		System.out.println("===============클릭한 공지사항 글 번호 ===> " + notice_num + " !!!");
 		NoticeVO vo = service.getNotice(notice_num);
 		if (vo != null) {
@@ -160,12 +160,56 @@ public class NoticeController {
 
 	// 공지사항 수정 get
 	@GetMapping("/updateNotice")
-	public String updateNotice(int notice_num, Model model) {
+	public String updateNotice(int notice_num, Model model) throws Exception {
+		System.out.println("===============수정 요청 공지사항 글 번호 ===> " + notice_num + " !!!");
 		NoticeVO vo = service.getNotice(notice_num);
 		if (vo != null) {
 			model.addAttribute("notice", vo);
 		}
 		return "notice/updateNotice";
+	}
+	
+	// 공지사항 수정 post
+	@PostMapping("/updateNoticeSubmit")
+	public String updateNoticeSubmit(NoticeVO notice, @RequestParam("uploadFiles") MultipartFile[] uploadFile, Model model) throws Exception {
+		System.out.println("===============수정 공지사항 글 번호 ===> " + notice.getNotice_num() + " !!!");
+		
+		String uploadDir = "C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files";
+        
+        //Make Folder
+  		File uploadPath = new File(uploadDir);
+  		System.out.println("upload path: "+uploadPath);
+  		
+  		if(uploadPath.exists() == false) {
+  			uploadPath.mkdirs();
+  		} 
+		
+        String fileNames = Arrays.stream(uploadFile)
+                .filter(file -> !file.isEmpty())
+                .map(file -> {
+                	String originalFileName = file.getOriginalFilename();
+                    String uuid = UUID.randomUUID().toString();
+                    String uploadFileName = uuid + "_" + originalFileName;
+                    File destinationFile = new File(uploadPath, uploadFileName);
+                    try {
+                        file.transferTo(destinationFile);
+                    } catch (IOException e) {
+                        log.error(e.getMessage());
+                    }
+                    return uploadFileName;
+                })
+                .collect(Collectors.joining(",  "));	//여러 개의 파일을 ,로 구분
+				
+				notice.setFiles(fileNames);
+				
+		int result = service.upNotice(notice);
+		if (result > 0) {
+			System.out.println("컨트롤러 =========> " + notice.getNotice_num() + "번 게시물 수정 완료");
+			return "redirect:/detailNotice/"+notice.getNotice_num();
+		} else {
+			System.out.println(" 실패 >>>>> 컨트롤러에서 updateNoticeSubmit");
+			return "redirect:/";
+		}
 	}
 
 }
