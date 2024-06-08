@@ -10,6 +10,7 @@
     <h1>도서 검색</h1>
     
     <form action="/bc/searchBooks" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <label for="query">검색어:</label>
         <input type="text" id="query" name="query">
         <button type="submit">검색</button>

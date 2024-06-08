@@ -1,5 +1,7 @@
 package com.book.cord;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import com.book.cord.BookVO.SearchBooks;
 @Controller
 public class TestMainController {
 
+	@Autowired
+	@Qualifier("bookServiceImpl")
     private final BookService bookService;
 
     public TestMainController(BookService bookService) {
@@ -63,15 +67,18 @@ public class TestMainController {
         return "search"; 
     }
     
+  
     @PostMapping("/searchBooks")
     public String searchBooks(@RequestParam("query") String query, Model model) {
         SearchBooks searchResult = bookService.getSearchBooks(query);
-        if (searchResult != null && searchResult.getItem() != null && !searchResult.getItem().isEmpty()) {
+        //if (searchResult != null && searchResult.getItem() != null && !searchResult.getItem().isEmpty()) {
+            if (searchResult != null && searchResult.getItem() != null && !searchResult.getItem().isEmpty()) {
             model.addAttribute("books", searchResult.getItem());
+            return "searchBooks"; // 뷰 이름 반환
         } else {
             model.addAttribute("books", null);
+            return "search"; // 뷰 이름 반환
         }
-        return "searchBooks";
     }
 
 

@@ -12,6 +12,21 @@
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+	function logout() {
+		var form = document.createElement('form');
+	    form.method = 'POST';
+	    form.action = '/bc/logout';
+	    
+	    var csrfToken = document.createElement('input');
+	    csrfToken.type = 'hidden';
+	    csrfToken.name = '${_csrf.parameterName}';
+	    csrfToken.value = '${_csrf.token}';
+	    
+	    form.appendChild(csrfToken);
+	    document.body.appendChild(form);
+	    form.submit();
+	}
+
     $(document).ready(function(){
     	var actionForm = $("#actionForm");
     	$(".paginate_button a").on("click", function(e) {

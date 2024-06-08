@@ -13,6 +13,7 @@ public interface BookService {
     BestSeller getMainBestSeller();	//메인 - 베스트셀러
     BestSeller getBestSeller(int year, int month);		//베스트셀러
     SearchBooks getSearchBooks(String query);	//상품검색
+    SearchBooks getSearchBooks2(String query, Integer pageNumber);
     DetailBooks getDetailBook(String isbn13);	//도서상세페이지
     
     GenresBestSeller getGenresBestSeller(Integer genreId, Integer pageNumber);	//bestSeller.jsp

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BookCord - NewBooks</title>
-<link rel="stylesheet" href="resources/css/newBooks.css">
+<link rel="stylesheet" href="resources/css/searchBook.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -56,116 +56,16 @@
 		<div class="navi">
 			<table class="naviTable">
 				<tr>
-					<td class="navi1">신간도서</td>
-				</tr>
-				<tr>
-					<td class="navi2"><a class="naviA" href="" data-genreId="0" onclick="genreNewBooks(0,'종합', 1)">종합</a></td>
-				</tr>
-				<tr>
-					<td class="navi3"><a class="naviA" href="" data-genreId="55890" onclick="genreNewBooks(55890,'건강/취미/레저', 1)">건강/취미/레저</a></td>
-				</tr>
-				<tr>
-					<td class="navi4"><a class="naviA" href="" data-genreId="170" onclick="genreNewBooks(170,'경제경영', 1)">경제경영</a></td>
-				</tr>
-				<tr>
-					<td class="navi5"><a class="naviA" href="" data-genreId="2105" onclick="genreNewBooks(2105,'고전', 1)">고전</a></td>
-				</tr>
-				<tr>
-					<td class="navi6"><a class="naviA" href="" data-genreId="987" onclick="genreNewBooks(987,'과학', 1)">과학</a></td>
-				</tr>
-				<tr>
-					<td class="navi7"><a class="naviA" href="" data-genreId="8257" onclick="genreNewBooks(8257,'대학교재/전문서적', 1)">대학교재/전문서적</a></td>
-				</tr>
-				<tr>
-					<td class="navi8"><a class="naviA" href="" data-genreId="2551" onclick="genreNewBooks(2551,'만화', 1)">만화</a></td>
-				</tr>
-				<tr>
-					<td class="navi9"><a class="naviA" href="" data-genreId="4395" onclick="genreNewBooks(4395,'달력/기타', 1)">달력/기타</a></td>
-				</tr>
-				<tr>
-					<td class="navi10"><a class="naviA" href="" data-genreId="798" onclick="genreNewBooks(798,'사회과학', 1)">사회과학</a></td>
-				</tr>
-				<tr>
-					<td class="navi11"><a class="naviA" href="" data-genreId="1" onclick="genreNewBooks(1,'소설/시/희곡', 1)">소설/시/희곡</a></td>
-				</tr>
-				<tr>
-					<td class="navi12"><a class="naviA" href="" data-genreId="1383" onclick="genreNewBooks(1383,'수험서/자격증', 1)">수험서/자격증</a></td>
-				</tr>
-				<tr>
-					<td class="navi13"><a class="naviA" href="" data-genreId="1108" onclick="genreNewBooks(1108,'어린이', 1)">어린이</a></td>
-				</tr>
-				<tr>
-					<td class="navi14"><a class="naviA" href="" data-genreId="55889" onclick="genreNewBooks(55889,'에세이', 1)">에세이</a></td>
-				</tr>
-				<tr>
-					<td class="navi15"><a class="naviA" href="" data-genreId="1196" onclick="genreNewBooks(1196,'여행', 1)">여행</a></td>
-				</tr>
-				<tr>
-					<td class="navi16"><a class="naviA" href="" data-genreId="74" onclick="genreNewBooks(74,'역사', 1)">역사</a></td>
-				</tr>
-				<tr>
-					<td class="navi17"><a class="naviA" href="" data-genreId="517" onclick="genreNewBooks(517,'예술/대중문화', 1)">예술/대중문화</a></td>
-				</tr>
-				<tr>
-					<td class="navi18"><a class="naviA" href="" data-genreId="1230" onclick="genreNewBooks(1230,'요리/살림', 1)">요리/살림</a></td>
-				</tr>
-				<tr>
-					<td class="navi19"><a class="naviA" href="" data-genreId="1322" onclick="genreNewBooks(1322,'외국어', 1)">외국어</a></td>
-				</tr>
-				<tr>
-					<td class="navi20"><a class="naviA" href="" data-genreId="13789" onclick="genreNewBooks(13789,'유아', 1)">유아</a></td>
-				</tr>
-				<tr>
-					<td class="navi21"><a class="naviA" href="" data-genreId="656" onclick="genreNewBooks(656,'인문학', 1)">인문학</a></td>
-				</tr>
-				<tr>
-					<td class="navi22"><a class="naviA" href="" data-genreId="336" onclick="genreNewBooks(336,'자기계발', 1)">자기계발</a></td>
-				</tr>
-				<tr>
-					<td class="navi23"><a class="naviA" href="" data-genreId="112011" onclick="genreNewBooks(112011,'장르소설', 1)">장르소설</a></td>
-				</tr>
-				<tr>
-					<td class="navi24"><a class="naviA" href="" data-genreId="2913" onclick="genreNewBooks(2913,'잡지', 1)">잡지</a></td>
-				</tr>
-				<tr>
-					<td class="navi25"><a class="naviA" href="" data-genreId="17195" onclick="genreNewBooks(17195,'전집/중고전집', 1)">전집/중고전집</a></td>
-				</tr>
-				<tr>
-					<td class="navi26"><a class="naviA" href="" data-genreId="1237" onclick="genreNewBooks(1237,'종교/역학', 1)">종교/역학</a></td>
-				</tr>
-				<tr>
-					<td class="navi27"><a class="naviA" href="" data-genreId="2030" onclick="genreNewBooks(2030,'좋은부모', 1)">좋은부모</a></td>
-				</tr>
-				<tr>
-					<td class="navi28"><a class="naviA" href="" data-genreId="1137" onclick="genreNewBooks(1137,'청소년', 1)">청소년</a></td>
-				</tr>
-				<tr>
-					<td class="navi29"><a class="naviA" href="" data-genreId="351" onclick="genreNewBooks(351,'컴퓨터/모바일', 1)">컴퓨터/모바일</a></td>
-				</tr>
-				<tr>
-					<td class="navi30"><a class="naviA" href="" data-genreId="50246" onclick="genreNewBooks(50246,'초등학교참고서', 1)">초등학교참고서</a></td>
-				</tr>
-				<tr>
-					<td class="navi31"><a class="naviA" href="" data-genreId="77541" onclick="genreNewBooks(77541,'중학교참고서', 1)">중학교참고서</a></td>
-				</tr>
-				<tr>
-					<td class="navi32"><a class="naviA" href="" data-genreId="76001" onclick="genreNewBooks(76001,'고등학교참고서', 1)">고등학교참고서</a></td>
+					<td class="navi1">검색 도서</td>
 				</tr>
 			</table>
 		</div>
 		<!-- navi -->
 		
 		<div class="nb">
-		
-			<div class="nbhead">
-				<table class="nbBtTable">
-					<tr>
-						<td class="nbSpan">종합<span></td>
-						<td><button class="day"><a href="">등록일순</a></button></td>
-						<td><button class="name"><a href="">상품명순</a></button></td>
-						<td><button class="starRank"><a href="">평점순</a></button></td>
-					</tr>
-				</table>
+<br>
+		 	<div class="sbhead">
+				<span id="sbheadspan1">" ${searchQuery}</span>　　"　<span id="sbheadspan2">　검색 결과입니다</span>
 			</div>
 
 			<div class="nbTableDiv">
@@ -282,6 +182,7 @@
 
 	var currentPage = 1;
 	var ranking;
+	var query = "${searchQuery}";
 	
 	function rank(currentPage) {
 	    for (i = 1; i <= 10; i++) {
@@ -295,10 +196,10 @@
 	$(document).ready(function() {
 	    $('.pageNum').first().css('font-weight', 'bold');
 	    rank(currentPage);
+	    console.log("검색어 >> "+query);
 	});
 	
-    var selectedGenreId;
-	var selectedGenreName;
+    
 	var pageNumber = 1;
 	
 	console.log('페이지 로드 - ' + currentPage + ' 요청 중');
@@ -311,31 +212,21 @@
 	    
 	    $(this).css('color', 'black');
 	    
-	    selectedGenreId = $(this).attr('data-genreId');
-	    selectedGenreName = $(this).text();
-	    console.log("- 선택된 장르 ID:", selectedGenreId);
-	    console.log("- 선택된 장르 이름:", selectedGenreName);
+	    
 			    
 	    currentPage=1;
 	    updatePageNum();
 	    bold();
 	});
+	
+    function getSearchBook(query, pageNumber) {
+    	
 
-    function genreNewBooks(genreId, name, pageNumber) {
-    	
-    	if(!genreId | !name){
-    		genreId = 0;
-    		name = '종합';
-    	}
-    	
-    	console.log('1. 장르별 책 목록 요청 중');
-    	console.log('2. 카테고리아이디 : '+genreId);
-    	console.log('3. 카테고리명 : '+name);
     	
         $.ajax({
-            url: '/bc/getNewBooks',
+            url: '/bc/getSearchBook',
             method: 'GET', 
-            data: { genreId: genreId, pageNumber: pageNumber },
+            data: { query: query, pageNumber: pageNumber },
             success: function(response) {
             	var $response = $(response);
                 var newBs = $response.find('.nb').html();
@@ -353,12 +244,8 @@
 	function page(pageNumber) {
 		event.preventDefault();
 	    console.log('페이지 ' + pageNumber + ' 요청 중');
-	    
-	    if (!selectedGenreId || !selectedGenreName) {
-	        console.log('장르 정보가 없습니다 ==> 종합 '+ pageNumber +'페이지 요청 중');
-	        selectedGenreId=0;
-	    }
-	    genreNewBooks(selectedGenreId, selectedGenreName, pageNumber);
+	    	   
+	    getSearchBook(query, pageNumber);
 	    currentPage = pageNumber;
 	    updatePageNum();
 	    bold();
@@ -422,8 +309,6 @@
 	    }
 	}
 
-	
-	
 
  
 </script>

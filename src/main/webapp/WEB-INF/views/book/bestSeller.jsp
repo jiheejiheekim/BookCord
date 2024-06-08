@@ -1,14 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>BookCord - BestSeller</title>
 <link rel="stylesheet" href="resources/css/bestSeller.css">
+<!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	function logout() {
+		var form = document.createElement('form');
+	    form.method = 'POST';
+	    form.action = '/bc/logout';
+	    
+	    var csrfToken = document.createElement('input');
+	    csrfToken.type = 'hidden';
+	    csrfToken.name = '${_csrf.parameterName}';
+	    csrfToken.value = '${_csrf.token}';
+	    
+	    form.appendChild(csrfToken);
+	    document.body.appendChild(form);
+	    form.submit();
+	}
+</script>
 </head>
 <body>
 	<!-- TOP -->
@@ -19,7 +37,15 @@
 					<a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3"><a href="memberEdit">마이페이지</a></td>
-				<td class="top4"><a href="login">로그아웃</a></td>
+				<td class="top4">
+					<sec:authorize access="isAnonymous()">
+						<a href="loginP">로그인</a>
+					</sec:authorize>
+					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="javascript:logout()">로그아웃</a>
+					</sec:authorize>
+				</td>
 			</tr>
 		</table>
 	</div>
