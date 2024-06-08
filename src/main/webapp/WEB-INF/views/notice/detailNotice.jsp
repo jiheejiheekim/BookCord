@@ -117,7 +117,11 @@
 						</tr>
 						<tr class="wrt1tr5">
 							<td class="wrt1r5d1">첨부파일</td>
-							<td class="wrt1r5d2">${notice.files}</td>
+							<td class="wrt1r5d2">
+								<c:forEach var="fileName" items="${notice.files.split(',')}">
+					           		<a href="/bc/download?fileName=${fileName.trim()}">${fileName}</a><br>
+					      	 	</c:forEach>
+					      	 </td>
 						</tr>
 						<tr class="wrt1tr">
 							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>

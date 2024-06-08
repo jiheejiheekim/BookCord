@@ -71,7 +71,7 @@ public class NoticeController {
         String uploadDir = "C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files";
         
         //Make Folder
-  		File uploadPath = new File(uploadDir, getFolder());
+  		File uploadPath = new File(uploadDir);
   		System.out.println("upload path: "+uploadPath);
   		
   		if(uploadPath.exists() == false) {
@@ -101,60 +101,19 @@ public class NoticeController {
         log.info("컨트롤러에서 서비스.insertNotice 호출!!!");
         return "redirect:/notice";
     }
-	
 
-	
+	//파일을 날짜 별로 폴더에 저장할 때 사용 ==> 미사용 메서드
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
 		return str.replace("-", File.separator);
 	}
-	/////////////////////////////////////////////////////////
 	
-	// 공지사항 작성 get
-	@GetMapping("/uploadForm")
-	public String writeNoticea() {
-		return "notice/uploadForm";
-	}
-	
-	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
-		String uploadFolder = "C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files";
-		
-	    //Make Folder
-		File uploadPath = new File(uploadFolder, getFolder());
-		System.out.println("upload path: "+uploadPath);
-		
-		if(uploadPath.exists() == false) {
-			uploadPath.mkdirs();
-		} 
-		
-		for (MultipartFile multipartFile : uploadFile) {
-			System.out.println("-----------------------------------");
-			System.out.println("uploadFile Name : "+multipartFile.getOriginalFilename());
-			System.out.println("uploadFile Size : "+multipartFile.getSize());
-			
-			String uploadFileName = multipartFile.getOriginalFilename();
-			System.out.println("uploadFileName >> file name : "+uploadFileName);
-			
-			UUID uuid = UUID.randomUUID(); 
-			uploadFileName = uuid.toString()+ "_" +uploadFileName;
-			
-			//File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			File saveFile = new File(uploadPath, uploadFileName);
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			}catch (Exception e) {
-				log.error(e.getMessage());
-			} 
-		}
-	}
-	
+	//공지사항 첨부 파일 다운로드
 	@GetMapping(value="/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(String fileName) {
+	public ResponseEntity<Resource> downloadFile(@RequestParam("fileName") String fileName) {
 		System.out.println("download file : "+fileName);
 		
 		//FileSystemResource resource = new FileSystemResource("C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files\\"+fileName);
@@ -173,9 +132,6 @@ public class NoticeController {
 		}
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
-	
-	
-	/////////////////////////////////////////////////////////
 
 	// 공지사항 확인
 	@GetMapping("/detailNotice/{notice_num}")
