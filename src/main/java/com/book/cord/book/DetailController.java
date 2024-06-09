@@ -54,5 +54,7 @@ public class DetailController {
         }
         return "book/detail";
     }
+	
+	
 
 }

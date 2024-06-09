@@ -3,16 +3,49 @@
 
 <mapper namespace="com.book.cord.mypage.MyPageMapper">
 
+<!-- 리뷰 -->
+	<insert id="insertReview">
+	
+	</insert>
+    
+    <select id="reviewTotalCount" resultType="int">
+		SELECT COUNT(*) FROM REVIEW WHERE MEMBER_ID=#{member_id}
+	</select>
+
+	<select id="getReviewListPaging" parameterType="map" resultType="com.book.cord.mypage.ReviewVO">
+    <![CDATA[
+        SELECT 
+            REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
+        FROM (
+            SELECT 
+                rownum rn, REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
+            FROM 
+                REVIEW
+            WHERE 
+                member_id = #{member_id, jdbcType=VARCHAR}
+                AND rownum <= #{pageNum} * #{amount}
+            ORDER BY 
+                REVIEW_NUM DESC
+        )
+        WHERE 
+            rn > (#{pageNum} - 1) * #{amount}
+        ORDER BY 
+            REVIEW_NUM DESC
+    ]]>
+	</select>
+
+
+<!-- 북마크 -->
     <insert id="insertBookMark">
         INSERT INTO bookmark (bookmark_num, member_id, title, author, isbn13, cover)
         VALUES (bookmark_num_seq.nextval, #{member_id}, #{title}, #{author}, #{isbn13}, #{cover})
     </insert>
     
-    <select id="totalCount" resultType="int">
+    <select id="bookMarkTotalCount" resultType="int">
 		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id}
 	</select>
 
-	<select id="getListWithPaging" parameterType="map" resultType="com.book.cord.mypage.BookMarkVO">
+	<select id="getBookMarkListPaging" parameterType="map" resultType="com.book.cord.mypage.BookMarkVO">
     <![CDATA[
         SELECT 
             BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
@@ -32,7 +65,7 @@
         ORDER BY 
             BOOKMARK_NUM DESC
     ]]>
-</select>
+	</select>
 
     
 </mapper>

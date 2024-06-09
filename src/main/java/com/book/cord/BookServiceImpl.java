@@ -25,11 +25,7 @@ public class BookServiceImpl implements BookService {
     private static final String API_KEY = "ttbfldpf20031555001";
 
     private final RestTemplate restTemplate;
-    
-	/*
-	 * private int genreId;
-	 */
-    
+      
     public BookServiceImpl(RestTemplate restTemplate) {
     	this.restTemplate = restTemplate;
     }
@@ -57,7 +53,6 @@ public class BookServiceImpl implements BookService {
         
     }
     
-    
     @Override	// 상품 검색 제목+저자(기본값)
     public SearchBooks getSearchBooks(String query) {
     	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
@@ -70,11 +65,7 @@ public class BookServiceImpl implements BookService {
     	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10" 
     			+ "&start=" + pageNumber + "&SearchTarget=Book&output=js&Version=20131101";
         return restTemplate.getForObject(url, SearchBooks.class);
-        /*Integer totalBooks = searchBooks.getTotalResults();
-        searchBooks.setTotalResults(totalBooks);
-        return searchBooks;*/
     }
-    
     
     @Override	// 도서상세페이지
     public DetailBooks getDetailBook(String isbn13) {

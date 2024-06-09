@@ -10,6 +10,10 @@ import com.book.cord.notice.Criteria;
 public interface MyPageMapper {
 	
 	void insertBookMark(BookMarkVO vo);
-	public List<BookMarkVO> getListWithPaging(Criteria cri, String member_id);
-	public int totalCount();
+	public int bookMarkTotalCount();
+	public List<BookMarkVO> getBookMarkListPaging(Criteria cri, String member_id);
+	
+	public void insertReview(BookMarkVO vo);
+	public int reviewTotalCount(String member_id);
+	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id);
 }

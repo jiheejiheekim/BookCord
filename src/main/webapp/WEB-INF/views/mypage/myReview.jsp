@@ -12,6 +12,16 @@
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+	$(document).ready(function(){
+		var member_id = "<c:out value='${sessionScope.member.username}'/>";
+		
+		if(member_id==null){
+			alert('로그인 하세요 \nmember_id : '+member_id);
+		}else{
+			console.log(member_id+' 회원님의 북마크')
+		}
+	});
+
 	function logout() {
 		var form = document.createElement('form');
 	    form.method = 'POST';
@@ -80,17 +90,20 @@
 
 		<div class="myReview">
 			<span class="myReviewSpan">나의 리뷰</span>
-
+			<c:out value="${sessionScope.member_id}" />
 			<div class="reviewTableDiv">
+			<c:forEach items="${myReviewList}" var="myReviewList">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<table class="reviewTable">
-					<!-- 반복문 돌릴 예정 -->
 					<tr class="myReview1">
-						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="myReview1td2">책제목</td>
+						<td class="myReviewtd1" rowspan="6">
+							<a href="/bc/detail/${myReviewList.isbn13}"><img class="bookImg" src="${myReviewList.cover}"></a>
+						</td>
+						<td class="myReview1td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.title}</a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
-						<td class="myReview2td2">작가</td>
+						<td class="myReview2td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.author}</a></td>
 					</tr>
 					<tr class="myReview3">
 						<!-- <td></td> -->
@@ -98,73 +111,79 @@
 					</tr>
 					<tr class="myReview4">
 						<!-- <td></td> -->
-						<td class="myReview4td2">2024-01-20</td>
+						<fmt:formatDate value="${myReviewList.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
+						<td class="myReview4td2">${formattedDate}</td>
 					</tr>
 					<tr class="myReview5">
 						<!-- <td></td> -->
-						<td class="myReview5td2">★★★★</td>
+						<td class="myReview5td2">
+							<c:forEach var="starIndex" begin="1" end="${myReviewList.stars}">
+								<a href="/bc/detail/${myReviewList.isbn13}"><img class="star" src="resources/images/star.png"></a>
+							</c:forEach>
+						</td>
 					</tr>
 					<tr class="myReview6">
 						<!-- <td></td> -->
+						<td class="myReview6td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.content}</a></td>
+					</tr>
+				</table>
+			</c:forEach>
+
+				<!-- <table class="reviewTable">
+					반복문 돌릴 예정
+					<tr class="myReview1">
+						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
+						<td class="myReview1td2">책제목</td>
+					</tr>
+					<tr class="myReview2">
+						<td></td>
+						<td class="myReview2td2">작가</td>
+					</tr>
+					<tr class="myReview3">
+						<td></td>
+						<td class="myReview3td2">　</td>
+					</tr>
+					<tr class="myReview4">
+						<td></td>
+						<td class="myReview4td2">2024-01-20</td>
+					</tr>
+					<tr class="myReview5">
+						<td></td>
+						<td class="myReview5td2">★★★★</td>
+					</tr>
+					<tr class="myReview6">
+						<td></td>
 						<td class="myReview6td2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
 					</tr>
 				</table>
 
 				<table class="reviewTable">
-					<!-- 반복문 돌릴 예정 -->
+					반복문 돌릴 예정
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
 						<td class="myReview1td2">책제목</td>
 					</tr>
 					<tr class="myReview2">
-						<!-- <td></td> -->
+						<td></td>
 						<td class="myReview2td2">작가</td>
 					</tr>
 					<tr class="myReview3">
-						<!-- <td></td> -->
+						<td></td>
 						<td class="myReview3td2">　</td>
 					</tr>
 					<tr class="myReview4">
-						<!-- <td></td> -->
+						<td></td>
 						<td class="myReview4td2">2024-01-20</td>
 					</tr>
 					<tr class="myReview5">
-						<!-- <td></td> -->
+						<td></td>
 						<td class="myReview5td2">★★★★</td>
 					</tr>
 					<tr class="myReview6">
-						<!-- <td></td> -->
+						<td></td>
 						<td class="myReview6td2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
 					</tr>
-				</table>
-
-				<table class="reviewTable">
-					<!-- 반복문 돌릴 예정 -->
-					<tr class="myReview1">
-						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="myReview1td2">책제목</td>
-					</tr>
-					<tr class="myReview2">
-						<!-- <td></td> -->
-						<td class="myReview2td2">작가</td>
-					</tr>
-					<tr class="myReview3">
-						<!-- <td></td> -->
-						<td class="myReview3td2">　</td>
-					</tr>
-					<tr class="myReview4">
-						<!-- <td></td> -->
-						<td class="myReview4td2">2024-01-20</td>
-					</tr>
-					<tr class="myReview5">
-						<!-- <td></td> -->
-						<td class="myReview5td2">★★★★</td>
-					</tr>
-					<tr class="myReview6">
-						<!-- <td></td> -->
-						<td class="myReview6td2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-					</tr>
-				</table>
+				</table> -->
 			</div>
 			<!-- reviewTableDiv -->
 
@@ -174,21 +193,35 @@
 	</div>
 	<!-- content -->
 
+	
 	<div class="reviewPage">
 		<table class="reviewPageTable">
 			<tr>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageLeft.png"></a></td>
-				<td><a class="bold">1</a></td>
-				<td><a href="">2</a></td>
-				<td><a href="">3</a></td>
-				<td><a href="">4</a></td>
-				<td><a href="">5</a></td>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageRight.png"></a></td>
+				<c:if test="${pageMaker.prev}">
+					<td class="pageLogotd, paginate_button previous">
+						<a href="${pageMaker.startPage-1}"><img class="pageLogo1" src="resources/images/pageLeft.png"></a>
+					</td>
+				</c:if>
+	
+				 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+				 	<td class="paginate_button ${pageMaker.cri.pageNum == num ? 'bold' : ''}">
+				 		<a href="${num}">${num}</a>
+				 	</td>
+				 </c:forEach>
+				 
+				<c:if test="${pageMaker.next}">
+					<td class="pageLogotd, paginate_button next">
+						<a href="${pageMaker.endPage+1}"><img class="pageLogo2" src="resources/images/pageRight.png"></a>
+					</td>
+				</c:if>
 			</tr>
 		</table>
 	</div>
+	
+	<form id="actionForm" action="/bc/myBookMark" method="get">
+		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+	</form>
 
 </body>
 </html>

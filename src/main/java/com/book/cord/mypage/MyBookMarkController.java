@@ -25,7 +25,7 @@ public class MyBookMarkController {
 	
 	@Autowired
 	@Qualifier("myPageServiceImpl")
-	private MyPageService myPageService;
+	private MyPageService service;
 	
 	@Autowired
     HttpServletRequest request;
@@ -42,10 +42,10 @@ public class MyBookMarkController {
             throw new IllegalArgumentException("에러 >> member_id가 null");
         }
 		
-		List<BookMarkVO> list = myPageService.getList(cri, member_id);
+		List<BookMarkVO> list = service.getBookMarkList(cri, member_id);
 		model.addAttribute("myBookMarkList", list);
         
-		int totalCount = myPageService.count(member_id);
+		int totalCount = service.bookMarkTotal(member_id);
 		model.addAttribute("totalCount", totalCount);
 		
 		PageDTO pageMaker = new PageDTO(cri, totalCount);
@@ -70,7 +70,7 @@ public class MyBookMarkController {
         vo.setAuthor(author);
         vo.setIsbn13(isbn13);
         vo.setCover(cover);
-        myPageService.addBookMark(vo);
+        service.addBookMark(vo);
 
         Map<String, String> response = new HashMap<>();
         response.put("status", "success");

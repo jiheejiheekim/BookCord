@@ -17,27 +17,50 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	@Autowired
 	@Qualifier("myPageDAOImpl")
-	MyPageDAO myPageDAO;
+	MyPageDAO dao;
 	
 	@Autowired
     HttpServletRequest request;
 			
 	@Override
 	public void addBookMark(BookMarkVO vo) {
-		myPageDAO.insertBookMark(vo);
+		dao.insertBookMark(vo);
 	}
 	
 	@Override
-	public int count(String member_id) {
-		System.out.println("Service count 호출");
-		return myPageDAO.totalCount(member_id);
+	public int bookMarkTotal(String member_id) {
+		System.out.println("Service bookMarkTotal 호출");
+		return dao.bookMarkTotalCount(member_id);
 	}
 	
 	@Override
-	public List<BookMarkVO> getList(Criteria cri, String member_id){
-		System.out.println("Service getList 호출");
+	public List<BookMarkVO> getBookMarkList(Criteria cri, String member_id){
+		System.out.println("Service getBookMarkList 호출");
 		
-        return myPageDAO.getListWithPaging(cri, member_id);
+        return dao.getBookMarkListPaging(cri, member_id);
+    }
+	
+	//////////////////////////////////
+	
+	
+	@Override
+	public void addReview(BookMarkVO vo) {
+		dao.insertReview(vo);
+	}
+
+
+	@Override
+	public int reviewTotal(String member_id) {
+		System.out.println("Service reviewTotal 호출");
+		return dao.reviewTotalCount(member_id);
+	}
+	
+	
+	@Override
+	public List<BookMarkVO> getReviewList(Criteria cri, String member_id){
+		System.out.println("Service getReviewList 호출");
+		
+        return dao.getReviewListPaging(cri, member_id);
     }
 	
 }

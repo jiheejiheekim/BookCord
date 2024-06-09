@@ -7,6 +7,10 @@ import com.book.cord.notice.Criteria;
 public interface MyPageService {
 		
 	public void addBookMark(BookMarkVO vo);
-	public int count(String member_id);
-	public List<BookMarkVO> getList(Criteria cri, String member_id);
+	public int bookMarkTotal(String member_id);
+	public List<BookMarkVO> getBookMarkList(Criteria cri, String member_id);
+	
+	public void addReview(BookMarkVO vo);
+	public int reviewTotal(String member_id);
+	public List<BookMarkVO> getReviewList(Criteria cri, String member_id);
 }

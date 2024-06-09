@@ -23,24 +23,52 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	@Override
 	public void insertBookMark(BookMarkVO vo) {
+		System.out.println("DAO insertBookMark 호출");
 		sqlSession.insert(NAMESPACE + ".insertBookMark", vo);
 	}
 	
 	@Override
-	public int totalCount(String member_id) {
-		System.out.println("DAO count 호출");
-		return sqlSession.selectOne(NAMESPACE+".totalCount", member_id);
+	public int bookMarkTotalCount(String member_id) {
+		System.out.println("DAO bookMarkTotalCount 호출");
+		return sqlSession.selectOne(NAMESPACE+".bookMarkTotalCount", member_id);
 	}
 
 	@Override
-	public List<BookMarkVO> getListWithPaging(Criteria cri, String member_id) { 
+	public List<BookMarkVO> getBookMarkListPaging(Criteria cri, String member_id) { 
 		System.out.println("DAO getListWithPaging 호출");
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("pageNum", cri.getPageNum());
 	    params.put("amount", cri.getAmount());
 	    params.put("member_id", member_id);
 
-	    return sqlSession.selectList(NAMESPACE + ".getListWithPaging", params);
+	    return sqlSession.selectList(NAMESPACE + ".getBookMarkListPaging", params);
 	}
+	
+	//////////////////////////////////////////
+	
+	@Override
+	public void insertReview(BookMarkVO vo) {
+		System.out.println("DAO insertReview 호출");
+		sqlSession.insert(NAMESPACE + ".insertReview", vo);
+	}
+	
+	@Override
+	public int reviewTotalCount(String member_id) {
+		System.out.println("DAO reviewTotalCount 호출");
+		return sqlSession.selectOne(NAMESPACE+".reviewTotalCount", member_id);
+	}
+	
+	@Override
+	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id) { 
+		System.out.println("DAO getReviewListPaging 호출");
+		Map<String, Object> params = new HashMap<>();
+		params.put("pageNum", cri.getPageNum());
+		params.put("amount", cri.getAmount());
+		params.put("member_id", member_id);
+		
+		return sqlSession.selectList(NAMESPACE + ".getReviewListPaging", params);
+	}
+	
+	
 	
 }
