@@ -24,6 +24,10 @@
         document.body.appendChild(form);
         form.submit();
       }
+	
+	function loginGo(){
+		alert('로그인 하세요');
+	}
 </script>
 </head>
 <body>
@@ -35,9 +39,16 @@
 				<td class="top2"><a href="notice">공지사항</a></td>
 				<td class="top3">
 					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
+						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
-					
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="memberEdit">마이페이지</a>
+					</sec:authorize>
+				</td>
+				<td class="top4">
+					<sec:authorize access="isAnonymous()">
+						<a href="/bc/loginP">로그인</a>
+					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>

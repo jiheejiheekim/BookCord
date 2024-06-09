@@ -29,17 +29,21 @@ a{
 .logo {
 	height: 2.5em;
 }
-.top1{
-	text-align:left;
+.top1 {
+	text-align: left;
 }
-.top2{
-	text-align:right;
-	padding-right:1em;
+.top2 {
+	text-align: right;
+	padding-right: 1em;
 }
-.top3{
-	width:4em;
-	text-align:right;
-	padding-right:1em;
+.top3 {
+	width: 5.5em;
+	text-align: center;
+}
+.top4 {
+	width: 4em;
+	text-align: right;
+	padding-right: 1em;
 }
 .toptable tr td{
 	/* border:1px solid black; */

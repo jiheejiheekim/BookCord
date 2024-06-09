@@ -75,7 +75,14 @@ function logout() {
 				<td class="top1" colspan="5"><a href="/bc/main"><img
 						class="logo" src="../resources/images/logo.png"></a></td>
 				<td class="top2"><a href="/bc/notice">공지사항</a></td>
-				<td class="top3"><a href="/bc/memberEdit">마이페이지</a></td>
+				<td class="top3">
+					<sec:authorize access="isAnonymous()">
+						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a href="memberEdit">마이페이지</a>
+					</sec:authorize>
+				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
 						<a href="/bc/loginP">로그인</a>
