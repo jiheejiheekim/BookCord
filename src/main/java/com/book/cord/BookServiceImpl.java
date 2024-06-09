@@ -69,7 +69,10 @@ public class BookServiceImpl implements BookService {
     public SearchBooks getSearchBooks2(String query, Integer pageNumber) {
     	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10" 
     			+ "&start=" + pageNumber + "&SearchTarget=Book&output=js&Version=20131101";
-    	return restTemplate.getForObject(url, SearchBooks.class);
+        return restTemplate.getForObject(url, SearchBooks.class);
+        /*Integer totalBooks = searchBooks.getTotalResults();
+        searchBooks.setTotalResults(totalBooks);
+        return searchBooks;*/
     }
     
     

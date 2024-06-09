@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>     	
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 	
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +68,10 @@
 		 	<div class="sbhead">
 				<span id="sbheadspan1">" ${searchQuery}</span>　　"　<span id="sbheadspan2">　검색 결과입니다</span>
 			</div>
+<br><br>			
+			<div class="totalBooks">
+		        <span>　총 ${totalResult}개의 도서가 검색되었습니다.</span>
+		    </div>
 
 			<div class="nbTableDiv">
 				<table class="nbTable">
@@ -162,7 +167,7 @@
 		<table class="PageTable">
 			<tr>
 				<td class="pageLogotd">
-	            	<a href="" onclick="prevPage()"><img class="pageLogo1" src="resources/images/pageLeft.png"></a>
+	            	<a href="" onclick="prevPage(event)"><img class="pageLogo1" src="resources/images/pageLeft.png"></a>
 				</td>
 				
 				<c:forEach begin="1" end="5" var="i">
@@ -171,7 +176,7 @@
 				
             
 				<td class="pageLogotd">
-	            	<a href="" onclick="nextPage()"><img class="pageLogo2" src="resources/images/pageRight.png"></a>
+	            	<a href="" onclick="nextPage(event)"><img class="pageLogo2" src="resources/images/pageRight.png"></a>
 				</td>
 			</tr>
 		</table>
@@ -182,7 +187,8 @@
 
 	var currentPage = 1;
 	var ranking;
-	var query = "${searchQuery}";
+	var query = "";
+	var totalResult = ${totalResult}; // 총 도서 개수를 JavaScript 변수에 저장
 	
 	function rank(currentPage) {
 	    for (i = 1; i <= 10; i++) {
@@ -194,9 +200,24 @@
 		
 	
 	$(document).ready(function() {
+		updatePrevPageVisibility();
+		
 	    $('.pageNum').first().css('font-weight', 'bold');
 	    rank(currentPage);
 	    console.log("검색어 >> "+query);
+	    console.log("총 검색 결과 >> "+totalResult+"개");
+	    query = "${searchQuery}";
+        totalResult = ${totalResult};
+     	// 검색 결과가 갱신되었으므로 도서 개수도 업데이트
+     	$('.totalBooks span').text("");
+        $('.totalBooks span').text("총 " + totalResult + "개의 도서가 검색되었습니다.");
+        
+     // 각 페이지 번호를 클릭할 때 해당 페이지로 이동하도록 설정
+        $('.pageNum').click(function(event) {
+            event.preventDefault(); // 기본 이벤트 동작 취소
+            var pageNumber = parseInt($(this).text()); // 클릭된 페이지 번호 가져오기
+            page(event, pageNumber); // 해당 페이지로 이동
+        });
 	});
 	
     
@@ -212,17 +233,12 @@
 	    
 	    $(this).css('color', 'black');
 	    
-	    
-			    
 	    currentPage=1;
 	    updatePageNum();
 	    bold();
 	});
 	
     function getSearchBook(query, pageNumber) {
-    	
-
-    	
         $.ajax({
             url: '/bc/getSearchBook',
             method: 'GET', 
@@ -233,6 +249,8 @@
                 $('.nb').html(newBs);
                 $('.nbSpan').html(name);
                 rank(currentPage);
+                
+             	
             },
             
             error: function(xhr, status, error) {
@@ -240,25 +258,25 @@
             }
         });
     }
-    
-	function page(pageNumber) {
-		event.preventDefault();
+
+	
+	// 페이지 이동 함수
+	function page(event, pageNumber) {
+		if (event) {
+	        event.preventDefault();
+	    }
+		
 	    console.log('페이지 ' + pageNumber + ' 요청 중');
-	    	   
 	    getSearchBook(query, pageNumber);
 	    currentPage = pageNumber;
 	    updatePageNum();
 	    bold();
+	    rank(currentPage);
+	    updatePrevPageVisibility();
 	    
-	    
-	    $('.pageNum').click(function(event) {
-			event.preventDefault(); 
-	    	$('.pageNum').css('font-weight', 'normal');
-	    	$(this).css('font-weight', 'bold');
-		});
-	    	rank(currentPage);
+	   /*  var newTotalResult = $('.totalBooks span').text();
+        $('.totalBooks span').text("총 " + newTotalResult + "개의 도서가 검색되었습니다."); */
 	}
-	
 
 	
 	function bold() {
@@ -269,46 +287,60 @@
 	    }).css('font-weight', 'bold');
 	}
 
-	function prevPage() {
-		event.preventDefault(); 
-	    if (currentPage > 1) {
-	        currentPage = 5;
+
+	// 이전 페이지로 이동
+	function prevPage(event) {
+	    event.preventDefault(); 
+	    var startPage = Math.floor((currentPage - 1) / 5) * 5; // 현재 페이지 그룹의 첫 번째 페이지
+	    if (startPage >= 1) { // 첫 번째 페이지가 1보다 크거나 같을 때만 이동하도록 조건 추가
+	        currentPage = startPage;
 	        updatePageNum();
-	        page(currentPage);
+	        page(event, currentPage);
 	    }
 	}
-	
-	function nextPage() {
-		event.preventDefault(); 
-	    if (currentPage < 6) {
-	        currentPage = 6;
+
+	// 다음 페이지로 이동
+	function nextPage(event) {
+	    event.preventDefault(); 
+	    var startPage = Math.floor((currentPage - 1) / 5) * 5; // 현재 페이지 그룹의 첫 번째 페이지
+	    var nextPage = startPage + 6; // 현재 페이지 그룹의 첫 번째 페이지에서 1을 더한 페이지로 이동
+	    if (nextPage <= Math.ceil(totalResult / 10)) { // 다음 페이지가 전체 페이지 수보다 작거나 같을 때만 이동하도록 조건 추가
+	        currentPage = nextPage;
 	        updatePageNum();
-	        page(currentPage);
-	        
+	        page(event, currentPage);
 	    }
 	}
 	
 	function updatePageNum() {
-	    var startPage = currentPage < 6 ? 1 : 6;
-	    var endPage = currentPage < 6 ? 5 : 10;
+
+	    var startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
+	    var endPage = startPage + 4; // 보여줄 페이지 수 설정
 
 	    if (startPage < 1) {
 	        startPage = 1;
 	    }
 
-	    if (endPage < startPage) {
-	        endPage = startPage;
+	    if (endPage > Math.ceil(totalResult / 10)) {
+	        endPage = Math.ceil(totalResult / 10);
 	    }
 
 	    var pageNumElements = $('.pageNum');
 	    var i = 0;
 	    for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
 	        $(pageNumElements[i]).text(pageNum);
-	        $(pageNumElements[i]).attr('onclick', 'page(' + pageNum + ')');
+	        $(pageNumElements[i]).attr('onclick', 'page(event, ' + pageNum + ')');
 	        i++;
 	    }
 	}
 
+	// 이전 페이지로 가는 이미지 표시 여부 업데이트
+	function updatePrevPageVisibility() {
+	    if (currentPage <= 5) {
+	        $('.pageLogo1').hide(); // 현재 페이지가 5 이하인 경우 이전 페이지로 가는 이미지 숨김
+	    } else {
+	        $('.pageLogo1').show(); // 그 외의 경우에는 보이도록 설정
+	    }
+	}
 
  
 </script>

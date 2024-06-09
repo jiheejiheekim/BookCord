@@ -56,7 +56,7 @@
 		<table>
 			<tr>
 				<td><img class="searchimg" src="resources/images/search.png"></td>
-				<form action="/bc/searchBook" method="post">
+				<form action="/bc/searchBook" method="get">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<td><input id="query" name="query" class="searchinput" type="text" placeholder="도서 제목, 작가를 검색해보세요"></td>
 				</form>

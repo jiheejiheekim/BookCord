@@ -19,6 +19,7 @@ public class BookVO {
     
     @Data
     public static class SearchBooks {
+    	private int totalResults;
     	private List<Book> item;
     }
     

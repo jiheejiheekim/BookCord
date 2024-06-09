@@ -2,7 +2,10 @@ package com.book.cord.notice;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -116,8 +119,10 @@ public class NoticeController {
 	public ResponseEntity<Resource> downloadFile(@RequestParam("fileName") String fileName) {
 		System.out.println("download file : "+fileName);
 		
+		//다운로드 경로
 		//FileSystemResource resource = new FileSystemResource("C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files\\"+fileName);
 		Resource resource = new FileSystemResource("C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\notice_files\\"+fileName);
+		//Resource resource = new FileSystemResource("C:\\Users\\JHee\\Desktop\\개인프로젝트\\fileDownloadRoot\\"+fileName);
 		
 		System.out.println("resource : "+resource);
 		
@@ -130,7 +135,23 @@ public class NoticeController {
 		}catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+		
+		// 파일을 사용자 지정 경로에 저장
+	    String userSaveDir = "C:\\Users\\JHee\\Desktop\\개인프로젝트\\fileDownloadRoot\\";
+	    File userSavePath = new File(userSaveDir);
+	    if (!userSavePath.exists()) {
+	        userSavePath.mkdirs();
+	    }
+	    File userFile = new File(userSavePath, resourceName);
+	    try {
+	        InputStream in = resource.getInputStream();
+	        Files.copy(in, userFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+	        in.close();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+	    return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
 
 	// 공지사항 확인
