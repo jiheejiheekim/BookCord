@@ -19,6 +19,16 @@ $(document).ready(function(){
 	}else{
 		console.log(member_id+' 회원님의 북마크')
 	}
+	
+	var actionForm = $("#actionForm");
+	$(".paginate_button a").on("click", function(e) {
+    	e.preventDefault();
+        
+        console.log('click');
+        
+        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+        actionForm.submit();
+	});
 });
 
 function logout() {
@@ -35,18 +45,6 @@ function logout() {
     document.body.appendChild(form);
     form.submit();
 }
-
-$(document).ready(function(){
-	var actionForm = $("#actionForm");
-	$(".paginate_button a").on("click", function(e) {
-    	e.preventDefault();
-        
-        console.log('click');
-        
-        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-        actionForm.submit();
-	});
-});
   
 </script>
 </head>

@@ -12,16 +12,31 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
+function logout() {
+	var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/bc/logout';
+    
+    var csrfToken = document.createElement('input');
+    csrfToken.type = 'hidden';
+    csrfToken.name = '${_csrf.parameterName}';
+    csrfToken.value = '${_csrf.token}';
+    
+    form.appendChild(csrfToken);
+    document.body.appendChild(form);
+    form.submit();
+  }
+  
 var csrfToken = "${_csrf.token}";
 var csrfParameterName = "${_csrf.parameterName}";
+var member_id = "<c:out value='${sessionScope.member.username}'/>";
 
 console.log("csrfToken >> "+csrfToken);
 console.log("csrfParameterName >> "+csrfParameterName);
 
 
-function bookmark(title, author, isbn13, cover) {
-
-    var member_id = "<c:out value='${sessionScope.member.username}'/>";
+function bookmark(event, title, author, isbn13, cover) {
+	event.preventDefault(); 
     
     console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
     
@@ -51,20 +66,63 @@ function bookmark(title, author, isbn13, cover) {
    
 }
 
-function logout() {
-	var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/bc/logout';
-    
-    var csrfToken = document.createElement('input');
-    csrfToken.type = 'hidden';
-    csrfToken.name = '${_csrf.parameterName}';
-    csrfToken.value = '${_csrf.token}';
-    
-    form.appendChild(csrfToken);
-    document.body.appendChild(form);
-    form.submit();
-  }
+  
+var stars;
+
+  
+$(document).ready(function() {
+    $('.radio').click(function(event) {
+        stars = $(this).attr('data-stars');
+        console.log('선택한 별점 >> ' + stars + '점');
+    });
+});
+  
+function reviewRegister(event, title, author, isbn13, cover) {
+	event.preventDefault();
+	var content = $(".rTextarea").val();
+	console.log('리뷰 등록 요청 >>\n title : '+title+'\n author : '+author+'\n isbn13 : '+isbn13+'\n cover : '+cover);
+	
+	if(!stars){
+		alert('별점을 선택하세요');
+		return;
+	}else{
+		console.log(stars+'점 선택');
+	}
+	if(!content){
+		alert('리뷰 내용을 입력하세요');
+		$(".rTextarea").focus();
+		return;
+	}else{
+		confirm('리뷰를 등록하시겠습니까?');
+	}
+	
+	var data = {
+			member_id : member_id,
+			title : title,
+			author : author,
+			isbn13 : isbn13,
+			cover : cover,
+			stars : stars,
+			content : content,
+		};
+
+ 	// CSRF 토큰을 데이터에 추가
+    data[csrfParameterName] = csrfToken;
+ 	
+ 	$.ajax({
+ 		type : 'POST',
+ 		url : '/bc/reviewRegister',
+ 		data : data,
+ 		dataType : 'JSON',
+ 		success : function(response){
+ 			alert('리뷰를 등록했습니다');
+ 		},
+ 		error : function(request, status, error){
+ 			alert('리뷰 등록 실패 >> '+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+ 		}
+ 	});
+	
+}  
 </script>
 </head>
 <body>
@@ -80,7 +138,7 @@ function logout() {
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="memberEdit">마이페이지</a>
+						<a href="/bc/memberEdit">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">
@@ -106,8 +164,8 @@ function logout() {
 						<td class="d1td1" rowspan="11"><img class="cover" src="${book.cover}"></td>
 						<td class="d1td2">${book.title}</td>
 						<td class="d1td3">
-							<a  onclick="bookmark('${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
-								<img class="bookMarkImg" src="../resources/images/bookmarkO.png"><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<a href="" onclick="bookmark(event, '${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
+								<img class="bookMarkImg" src="../resources/images/bookmarkO.png">
 							</a>
 						</td>
 					</tr>
@@ -206,49 +264,50 @@ function logout() {
 						<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
 					</tr>
 				</table>
-
 			</c:forEach>
 		</c:if>
+			<%-- </c:forEach> --%>
 			
 			<table class="dTable4">
 				<tr class="dTabletr">
 					<td class="d4td1" rowspan="13">리 뷰</td>
 					<td class="d4td2" colspan="4">
-						<input type="radio" name="radio">
-							<img class="star" src="../resources/images/star.png">　
-					
-						<input type="radio" class="radio" name="radio">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">　
-						
-						<input type="radio" class="radio" name="radio">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">　
-						
-						<input type="radio" class="radio" name="radio">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">　
-						
-						<input type="radio" class="radio" name="radio">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">
-							<img class="star" src="../resources/images/star.png">　
+						<input type="radio" name="radio" data-stars="1">
+							<c:forEach var="starIndex" begin="1" end="1">
+								<img class="star" src="../resources/images/star.png">
+							</c:forEach>
+					　　　
+						<input type="radio" class="radio" name="radio" data-stars="2">
+							<c:forEach var="starIndex" begin="1" end="2">
+								<img class="star" src="../resources/images/star.png">
+							</c:forEach>　
+						　
+						<input type="radio" class="radio" name="radio" data-stars="3">
+							<c:forEach var="starIndex" begin="1" end="3">
+								<img class="star" src="../resources/images/star.png">
+							</c:forEach>
+						　　
+						<input type="radio" class="radio" name="radio" data-stars="4">
+							<c:forEach var="starIndex" begin="1" end="4">
+								<img class="star" src="../resources/images/star.png">
+							</c:forEach>
+						　　
+						<input type="radio" class="radio" name="radio" data-stars="5">
+							<c:forEach var="starIndex" begin="1" end="5">
+								<img class="star" src="../resources/images/star.png">
+							</c:forEach>　
 								
 							
 							<!-- radioTable -->
 					</td>
 				</tr>
-				
+				<c:forEach var="book" items="${items}">
 				<tr>
-					<td class="rTextareatd" colspan="3"><textarea class="rTextarea" name="rTextarea" rows="5" cols="30"></textarea></td>
-					<td class="rSubmittd" colspan="2"><button class="rSubmitbt"><a href="">등 록</a></button></td>
+					<td class="rTextareatd" colspan="3"><textarea class="rTextarea" name="content" rows="5" cols="30"></textarea></td>
+					<td class="rSubmittd" colspan="2"><a href="" class="link" onclick="reviewRegister(event, '${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">등 록</a></td>
+<!-- 					<td class="rSubmittd" colspan="2"><button class="rSubmitbt"><a href="" class="link" onclick="">등 록</a></button></td> -->
 				</tr>
-				
+				</c:forEach>
 				<tr>
 					<td class="d1td14" colspan="10"><hr color="#2D9462"></td>
 				</tr>

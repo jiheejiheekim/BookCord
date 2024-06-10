@@ -10,7 +10,7 @@ public interface MyPageDAO {
 	public int bookMarkTotalCount(String member_id);
 	public List<BookMarkVO> getBookMarkListPaging(Criteria cri, String member_id);
 	
-	public void insertReview(BookMarkVO vo);
+	public void insertReview(ReviewVO vo);
 	public int reviewTotalCount(String member_id);
 	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id);
 }

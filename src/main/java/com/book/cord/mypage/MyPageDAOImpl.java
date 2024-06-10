@@ -47,7 +47,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	//////////////////////////////////////////
 	
 	@Override
-	public void insertReview(BookMarkVO vo) {
+	public void insertReview(ReviewVO vo) {
 		System.out.println("DAO insertReview 호출");
 		sqlSession.insert(NAMESPACE + ".insertReview", vo);
 	}

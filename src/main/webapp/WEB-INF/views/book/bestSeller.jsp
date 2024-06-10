@@ -26,6 +26,45 @@
 	    document.body.appendChild(form);
 	    form.submit();
 	}
+	
+	var csrfToken = "${_csrf.token}";
+	var csrfParameterName = "${_csrf.parameterName}";
+	var member_id = "<c:out value='${sessionScope.member.username}'/>";
+
+	console.log("csrfToken >> "+csrfToken);
+	console.log("csrfParameterName >> "+csrfParameterName);
+
+
+	function bookmark(event, title, author, isbn13, cover) {
+		event.preventDefault(); 
+	    
+	    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
+	    
+	    var data = {
+				member_id: member_id,
+				title: title,
+				author: author,
+				isbn13: isbn13,
+				cover: cover
+			};
+
+	 	// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+	 
+	    $.ajax({
+	    	type: "POST",
+	        url: "/bc/bookmark",
+	        data: data,
+	        dataType: "JSON",
+	        success: function(response) {
+	            alert('북마크 성공');
+	        },
+	        error:function(request,status,error){
+	            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+	        }
+	    });
+	   
+	}
 </script>
 </head>
 <body>
@@ -181,7 +220,7 @@
 						<td class="bstd1" rowspan="6"><img class="bookImg" src="${book.cover}"></td>
 						<td class="bs1td2">${book.bestRank}.</td>
 						<td class="bs1td3">
-							<a href="javascript:void(0)" onclick="bookmark('${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
+							<a href="javascript:void(0)" onclick="bookmark(event, '${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">
 								<img class="bookMarkImg" src="resources/images/bookmarkO.png">
 							</a>
 						</td>
@@ -415,10 +454,6 @@
 	    $('.pageNum').first().css('font-weight', 'bold');
 	});
 
-	
-	function bookmark(title, author, isbn13, cover) {
-		alert('제목 : '+title+'\n작가 : '+author+'\nisbn13 : '+isbn13+'\ncover : '+cover);
-	}
 	
 </script>
 

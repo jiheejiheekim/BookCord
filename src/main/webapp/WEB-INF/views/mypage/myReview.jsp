@@ -18,8 +18,18 @@
 		if(member_id==null){
 			alert('로그인 하세요 \nmember_id : '+member_id);
 		}else{
-			console.log(member_id+' 회원님의 북마크')
+			console.log(member_id+' 회원님의 리뷰')
 		}
+		
+		var actionForm = $("#actionForm");
+		$(".paginate_button a").on("click", function(e) {
+	    	e.preventDefault();
+	        
+	        console.log('click');
+	        
+	        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        actionForm.submit();
+		});
 	});
 
 	function logout() {
@@ -75,8 +85,7 @@
 					<td class="navi1">마이페이지</td>
 				</tr>
 				<tr>
-					<td class="navi2"><a class="naviA" href="memberEdit">회원정보
-							수정</a></td>
+					<td class="navi2"><a class="naviA" href="memberEdit">회원정보수정</a></td>
 				</tr>
 				<tr>
 					<td class="navi3"><a class="naviA" href="myReview">나의 리뷰</a></td>
@@ -129,61 +138,6 @@
 				</table>
 			</c:forEach>
 
-				<!-- <table class="reviewTable">
-					반복문 돌릴 예정
-					<tr class="myReview1">
-						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="myReview1td2">책제목</td>
-					</tr>
-					<tr class="myReview2">
-						<td></td>
-						<td class="myReview2td2">작가</td>
-					</tr>
-					<tr class="myReview3">
-						<td></td>
-						<td class="myReview3td2">　</td>
-					</tr>
-					<tr class="myReview4">
-						<td></td>
-						<td class="myReview4td2">2024-01-20</td>
-					</tr>
-					<tr class="myReview5">
-						<td></td>
-						<td class="myReview5td2">★★★★</td>
-					</tr>
-					<tr class="myReview6">
-						<td></td>
-						<td class="myReview6td2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-					</tr>
-				</table>
-
-				<table class="reviewTable">
-					반복문 돌릴 예정
-					<tr class="myReview1">
-						<td class="myReviewtd1" rowspan="6"><div class="bookImg"></div></td>
-						<td class="myReview1td2">책제목</td>
-					</tr>
-					<tr class="myReview2">
-						<td></td>
-						<td class="myReview2td2">작가</td>
-					</tr>
-					<tr class="myReview3">
-						<td></td>
-						<td class="myReview3td2">　</td>
-					</tr>
-					<tr class="myReview4">
-						<td></td>
-						<td class="myReview4td2">2024-01-20</td>
-					</tr>
-					<tr class="myReview5">
-						<td></td>
-						<td class="myReview5td2">★★★★</td>
-					</tr>
-					<tr class="myReview6">
-						<td></td>
-						<td class="myReview6td2">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-					</tr>
-				</table> -->
 			</div>
 			<!-- reviewTableDiv -->
 
@@ -218,7 +172,7 @@
 		</table>
 	</div>
 	
-	<form id="actionForm" action="/bc/myBookMark" method="get">
+	<form id="actionForm" action="/bc/myReview" method="get">
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 	</form>

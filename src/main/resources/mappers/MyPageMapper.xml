@@ -5,7 +5,8 @@
 
 <!-- 리뷰 -->
 	<insert id="insertReview">
-	
+		INSERT INTO REVIEW (REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT)
+		VALUES (review_num_seq.nextval, #{member_id}, #{stars}, #{title}, #{author}, #{isbn13}, #{cover}, #{content})
 	</insert>
     
     <select id="reviewTotalCount" resultType="int">

@@ -42,7 +42,7 @@
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="memberEdit">마이페이지</a>
+						<a href="/bc/memberEdit">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">

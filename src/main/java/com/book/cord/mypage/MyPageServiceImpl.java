@@ -44,17 +44,15 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	
 	@Override
-	public void addReview(BookMarkVO vo) {
+	public void addReview(ReviewVO vo) {
 		dao.insertReview(vo);
 	}
-
 
 	@Override
 	public int reviewTotal(String member_id) {
 		System.out.println("Service reviewTotal 호출");
 		return dao.reviewTotalCount(member_id);
 	}
-	
 	
 	@Override
 	public List<BookMarkVO> getReviewList(Criteria cri, String member_id){
