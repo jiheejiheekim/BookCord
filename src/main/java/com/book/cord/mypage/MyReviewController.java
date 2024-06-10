@@ -76,5 +76,10 @@ public class MyReviewController {
 		response.put("status", "success");
 		return response;
 	}
+	
+	@PostMapping("reviewDelete")
+	public String reviewDelete(@RequestParam("review_num") int review_num) {
+		return "redirect:/myReview";
+	}
 
 }

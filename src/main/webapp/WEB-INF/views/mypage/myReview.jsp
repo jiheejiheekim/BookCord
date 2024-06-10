@@ -30,6 +30,7 @@
 	        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 	        actionForm.submit();
 		});
+		
 	});
 
 	function logout() {
@@ -45,6 +46,28 @@
 	    form.appendChild(csrfToken);
 	    document.body.appendChild(form);
 	    form.submit();
+	}
+	
+	function menu(isbn13) {
+		event.preventDefault();
+		var menuDiv = document.getElementById('menuDiv_'+isbn13);
+		
+		// 모든 menuDiv 숨기기
+        $(".menuDiv").hide();
+		
+        if (menuDiv.style.display === 'none' || menuDiv.style.display === '') {
+            menuDiv.style.display = 'block';
+        } else {
+            menuDiv.style.display = 'none';
+        }
+	}
+	
+	function reviewUpdate(event, review_num) {
+		event.preventDefault();
+		alert(review_num);
+	}
+	function reviewDelete(event, review_num) {
+		event.preventDefault();
 	}
 </script>	
 </head>
@@ -104,11 +127,28 @@
 			<c:forEach items="${myReviewList}" var="myReviewList">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<table class="reviewTable">
+				
+					<tr>
+			            <td colspan="3">
+			                <div id="menuDiv_${myReviewList.isbn13}" class="menuDiv">
+			                    <table class="menuTable">
+			                        <tr>
+			                            <td class="reviewUpdate"><a href="" onclick="reviewUpdate(event, '${myReviewList.review_num}')">수정</a></td>
+			                        </tr>
+			                        <tr>
+			                            <td class="reviewDelete"><a href="" onclick="reviewDelete(event, '${myReviewList.review_num}')">삭제</a></td>
+			                        </tr>
+			                    </table>
+			                </div>
+			            </td>
+			        </tr>
+			        
 					<tr class="myReview1">
 						<td class="myReviewtd1" rowspan="6">
 							<a href="/bc/detail/${myReviewList.isbn13}"><img class="bookImg" src="${myReviewList.cover}"></a>
 						</td>
 						<td class="myReview1td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.title}</a></td>
+						<td class="myReview1td3"><a href="#" onclick="menu('${myReviewList.isbn13}')"><img src="resources/images/menu.png" class="menu"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->
@@ -135,8 +175,10 @@
 						<!-- <td></td> -->
 						<td class="myReview6td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.content}</a></td>
 					</tr>
-				</table>
-			</c:forEach>
+				 </tr>
+		        
+		    </table>
+		</c:forEach>
 
 			</div>
 			<!-- reviewTableDiv -->
