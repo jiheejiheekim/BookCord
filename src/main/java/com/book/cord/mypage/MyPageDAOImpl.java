@@ -69,6 +69,13 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.selectList(NAMESPACE + ".getReviewListPaging", params);
 	}
 	
+	@Override
+	public void updateReview(ReviewVO vo) {
+		System.out.println("DAO updateReview 호출");
+		sqlSession.update(NAMESPACE + ".updateReview", vo);
+	}
+	
+	
 	
 	
 }

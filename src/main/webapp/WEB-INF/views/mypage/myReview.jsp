@@ -31,6 +31,11 @@
 	        actionForm.submit();
 		});
 		
+		$('.radio').click(function(event) {
+	        stars = $(this).attr('data-stars');
+	        console.log('선택한 별점 >> ' + stars + '점');
+	    });
+		
 	});
 
 	function logout() {
@@ -48,9 +53,9 @@
 	    form.submit();
 	}
 	
-	function menu(isbn13) {
+	function menu(review_num) {
 		event.preventDefault();
-		var menuDiv = document.getElementById('menuDiv_'+isbn13);
+		var menuDiv = document.getElementById('menuDiv_'+review_num);
 		
 		// 모든 menuDiv 숨기기
         $(".menuDiv").hide();
@@ -62,12 +67,74 @@
         }
 	}
 	
+	function reviewUpdateForm(event, review_num) {
+		event.preventDefault();
+		
+		var menuDiv = document.getElementById('menuDiv_'+review_num);
+		// 모든 menuDiv 숨기기
+        $(".menuDiv").hide();
+		
+		var updateForm = document.getElementById('updateForm_'+review_num);
+		
+		// 모든 updateForm 숨기기
+        $(".updateForm").hide();
+		
+        if (updateForm.style.display === 'none' || updateForm.style.display === '') {
+        	updateForm.style.display = 'block';
+        } else {
+        	updateForm.style.display = 'none';
+        }
+	}
+	
+	var stars;
+	var csrfToken = "${_csrf.token}";
+	var csrfParameterName = "${_csrf.parameterName}";
+	var member_id = "<c:out value='${sessionScope.member.username}'/>";
+	
 	function reviewUpdate(event, review_num) {
 		event.preventDefault();
-		alert(review_num);
+		
+		var content = $(".updateReviewArea").val();
+		console.log('리뷰 수정 요청 >>\n review_num : '+review_num+' 번 리뷰\n stars : '+stars+'\n content : '+content);
+		
+		if(!stars){
+			alert('별점을 선택하세요');
+			return;
+		}
+		if(!content){
+			alert('리뷰 내용을 입력하세요');
+			$(".rTextarea").focus();
+			return;
+		}else{
+			confirm('리뷰를 수정 하시겠습니까?');
+		}
+		
+		var data = {
+			review_num : review_num,
+			stars : stars,
+			content : content
+		};
+		// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+		
+		 $.ajax({
+			type : 'POST',
+			url : '/bc/reviewUpdate',
+			data : data,
+			
+			success:function(response){
+				alert('리뷰가 수정되었습니다');
+				window.location.href = "/bc/myReview";
+			},
+			error:function(request, status, error){
+				alert('리뷰 수정 실패 >> '+request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+				console.log('리뷰 수정 실패 >> '+request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+			}
+		}) 
 	}
 	function reviewDelete(event, review_num) {
 		event.preventDefault();
+		alert(review_num);
 	}
 </script>	
 </head>
@@ -126,14 +193,58 @@
 			<div class="reviewTableDiv">
 			<c:forEach items="${myReviewList}" var="myReviewList">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				
+				<div class="updateForm" id="updateForm_${myReviewList.review_num}">
+					<table class="updateFormTable">
+						<tr>
+							<td class="radioTd" colspan="4">
+								<input type="radio" name="radio" data-stars="1">
+									<c:forEach var="starIndex" begin="1" end="1">
+										<img class="star" src="resources/images/star.png">
+									</c:forEach>
+							　　　
+								<input type="radio" class="radio" name="radio" data-stars="2">
+									<c:forEach var="starIndex" begin="1" end="2">
+										<img class="star" src="resources/images/star.png">
+									</c:forEach>　
+								　
+								<input type="radio" class="radio" name="radio" data-stars="3">
+									<c:forEach var="starIndex" begin="1" end="3">
+										<img class="star" src="resources/images/star.png">
+									</c:forEach>
+								　　
+								<input type="radio" class="radio" name="radio" data-stars="4">
+									<c:forEach var="starIndex" begin="1" end="4">
+										<img class="star" src="resources/images/star.png">
+									</c:forEach>
+								　　
+								<input type="radio" class="radio" name="radio" data-stars="5">
+									<c:forEach var="starIndex" begin="1" end="5">
+										<img class="star" src="resources/images/star.png">
+									</c:forEach>　
+							</td>
+						</tr>
+						<tr>
+							<td> <!-- rows="5" cols="10" -->
+								<textarea class="updateReviewArea" name="content" rows="10" cols="55">${myReviewList.content}</textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="#" class="updateBt"  onclick="reviewUpdate(event, '${myReviewList.review_num}')">확인</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+			
 				<table class="reviewTable">
 				
 					<tr>
 			            <td colspan="3">
-			                <div id="menuDiv_${myReviewList.isbn13}" class="menuDiv">
+			                <div id="menuDiv_${myReviewList.review_num}" class="menuDiv">
 			                    <table class="menuTable">
 			                        <tr>
-			                            <td class="reviewUpdate"><a href="" onclick="reviewUpdate(event, '${myReviewList.review_num}')">수정</a></td>
+			                            <td class="reviewUpdate"><a href="" onclick="reviewUpdateForm(event, '${myReviewList.review_num}')">수정</a></td>
 			                        </tr>
 			                        <tr>
 			                            <td class="reviewDelete"><a href="" onclick="reviewDelete(event, '${myReviewList.review_num}')">삭제</a></td>
@@ -148,7 +259,7 @@
 							<a href="/bc/detail/${myReviewList.isbn13}"><img class="bookImg" src="${myReviewList.cover}"></a>
 						</td>
 						<td class="myReview1td2"><a href="/bc/detail/${myReviewList.isbn13}">${myReviewList.title}</a></td>
-						<td class="myReview1td3"><a href="#" onclick="menu('${myReviewList.isbn13}')"><img src="resources/images/menu.png" class="menu"></a></td>
+						<td class="myReview1td3"><a href="#" onclick="menu('${myReviewList.review_num}')"><img src="resources/images/menu.png" class="menu"></a></td>
 					</tr>
 					<tr class="myReview2">
 						<!-- <td></td> -->

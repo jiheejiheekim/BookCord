@@ -61,4 +61,11 @@ public class MyPageServiceImpl implements MyPageService {
         return dao.getReviewListPaging(cri, member_id);
     }
 	
+	@Override
+	public void reviewUpdate(ReviewVO vo) {
+		dao.updateReview(vo);
+	}
+	
+	
+	
 }

@@ -81,5 +81,19 @@ public class MyReviewController {
 	public String reviewDelete(@RequestParam("review_num") int review_num) {
 		return "redirect:/myReview";
 	}
+	
+	@PostMapping("reviewUpdate")
+	//@ResponseBody
+	public String reviewUpdate(@RequestParam("review_num") int review_num,
+			@RequestParam("stars") int stars, @RequestParam("content") String content) {
+		System.out.println("컨트롤러 동작=================> ");
+		ReviewVO vo = new ReviewVO();
+		vo.setReview_num(review_num);
+		vo.setStars(stars);
+		vo.setContent(content);
+		service.reviewUpdate(vo);
+		
+		return "redirect:/myReview";
+	}
 
 }

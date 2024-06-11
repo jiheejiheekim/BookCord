@@ -13,4 +13,5 @@ public interface MyPageService {
 	public void addReview(ReviewVO vo);
 	public int reviewTotal(String member_id);
 	public List<BookMarkVO> getReviewList(Criteria cri, String member_id);
+	public void reviewUpdate(ReviewVO vo);
 }

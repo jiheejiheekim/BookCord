@@ -16,4 +16,5 @@ public interface MyPageMapper {
 	public void insertReview(BookMarkVO vo);
 	public int reviewTotalCount(String member_id);
 	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id);
+	public void updateReview(ReviewVO vo);
 }

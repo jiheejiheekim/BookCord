@@ -34,6 +34,10 @@
             REVIEW_NUM DESC
     ]]>
 	</select>
+	
+	<update id="updateReview" parameterType="com.book.cord.mypage.ReviewVO">
+		UPDATE REVIEW SET STARS=#{stars}, CONTENT=#{content} WHERE REVIEW_NUM=#{review_num}
+	</update>
 
 
 <!-- 북마크 -->

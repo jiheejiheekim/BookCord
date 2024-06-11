@@ -93,7 +93,7 @@ function reviewRegister(event, title, author, isbn13, cover) {
 		$(".rTextarea").focus();
 		return;
 	}else{
-		confirm('리뷰를 등록하시겠습니까?');
+		confirm('리뷰를 등록 하시겠습니까?');
 	}
 	
 	var data = {
@@ -103,7 +103,7 @@ function reviewRegister(event, title, author, isbn13, cover) {
 			isbn13 : isbn13,
 			cover : cover,
 			stars : stars,
-			content : content,
+			content : content
 		};
 
  	// CSRF 토큰을 데이터에 추가
