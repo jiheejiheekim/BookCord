@@ -41,7 +41,12 @@ public class MyBookMarkController {
         if (member_id == null) {
             throw new IllegalArgumentException("에러 >> member_id가 null");
         }
-		
+        
+        int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+        int endRow = cri.getPageNum() * cri.getAmount();
+        cri.setStartRow(startRow);
+        cri.setEndRow(endRow);	
+        
 		List<BookMarkVO> list = service.getBookMarkList(cri, member_id);
 		model.addAttribute("myBookMarkList", list);
         

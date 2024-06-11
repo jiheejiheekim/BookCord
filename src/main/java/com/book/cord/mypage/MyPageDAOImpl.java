@@ -36,11 +36,15 @@ public class MyPageDAOImpl implements MyPageDAO {
 	@Override
 	public List<BookMarkVO> getBookMarkListPaging(Criteria cri, String member_id) { 
 		System.out.println("DAO getListWithPaging 호출");
-	    Map<String, Object> params = new HashMap<>();
-	    params.put("pageNum", cri.getPageNum());
-	    params.put("amount", cri.getAmount());
-	    params.put("member_id", member_id);
 
+		int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+	    params.put("member_id", member_id);
+	    
 	    return sqlSession.selectList(NAMESPACE + ".getBookMarkListPaging", params);
 	}
 	

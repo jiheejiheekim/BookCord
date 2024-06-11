@@ -53,28 +53,27 @@
     <select id="bookMarkTotalCount" resultType="int">
 		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id}
 	</select>
-
+	
 	<select id="getBookMarkListPaging" parameterType="map" resultType="com.book.cord.mypage.BookMarkVO">
     <![CDATA[
         SELECT 
             BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
         FROM (
             SELECT 
-                rownum rn, BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
+                ROW_NUMBER() OVER (ORDER BY BOOKMARK_NUM DESC) AS rnum, BOOKMARK_NUM, MEMBER_ID, TITLE, AUTHOR, ISBN13, COVER
             FROM 
                 BOOKMARK
             WHERE 
-                member_id = #{member_id, jdbcType=VARCHAR}
-                AND rownum <= #{pageNum} * #{amount}
-            ORDER BY 
-                BOOKMARK_NUM DESC
-        )
+                member_id = #{member_id}
+        ) tmp
         WHERE 
-            rn > (#{pageNum} - 1) * #{amount}
+            rnum BETWEEN #{startRow} AND #{endRow}
         ORDER BY 
-            BOOKMARK_NUM DESC
+            rnum ASC
     ]]>
-	</select>
+</select>
+
+
 
 	<select id="isBookMarked" resultType="int">
 		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id} AND ISBN13=#{isbn13}
