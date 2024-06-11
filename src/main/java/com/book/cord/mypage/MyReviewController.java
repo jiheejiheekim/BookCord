@@ -61,7 +61,7 @@ public class MyReviewController {
 			@RequestParam("isbn13") String isbn13, @RequestParam("cover") String cover,
 			@RequestParam("stars") int stars, @RequestParam("content") String content) {
 
-		System.out.println("컨트롤러 동작=================> ");
+		System.out.println("컨트롤러 동작=================> 리뷰 등록");
 		ReviewVO vo = new ReviewVO();
 		vo.setMember_id(member_id);
 		vo.setTitle(title);
@@ -79,14 +79,15 @@ public class MyReviewController {
 	
 	@PostMapping("reviewDelete")
 	public String reviewDelete(@RequestParam("review_num") int review_num) {
+		System.out.println("컨트롤러 동작=================> 리뷰 삭제");
+		service.reviewDelete(review_num);
 		return "redirect:/myReview";
 	}
 	
 	@PostMapping("reviewUpdate")
-	//@ResponseBody
 	public String reviewUpdate(@RequestParam("review_num") int review_num,
 			@RequestParam("stars") int stars, @RequestParam("content") String content) {
-		System.out.println("컨트롤러 동작=================> ");
+		System.out.println("컨트롤러 동작=================> 리뷰 수정");
 		ReviewVO vo = new ReviewVO();
 		vo.setReview_num(review_num);
 		vo.setStars(stars);

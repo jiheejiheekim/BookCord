@@ -35,6 +35,10 @@
     ]]>
 	</select>
 	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM REVIEW WHERE REVIEW_NUM=#{review_num}
+	</delete>
+	
 	<update id="updateReview" parameterType="com.book.cord.mypage.ReviewVO">
 		UPDATE REVIEW SET STARS=#{stars}, CONTENT=#{content} WHERE REVIEW_NUM=#{review_num}
 	</update>

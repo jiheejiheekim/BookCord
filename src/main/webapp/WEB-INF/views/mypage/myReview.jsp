@@ -121,7 +121,6 @@
 			type : 'POST',
 			url : '/bc/reviewUpdate',
 			data : data,
-			
 			success:function(response){
 				alert('리뷰가 수정되었습니다');
 				window.location.href = "/bc/myReview";
@@ -134,7 +133,34 @@
 	}
 	function reviewDelete(event, review_num) {
 		event.preventDefault();
-		alert(review_num);
+		console.log(review_num+'번 리뷰 삭제 요청');
+		
+		var menuDiv = document.getElementById('menuDiv_'+review_num);
+		// 모든 menuDiv 숨기기
+        $(".menuDiv").hide();
+		
+		var data = {
+				review_num : review_num,
+			};
+		
+		// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+		
+		if(confirm(review_num+'번 리뷰 삭제하시겠습니까?')){
+			$.ajax({
+				type : 'POST',
+				url : '/bc/reviewDelete',
+				data : data,
+				success:function(response){
+					alert('삭제가 완료되었습니다');
+					window.location.href = "/bc/myReview";
+				},
+				error:function(request, status, error){
+					alert('리뷰 삭제 실패 >> '+request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+					console.log('리뷰 삭제 실패 >> '+request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+				}
+			})
+		}
 	}
 </script>	
 </head>

@@ -62,6 +62,12 @@ public class MyPageServiceImpl implements MyPageService {
     }
 	
 	@Override
+	public void reviewDelete(int review_num) {
+		dao.deleteReview(review_num);
+	}
+	
+	
+	@Override
 	public void reviewUpdate(ReviewVO vo) {
 		dao.updateReview(vo);
 	}
