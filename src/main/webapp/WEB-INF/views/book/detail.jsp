@@ -37,6 +37,7 @@ console.log("csrfParameterName >> "+csrfParameterName);
 
 function bookmark(event, title, author, isbn13, cover) {
 	event.preventDefault(); 
+	
     
     console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
     
@@ -50,19 +51,34 @@ function bookmark(event, title, author, isbn13, cover) {
 
  	// CSRF 토큰을 데이터에 추가
     data[csrfParameterName] = csrfToken;
- 
-    $.ajax({
-    	type: "POST",
-        url: "/bc/bookmark",
-        data: data,
-        dataType: "JSON",
-        success: function(response) {
-            alert('북마크 성공');
-        },
-        error:function(request,status,error){
+ 	
+ 	$.ajax({
+ 		type : 'POST',
+ 		url : '/bc/isBookMarked',
+ 		data : data,
+ 		dataType : 'JSON',
+ 		success:function(response){
+ 			if(response){
+ 				alert('이미 북마크 된 도서입니다');
+ 			}else{
+ 				 $.ajax({
+ 			    	type: "POST",
+ 			        url: "/bc/bookmark",
+ 			        data: data,
+ 			        dataType: "JSON",
+ 			        success: function(response) {
+ 			            alert('북마크 성공');
+ 			        },
+ 			        error:function(request,status,error){
+ 			            console.log("북마크 FAIL >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+ 			        }
+ 			    });
+ 			}
+ 		},
+ 		error:function(request,status,error){
             console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
         }
-    });
+ 	});
    
 }
 

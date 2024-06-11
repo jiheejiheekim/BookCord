@@ -40,6 +40,13 @@ public class MyPageServiceImpl implements MyPageService {
         return dao.getBookMarkListPaging(cri, member_id);
     }
 	
+	@Override
+	public boolean isBookMarked(String member_id, String isbn13) {
+		System.out.println("Service isBookMarked 호출");
+		
+		return dao.isBookMarked(member_id, isbn13);
+	}
+	
 	//////////////////////////////////
 	
 	
@@ -63,12 +70,16 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	@Override
 	public void reviewDelete(int review_num) {
+		System.out.println("Service reviewDelete 호출");
+		
 		dao.deleteReview(review_num);
 	}
 	
 	
 	@Override
 	public void reviewUpdate(ReviewVO vo) {
+		System.out.println("Service reviewUpdate 호출");
+		
 		dao.updateReview(vo);
 	}
 	

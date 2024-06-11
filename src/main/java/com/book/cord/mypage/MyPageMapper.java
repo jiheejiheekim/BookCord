@@ -12,6 +12,7 @@ public interface MyPageMapper {
 	void insertBookMark(BookMarkVO vo);
 	public int bookMarkTotalCount();
 	public List<BookMarkVO> getBookMarkListPaging(Criteria cri, String member_id);
+	public boolean isBookMarked(String member_id, String isbn13);
 	
 	public void insertReview(BookMarkVO vo);
 	public int reviewTotalCount(String member_id);

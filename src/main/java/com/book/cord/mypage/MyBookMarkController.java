@@ -63,7 +63,7 @@ public class MyBookMarkController {
                            @RequestParam("isbn13") String isbn13,
                            @RequestParam("cover") String cover) {
 		
-        System.out.println("컨트롤러 동작=================> ");
+        System.out.println("컨트롤러 동작=================> 북마크 추가");
         BookMarkVO vo = new BookMarkVO();
         vo.setMember_id(member_id);
         vo.setTitle(title);
@@ -77,7 +77,16 @@ public class MyBookMarkController {
         return response;
     }
 	
-	
-	
+	@PostMapping("/isBookMarked")
+	@ResponseBody
+	public boolean isBookMarked(@RequestParam("member_id") String member_id,
+            @RequestParam("title") String title,
+            @RequestParam("author") String author,
+            @RequestParam("isbn13") String isbn13,
+            @RequestParam("cover") String cover) {
+		System.out.println("컨트롤러 동작=================> 기존 북마크 체크");
+				
+	    return service.isBookMarked(member_id, isbn13);
+	}
 	
 }

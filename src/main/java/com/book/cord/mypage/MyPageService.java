@@ -9,6 +9,7 @@ public interface MyPageService {
 	public void addBookMark(BookMarkVO vo);
 	public int bookMarkTotal(String member_id);
 	public List<BookMarkVO> getBookMarkList(Criteria cri, String member_id);
+	public boolean isBookMarked(String member_id, String isbn13);
 	
 	public void addReview(ReviewVO vo);
 	public int reviewTotal(String member_id);

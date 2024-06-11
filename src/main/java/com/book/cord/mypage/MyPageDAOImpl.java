@@ -44,6 +44,16 @@ public class MyPageDAOImpl implements MyPageDAO {
 	    return sqlSession.selectList(NAMESPACE + ".getBookMarkListPaging", params);
 	}
 	
+	@Override
+	public boolean isBookMarked(String member_id, String isbn13) {
+		System.out.println("DAO isBookMarked 호출");
+		Map<String, Object> params = new HashMap<>();
+        params.put("member_id", member_id);
+        params.put("isbn13", isbn13);
+		int count = sqlSession.selectOne(NAMESPACE + ".isBookMarked", params);
+        return count > 0;	//count가 0보다 크면 true, 그렇지 않으면 false
+	}
+	
 	//////////////////////////////////////////
 	
 	@Override
