@@ -73,7 +73,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 	
 	@Override
-	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id) { 
+	public List<ReviewVO> getReviewListPaging(Criteria cri, String member_id) { 
 		System.out.println("DAO getReviewListPaging 호출");
 		Map<String, Object> params = new HashMap<>();
 		params.put("pageNum", cri.getPageNum());

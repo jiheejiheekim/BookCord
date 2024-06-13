@@ -9,5 +9,6 @@
         <mapper resource="mappers/MemberMapper.xml"/>
         <mapper resource="mappers/NoticeMapper.xml"/>
         <mapper resource="mappers/MyPageMapper.xml"/>
+        <mapper resource="mappers/BookMapper.xml"/>
     </mappers>
 </configuration>

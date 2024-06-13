@@ -119,7 +119,6 @@ a {
 	background-color:#EDEDED;
 	
 	position: relative;
-	/* 부모 요소에 상대적으로 위치를 설정합니다. */
 }
 .reviewTable tr td{
 	/* border:1px solid black; */

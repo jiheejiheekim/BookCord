@@ -13,7 +13,7 @@ public interface MyPageDAO {
 	
 	public void insertReview(ReviewVO vo);
 	public int reviewTotalCount(String member_id);
-	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id);
+	public List<ReviewVO> getReviewListPaging(Criteria cri, String member_id);
 	public void deleteReview(int review_num);
 	public void updateReview(ReviewVO vo);
 }

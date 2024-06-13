@@ -42,7 +42,7 @@ public class MyReviewController {
 			throw new IllegalArgumentException("에러 >> member_id가 null");
 		}
 		cri.setAmount(5);
-		List<BookMarkVO> list = service.getReviewList(cri, member_id);
+		List<ReviewVO> list = service.getReviewList(cri, member_id);
 		model.addAttribute("myReviewList", list);
 
 		int totalCount = service.reviewTotal(member_id);

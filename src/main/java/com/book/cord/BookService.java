@@ -1,11 +1,15 @@
 package com.book.cord;
 
+import java.util.List;
+
 import com.book.cord.BookVO.BestSeller;
 import com.book.cord.BookVO.DetailBooks;
 import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.GenresNewBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
+import com.book.cord.mypage.ReviewVO;
+import com.book.cord.notice.Criteria;
 
 public interface BookService {
 	
@@ -18,5 +22,8 @@ public interface BookService {
     
     GenresBestSeller getGenresBestSeller(Integer genreId, Integer pageNumber);	//bestSeller.jsp
     GenresNewBooks getGenresNewBooks(Integer genreId, Integer pageNumber);	//newBooks.jsp
+    
+    public List<ReviewVO> getDetailReviewList(Criteria cri, String isbn13);
+    public int detailReviewTotal(String isbn13);
     
 }

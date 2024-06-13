@@ -64,12 +64,12 @@ button:hover{
 .detail{
 	margin-top:3%;
 }
-.dTable1, .dTable2, .dTable3, .dTable4{
+.dTable1, .dTable2, .dTable3, .dTable4, .dTable5{
 	margin:auto;
 	width:80%;
 }
-.dTable1 tr td, .dTable2 tr td, .dTable3 tr td, .dTable4 tr td {
-	/* border: 1px solid black; */
+.dTable1 tr td, .dTable2 tr td, .dTable3 tr td, .dTable4 tr td, .dTable5 tr td {
+	/* border: 1px solid black;  */
 }
 .d1td1{
 	width:25%;
@@ -164,23 +164,13 @@ button:hover{
 	border:none;
 	border-radius:15px 15px 15px 15px;
 	width:90%;
-	margin:10px;
+	margin-top:10px;
 	font-size:16px;
 }
 .rSubmittd{
 	width:35%;
 }
-/* .rSubmitbt{
-	background-color:#2D9462;
-	color:white;
-	padding:1em;
-	border:none;
-	border-radius:15px;
-	box-shadow: 2px 3px #898383;
-	font-size:1em;
-	width:97%;
-	height:114px%;
-} */
+
 .link{
 	display: inline-flex;
 	background-color:#2D9462;
@@ -197,10 +187,10 @@ button:hover{
 	box-sizing: border-box;
 }
 
-.dTable4{
+.dTable4, .dTable5{
 	font-size:18px;
 }
-.reviewTabletr{
+.reviewTabletd{
 	width:15%;
 }
 .reviewTabletd0, .reviewTabletd1, .reviewTabletd2{
@@ -217,7 +207,7 @@ button:hover{
 .Page{
 	/* width:100%; */
 	margin-top:2em;
-	margin-left:41%;
+	margin-left:48%;
 }
 .PageTable{
 	margin-bottom:1.5em;
@@ -233,6 +223,11 @@ button:hover{
 .pageLogotd{
 	padding-top:5px;
 }
-.pageLogo{
-	width:28px;
+.pageLogo1{
+	margin-top:5px;
+	width:21px;
+}
+.pageLogo2{
+	margin-top:5px;
+	width:19px;
 }

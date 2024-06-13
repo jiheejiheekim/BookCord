@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,7 @@
 <title>BookCord - Detail</title>
 <link rel="stylesheet" href="../resources/css/detail.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script>
 
 function logout() {
@@ -85,32 +88,35 @@ function bookmark(event, title, author, isbn13, cover) {
   
 var stars;
 
-  
 $(document).ready(function() {
+	var actionForm = $("#actionForm");
+	$(".paginate_button a").on("click", function(e) {
+    	e.preventDefault();
+        
+        console.log('click');
+        
+        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+        actionForm.submit();
+	});
+	
     $('.radio').click(function(event) {
         stars = $(this).attr('data-stars');
         console.log('선택한 별점 >> ' + stars + '점');
     });
+    
+
+
 });
   
+var scrollTopPosition; 
+
 function reviewRegister(event, title, author, isbn13, cover) {
 	event.preventDefault();
 	var content = $(".rTextarea").val();
 	console.log('리뷰 등록 요청 >>\n title : '+title+'\n author : '+author+'\n isbn13 : '+isbn13+'\n cover : '+cover);
 	
-	if(!stars){
-		alert('별점을 선택하세요');
-		return;
-	}else{
-		console.log(stars+'점 선택');
-	}
-	if(!content){
-		alert('리뷰 내용을 입력하세요');
-		$(".rTextarea").focus();
-		return;
-	}else{
-		confirm('리뷰를 등록 하시겠습니까?');
-	}
+	// 스크롤 위치 저장
+    scrollTopPosition = $(window).scrollTop();
 	
 	var data = {
 			member_id : member_id,
@@ -125,20 +131,66 @@ function reviewRegister(event, title, author, isbn13, cover) {
  	// CSRF 토큰을 데이터에 추가
     data[csrfParameterName] = csrfToken;
  	
- 	$.ajax({
- 		type : 'POST',
- 		url : '/bc/reviewRegister',
- 		data : data,
- 		dataType : 'JSON',
- 		success : function(response){
- 			alert('리뷰를 등록했습니다');
- 		},
- 		error : function(request, status, error){
- 			alert('리뷰 등록 실패 >> '+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
- 		}
- 	});
+ 	console.log('member_id : '+member_id)
+ 	if(!member_id){
+ 		alert('로그인 하세요');
+ 		return;
+ 	}
+	if(!stars){
+		alert('별점을 선택하세요');
+		return;
+	}else{
+		console.log(stars+'점 선택');
+	}
+	if(!content){
+		alert('리뷰 내용을 입력하세요');
+		$(".rTextarea").focus();
+		return;
+	}else{
+		if(confirm('리뷰를 등록 하시겠습니까?')) {
+		
+			$.ajax({
+		 		type : 'POST',
+		 		url : '/bc/reviewRegister',
+		 		data : data,
+		 		dataType : 'JSON',
+		 		success : function(response){
+		 			alert('리뷰를 등록했습니다');
+		 			
+		 			refreshReviewList(isbn13);
+	                $('.rTextarea').val('');
+                    $('input[type="radio"]').prop('checked', false);
+                    stars = undefined;
+		 		},
+		 		error : function(request, status, error){
+		 			alert('리뷰 등록 실패 >> '+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+		 		}
+		 	});
+		}
+	}
+}
+
+function refreshReviewList(isbn13) {
+    $.ajax({
+        type: 'GET',
+        url: '/bc/getReviewList/' + isbn13,
+        dataType: 'html',
+        success: function(response) {
+            console.log('리뷰 등록 성공');
+            
+            var $response = $(response);
+            var $dTable5 = $response.find('.dTable5');
+            
+            $('.dTable5').html($dTable5.html());
+        },
+        error: function(request, status, error) {
+            console.error('AJAX Error:', error);
+        }
+    });
+}
+
 	
-}  
+ 
 </script>
 </head>
 <body>
@@ -280,18 +332,18 @@ function reviewRegister(event, title, author, isbn13, cover) {
 						<td class="d1td14" colspan="3"><hr color="#2D9462"></td>
 					</tr>
 				</table>
-			</c:forEach>
+			</c:forEach>	<!-- c:forEach : book -->
 		</c:if>
-			<%-- </c:forEach> --%>
+			
 			
 			<table class="dTable4">
 				<tr class="dTabletr">
 					<td class="d4td1" rowspan="13">리 뷰</td>
 					<td class="d4td2" colspan="4">
-						<input type="radio" name="radio" data-stars="1">
+						<input type="radio" class="radio" name="radio" data-stars="1">
 							<c:forEach var="starIndex" begin="1" end="1">
 								<img class="star" src="../resources/images/star.png">
-							</c:forEach>
+							</c:forEach>	<!-- c:forEach : starIndex -->
 					　　　
 						<input type="radio" class="radio" name="radio" data-stars="2">
 							<c:forEach var="starIndex" begin="1" end="2">
@@ -318,90 +370,50 @@ function reviewRegister(event, title, author, isbn13, cover) {
 					</td>
 				</tr>
 				<c:forEach var="book" items="${items}">
-				<tr>
-					<td class="rTextareatd" colspan="3"><textarea class="rTextarea" name="content" rows="5" cols="30"></textarea></td>
-					<td class="rSubmittd" colspan="2"><a href="" class="link" onclick="reviewRegister(event, '${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">등 록</a></td>
-<!-- 					<td class="rSubmittd" colspan="2"><button class="rSubmitbt"><a href="" class="link" onclick="">등 록</a></button></td> -->
-				</tr>
-				</c:forEach>
+					<tr>
+						<td class="rTextareatd" colspan="3"><textarea class="rTextarea" name="content" rows="5" cols="30"></textarea></td>
+						<td class="rSubmittd" colspan="2"><a href="" class="link" onclick="reviewRegister(event, '${book.title}', '${book.author}', '${book.isbn13}', '${book.cover}')">등 록</a></td>
+	<!-- 					<td class="rSubmittd" colspan="2"><button class="rSubmitbt"><a href="" class="link" onclick="">등 록</a></button></td> -->
+					</tr>
+				</c:forEach>	<!-- c:forEach : book -->
 				<tr>
 					<td class="d1td14" colspan="10"><hr color="#2D9462"></td>
 				</tr>
 				
-				<tr>
-					<td class="reviewTabletd">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-					</td>
-					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd0"></td>
-					<td class="reviewTabletd1">bookcord123</td>
-					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-					</td>
-					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd0"></td>
-					<td class="reviewTabletd1">bookcord123</td>
-					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-					</td>
-					<td colspan="3">아주 유익한 책이에요. 감명 깊게 잘 읽었습니다.</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd0"></td>
-					<td class="reviewTabletd1">bookcord123</td>
-					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-					</td>
-					<td colspan="3">푸바오가 너무 귀여워요 사육사님들도 고생하셨습니다. 후이바오와 루이바오 둘 다 건강하게 자라렴!</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd0"></td>
-					<td class="reviewTabletd1">bookcord123</td>
-					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-						<img class="star" src="../resources/images/star.png">
-					</td>
-					<td colspan="3">가지마 푸공주야ㅠㅠㅠ</td>
-				</tr>
-				<tr>
-					<td class="reviewTabletd0"></td>
-					<td class="reviewTabletd1">bookcord123</td>
-					<td class="reviewTabletd2" colspan="2">2024-03-20</td>
-				</tr>
-		</table>
+			</table>
+				
+			<table class="dTable5">
+				<tr class="dTabletr">
+					<td class="d4td1" rowspan="13"></td>
+				<c:forEach items="${myReviewList}" var="myReviewList">
+				 	
+						<tr>
+							<td class="reviewTabletd">
+								<c:forEach var="starIndex" begin="1" end="${myReviewList.stars}">
+									<a href="/bc/detail/${myReviewList.isbn13}"><img class="star" src="../resources/images/star.png"></a>
+								</c:forEach>
+							</td>
+							<td colspan="3">${myReviewList.content}</td>
+						</tr>
+						<tr>
+							<td class="reviewTabletd0"></td>
+							<td class="reviewTabletd1">
+								<c:set var="memberId" value="${myReviewList.member_id}" />
+									<c:choose>
+									    <c:when test="${fn:length(memberId) < 3}">
+									        ${memberId}1___님
+									    </c:when>
+									    <c:otherwise>
+									        ${fn:substring(memberId, 0, 3)}___님
+									    </c:otherwise>
+									</c:choose>
+							<%-- ${myReviewList.member_id} --%></td>
+							<fmt:formatDate value="${myReviewList.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
+							<td class="reviewTabletd2" colspan="2">${formattedDate}</td>
+						</tr>
+					
+				</c:forEach>	<!-- c:forEach : myReviewList -->
+		</table><!-- dTable5 -->
 			
 		</div>	<!-- detail -->
 		
@@ -410,27 +422,33 @@ function reviewRegister(event, title, author, isbn13, cover) {
 	<div class="Page">
 		<table class="PageTable">
 			<tr>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="../resources/images/pageLeft.png"></a></td>
-				<td><a class="bold">1</a></td>
-				<td><a href="">2</a></td>
-				<td><a href="">3</a></td>
-				<td><a href="">4</a></td>
-				<td><a href="">5</a></td>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="../resources/images/pageRight.png"></a></td>
+				<c:if test="${pageMaker.prev}">
+					<td class="pageLogotd, paginate_button previous">
+						<a href="${pageMaker.startPage-1}"><img class="pageLogo1" src="../resources/images/pageLeft.png"></a>
+					</td>
+				</c:if>
+	
+				 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+				 	<td class="paginate_button ${pageMaker.cri.pageNum == num ? 'bold' : ''}">
+				 		<a href="${num}">${num}</a>
+				 	</td>
+				 </c:forEach>
+				 
+				<c:if test="${pageMaker.next}">
+					<td class="pageLogotd, paginate_button next">
+						<a href="${pageMaker.endPage+1}"><img class="pageLogo2" src="../resources/images/pageRight.png"></a>
+					</td>
+				</c:if>
 			</tr>
 		</table>
 	</div>
-	
-<%-- 	<!-- 세션에 저장된 멤버 정보 확인 -->
-	<c:if test="${not empty sessionScope.member}">
-	    <p>Member ID: ${sessionScope.member.username}</p> <!-- 변경된 부분 -->
-	</c:if>
-	
-	<c:if test="${empty sessionScope.member}">
-	    <p>No member object found in session.</p>
-	</c:if> --%>
+
+	<c:forEach items="${myReviewList}" var="myReviewList">
+		<form id="actionForm" action="/bc/detail/${myReviewList.isbn13}" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		</form>
+	</c:forEach>	
 
 </body>
 </html>

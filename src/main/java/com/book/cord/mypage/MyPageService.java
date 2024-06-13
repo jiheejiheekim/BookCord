@@ -13,7 +13,7 @@ public interface MyPageService {
 	
 	public void addReview(ReviewVO vo);
 	public int reviewTotal(String member_id);
-	public List<BookMarkVO> getReviewList(Criteria cri, String member_id);
+	public List<ReviewVO> getReviewList(Criteria cri, String member_id);
 	public void reviewDelete(int review_num);
 	public void reviewUpdate(ReviewVO vo);
 	

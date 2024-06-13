@@ -62,7 +62,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	@Override
-	public List<BookMarkVO> getReviewList(Criteria cri, String member_id){
+	public List<ReviewVO> getReviewList(Criteria cri, String member_id){
 		System.out.println("Service getReviewList 호출");
 		
         return dao.getReviewListPaging(cri, member_id);

@@ -1,5 +1,9 @@
 package com.book.cord;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,6 +13,9 @@ import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.GenresNewBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
+import com.book.cord.book.BookDAO;
+import com.book.cord.mypage.ReviewVO;
+import com.book.cord.notice.Criteria;
 
 @Service("bookServiceImpl")
 public class BookServiceImpl implements BookService {
@@ -29,6 +36,10 @@ public class BookServiceImpl implements BookService {
     public BookServiceImpl(RestTemplate restTemplate) {
     	this.restTemplate = restTemplate;
     }
+    
+    @Autowired
+    @Qualifier("bookDAOImpl")
+    BookDAO dao;
 
     @Override	// 신간도서
     public NewBooks getNewBooks() {
@@ -90,4 +101,15 @@ public class BookServiceImpl implements BookService {
     }
     
         
+    @Override	//detail페이지의 리뷰 목록 가져오기
+    public List<ReviewVO> getDetailReviewList(Criteria cri, String isbn13) {
+    	System.out.println("Service getDetailReviewList 호출");
+        return dao.getDetailReviewList(cri, isbn13);
+    }
+    
+    @Override
+    public int detailReviewTotal(String isbn13) {
+    	System.out.println("Service detailReviewTotal 호출");
+    	return dao.detailReviewTotal(isbn13);
+    }
 }
