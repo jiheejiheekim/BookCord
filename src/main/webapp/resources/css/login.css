@@ -90,6 +90,7 @@ button:hover{
 	padding:0.7em;
 	font-size:0.8em;
 	min-width:35%;
+	cursor: pointer;
 }
 
 .signUp{

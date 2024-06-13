@@ -8,7 +8,15 @@
 <title>BookCord - Login</title>
 <link rel="stylesheet" href="resources/css/login.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+<script>
+window.onload = function() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const errorMessage = urlParams.get('message');
+	if (errorMessage) {
+		alert(decodeURIComponent(errorMessage));
+	}
+}
+</script>
 </head>
 <body>
 	<!-- TOP -->

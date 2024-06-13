@@ -11,12 +11,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 
 public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 	
@@ -31,14 +30,14 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		String username = auth.getName();
 	    memberMapper.updateDate(username); //로그인 시 update_date 업데이트
 		
-		System.out.println(">>>>>>> 로그인 성공 ID : "+username);
+		System.out.println(">>>>>>> 로그인 ID : "+username);
 		
 		List<String> roleNames = new ArrayList<>();
 		
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});
-		System.out.println(">>>>>>> 로그인 한 유저의 권한 : "+roleNames);
+		System.out.println(">>>>>>> 로그인 유저의 권한 : "+roleNames);
 		
 		
 		// 세션에 사용자 정보를 추가
@@ -56,7 +55,7 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
         // 사용자의 Authentication 객체를 SecurityContext에 설정
         SecurityContextHolder.getContext().setAuthentication(auth);
 	    
-		if(roleNames.contains("ROLE_ADMIN")) {
+		/*if(roleNames.contains("ROLE_ADMIN")) {
 			response.sendRedirect("/bc/admin");
 			return;
 		}
@@ -64,11 +63,9 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
 		if(roleNames.contains("ROLE_USER")) {
 			response.sendRedirect("/bc/vip");
 			return;
-		}
+		}*/
 		
-		response.sendRedirect("/");
+		response.sendRedirect("/bc/main");
+        
 	}
-	
-	
-
 }
