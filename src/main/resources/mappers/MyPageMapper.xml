@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.book.cord.mypage.MyPageMapper">
+    
+<!-- 회원정보 수정 -->
+
+	<select id="getMemberInfo" parameterType="string" resultType="com.book.cord.login.MemberVO">
+        SELECT * FROM MEMBER WHERE ID=#{id, jdbcType=VARCHAR}
+    </select>
+    
+    <select id="nameCheck" parameterType="String" resultType="int">
+    	SELECT COUNT(*) FROM MEMBER WHERE name=#{name}
+    </select>
+    
+	<update id="memberUpdate">
+		UPDATE MEMBER SET PWD=#{pwd}, NAME=#{name} WHERE ID=#{id} 
+	</update>
 
 <!-- 리뷰 -->
 	<insert id="insertReview">

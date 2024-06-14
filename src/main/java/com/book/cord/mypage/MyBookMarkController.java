@@ -1,10 +1,12 @@
 package com.book.cord.mypage;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,22 @@ public class MyBookMarkController {
 	@Autowired
     HttpServletRequest request;
 	
+	@Autowired
+	HttpServletResponse response;
+	
 	@GetMapping("/myBookMark") 
-	public String myBookMark(Criteria cri, Model model) { 
-		System.out.println("나의 북마크 리스트 >>> "+cri);
+	public String myBookMark(Criteria cri, Model model) throws Exception{ 
+		System.out.println("나의 북마크 리스트 >>> ");
 		
-		HttpSession session = request.getSession();
-        CustomUserDetails userDetails = (CustomUserDetails) session.getAttribute("member");
-        String member_id = userDetails.getUsername();
+		HttpSession session = request.getSession(false); // 세션이 없을 경우 null 반환
+        if (session == null || session.getAttribute("member") == null) {
+            String encodedMessage = URLEncoder.encode("로그인 하세요", "UTF-8");
+            return "redirect:/loginP?error=true&message=" + encodedMessage;
+        }
+	    
+		CustomUserDetails userDetails = (CustomUserDetails) session.getAttribute("member");
+	    String member_id = userDetails.getUsername();
+	    
         System.out.println("Session member_id: " + member_id);
         if (member_id == null) {
             throw new IllegalArgumentException("에러 >> member_id가 null");

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.book.cord.login.MemberVO;
 import com.book.cord.notice.Criteria;
 
 @Mapper
@@ -19,4 +20,9 @@ public interface MyPageMapper {
 	public List<BookMarkVO> getReviewListPaging(Criteria cri, String member_id);
 	public void deleteReview(int review_num);
 	public void updateReview(ReviewVO vo);
+	
+	public String getMemberInfo(String id);
+	public int nameCheck(String name);
+	public void memberUpdate(MemberVO member);
+	
 }

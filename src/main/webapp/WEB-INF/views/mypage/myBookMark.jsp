@@ -11,11 +11,20 @@
 <link rel="stylesheet" href="resources/css/myBookMark.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+
 $(document).ready(function(){
+	var urlParams = new URLSearchParams(window.location.search);
+    var errorMessage = urlParams.get('message');
+    if (errorMessage) {
+        alert(decodeURIComponent(errorMessage));
+    }
+    
 	var member_id = "<c:out value='${sessionScope.member.username}'/>";
 	
 	if(member_id==null){
 		alert('로그인 하세요 \nmember_id : '+member_id);
+		return;
 	}else{
 		console.log(member_id+' 회원님의 북마크')
 	}

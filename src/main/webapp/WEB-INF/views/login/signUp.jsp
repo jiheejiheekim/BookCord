@@ -222,7 +222,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td class="idCheckResult"><span id="checkText"></span></td>
+						<td class="idCheckResult"><span id="checkText">　</span></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -237,7 +237,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td class="pwdCheckResult"><span id="checkText2"></span></td>
+						<td class="pwdCheckResult"><span id="checkText2">　</span></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -247,7 +247,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td class="nameCheckResult"><span id="checkText3"></span></td>
+						<td class="nameCheckResult"><span id="checkText3">　</span></td>
 						<td></td>
 					</tr>
 				</table>

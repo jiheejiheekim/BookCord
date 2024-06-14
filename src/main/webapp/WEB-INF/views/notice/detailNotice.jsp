@@ -44,7 +44,9 @@
 	    }
 	}
 	
-
+	function loginGo(){
+		alert('로그인 하세요');
+	}
 
 </script>
 </head>

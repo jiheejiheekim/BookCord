@@ -1,5 +1,6 @@
 package com.book.cord.mypage;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,13 +32,20 @@ public class MyReviewController {
 	HttpServletRequest request;
 
 	@GetMapping("/myReview")
-	public String myReview(Criteria cri, Model model) {
+	public String myReview(Criteria cri, Model model) throws Exception {
 		System.out.println("나의 리뷰 리스트 >>> " + cri);
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false); // 세션이 없을 경우 null 반환
+        if (session == null || session.getAttribute("member") == null) {
+            String encodedMessage = URLEncoder.encode("로그인 하세요", "UTF-8");
+            return "redirect:/loginP?error=true&message=" + encodedMessage;
+        }
+	    
 		CustomUserDetails userDetails = (CustomUserDetails) session.getAttribute("member");
-		String member_id = userDetails.getUsername();
-		System.out.println("Session member_id: " + member_id);
+	    String member_id = userDetails.getUsername();
+	    
+        System.out.println("Session member_id: " + member_id);
+		
 		if (member_id == null) {
 			throw new IllegalArgumentException("에러 >> member_id가 null");
 		}

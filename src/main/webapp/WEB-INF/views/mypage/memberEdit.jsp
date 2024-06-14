@@ -12,20 +12,214 @@
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	function logout() {
-		var form = document.createElement('form');
-	    form.method = 'POST';
-	    form.action = '/bc/logout';
-	    
-	    var csrfToken = document.createElement('input');
-	    csrfToken.type = 'hidden';
-	    csrfToken.name = '${_csrf.parameterName}';
-	    csrfToken.value = '${_csrf.token}';
-	    
-	    form.appendChild(csrfToken);
-	    document.body.appendChild(form);
-	    form.submit();
+
+function logout() {
+	var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/bc/logout';
+    
+    var csrfToken = document.createElement('input');
+    csrfToken.type = 'hidden';
+    csrfToken.name = '${_csrf.parameterName}';
+    csrfToken.value = '${_csrf.token}';
+    
+    form.appendChild(csrfToken);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
+var member_id = "<c:out value='${sessionScope.member.username}'/>";
+$(document).ready(function(){
+	
+	var urlParams = new URLSearchParams(window.location.search);
+    var errorMessage = urlParams.get('message');
+    if (errorMessage) {
+        alert(decodeURIComponent(errorMessage));
+    }
+    
+	var member_id = "<c:out value='${sessionScope.member.username}'/>";
+	
+	if(member_id==null){
+		alert('로그인 하세요 \nmember_id : '+member_id);
+		return;
+	}else{
+		console.log(member_id+' 회원님의 정보 수정')
 	}
+	
+});
+
+	
+	var originalName;
+	function nameCheck(originalName) {
+		return new Promise((resolve, reject) => {
+		event.preventDefault();
+		originalName = originalName;
+		var changeName = $('.name').val();
+		
+		if(changeName == ""){
+			alert("닉네임을 입력하세요");
+			$(".name").focus();
+			return resolve(false);
+		}
+		console.log('기존 닉네임 : '+originalName+'\n바꾼 닉네임 : '+changeName);
+		
+		
+		$.ajax({
+			type:"get",
+			url:"/bc/nameCheck_edit",
+			data:{"name":changeName},
+			dataType:"json",
+			success:function(result){
+				if(result >= 1){
+					if(originalName == changeName){
+						$("#checkText3").html("기존 닉네임 입니다");
+						$("#checkText3").addClass("text1");
+						$("#checkText3").removeClass("text2");
+						$("#checkText3").removeClass("p");
+						return resolve(true);
+					}else{
+						$("#checkText3").html("이미 사용중인 닉네임입니다");
+						$("#checkText3").addClass("text2");
+						$("#checkText3").removeClass("text1");
+						$("#checkText3").removeClass("p");
+						$(".name").focus();
+						return resolve(false);
+					}
+					
+				}else{
+					$("#checkText3").html("사용할 수 있는 닉네임입니다");
+					$("#checkText3").addClass("text1");
+					$("#checkText3").removeClass("text2");
+					$("#checkText3").removeClass("p");
+					return resolve(true); 
+				}
+			},
+			error:function(err){
+				alert('요청 실패 : '+err);
+				console.log(err);
+				reject(err);
+            }
+        });
+    });
+}
+	
+	
+	function pwdCharCheck() {
+		var pwd1 = $(".pwd1").val();
+		var pwdCharCheck = $("#pwdCharCheck");
+		
+		pwdCharCheck.empty();
+		if(pwd1.length >= 6 && pwd1.length <= 15){
+			var img = $("<img>").attr("src", "resources/images/pwCheckO.png").addClass("pwImg")
+			pwdCharCheck.append(img);
+		}else{
+			var img = $("<img>").attr("src", "resources/images/pwCheckX.png").addClass("pwImg2")
+			pwdCharCheck.append(img);
+		}
+		
+	}
+	
+	function pwdCheck() {
+		var pwd1 = $(".pwd1").val();
+		var pwd2 = $(".pwd2").val();
+		
+		if(pwd1 == "" && pwd2 ==""){
+			$("#checkText2").html(" ");
+			$("#checkText2").removeClass("text1");
+			$("#checkText2").removeClass("text2");
+		}else if(pwd1 != null && pwd2 !=null && pwd1 == pwd2){
+			$("#checkText2").html("비밀번호가 일치합니다");
+			$("#checkText2").addClass("text1");
+			$("#checkText2").removeClass("text2");
+			$("#checkText2").removeClass("p");
+		}else if(pwd1 != null && pwd2 !=null && pwd1 != pwd2){
+			$("#checkText2").html("비밀번호가 일치하지 않습니다");
+			$("#checkText2").addClass("text2");
+			$("#checkText2").removeClass("text1");
+			$("#checkText2").removeClass("p");
+		}else if(pwd1 != null && pwd2 == "" && pwd1 != pwd2){
+			$("#checkText2").html("비밀번호가 일치하지 않습니다");
+			$("#checkText2").addClass("text2");
+			$("#checkText2").removeClass("text1");
+			$("#checkText2").removeClass("p");
+		}else{
+			alert('다시 시도하세요');
+			return;
+		}
+		
+	}
+	
+	
+	async function memberEdit(originalName) {
+		event.preventDefault();
+		
+		var id = member_id;
+		var name = $('.name').val();
+		var pwd1 = $(".pwd1").val();
+		var pwd2 = $(".pwd2").val();
+		var check = $("#checkText").text();
+		var check2 = $("#checkText2").text();
+		var check3 = $("#checkText3").text();
+		
+		console.log(id+'님의 정보 수정-------------\nname : '+name);
+		
+		if(!pwd1) {
+			alert('비밀번호를 입력해주세요');
+			edit.pwd.focus();
+			return;
+		}
+		if(!pwd2) {
+			alert('비밀번호를 입력해주세요');
+			edit.pwd2.focus();
+			return;
+		}
+		if(!name) {
+			alert('닉네임을 입력해주세요');
+			member.name.focus();
+			return;
+		}
+		
+		if(pwd1 != pwd2) {
+			alert('비밀번호가 일치하지 않습니다');
+			edit.pwd2.focus();
+			return;
+		}
+		
+		if(pwd1.length < 6 || pwd1.length > 15){
+			alert('비밀번호 형식이 일치하지 않습니다');
+			edit.pwd.focus();
+			return;
+		}
+		if(pwd2.length < 6 || pwd2.length > 15){
+			alert('비밀번호 형식이 일치하지 않습니다');
+			edit.pwd.focus();
+			return;
+		}
+		
+		if(check2 != '비밀번호가 일치합니다'){
+			alert('비밀번호를 확인하세요');
+			edit.pwd2.focus();
+			return;
+		}
+		
+		if(check3 == '이미 사용중인 닉네임입니다'){
+			alert('닉네임을 확인하세요');
+			edit.name.focus();
+			return;
+		}
+		
+		pwdCharCheck();
+		const isNameValid = await nameCheck(originalName);
+	    if (!isNameValid) {
+	        alert('닉네임을 확인하세요');
+	        return;
+	    }
+		
+		edit.submit();
+		alert('회원정보 수정 완료');
+	}
+	
 </script>	
 </head>
 <body>
@@ -76,49 +270,64 @@
 		</div>
 		
 		<div class="memberEdit">
-			<span class="memberEditSpan">회원정보 수정</span>
-			
-			<div class="Edit">
-				<table class="EditTable">
-					<tr>
-						<td>아이디</td>
-						<td colspan="2">bookcord123</td>
-					</tr>
-					<tr>
-						<td>새 비밀번호</td>
-						<td><input class="pw" type="password" placeholder="영문/숫자 조합 6~15자"></td>
-						<td><img class="pwImg" src="resources/images/pwCheckO.png"></td>
-					</tr>
-					<tr>
-						<td>비밀번호 확인</td>
-						<td><input class="pwCheck" type="password"></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class="text1">비밀번호가 일치합니다</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>닉네임</td>
-						<td><input class="nickName" type="text" value="북코드닉네임"></td>
-						<td><button class="NickNameCheck"><a href="">중복확인</a></button></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class="text2">이미 사용 중인 닉네임 입니다</td>
-						<td></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<br>
-	
-	</div>
-	
-		<div class="finalEdit">
-			<button class="EditButton"><a href="">회원정보 수정</a></button>
-		</div>
-	
+			<form name="edit" action="/bc/memberUpdate" method="post">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<span class="memberEditSpan">회원정보 수정</span>
+				
+				
+					<div class="Edit">
+						<table class="EditTable">
+							<tr>
+								<td>아이디</td>
+								<td><input type="text" class="id" name="id" value="${member.id}" readonly></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>새 비밀번호</td>
+								<td><input name="pwd" class="pwd1" type="password" placeholder="영문/숫자 조합 6~15자" onchange="pwdCharCheck()"></td>
+								<td><span id="pwdCharCheck"></span></td>
+							</tr>
+							<tr>
+								<td>비밀번호 확인</td>
+								<td><input name="pwd2" class="pwd2" type="password" onchange="pwdCheck()"></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="pwdCheckResult"><span id="checkText2" class="p">　</span></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>닉네임</td>
+								<td><input name="name" class="name" type="text" value="${member.name}"></td>
+								<td><button class="nameCheck" onclick="nameCheck('${member.name}')"><a href="#">중복확인</a></button></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="nameCheckResult"><span id="checkText3" class="p">　</span></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>	<!-- Edit -->
+			<!-- </div> -->
+			<br>
+		
+		
+			<table class="EditTable2">
+				<tr>
+					<td class="">
+						<button class="EditButton" onclick="memberEdit('${member.name}')"><a href="">회원정보 수정</a></button>
+					</td>
+				</tr>
+				<!-- <div class="finalEdit">
+					<button class="EditButton" onclick="memberEdit()"><a href="">회원정보 수정</a></button>
+				</div> -->
+			</table>
+		
+		</form>
+		
+		</div>	<!-- memberEdit -->
+		
+	</div>	<!-- content -->
 </body>
 </html>

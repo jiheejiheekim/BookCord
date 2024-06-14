@@ -2,6 +2,7 @@ package com.book.cord.mypage;
 
 import java.util.List;
 
+import com.book.cord.login.MemberVO;
 import com.book.cord.notice.Criteria;
 
 public interface MyPageDAO {
@@ -16,4 +17,8 @@ public interface MyPageDAO {
 	public List<ReviewVO> getReviewListPaging(Criteria cri, String member_id);
 	public void deleteReview(int review_num);
 	public void updateReview(ReviewVO vo);
+	
+	public MemberVO getMemberInfo(String id);
+	public int nameCheck(String name);
+	public void memberUpdate(MemberVO member);
 }

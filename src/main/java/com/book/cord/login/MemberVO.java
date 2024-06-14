@@ -25,7 +25,7 @@ public class MemberVO {
     private String provider_id; // 소셜 로그인 사용자 ID
     private String profile_img; // 프로필 이미지
     
-    private boolean enabled; // 계정 정지 유무
+    private boolean enabled; 	// 계정 정지 유무
     private Date update_date;
     
    

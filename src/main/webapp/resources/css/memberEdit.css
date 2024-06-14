@@ -103,7 +103,7 @@ button:hover {
 }
 
 .memberEdit{
-	/*border:1px solid black; */
+	/* border:1px solid black;  */
 	width:80%;
 	margin-left:2.5em;
 	margin-top:1em;
@@ -115,21 +115,27 @@ button:hover {
 	/* border:1px solid black; */
 	width:65%;
 	margin-top:1.5em;
-	background-color:#EDEDED;
-	font-size:1.1em;
-	padding:1em;
 }
 .EditTable{
-	width:70%;
+	width:75%;
+	background-color:#EDEDED;
 	margin-bottom:1.5em;
+	padding:1.3em;
+	font-size:1.1em;
 }
-.Edit tr td{
+.EditTable2{
+	padding:1.3em;
+	width:48%;
+	text-align: center;
+	padding: 1.3em;
+    font-size: 1.1em;
+}
+.EditTable2 tr td{
 	/* border:1px solid black; */
 }
-.Edit tr td:not(.text1, .text2) {
-	padding-top:1.2em;
-	padding-left:0.7em;
-	padding-right:0.7em;
+
+.Edit tr td{
+	/*  border:1px solid black; */ 	/* 수정 폼 */
 }
 .EditTable tr td:nth-child(1){
 	width:15%;
@@ -138,19 +144,25 @@ button:hover {
 	width:30%;
 }
 .EditTable tr td:nth-child(3){
-	width:10%;
+	width:9%;
 }
-.pw, .pwCheck, .nickName{
+.id, .pwd1, .pwd2, .name{
 	width:95%;
 	text-align:left;
 	height:2.2em;
 	border:none;
+	font-size:1em;
 }
 .pwImg{
 	margin-top:2px;
 	width:20px;	
 }
-.NickNameCheck{
+.pwImg2{
+	margin-top:4px;
+	margin-left:2.5px;
+	width:15px;	
+}
+.nameCheck{
 	border:none;
 	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
@@ -160,20 +172,20 @@ button:hover {
 	font-size:0.7em;
 	min-width:35%;
 }
-.text1{
+.text1{	/* 중복 체크 성공 */
 	color:#2D9462;
 	font-size:0.8em;
-	padding-left:1em;
 }
-.text2{
+.text2{	/* 중복 체크 실패 */
 	color:red;
 	font-size:0.8em;
-	padding-left:1em;
 }
-
+.EditTable tr td:not(.pwdCheckResult, .nameCheckResult){
+	padding-top:1em;
+}
 .finalEdit{
-	margin-top:3em;
-	margin-left:38%;
+	/* margin-top:3em; */
+	margin-left:17.5%;
 }
 .EditButton{
 	border:none;
@@ -181,8 +193,12 @@ button:hover {
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;
-	margin:0.5em;
+	margin:0.7em;
 	padding:0.7em;
 	font-size:0.9em;
-	width:15%;
+	/* width:18%; */
+}
+.p{
+	font-size:0.8em;
+	color:#727272;
 }

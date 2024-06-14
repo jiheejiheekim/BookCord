@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.book.cord.login.MemberVO;
 import com.book.cord.notice.Criteria;
 
 @Repository("myPageDAOImpl")
@@ -95,5 +96,23 @@ public class MyPageDAOImpl implements MyPageDAO {
 		sqlSession.update(NAMESPACE + ".updateReview", vo);
 	}
 	
+	//////////////////////////////////////
 	
+	@Override
+	public MemberVO getMemberInfo(String id) {
+		System.out.println("DAO getMemberInfo 호출");
+		return sqlSession.selectOne(NAMESPACE + ".getMemberInfo", id);
+	}
+	
+	@Override
+    public int nameCheck(String name) {
+    	System.out.println("DAO.nameCheck 지나가기 : "+name);
+    	return sqlSession.selectOne(NAMESPACE + ".nameCheck", name);
+    }
+	
+	@Override
+	public void memberUpdate(MemberVO member) {
+		System.out.println("DAO.memberUpdate 지나가기 : "+member);
+		sqlSession.update(NAMESPACE + ".memberUpdate", member);
+	}
 }
