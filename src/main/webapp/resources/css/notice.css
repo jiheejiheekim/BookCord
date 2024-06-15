@@ -85,6 +85,7 @@ button:hover {
 .navi3 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
+	
 }
 .navi4 {
 	padding-top: 0.8em;
@@ -128,9 +129,7 @@ button:hover {
 	border: none;
 	border-radius: 15px;
 	font-size: 1em;
-	border: 1px solid #808080;
-	transform: translateY(2px);
-	box-shadow: -2px -1px #898383;
+	
 	width: 70%;
 }
 .qnaBt {
@@ -142,6 +141,9 @@ button:hover {
 	/* box-shadow: 5px 5px #898383; */
 	font-size: 1em;
 	width: 15%;
+	border: 1px solid #808080;
+	transform: translateY(2px);
+	box-shadow: -2px -1px #898383;
 }
 
 
@@ -194,6 +196,8 @@ button:hover {
 .searchImg {
 	width: 25px;
 	height: 27px;
+	margin-top: 10px;
+    margin-left: 19px;
 }
 
 .nht2r1d3{

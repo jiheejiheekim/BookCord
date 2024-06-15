@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookCord - QnA</title>
-<link rel="stylesheet" href="resources/css/qna.css">
+<title>BookCord - FreeBaord</title>
+<link rel="stylesheet" href="resources/css/freeBoard.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
 	function logout() {
 		var form = document.createElement('form');
 	    form.method = 'POST';
@@ -25,6 +26,23 @@
 	    form.appendChild(csrfToken);
 	    document.body.appendChild(form);
 	    form.submit();
+	 }
+	  
+    $(document).ready(function(){
+    	var actionForm = $("#actionForm");
+    	$(".paginate_button a").on("click", function(e) {
+        	e.preventDefault();
+            
+            console.log('click');
+            
+            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+            actionForm.submit();
+    	
+    	});
+    });
+    
+    function loginGo(){
+		alert('로그인 하세요');
 	}
 </script>
 </head>
@@ -48,6 +66,7 @@
 					<sec:authorize access="isAnonymous()">
 						<a href="loginP">로그인</a>
 					</sec:authorize>
+					
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>
@@ -66,13 +85,13 @@
 					<td class="navi2"><a class="naviA" href="notice">공지사항</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="qna">문의하기</a></td>
+					<td class="navi3"><a class="naviA" href="freeBoard">자유게시판</a></td>
 				</tr>
 			</table>
 		</div>	<!-- navi -->
 		
 		<div class="noticeHead">
-			<span class="noticeHeadSpan">문의하기</span>
+			<span class="noticeHeadSpan">공지사항</span>
 			
 			<div class="nhTableDiv">
 				<table class="nhTable1">
@@ -81,7 +100,7 @@
 					</tr>
 					<tr class="nht1tr2">
 						<td class="nht1r2d1"><button class="noticeBt"><a href="notice">공지사항</a></button></td>
-						<td class="nht1r2d2"><button class="qnaBt"><a href="qna">문의하기</a></button></td>
+						<td class="nht1r2d2"><button class="qnaBt"><a href="freeBoard">자유게시판</a></button></td>
 					</tr>
 					<tr class="nht1tr3">
 						<td class="nht1r3d1" colspan="3"><hr style="color:#2D9462"></td>
@@ -99,14 +118,14 @@
 						<td class="nht2r1d2">
 							<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
 							<a href=""><img class="searchImg" src="resources/images/search.png"></a>
-							
+						</td>	
 						<td class="nht2r1d3"></td>
 					</tr>
 				</table>
 				
 				<table class="nhTable3">	<!-- tr12개 td5개 -->
 					<tr class="nht3tr1">
-						<td class="nht3r1d1">10 개</td>
+							<td class="nht3r1d1">총 ${totalCount} 개</td>
 					</tr>
 					
 					<tr class="nht3tr2">
@@ -117,99 +136,59 @@
 						<td class="nht3r2d5">조회수</td>
 					</tr>
 					
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">10</td>
-						<td class="nht3r3d2">북코드 공지사항 10번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">9</td>
-						<td class="nht3r3d2">북코드 공지사항 9번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">8</td>
-						<td class="nht3r3d2">북코드 공지사항 8번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">7</td>
-						<td class="nht3r3d2">북코드 공지사항 7번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">6</td>
-						<td class="nht3r3d2">북코드 공지사항 6번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">5</td>
-						<td class="nht3r3d2">북코드 공지사항 5번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">4</td>
-						<td class="nht3r3d2">북코드 공지사항 4번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">3</td>
-						<td class="nht3r3d2">북코드 공지사항 3번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">2</td>
-						<td class="nht3r3d2">북코드 공지사항 2번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
-					<tr class="nht3tr3">
-						<td class="nht3r3d1">1</td>
-						<td class="nht3r3d2">북코드 공지사항 1번째 글</td>
-						<td class="nht3r3d3">북코드</td>
-						<td class="nht3r3d4">2024-03-20</td>
-						<td class="nht3r3d5">20</td>
-					</tr>
+					<c:forEach items="${list}" var="lists">
+						<tr class="nht3tr3">
+							<td class="nht3r3d1">${lists.notice_num}</td>
+							<td class="nht3r3d2"><a href="detailNotice/${lists.notice_num}">${lists.title}</a></td>
+							<td class="nht3r3d3">${lists.member_id}</td>
+							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
+							<td class="nht3r3d4">${formattedDate}</td>
+							<td class="nht3r3d5">${lists.hit}</td>
+						</tr>
+					</c:forEach>
+					
 				</table>
 				
 			</div>	<!-- nhTableDiv -->
 			
-		</div>	<!-- myReview -->
+		</div>	<!-- noticeHead -->
 	
 	</div>	<!-- content -->
 	
-	<div class="reviewPage">
-		<table class="reviewPageTable">
-			<tr>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageLeft.png"></a></td>
-				<td><a class="bold">1</a></td>
-				<td><a href="">2</a></td>
-				<td><a href="">3</a></td>
-				<td><a href="">4</a></td>
-				<td><a href="">5</a></td>
-				<td class="pageLogotd"><a><img class="pageLogo"
-						src="resources/images/pageRight.png"></a></td>
-			</tr>
-		</table>
-	</div>
+	<div class="low">
+		<div class="reviewPage">
+			<table class="reviewPageTable">
+				<tr>
+					<c:if test="${pageMaker.prev}">
+						<td class="pageLogotd, paginate_button previous">
+							<a href="${pageMaker.startPage-1}"><img class="pageLogo1" src="resources/images/pageLeft.png"></a>
+						</td>
+					</c:if>
+
+					 <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+					 	<td class="paginate_button ${pageMaker.cri.pageNum == num ? 'bold' : ''}">
+					 		<a href="${num}">${num}</a>
+					 	</td>
+					 </c:forEach>
+					 
+					<c:if test="${pageMaker.next}">
+						<td class="pageLogotd, paginate_button next">
+							<a href="${pageMaker.endPage+1}"><img class="pageLogo2" src="resources/images/pageRight.png"></a>
+						</td>
+					</c:if>
+				</tr>
+			</table>
+		</div>
+		
+		<form id="actionForm" action="/bc/notice" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		</form>
+		
+		<div class="write">
+			<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>
+		</div>
+	</div>	<!-- low -->
 
 </body>
 </html>

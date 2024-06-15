@@ -21,5 +21,9 @@ public interface NoticeDAO {
 	public int updateNotice(NoticeVO notice);
 	
 	public int updateHit(int notice_num);
+	
+	public List<NoticeVO> getSearchNoticePaging(String select, String search, Criteria cri);
+	
+	public int searchCount(String select, String search);
 
 }

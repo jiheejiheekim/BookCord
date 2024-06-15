@@ -44,6 +44,10 @@
     function loginGo(){
 		alert('로그인 하세요');
 	}
+    
+    function searchSubmit() {
+    	document.getElementById('searchForm').submit();
+    }
 </script>
 
 </head>
@@ -86,7 +90,7 @@
 					<td class="navi2"><a class="naviA" href="notice">공지사항</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="qna">문의하기</a></td>
+					<td class="navi3"><a class="naviA" href="freeBoard">자유게시판</a></td>
 				</tr>
 			</table>
 		</div>	<!-- navi -->
@@ -101,7 +105,7 @@
 					</tr>
 					<tr class="nht1tr2">
 						<td class="nht1r2d1"><button class="noticeBt"><a href="notice">공지사항</a></button></td>
-						<td class="nht1r2d2"><button class="qnaBt"><a href="qna">문의하기</a></button></td>
+						<td class="nht1r2d2"><button class="qnaBt"><a href="freeBoard">자유게시판</a></button></td>
 					</tr>
 					<tr class="nht1tr3">
 						<td class="nht1r3d1" colspan="3"><hr style="color:#2D9462"></td>
@@ -109,19 +113,23 @@
 				</table>
 				
 				<table class="nhTable2">
-					<tr class="nht2tr1">
-						<td class="nht2r1d1">
-							<select name="select" class="select">
-								<option value="제목" selected>제 목</option>
-								<option value="글내용">글 내용</option>
-							</select>
-						</td>
-						<td class="nht2r1d2">
-							<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
-							<a href=""><img class="searchImg" src="resources/images/search.png"></a>
-							
-						<td class="nht2r1d3"></td>
-					</tr>
+					<form id="searchForm" action="/bc/searchNotice" method="get">
+						<tr class="nht2tr1">
+							<td class="nht2r1d1">
+								<select name="select" class="select">
+									<option value="제목" selected>제 목</option>
+									<option value="글내용">글 내용</option>
+								</select>
+							</td>
+						
+							<td class="nht2r1d2">
+								<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
+								<a href="#" onclick="searchSubmit()"><img class="searchImg" src="resources/images/search.png"></a>
+							</td>		
+						
+							<td class="nht2r1d3"></td>
+						</tr>
+					</form>
 				</table>
 				
 				<table class="nhTable3">	<!-- tr12개 td5개 -->

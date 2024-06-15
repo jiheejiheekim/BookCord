@@ -22,5 +22,9 @@ public interface NoticeService {
     public int upNotice(NoticeVO notice);
     
     public int upHit(int notice_num);
+    
+    public List<NoticeVO> searchNotice(String select, String search, Criteria cri);
+    
+    public int searchCount(String select, String search);
         
 }

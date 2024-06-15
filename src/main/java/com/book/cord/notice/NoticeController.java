@@ -42,11 +42,13 @@ public class NoticeController {
 
 	@Autowired
 	NoticeMapper mapper;
+	
+	
 
 	// 공지사항 리스트
 	@GetMapping("/notice")
 	public String list(Criteria cri, Model model) throws Exception {
-		System.out.println("컨트롤러 list(): " + cri); // 로그 출력
+		System.out.println("컨트롤러 list(): " + cri);
 
 		List<NoticeVO> list = service.getList(cri);
 		model.addAttribute("list", list);
@@ -232,6 +234,39 @@ public class NoticeController {
 			System.out.println(" 실패 >>>>> 컨트롤러에서 updateNoticeSubmit");
 			return "redirect:/";
 		}
+	}
+	
+	//공지사항 검색
+	@GetMapping("/searchNotice")
+	public String searchNotice(@RequestParam String select, @RequestParam String search, Model model) {
+		System.out.println("공지사항 ------------------------------\n("+select+")을 ("+search+")로 검색한 결과");
+		
+		Criteria cri = new Criteria();
+		String selectOption;
+		
+		if(select.equals("제목")) {
+			selectOption = "title";
+		}else if(select.equals("글내용")) {
+			selectOption = "content";
+		}else {
+			selectOption = "";
+		}
+		
+		System.out.println("select >>> "+select+" ====== 변환 ======> "+selectOption);
+		System.out.println("cri : "+cri);
+		List<NoticeVO> list = service.searchNotice(selectOption, search, cri);
+		model.addAttribute("list", list);
+
+		int totalCount = service.searchCount(selectOption, search);
+		System.out.println("검색한 키워드 결과 >>>>>>>>>> "+totalCount+"개");
+		model.addAttribute("totalCount", totalCount);
+		
+		
+
+		PageDTO pageMaker = new PageDTO(cri, totalCount);
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "notice/notice";
 	}
 
 }

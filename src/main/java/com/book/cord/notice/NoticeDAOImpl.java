@@ -1,6 +1,8 @@
 package com.book.cord.notice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,27 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public int updateHit(int notice_num) {
 		System.out.println("DAO updateNotice 호출 " + notice_num);
 		return sqlSession.update(NAMESPACE+".updateHit", notice_num);
+	}
+	
+	@Override
+	public List<NoticeVO> getSearchNoticePaging(String select, String search, Criteria cri) {
+		System.out.println("DAO getSearchNoticePaging 호출");
+		Map<String, Object> params = new HashMap<>();
+	    params.put("select", select);
+	    params.put("search", search);
+	    //params.put("cri", cri);
+	    params.put("pageNum", cri.getPageNum());
+	    params.put("amount", cri.getAmount());
+		return sqlSession.selectList(NAMESPACE+".getSearchNoticePaging", params);
+	}
+	
+	@Override
+	public int searchCount(String select, String search) {
+		System.out.println("DAO searchCount 호출");
+		Map<String, Object> params = new HashMap<>();
+	    params.put("select", select);
+	    params.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+".searchCount", params);
 	}
 
 }

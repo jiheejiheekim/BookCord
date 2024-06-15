@@ -74,5 +74,17 @@ public class NoticeServiceImpl implements NoticeService {
 		System.out.println("Service delNotice 호출");
 		return dao.updateHit(notice_num);
 	}
+	
+	@Override
+	public List<NoticeVO> searchNotice(String select, String search, Criteria cri){
+		System.out.println("Service searchNotice 호출");
+		return dao.getSearchNoticePaging(select, search, cri);
+	}
+	
+	@Override
+	public int searchCount(String select, String search) {
+		System.out.println("Service searchCount 호출");
+		return dao.searchCount(select, search);
+	}
 
 }
