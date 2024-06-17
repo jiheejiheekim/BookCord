@@ -238,10 +238,12 @@ public class NoticeController {
 	
 	//공지사항 검색
 	@GetMapping("/searchNotice")
-	public String searchNotice(@RequestParam String select, @RequestParam String search, Model model) {
+	public String searchNotice(@RequestParam String select, @RequestParam String search, Criteria cri, Model model) {
 		System.out.println("공지사항 ------------------------------\n("+select+")을 ("+search+")로 검색한 결과");
 		
-		Criteria cri = new Criteria();
+		model.addAttribute("select", select);
+		model.addAttribute("search", search);
+		
 		String selectOption;
 		
 		if(select.equals("제목")) {
@@ -261,12 +263,11 @@ public class NoticeController {
 		System.out.println("검색한 키워드 결과 >>>>>>>>>> "+totalCount+"개");
 		model.addAttribute("totalCount", totalCount);
 		
-		
-
 		PageDTO pageMaker = new PageDTO(cri, totalCount);
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "notice/notice";
+		return "notice/searchNotice";
+		//?select="+select+"&search="+search
 	}
 
 }

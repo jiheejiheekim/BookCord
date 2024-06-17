@@ -25,15 +25,15 @@ public class NoticeDAOImpl implements NoticeDAO {
     private SqlSession sqlSession;
     
 	@Override
-	public int totalCount(){
-		System.out.println("DAO count 호출");
-		return sqlSession.selectOne(NAMESPACE+".totalCount");
-	}
-	
-	@Override
 	public List<NoticeVO> getListWithPaging(Criteria cri) { 
 		System.out.println("DAO getListWithPaging 호출");
 		return sqlSession.selectList(NAMESPACE+".getListWithPaging", cri);
+	}
+	
+	@Override
+	public int totalCount(){
+		System.out.println("DAO count 호출");
+		return sqlSession.selectOne(NAMESPACE+".totalCount");
 	}
 	
 	@Override
@@ -72,9 +72,15 @@ public class NoticeDAOImpl implements NoticeDAO {
 		Map<String, Object> params = new HashMap<>();
 	    params.put("select", select);
 	    params.put("search", search);
-	    //params.put("cri", cri);
 	    params.put("pageNum", cri.getPageNum());
 	    params.put("amount", cri.getAmount());
+	    
+	    int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+	    
 		return sqlSession.selectList(NAMESPACE+".getSearchNoticePaging", params);
 	}
 	
@@ -86,5 +92,16 @@ public class NoticeDAOImpl implements NoticeDAO {
 	    params.put("search", search);
 		return sqlSession.selectOne(NAMESPACE+".searchCount", params);
 	}
+	
+	////////////////////////////////////////////
+	public List<NoticeVO> getFreeBoardListPaging(Criteria cri) {
+		System.out.println("DAO getFreeBoardListPaging 호출");
+		return sqlSession.selectList(NAMESPACE+".getFreeBoardListPaging", cri);
+	}
 
+	public int totalFreeBoardCount() {
+		System.out.println("DAO totalFreeBoardCount 호출");
+		return sqlSession.selectOne(NAMESPACE+".totalFreeBoardCount");
+	}
+	
 }

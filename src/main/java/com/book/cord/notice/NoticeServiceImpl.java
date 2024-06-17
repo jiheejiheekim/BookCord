@@ -18,15 +18,15 @@ public class NoticeServiceImpl implements NoticeService {
 
 
 	@Override
-	public int count() {
-		System.out.println("Service count 호출");
-		return dao.totalCount();
-	}
-
-	@Override
 	public List<NoticeVO> getList(Criteria cri) {
 		System.out.println("Service getList 호출");
 		return dao.getListWithPaging(cri);
+	}
+	
+	@Override
+	public int count() {
+		System.out.println("Service count 호출");
+		return dao.totalCount();
 	}
 
 	@Override
@@ -87,4 +87,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.searchCount(select, search);
 	}
 
+	////////////////////////////////////////////
+	public List<NoticeVO> getFreeBoardList(Criteria cri) {
+		System.out.println("Service getFreeBoardList 호출");
+		return dao.getFreeBoardListPaging(cri);
+	}
+	
+	public int totalFreeBoardCount() {
+		System.out.println("Service totalFreeBoardCount 호출");
+		return dao.totalFreeBoardCount();
+	}
 }
