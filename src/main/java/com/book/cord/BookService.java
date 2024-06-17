@@ -8,8 +8,8 @@ import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.GenresNewBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
+import com.book.cord.board.Criteria;
 import com.book.cord.mypage.ReviewVO;
-import com.book.cord.notice.Criteria;
 
 public interface BookService {
 	

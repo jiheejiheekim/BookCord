@@ -13,9 +13,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.book.cord.BookService;
 import com.book.cord.BookVO.DetailBooks;
+import com.book.cord.board.Criteria;
+import com.book.cord.board.PageDTO;
 import com.book.cord.mypage.ReviewVO;
-import com.book.cord.notice.Criteria;
-import com.book.cord.notice.PageDTO;
 
 @Controller
 public class DetailController {

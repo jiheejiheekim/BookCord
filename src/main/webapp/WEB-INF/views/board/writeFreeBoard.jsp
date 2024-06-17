@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookCord - WriteNotice</title>
+<title>BookCord - writeFreeBoard</title>
 <link rel="stylesheet" href="resources/css/writeNotice.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -84,14 +84,14 @@
 					<td class="navi2"><a class="naviA" href="notice">공지사항</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="qna">문의하기</a></td>
+					<td class="navi3"><a class="naviA" href="freeBoard">자유게시판</a></td>
 				</tr>
 			</table>
 		</div>	<!-- navi -->
 		
 		<div class="writeNoticeHead">
-			<span class="wrHeadSpan">공지사항</span>
-			<form name="notice" action="/bc/insertNotice" method="post" enctype="multipart/form-data">
+			<span class="wrHeadSpan">자유게시판</span>
+			<form name="freeBoard" action="/bc/insertFreeBoard" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="wrTableDiv">
 					<table class="wrTable1">
@@ -100,7 +100,7 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"><input type="text" class="writer" value="admin" name="member_id"></td>
+								<td class="wrt1r2d2"><input type="text" class="writer" value="${memberName}" readonly name="member_name"></td>
 						</tr>
 						<tr class="wrt1tr3">
 							<td class="wrt1r3d1">제목</td>

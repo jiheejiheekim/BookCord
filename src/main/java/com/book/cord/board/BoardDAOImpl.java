@@ -1,4 +1,4 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +11,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.book.cord.login.MemberMapper;
+import com.book.cord.login.MemberVO;
 
-@Repository("noticeDAO")
+@Repository("boardDAOImpl")
 @Primary
-public class NoticeDAOImpl implements NoticeDAO {
+public class BoardDAOImpl implements BoardDAO {
 	
-	private final String NAMESPACE = "com.book.cord.notice.NoticeMapper";
+	private final String NAMESPACE = "com.book.cord.board.BoardMapper";
     
     @Autowired
     private MemberMapper memberMapper;
@@ -94,7 +95,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 	
 	////////////////////////////////////////////
-	public List<NoticeVO> getFreeBoardListPaging(Criteria cri) {
+	public List<FreeBoardVO> getFreeBoardListPaging(Criteria cri) {
 		System.out.println("DAO getFreeBoardListPaging 호출");
 		return sqlSession.selectList(NAMESPACE+".getFreeBoardListPaging", cri);
 	}
@@ -104,4 +105,23 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return sqlSession.selectOne(NAMESPACE+".totalFreeBoardCount");
 	}
 	
+	public MemberVO getMemberName(String member_id) {
+		System.out.println("DAO getMemberName 호출");
+		return sqlSession.selectOne(NAMESPACE+".getMemberName", member_id);
+	}
+	
+	public void insertFreeBoard(FreeBoardVO freeBoard) {
+		System.out.println("DAO insertFreeBoard 호출");
+		sqlSession.insert(NAMESPACE+".insertFreeBoard", freeBoard);
+	}
+	
+	public FreeBoardVO getFreeBoardDetail(int freeBoard_num) {
+		System.out.println("DAO getNoticeDetail 호출 " + freeBoard_num);
+		return sqlSession.selectOne(NAMESPACE+".getFreeBoardDetail", freeBoard_num);
+	}
+	
+	public int upFreeBoardHit(int freeBoard_num) {
+		System.out.println("DAO upFreeBoardHit 호출 " + freeBoard_num);
+		return sqlSession.update(NAMESPACE+".upFreeBoardHit", freeBoard_num);
+	}
 }

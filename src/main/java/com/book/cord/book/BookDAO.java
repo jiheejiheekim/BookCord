@@ -2,8 +2,8 @@ package com.book.cord.book;
 
 import java.util.List;
 
+import com.book.cord.board.Criteria;
 import com.book.cord.mypage.ReviewVO;
-import com.book.cord.notice.Criteria;
 
 public interface BookDAO {
 	

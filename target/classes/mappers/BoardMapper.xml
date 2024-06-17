@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.book.cord.notice.NoticeMapper">
+<mapper namespace="com.book.cord.board.BoardMapper">
 
 <!-- 공지사항 게시판 -->
 	
-	<select id="getListWithPaging" resultType="com.book.cord.notice.NoticeVO">
+	<select id="getListWithPaging" resultType="com.book.cord.board.NoticeVO">
 		<![CDATA[
 			SELECT 
 				NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
@@ -28,11 +28,11 @@
 			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
 	</insert>
 	
-	<select id="getNoticeDetail" resultType="com.book.cord.notice.NoticeVO" parameterType="int">
+	<select id="getNoticeDetail" resultType="com.book.cord.board.NoticeVO" parameterType="int">
 		SELECT * FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
 	</select>
 	
-	<update id="updateNotice" parameterType="com.book.cord.notice.NoticeVO">
+	<update id="updateNotice" parameterType="com.book.cord.board.NoticeVO">
 		UPDATE NOTICE SET TITLE=#{title}, CONTENT=#{content}, FILES=#{files} 
 		WHERE NOTICE_NUM = #{notice_num}
 	</update>
@@ -45,7 +45,7 @@
 		UPDATE NOTICE SET HIT = HIT+1 WHERE NOTICE_NUM = #{notice_num}
 	</update>
 	
-	<select id="getSearchNoticePaging" resultType="com.book.cord.notice.NoticeVO" parameterType="map">
+	<select id="getSearchNoticePaging" resultType="com.book.cord.board.NoticeVO" parameterType="map">
     <![CDATA[
         SELECT 
             NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
@@ -74,7 +74,7 @@
 	</select>
 	
 <!-- 자유 게시판 -->
-	<select id="getFreeBoardListPaging" resultType="com.book.cord.notice.FreeBoardVO">
+	<select id="getFreeBoardListPaging" resultType="com.book.cord.board.FreeBoardVO">
 	<!-- SELECT * FROM FREEBOARD -->
 		<![CDATA[
 			SELECT 
@@ -92,5 +92,24 @@
 	<select id="totalFreeBoardCount" resultType="int">
 		SELECT COUNT(*) FROM FREEBOARD
 	</select>
+	
+	<select id="getMemberName" parameterType="string" resultType="com.book.cord.login.MemberVO">
+		SELECT NAME FROM MEMBER WHERE ID = #{member_id}
+	</select>
+	
+	<insert id="insertFreeBoard">
+		INSERT INTO FREEBOARD
+			(FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, CONTENT, FILES) 
+		VALUES
+			(freeboard_num_seq.nextval, #{member_name}, #{member_id}, #{title}, #{content}, #{files})
+	</insert>
+	
+	<select id="getFreeBoardDetail" resultType="com.book.cord.board.FreeBoardVO" parameterType="int">
+		SELECT * FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+	</select>
+	
+	<update id="upFreeBoardHit">
+		UPDATE FREEBOARD SET HIT = HIT+1 WHERE FREEBOARD_NUM = #{freeboard_num}
+	</update>
 	
 </mapper>

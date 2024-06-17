@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.book.cord.board.Criteria;
 import com.book.cord.mypage.ReviewVO;
-import com.book.cord.notice.Criteria;
 
 @Mapper
 public interface BookMapper {

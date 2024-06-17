@@ -44,6 +44,10 @@
     function loginGo(){
 		alert('로그인 하세요');
 	}
+    
+    function searchSubmit() {
+    	document.getElementById('searchForm').submit();
+    }
 </script>
 </head>
 <body>
@@ -108,19 +112,21 @@
 				</table>
 				
 				<table class="nhTable2">
-					<tr class="nht2tr1">
-						<td class="nht2r1d1">
-							<select name="select" class="select">
-								<option value="제목" selected>제 목</option>
-								<option value="글내용">글 내용</option>
-							</select>
-						</td>
-						<td class="nht2r1d2">
-							<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
-							<a href=""><img class="searchImg" src="resources/images/search.png"></a>
-						</td>	
-						<td class="nht2r1d3"></td>
-					</tr>
+					<form id="searchForm" action="/bc/searchFreeBoard" method="get">
+						<tr class="nht2tr1">
+							<td class="nht2r1d1">
+								<select name="select" class="select">
+									<option value="제목" selected>제 목</option>
+									<option value="글내용">글 내용</option>
+								</select>
+							</td>
+							<td class="nht2r1d2">
+								<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
+								<a href=""><img class="searchImg" src="resources/images/search.png"></a>
+							</td>	
+							<td class="nht2r1d3"></td>
+						</tr>
+					</form>
 				</table>
 				
 				<table class="nhTable3">	<!-- tr12개 td5개 -->
@@ -138,8 +144,8 @@
 					
 					<c:forEach items="${list}" var="lists">
 						<tr class="nht3tr3">
-							<td class="nht3r3d1">${lists.notice_num}</td>
-							<td class="nht3r3d2"><a href="detailNotice/${lists.notice_num}">${lists.title}</a></td>
+							<td class="nht3r3d1">${lists.freeBoard_num}</td>
+							<td class="nht3r3d2"><a href="detailFreeBoard/${lists.freeBoard_num}">${lists.title}</a></td>
 							<td class="nht3r3d3">${lists.member_name}</td>
 							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
 							<td class="nht3r3d4">${formattedDate}</td>
@@ -186,7 +192,7 @@
 		</form>
 		
 		<div class="write">
-			<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>
+			<button class="writeBt"><a href="/bc/writeFreeBoard">글쓰기</a></button>
 		</div>
 	</div>	<!-- low -->
 

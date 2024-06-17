@@ -1,11 +1,13 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.book.cord.login.MemberVO;
+
 @Mapper
-public interface NoticeMapper {
+public interface BoardMapper {
 
 	public List<NoticeVO> getListWithPaging(Criteria cri);
 	public int totalCount();
@@ -19,6 +21,10 @@ public interface NoticeMapper {
     public int searchCount(String select, String search);
     
     //////////////////////////////////////////
-    public List<NoticeVO> getFreeBoardListPaging(Criteria cri);
+    public List<FreeBoardVO> getFreeBoardListPaging(Criteria cri);
     public int totalFreeBoardCount();
+    public MemberVO getMemberName(String member_id);
+    public void insertFreeBoard(String member_id);
+    public FreeBoardVO getFreeBoardDetail(int freeBoard_num);
+    public int upFreeBoardHit(int freeBoard_num);
 }

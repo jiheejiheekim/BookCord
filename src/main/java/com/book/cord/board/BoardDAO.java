@@ -1,10 +1,12 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public interface NoticeDAO {
+import com.book.cord.login.MemberVO;
+
+public interface BoardDAO {
 	
 	public List<NoticeVO> getListWithPaging(Criteria cri);
 	
@@ -25,8 +27,16 @@ public interface NoticeDAO {
 	public int searchCount(String select, String search);
 	
 	//////////////////////////////////////////////
-	public List<NoticeVO> getFreeBoardListPaging(Criteria cri);
+	public List<FreeBoardVO> getFreeBoardListPaging(Criteria cri);
 	
 	public int totalFreeBoardCount();
+
+	public MemberVO getMemberName(String member_id);
+	
+	public void insertFreeBoard(FreeBoardVO freeBoard);
+	
+	public FreeBoardVO getFreeBoardDetail(int freeBoard_num);
+	
+	public int upFreeBoardHit(int freeBoard_num);
 
 }

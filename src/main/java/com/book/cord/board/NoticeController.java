@@ -1,4 +1,4 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,15 +37,13 @@ import lombok.extern.log4j.Log4j;
 public class NoticeController {
 
 	@Autowired
-	@Qualifier("noticeServiceImpl")
-	NoticeService service;
+	@Qualifier("boardServiceImpl")
+	BoardService service;
 
 	@Autowired
-	NoticeMapper mapper;
-	
-	
+	BoardMapper mapper;
 
-	// 공지사항 리스트
+	//공지사항 리스트
 	@GetMapping("/notice")
 	public String list(Criteria cri, Model model) throws Exception {
 		System.out.println("컨트롤러 list(): " + cri);
@@ -59,16 +57,16 @@ public class NoticeController {
 		PageDTO pageMaker = new PageDTO(cri, totalCount);
 		model.addAttribute("pageMaker", pageMaker);
 
-		return "notice/notice";
+		return "board/notice";
 	}
 	
-	// 공지사항 작성 get
+	//공지사항 작성 get
 	@GetMapping("/writeNotice")
 	public String writeNotice() {
-		return "notice/writeNotice";
+		return "board/writeNotice";
 	}
 	
-	// 공지사항 작성 post
+	//공지사항 작성 post
     @PostMapping("/insertNotice")
     public String insertNotice(NoticeVO notice, @RequestParam("uploadFiles") MultipartFile[] uploadFile, Model model) {
         System.out.println("공지사항 작성 중 ===> " + notice);
@@ -156,7 +154,7 @@ public class NoticeController {
 	    return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
 
-	// 공지사항 확인
+	//공지사항 확인
 	@GetMapping("/detailNotice/{notice_num}")
 	public String detailNotice(@PathVariable("notice_num") int notice_num, Model model)  throws Exception {
 		System.out.println("===============클릭한 공지사항 글 번호 ===> " + notice_num + " !!!");
@@ -165,10 +163,10 @@ public class NoticeController {
 		if (vo != null) {
 			model.addAttribute("notice", vo);
 		}
-		return "notice/detailNotice";
+		return "board/detailNotice";
 	}
 
-	// 공지사항 삭제
+	//공지사항 삭제
 	@GetMapping("/deleteNotice")
 	public String deleteNotice(int notice_num) throws Exception {
 		System.out.println("===============삭제할 공지사항 글 번호 ===> " + notice_num + " !!!");
@@ -182,7 +180,7 @@ public class NoticeController {
 		}
 	}
 
-	// 공지사항 수정 get
+	//공지사항 수정 get
 	@GetMapping("/updateNotice")
 	public String updateNotice(int notice_num, Model model) throws Exception {
 		System.out.println("===============수정 요청 공지사항 글 번호 ===> " + notice_num + " !!!");
@@ -190,10 +188,10 @@ public class NoticeController {
 		if (vo != null) {
 			model.addAttribute("notice", vo);
 		}
-		return "notice/updateNotice";
+		return "board/updateNotice";
 	}
 	
-	// 공지사항 수정 post
+	//공지사항 수정 post
 	@PostMapping("/updateNoticeSubmit")
 	public String updateNoticeSubmit(NoticeVO notice, @RequestParam("uploadFiles") MultipartFile[] uploadFile, Model model) throws Exception {
 		System.out.println("===============수정 공지사항 글 번호 ===> " + notice.getNotice_num() + " !!!");
@@ -266,8 +264,7 @@ public class NoticeController {
 		PageDTO pageMaker = new PageDTO(cri, totalCount);
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "notice/searchNotice";
-		//?select="+select+"&search="+search
+		return "board/searchNotice";
 	}
 
 }

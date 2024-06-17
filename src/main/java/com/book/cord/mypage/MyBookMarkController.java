@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.book.cord.board.Criteria;
+import com.book.cord.board.PageDTO;
 import com.book.cord.login.CustomUserDetails;
-import com.book.cord.notice.Criteria;
-import com.book.cord.notice.PageDTO;
 
 @Controller
 public class MyBookMarkController {

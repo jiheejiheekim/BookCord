@@ -8,8 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.book.cord.board.Criteria;
 import com.book.cord.login.MemberVO;
-import com.book.cord.notice.Criteria;
 
 @Repository("myPageDAOImpl")
 public class MyPageDAOImpl implements MyPageDAO {

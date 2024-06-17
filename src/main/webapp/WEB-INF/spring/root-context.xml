@@ -22,7 +22,7 @@
     </bean>
     
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.book.cord, com.book.cord.login, com.book.cord.notice, com.book.cord.book, com.book.cord.mypage"/>
+        <property name="basePackage" value="com.book.cord, com.book.cord.login, com.book.cord.board, com.book.cord.book, com.book.cord.mypage"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

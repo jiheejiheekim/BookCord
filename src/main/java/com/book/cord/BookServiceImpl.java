@@ -13,9 +13,9 @@ import com.book.cord.BookVO.GenresBestSeller;
 import com.book.cord.BookVO.GenresNewBooks;
 import com.book.cord.BookVO.NewBooks;
 import com.book.cord.BookVO.SearchBooks;
+import com.book.cord.board.Criteria;
 import com.book.cord.book.BookDAO;
 import com.book.cord.mypage.ReviewVO;
-import com.book.cord.notice.Criteria;
 
 @Service("bookServiceImpl")
 public class BookServiceImpl implements BookService {

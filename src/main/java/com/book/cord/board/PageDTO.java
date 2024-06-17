@@ -1,4 +1,4 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import lombok.Data;
 

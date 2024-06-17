@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.book.cord.board.Criteria;
 import com.book.cord.login.CustomPasswordEncoder;
 import com.book.cord.login.MemberVO;
-import com.book.cord.notice.Criteria;
 
 @Service("myPageServiceImpl")
 public class MyPageServiceImpl implements MyPageService {

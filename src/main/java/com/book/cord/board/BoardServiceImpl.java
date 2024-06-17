@@ -1,4 +1,4 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.util.List;
 
@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.book.cord.login.MemberVO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("noticeServiceImpl")
-public class NoticeServiceImpl implements NoticeService {
+@Service("boardServiceImpl")
+public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	@Qualifier("noticeDAO")
-	private NoticeDAO dao;
+	@Qualifier("boardDAOImpl")
+	private BoardDAO dao;
 
 
 	@Override
@@ -88,7 +90,7 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	////////////////////////////////////////////
-	public List<NoticeVO> getFreeBoardList(Criteria cri) {
+	public List<FreeBoardVO> getFreeBoardList(Criteria cri) {
 		System.out.println("Service getFreeBoardList 호출");
 		return dao.getFreeBoardListPaging(cri);
 	}
@@ -96,5 +98,26 @@ public class NoticeServiceImpl implements NoticeService {
 	public int totalFreeBoardCount() {
 		System.out.println("Service totalFreeBoardCount 호출");
 		return dao.totalFreeBoardCount();
+	}
+	
+	public MemberVO getMemberName(String member_id) {
+		System.out.println("Service getMemberName 호출");
+		return dao.getMemberName(member_id);
+	}
+	
+	public void writeFreeBoard(FreeBoardVO freeBoard) {
+		System.out.println("Service writeFreeBoard 호출");
+		dao.insertFreeBoard(freeBoard);
+	}
+	
+	public FreeBoardVO getFreeBoard(int freeBoard_num) {
+		System.out.println("Service getFreeBoard 호출");
+		return dao.getFreeBoardDetail(freeBoard_num);
+	}
+	
+	@Override
+	public int upFreeBoardHit(int freeBoard_num) {
+		System.out.println("Service upFreeBoardHit 호출");
+		return dao.upFreeBoardHit(freeBoard_num);
 	}
 }

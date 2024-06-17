@@ -1,10 +1,10 @@
-package com.book.cord.notice;
+package com.book.cord.board;
 
 import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.book.cord.login.MemberVO;
 
-public interface NoticeService {
+public interface BoardService {
 	
 	/////////////////////////////공지사항 게시판
 	//공지사항 리스트
@@ -36,9 +36,21 @@ public interface NoticeService {
     
     /////////////////////////////자유 게시판
     //자유게시판 리스트
-    public List<NoticeVO> getFreeBoardList(Criteria cri);
+    public List<FreeBoardVO> getFreeBoardList(Criteria cri);
     
     //글 개수
     public int totalFreeBoardCount();
+    
+    //세션에 저장된 아이디 값의 닉네임 얻어오기
+    public MemberVO getMemberName(String member_id);
+    
+    //글 작성
+    public void writeFreeBoard(FreeBoardVO freeBoard);
+    
+    //글 내용
+    public FreeBoardVO getFreeBoard(int freeBoard_num);
+    
+    //글 조회수 증가
+    public int upFreeBoardHit(int freeBoard_num);
         
 }
