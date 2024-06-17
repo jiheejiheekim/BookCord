@@ -91,7 +91,7 @@
 		</div>	<!-- navi -->
 		
 		<div class="noticeHead">
-			<span class="noticeHeadSpan">공지사항</span>
+			<span class="noticeHeadSpan">자유게시판</span>
 			
 			<div class="nhTableDiv">
 				<table class="nhTable1">
@@ -140,7 +140,7 @@
 						<tr class="nht3tr3">
 							<td class="nht3r3d1">${lists.notice_num}</td>
 							<td class="nht3r3d2"><a href="detailNotice/${lists.notice_num}">${lists.title}</a></td>
-							<td class="nht3r3d3">${lists.member_id}</td>
+							<td class="nht3r3d3">${lists.member_name}</td>
 							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
 							<td class="nht3r3d4">${formattedDate}</td>
 							<td class="nht3r3d5">${lists.hit}</td>
@@ -180,7 +180,7 @@
 			</table>
 		</div>
 		
-		<form id="actionForm" action="/bc/notice" method="get">
+		<form id="actionForm" action="/bc/freeBoard" method="get">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		</form>

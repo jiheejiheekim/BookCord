@@ -83,7 +83,7 @@
 				    select  
 				    rownum rn, FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT 
 				    from FREEBOARD
-				    where rownum <= #{pageNum} * #{amount} ORDER BY FREEBOARD DESC
+				    where rownum <= #{pageNum} * #{amount} ORDER BY FREEBOARD_NUM DESC
 				)
 			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY FREEBOARD_NUM DESC
 		]]> 

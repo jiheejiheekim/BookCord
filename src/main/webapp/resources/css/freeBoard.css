@@ -129,8 +129,10 @@ button:hover {
 	border: none;
 	border-radius: 15px;
 	font-size: 1em;
-	
 	width: 70%;
+	border: 1px solid #808080;
+	transform: translateY(2px);
+	box-shadow: -2px -1px #898383;
 }
 .qnaBt {
 	background-color: #2D9462;
@@ -141,9 +143,7 @@ button:hover {
 	/* box-shadow: 5px 5px #898383; */
 	font-size: 1em;
 	width: 15%;
-	border: 1px solid #808080;
-	transform: translateY(2px);
-	box-shadow: -2px -1px #898383;
+	
 }
 
 
