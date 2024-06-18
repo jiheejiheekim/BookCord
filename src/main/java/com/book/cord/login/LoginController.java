@@ -19,7 +19,7 @@ public class LoginController {
     @Autowired
     @Qualifier("memberServiceImpl")
     MemberService memberService;
-
+/*
     @GetMapping("/vip")
     @Secured("ROLE_USER")
     public String vip(Model model) {
@@ -37,7 +37,7 @@ public class LoginController {
         System.out.println("Index page accessed");
         return "index";
     }
-
+*/
     @GetMapping("/loginP")
     public String loginP(Model model) {
         return "login/loginP";

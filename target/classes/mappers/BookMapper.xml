@@ -5,27 +5,23 @@
 
 <!-- SELECT * FROM REVIEW WHERE ISBN13=#{isbn13} order by review_num desc; -->
 	<select id="getDetailReviewList" parameterType="map" resultType="com.book.cord.mypage.ReviewVO">
-		
-		<![CDATA[
+	
+    <![CDATA[
         SELECT 
             REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
         FROM (
             SELECT 
-                rownum rn, REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
+                ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) AS rnum, REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
             FROM 
                 REVIEW
             WHERE 
                 isbn13 = #{isbn13, jdbcType=VARCHAR}
-                AND rownum <= #{pageNum} * #{amount}
-            ORDER BY 
-                REVIEW_NUM DESC
-        )
+        ) tmp
         WHERE 
-            rn > (#{pageNum} - 1) * #{amount}
+            rnum BETWEEN #{startRow} AND #{endRow}
         ORDER BY 
-            REVIEW_NUM DESC
+            rnum ASC
     ]]>
-    
 	</select>
 	
 	<select id="detailReviewTotal" resultType="int">

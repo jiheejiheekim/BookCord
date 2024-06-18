@@ -49,7 +49,7 @@ public class MyReviewController {
 		if (member_id == null) {
 			throw new IllegalArgumentException("에러 >> member_id가 null");
 		}
-		cri.setAmount(5);
+		cri.setAmount(3);
 		List<ReviewVO> list = service.getReviewList(cri, member_id);
 		model.addAttribute("myReviewList", list);
 

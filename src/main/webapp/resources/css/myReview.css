@@ -88,6 +88,10 @@ a {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
 }
+.navi5 {
+	padding-top: 0.8em;
+	padding-left: 1.5em;
+}
 .naviA{
 	transition: all 0.2s ease; /* 모든 속성에 대해 0.3초 동안 부드러운 효과를 적용 */
     display: inline-block;

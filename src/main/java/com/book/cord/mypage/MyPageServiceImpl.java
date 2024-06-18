@@ -30,7 +30,8 @@ public class MyPageServiceImpl implements MyPageService {
 		dao.insertBookMark(vo);
 	}
 	
-	
+	////////////////////////////////////////////////////////////////////
+	//나의 북마크
 	@Override
 	public int bookMarkTotal(String member_id) {
 		System.out.println("Service bookMarkTotal 호출");
@@ -51,8 +52,8 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.isBookMarked(member_id, isbn13);
 	}
 	
-	//////////////////////////////////
-	
+	////////////////////////////////////////////////////////////////////
+	//나의 리뷰
 	
 	@Override
 	public void addReview(ReviewVO vo) {
@@ -87,7 +88,8 @@ public class MyPageServiceImpl implements MyPageService {
 		dao.updateReview(vo);
 	}
 	
-	//////////////////////////////////
+	////////////////////////////////////////////////////////////////////
+	//회원정보 수정
 	
 	@Override
 	public MemberVO getMemberInfo(String id) {
@@ -116,5 +118,14 @@ public class MyPageServiceImpl implements MyPageService {
             System.out.println("Exception in registerMember"+e);
         }
     }
+	
+	////////////////////////////////////////////////////////////////////
+	
+	@Override
+	public List<MemberVO> getAllMemberInfo() {	
+		System.out.println("관리자 service의 getAllMemberInfo-------------");
+		Criteria cri = new Criteria();
+		return dao.getAllMemberInfo(cri);
+	}
 	
 }

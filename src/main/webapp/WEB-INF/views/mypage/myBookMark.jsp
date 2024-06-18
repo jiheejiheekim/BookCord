@@ -104,6 +104,9 @@ function logout() {
 					<td class="navi4"><a class="naviA" href="myBookMark">나의
 							북마크</a></td>
 				</tr>
+				<tr>
+					<td class="navi5"><a class="naviA" href="/bc/admin">관리자 페이지</a></td>
+				</tr>
 			</table>
 		</div>
 

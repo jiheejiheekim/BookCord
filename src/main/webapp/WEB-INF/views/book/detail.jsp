@@ -88,6 +88,19 @@ function bookmark(event, title, author, isbn13, cover) {
   
 var stars;
 
+
+function saveScrollPosition() {
+  localStorage.setItem('scrollPosition', window.scrollY);
+}
+
+function loadScrollPosition() {
+  const scrollPosition = localStorage.getItem('scrollPosition');
+  if (scrollPosition) {
+    window.scrollTo(0, scrollPosition);
+    localStorage.removeItem('scrollPosition'); 
+  }
+}
+
 $(document).ready(function() {
 	var actionForm = $("#actionForm");
 	$(".paginate_button a").on("click", function(e) {
@@ -104,7 +117,13 @@ $(document).ready(function() {
         console.log('선택한 별점 >> ' + stars + '점');
     });
     
-
+    loadScrollPosition();
+    $(".paginate_button a").on("click", function(e) {
+      e.preventDefault();
+      saveScrollPosition(); // 페이지 이동 전 스크롤 위치 저장
+      $("#actionForm").find("input[name='pageNum']").val($(this).attr("href"));
+      $("#actionForm").submit();
+    });
 
 });
   
@@ -403,10 +422,10 @@ function loginGo(){
 								<c:set var="memberId" value="${myReviewList.member_id}" />
 									<c:choose>
 									    <c:when test="${fn:length(memberId) < 3}">
-									        ${memberId}1___님
+									        ${memberId}___님
 									    </c:when>
 									    <c:otherwise>
-									        ${fn:substring(memberId, 0, 3)}___님
+									        ${fn:substring(memberId, 0, 2)}___님
 									    </c:otherwise>
 									</c:choose>
 							<%-- ${myReviewList.member_id} --%></td>

@@ -59,7 +59,7 @@ public class MyPageDAOImpl implements MyPageDAO {
         return count > 0;	//count가 0보다 크면 true, 그렇지 않으면 false
 	}
 	
-	//////////////////////////////////////////
+	///////////////////////////////////////////////////////////
 	
 	@Override
 	public void insertReview(ReviewVO vo) {
@@ -76,9 +76,13 @@ public class MyPageDAOImpl implements MyPageDAO {
 	@Override
 	public List<ReviewVO> getReviewListPaging(Criteria cri, String member_id) { 
 		System.out.println("DAO getReviewListPaging 호출");
-		Map<String, Object> params = new HashMap<>();
-		params.put("pageNum", cri.getPageNum());
-		params.put("amount", cri.getAmount());
+		
+		int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+	    
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
 		params.put("member_id", member_id);
 		
 		return sqlSession.selectList(NAMESPACE + ".getReviewListPaging", params);
@@ -96,7 +100,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 		sqlSession.update(NAMESPACE + ".updateReview", vo);
 	}
 	
-	//////////////////////////////////////
+	///////////////////////////////////////////////////////////
 	
 	@Override
 	public MemberVO getMemberInfo(String id) {
@@ -114,5 +118,21 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public void memberUpdate(MemberVO member) {
 		System.out.println("DAO.memberUpdate 지나가기 : "+member);
 		sqlSession.update(NAMESPACE + ".memberUpdate", member);
+	}
+	
+	///////////////////////////////////////////////////////////
+	
+	@Override
+	public List<MemberVO> getAllMemberInfo(Criteria cri) { 
+		System.out.println("DAO getAllMemberInfo 호출");
+
+		int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+	    
+	    return sqlSession.selectList(NAMESPACE + ".getAllMemberInfo", params);
 	}
 }

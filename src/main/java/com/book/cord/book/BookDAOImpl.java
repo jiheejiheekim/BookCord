@@ -25,10 +25,13 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public List<ReviewVO> getDetailReviewList(Criteria cri, String isbn13) {
 		System.out.println("DAO getDetailReviewList 호출");
-			    
+		
+		int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+	    
 	    Map<String, Object> params = new HashMap<>();
-	    params.put("pageNum", cri.getPageNum());
-		params.put("amount", cri.getAmount());
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
 		params.put("isbn13", isbn13);
 		
 		return sqlSession.selectList(NAMESPACE + ".getDetailReviewList", params);

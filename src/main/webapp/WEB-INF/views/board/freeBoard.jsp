@@ -122,7 +122,7 @@
 							</td>
 							<td class="nht2r1d2">
 								<input type="text" name="search" class="search" placeholder="검색어를 입력해 주세요.">
-								<a href=""><img class="searchImg" src="resources/images/search.png"></a>
+								<a href="#" onclick="searchSubmit()"><img class="searchImg" src="resources/images/search.png"></a>
 							</td>	
 							<td class="nht2r1d3"></td>
 						</tr>

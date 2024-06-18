@@ -258,13 +258,16 @@ $(document).ready(function(){
 					<td class="navi1">마이페이지</td>
 				</tr>
 				<tr>
-					<td class="navi2"><a class="naviA" href="memberEdit">회원정보 수정</a></td>
+					<td class="navi2"><a class="naviA" href="/bc/memberEdit">회원정보 수정</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="myReview">나의 리뷰</a></td>
+					<td class="navi3"><a class="naviA" href="/bc/myReview">나의 리뷰</a></td>
 				</tr>
 				<tr>
-					<td class="navi4"><a class="naviA" href="myBookMark">나의 북마크</a></td>
+					<td class="navi4"><a class="naviA" href="/bc/myBookMark">나의 북마크</a></td>
+				</tr>
+				<tr>
+					<td class="navi5"><a class="naviA" href="/bc/admin">관리자 페이지</a></td>
 				</tr>
 			</table>
 		</div>

@@ -33,19 +33,16 @@
             REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
         FROM (
             SELECT 
-                rownum rn, REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
+                ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) AS rnum, REVIEW_NUM, MEMBER_ID, STARS, TITLE, AUTHOR, ISBN13, COVER, CONTENT, REG_DATE
             FROM 
                 REVIEW
             WHERE 
-                member_id = #{member_id, jdbcType=VARCHAR}
-                AND rownum <= #{pageNum} * #{amount}
-            ORDER BY 
-                REVIEW_NUM DESC
-        )
+                member_id = #{member_id}
+        ) tmp
         WHERE 
-            rn > (#{pageNum} - 1) * #{amount}
+            rnum BETWEEN #{startRow} AND #{endRow}
         ORDER BY 
-            REVIEW_NUM DESC
+            rnum ASC
     ]]>
 	</select>
 	
@@ -85,12 +82,15 @@
         ORDER BY 
             rnum ASC
     ]]>
-</select>
-
-
+	</select>
 
 	<select id="isBookMarked" resultType="int">
 		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id} AND ISBN13=#{isbn13}
+	</select>
+	
+<!-- 관리자 -->
+	<select id="getAllMemberInfo" parameterType="map" resultType="com.book.cord.login.MemberVO">
+		SELECT * FROM MEMBER
 	</select>
     
 </mapper>

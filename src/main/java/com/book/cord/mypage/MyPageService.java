@@ -22,4 +22,6 @@ public interface MyPageService {
 	public int nameCheck(String name);
 	public void memberUpdate(MemberVO member);
 	
+	public List<MemberVO> getAllMemberInfo();
+	
 }
