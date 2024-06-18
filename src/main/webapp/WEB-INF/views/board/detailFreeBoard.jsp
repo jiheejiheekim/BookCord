@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BookCord - DetailFreeBoard</title>
-<link rel="stylesheet" href="../resources/css/detailNotice.css">
+<link rel="stylesheet" href="../resources/css/detailFreeBoard.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -28,13 +28,15 @@
         form.submit();
       }
 	
-	function upNotice(notice_num) {
-		console.log('==> ' + notice_num + '번 게시물 수정 요청');
+	function upFreeBoard(freeBoard_num) {
+		event.preventDefault();
+		console.log('==> ' + freeBoard_num + '번 게시물 수정 요청');
 		location.href = '/bc/updateFreeBoard?freeBoard_num='+freeBoard_num;
 	}
 	
-	function delNotice(notice_num) {
-	    console.log('==> ' + notice_num + '번 게시물 삭제 요청');
+	function delFreeBoard(freeBoard_num) {
+		event.preventDefault();
+	    console.log('==> ' + freeBoard_num + '번 게시물 삭제 요청');
 	    if(confirm('게시물을 삭제하시겠습니까?')){
 	        // 게시물 삭제 요청
 	        location.href = '/bc/deleteFreeBoard?freeBoard_num='+freeBoard_num;
@@ -47,6 +49,22 @@
 	function loginGo(){
 		alert('로그인 하세요');
 	}
+	
+	$(document).ready(function(){
+		var member_id = "<c:out value='${sessionScope.member.username}'/>";
+		console.log("당신의 아이디 : "+member_id);
+		console.log("작성자의 아이디 : "+"<c:out value='${freeBoard.member_id}'/>");
+		
+		if(member_id === "<c:out value='${freeBoard.member_id}'/>"){
+			$(".submit").css("display", "inline-flex");
+			//$(".submit").css("display", "block");
+		}  else {
+			$(".submit").css("display", "none");
+		} 
+		
+	});
+	
+	
 
 </script>
 </head>
@@ -68,7 +86,7 @@
 				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
+						<a href="/bc/loginP">로그인</a>
 					</sec:authorize>
 					
 					<sec:authorize access="hasRole('ROLE_USER')">
@@ -119,7 +137,7 @@
 						</tr>
 						<tr class="wrt1tr4">
 							<td class="wrt1r4d1">내용</td>
-							<td class="wrt1r4d2">${freeBoard.content}</td>
+							<td class="wrt1r4d2 content-display">${freeBoard.content}</td>
 						</tr>
 						<tr class="wrt1tr">
 							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>
@@ -139,8 +157,8 @@
 				</div><!-- wrTableDiv -->
 				
 				<div class="submit">
-					<button type="submit" class="updateBt"><a href="#" onclick="upNotice(${freeBoard.freeBoard_num})">수정</a></button>
-					<button type="submit" class="deleteBt"><a href="#" onclick="delNotice(${freeBoard.freeBoard_num})">삭제</a></button>
+					<button type="submit" onclick="upFreeBoard(${freeBoard.freeBoard_num})" class="updateBt">수정</button>
+					<button type="submit" onclick="delFreeBoard(${freeBoard.freeBoard_num})" class="deleteBt">삭제</button>
 				</div>
 			</form>
 		</div>	<!-- writeNoticeHead -->

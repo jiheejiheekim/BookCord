@@ -89,7 +89,7 @@
 					<td class="navi2"><a class="naviA" href="/bc/notice">공지사항</a></td>
 				</tr>
 				<tr>
-					<td class="navi3"><a class="naviA" href="/bc/qna">문의하기</a></td>
+					<td class="navi3"><a class="naviA" href="/bc/freeBoard">자유게시판</a></td>
 				</tr>
 			</table>
 		</div>	<!-- navi -->
@@ -119,7 +119,7 @@
 						</tr>
 						<tr class="wrt1tr4">
 							<td class="wrt1r4d1">내용</td>
-							<td class="wrt1r4d2">${notice.content}</td>
+							<td class="wrt1r4d2 content-display">${notice.content}</td>
 						</tr>
 						<tr class="wrt1tr">
 							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>

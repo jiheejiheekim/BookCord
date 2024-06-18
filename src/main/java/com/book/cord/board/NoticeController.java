@@ -257,7 +257,7 @@ public class NoticeController {
 		List<NoticeVO> list = service.searchNotice(selectOption, search, cri);
 		model.addAttribute("list", list);
 
-		int totalCount = service.searchCount(selectOption, search);
+		int totalCount = service.searchNoticeCount(selectOption, search);
 		System.out.println("검색한 키워드 결과 >>>>>>>>>> "+totalCount+"개");
 		model.addAttribute("totalCount", totalCount);
 		

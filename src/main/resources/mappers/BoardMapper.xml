@@ -64,7 +64,7 @@
     ]]> 
 	</select>
 	
-	<select id="searchCount" resultType="int">
+	<select id="searchNoticeCount" resultType="int">
 		SELECT COUNT(*) FROM NOTICE 
 		<where>
             <if test="select != null and select != ''">
@@ -101,15 +101,52 @@
 		INSERT INTO FREEBOARD
 			(FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, CONTENT, FILES) 
 		VALUES
-			(freeboard_num_seq.nextval, #{member_name}, #{member_id}, #{title}, #{content}, #{files})
+			(freeBoard_num_seq.nextval, #{member_name}, #{member_id}, #{title}, #{content}, #{files})
 	</insert>
 	
 	<select id="getFreeBoardDetail" resultType="com.book.cord.board.FreeBoardVO" parameterType="int">
-		SELECT * FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeboard_num}
+		SELECT * FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeBoard_num}
 	</select>
 	
 	<update id="upFreeBoardHit">
-		UPDATE FREEBOARD SET HIT = HIT+1 WHERE FREEBOARD_NUM = #{freeboard_num}
+		UPDATE FREEBOARD SET HIT = HIT+1 WHERE FREEBOARD_NUM = #{freeBoard_num}
 	</update>
+	
+	<delete id="deleteFreeBoard">
+		DELETE FROM FREEBOARD WHERE FREEBOARD_NUM = #{freeBoard_num}
+	</delete>
+	
+	<update id="updateFreeBoard">
+		UPDATE FREEBOARD SET TITLE=#{title}, CONTENT=#{content}, FILES=#{files} 
+		WHERE FREEBOARD_NUM = #{freeBoard_num}
+	</update>
+	
+	<select id="getSearchFreeBoardPaging" resultType="com.book.cord.board.FreeBoardVO" parameterType="map">
+    <![CDATA[
+        SELECT 
+            FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT
+        FROM (
+            SELECT 
+                ROW_NUMBER() OVER (ORDER BY NOTICE_NUM DESC) AS rnum, FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT 
+            FROM 
+                FREEBOARD
+            WHERE 
+                 ${select} LIKE '%' || #{search} || '%'
+        ) tmp
+        WHERE 
+            rnum BETWEEN #{startRow} AND #{endRow}
+        ORDER BY 
+            rnum ASC
+    ]]> 
+	</select>
+	
+	<select id="searchFreeBoardCount" resultType="int">
+		SELECT COUNT(*) FROM FREEBOARD 
+		<where>
+            <if test="select != null and select != ''">
+                ${select} LIKE '%' || #{search} || '%'
+            </if>
+        </where>
+	</select>
 	
 </mapper>

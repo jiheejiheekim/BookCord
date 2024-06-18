@@ -80,11 +80,11 @@ button:hover {
 .navi2 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
-	color: black;
 }
 .navi3 {
 	padding-top: 0.8em;
 	padding-left: 1.5em;
+	color: black;
 }
 .navi4 {
 	padding-top: 0.8em;
@@ -163,13 +163,15 @@ button:hover {
 
 .submit{
 	/* border:1px solid black; */
-	display:inline-flex;
+	display:none;
+	/* display:inline-flex; */
 	width:80%;
 	margin-top:15px;
 	margin-bottom:15px;
 	justify-content: flex-end
 }
 .updateBt, .deleteBt {
+	cursor: pointer;
 	background-color: #2D9462;
 	color: white;
 	padding: 0.6em;

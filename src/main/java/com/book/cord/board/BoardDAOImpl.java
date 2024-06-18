@@ -86,12 +86,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public int searchCount(String select, String search) {
-		System.out.println("DAO searchCount 호출");
+	public int searchNoticeCount(String select, String search) {
+		System.out.println("DAO searchNoticeCount 호출");
 		Map<String, Object> params = new HashMap<>();
 	    params.put("select", select);
 	    params.put("search", search);
-		return sqlSession.selectOne(NAMESPACE+".searchCount", params);
+		return sqlSession.selectOne(NAMESPACE+".searchNoticeCount", params);
 	}
 	
 	////////////////////////////////////////////
@@ -124,4 +124,42 @@ public class BoardDAOImpl implements BoardDAO {
 		System.out.println("DAO upFreeBoardHit 호출 " + freeBoard_num);
 		return sqlSession.update(NAMESPACE+".upFreeBoardHit", freeBoard_num);
 	}
+	
+	public int deleteFreeBoard(int freeBoard_num) {
+		System.out.println("DAO deleteFreeBoard 호출 " + freeBoard_num);
+		return sqlSession.delete(NAMESPACE+".deleteFreeBoard", freeBoard_num);
+	}
+	
+	public int updateFreeBoard(FreeBoardVO freeBoard) {
+		System.out.println("DAO updateFreeBoard 호출 " + freeBoard);
+		return sqlSession.update(NAMESPACE+".updateFreeBoard", freeBoard);
+	}
+	
+	@Override
+	public List<FreeBoardVO> getSearchFreeBoardPaging(String select, String search, Criteria cri) {
+		System.out.println("DAO getSearchFreeBoardPaging 호출");
+		Map<String, Object> params = new HashMap<>();
+	    params.put("select", select);
+	    params.put("search", search);
+	    params.put("pageNum", cri.getPageNum());
+	    params.put("amount", cri.getAmount());
+	    
+	    int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+	    
+		return sqlSession.selectList(NAMESPACE+".getSearchFreeBoardPaging", params);
+	}
+	
+	@Override
+	public int searchFreeBoardCount(String select, String search) {
+		System.out.println("DAO searchFreeBoardCount 호출");
+		Map<String, Object> params = new HashMap<>();
+	    params.put("select", select);
+	    params.put("search", search);
+		return sqlSession.selectOne(NAMESPACE+".searchFreeBoardCount", params);
+	}
+	
 }

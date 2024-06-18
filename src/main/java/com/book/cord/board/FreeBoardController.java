@@ -191,16 +191,113 @@ public class FreeBoardController {
 	public String detailFreeBoard(@PathVariable("freeBoard_num") int freeBoard_num, Model model)  throws Exception {
 		System.out.println("===============클릭한 공지사항 글 번호 ===> " + freeBoard_num + " !!!");
 		FreeBoardVO vo = service.getFreeBoard(freeBoard_num);
-		service.upHit(freeBoard_num);
+		service.upFreeBoardHit(freeBoard_num);
 		if (vo != null) {
 			model.addAttribute("freeBoard", vo);
 		}
 		return "board/detailFreeBoard";
 	}
 	
-	//공지사항 삭제
-	//공지사항 수정 get
-	//공지사항 수정 post
-	//공지사항 검색
+	//자유게시판 삭제
+	@GetMapping("/deleteFreeBoard")
+	public String deleteFreeBoard(int freeBoard_num) throws Exception {
+		System.out.println("===============삭제할 공지사항 글 번호 ===> " + freeBoard_num + " !!!");
+		int result = service.delFreeBoard(freeBoard_num);
+		if (result > 0) {
+			System.out.println("컨트롤러 =========> " + freeBoard_num + "번 게시물 삭제 완료");
+			return "redirect:/freeBoard";
+		} else {
+			System.out.println(" 실패 >>>>> 컨트롤러에서 deleteFreeBoard");
+			return "redirect:/";
+		}
+	}
 	
+	//자유게시판 수정 get
+	@GetMapping("/updateFreeBoard")
+	public String updateFreeBoard(int freeBoard_num, Model model) throws Exception {
+		System.out.println("===============수정 요청 자유게시판 글 번호 ===> " + freeBoard_num + " !!!");
+		FreeBoardVO vo = service.getFreeBoard(freeBoard_num);
+		if (vo != null) {
+			model.addAttribute("freeBoard", vo);
+			System.out.println("수정 요청 시 FreeBoard : "+vo);
+		}else {
+			System.out.println("수정 요청 시 FreeBoardVO가 null"+vo);
+		}
+		return "board/updateFreeBoard";
+	}
+	
+	//자유게시판 수정 post
+	@PostMapping("/updateFreeBoardSubmit")
+	public String updateFreeBoardSubmit(FreeBoardVO freeBoard, @RequestParam("uploadFiles") MultipartFile[] uploadFile, Model model) throws Exception {
+		System.out.println("===============수정 자유게시판 글 번호 ===> " + freeBoard.getFreeBoard_num() + " !!!");
+		
+		String uploadDir = "C:\\multicamp\\SpringWorkspace\\BookCord\\src\\main\\webapp\\resources\\freeBoard_files";
+        
+  		File uploadPath = new File(uploadDir);
+  		System.out.println("upload path: "+uploadPath);
+  		
+  		if(uploadPath.exists() == false) {
+  			uploadPath.mkdirs();
+  		} 
+		
+        String fileNames = Arrays.stream(uploadFile)
+                .filter(file -> !file.isEmpty())
+                .map(file -> {
+                	String originalFileName = file.getOriginalFilename();
+                    String uuid = UUID.randomUUID().toString();
+                    String uploadFileName = uuid + "_" + originalFileName;
+                    File destinationFile = new File(uploadPath, uploadFileName);
+                    try {
+                        file.transferTo(destinationFile);
+                    } catch (IOException e) {
+                        log.error(e.getMessage());
+                    }
+                    return uploadFileName;
+                })
+                .collect(Collectors.joining(",  "));	//여러 개의 파일을 ,로 구분
+				
+        freeBoard.setFiles(fileNames);
+				
+		int result = service.upFreeBoard(freeBoard);
+		if (result > 0) {
+			System.out.println("컨트롤러 =========> " + freeBoard.getFreeBoard_num() + "번 게시물 수정 완료");
+			return "redirect:/detailFreeBoard/"+freeBoard.getFreeBoard_num();
+		} else {
+			System.out.println(" 실패 >>>>> 컨트롤러에서 updateFreeBoardSubmit");
+			return "redirect:/";
+		}
+	}
+		
+	//자유게시판 검색
+	@GetMapping("/searchFreeBoard")
+	public String searchNotice(@RequestParam String select, @RequestParam String search, Criteria cri, Model model) {
+		System.out.println("자유게시판 ------------------------------\n("+select+")을 ("+search+")로 검색한 결과");
+		
+		model.addAttribute("select", select);
+		model.addAttribute("search", search);
+		
+		String selectOption;
+		
+		if(select.equals("제목")) {
+			selectOption = "title";
+		}else if(select.equals("글내용")) {
+			selectOption = "content";
+		}else {
+			selectOption = "";
+		}
+		
+		System.out.println("select >>> "+select+" ====== 변환 ======> "+selectOption);
+		System.out.println("cri : "+cri);
+		List<FreeBoardVO> list = service.searchFreeBoard(selectOption, search, cri);
+		model.addAttribute("list", list);
+
+		int totalCount = service.searchFreeBoardCount(selectOption, search);
+		System.out.println("검색한 키워드 결과 >>>>>>>>>> "+totalCount+"개");
+		model.addAttribute("totalCount", totalCount);
+		
+		PageDTO pageMaker = new PageDTO(cri, totalCount);
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "board/searchFreeBoard";
+	}
 }

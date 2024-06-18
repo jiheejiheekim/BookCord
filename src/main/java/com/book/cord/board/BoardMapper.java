@@ -18,7 +18,7 @@ public interface BoardMapper {
     public int updateHit(int notice_num);
     
     public List<NoticeVO> getSearchNoticePaging(String select, String search, Criteria cri);
-    public int searchCount(String select, String search);
+    public int searchNoticeCount(String select, String search);
     
     //////////////////////////////////////////
     public List<FreeBoardVO> getFreeBoardListPaging(Criteria cri);
@@ -27,4 +27,8 @@ public interface BoardMapper {
     public void insertFreeBoard(String member_id);
     public FreeBoardVO getFreeBoardDetail(int freeBoard_num);
     public int upFreeBoardHit(int freeBoard_num);
+    public int deleteFreeBoard(int freeBoard_num);
+    public int updateFreeBoard(FreeBoardVO freeBoard);
+    public List<FreeBoardVO> searchFreeBoard(String select, String search, Criteria cri);
+    public int searchFreeBoardCount(String select, String search);
 }

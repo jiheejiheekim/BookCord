@@ -32,7 +32,7 @@ public interface BoardService {
     public List<NoticeVO> searchNotice(String select, String search, Criteria cri);
     
     //글 검색 결과 개수
-    public int searchCount(String select, String search);
+    public int searchNoticeCount(String select, String search);
     
     /////////////////////////////자유 게시판
     //자유게시판 리스트
@@ -52,5 +52,17 @@ public interface BoardService {
     
     //글 조회수 증가
     public int upFreeBoardHit(int freeBoard_num);
+    
+    //글 삭제
+    public int delFreeBoard(int freeBoard_num);
+    
+    //글 수정
+    public int upFreeBoard(FreeBoardVO freeBoard);
+    
+    //글 검색
+    public List<FreeBoardVO> searchFreeBoard(String select, String search, Criteria cri);
+    
+    //글 검색 결과 개수
+    public int searchFreeBoardCount(String select, String search);
         
 }

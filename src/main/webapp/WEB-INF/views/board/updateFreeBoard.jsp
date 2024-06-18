@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BookCord - WriteNotice</title>
-<link rel="stylesheet" href="resources/css/writeNotice.css">
+<link rel="stylesheet" href="resources/css/writeFreeBoard.css">
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -37,8 +37,6 @@
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));
             actionForm.submit();
     	});
-    	
-
 		
     });
     
@@ -94,9 +92,9 @@
 		
 		<div class="writeNoticeHead">
 			<span class="wrHeadSpan">공지사항</span>
-			<form name="notice" action="/bc/updateNoticeSubmit" method="post" enctype="multipart/form-data">
+			<form name="freeBoard" action="/bc/updateFreeBoardSubmit" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-			<input type="hidden" name="notice_num" value="${notice.notice_num}">
+			<input type="hidden" name="notice_num" value="${freeBoard.freeBoard_num}">
 				<div class="wrTableDiv">
 					<table class="wrTable1">
 						<tr class="wrt1tr">
@@ -104,20 +102,20 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"><input type="text" class="writer" readonly value="${notice.member_id}" name="member_id"></td>
+							<td class="wrt1r2d2"><input type="text" class="writer" readonly value="${freeBoard.member_name}" name="member_id"></td>
 						</tr>
 						<tr class="wrt1tr3">
 							<td class="wrt1r3d1">제목</td>
-							<td class="wrt1r3d2"><input type="text" class="title" name="title" value="${notice.title}"></td>
+							<td class="wrt1r3d2"><input type="text" class="title" name="title" value="${freeBoard.title}"></td>
 						</tr>
 						<tr class="wrt1tr4">
 							<td class="wrt1r4d1">내용</td>
-							<td class="wrt1r4d2"><textarea class="noticeContent" rows="15" cols="8" name="content" >${notice.content}</textarea></td>
+							<td class="wrt1r4d2"><textarea class="noticeContent" rows="15" cols="8" name="content" >${freeBoard.content}</textarea></td>
 						</tr>
 						<tr class="wrt1tr5">
 							<td class="wrt1r5d1">첨부파일</td>
 							<td class="wrt1r5d2">
-								<c:forEach var="fileName" items="${notice.files.split(',')}">${fileName}<br><br></c:forEach>
+								<c:forEach var="fileName" items="${freeBoard.files.split(',')}">${fileName}<br><br></c:forEach>
                                 <input type="file" class="file" name="uploadFiles" multiple>
                             </td>
 						</tr>

@@ -84,9 +84,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int searchCount(String select, String search) {
+	public int searchNoticeCount(String select, String search) {
 		System.out.println("Service searchCount 호출");
-		return dao.searchCount(select, search);
+		return dao.searchNoticeCount(select, search);
 	}
 
 	////////////////////////////////////////////
@@ -119,5 +119,37 @@ public class BoardServiceImpl implements BoardService {
 	public int upFreeBoardHit(int freeBoard_num) {
 		System.out.println("Service upFreeBoardHit 호출");
 		return dao.upFreeBoardHit(freeBoard_num);
+	}
+	
+	public int delFreeBoard(int freeBoard_num) {
+		System.out.println("Service deleteFreeBoard 호출");
+		return dao.deleteFreeBoard(freeBoard_num);
+	}
+	
+	@Override
+	public int upFreeBoard(FreeBoardVO freeBoard) {
+		try {
+			log.debug("Service: {}~~ ~~", freeBoard);
+			System.out.println("Service upFreeBoard 호출");
+			int result = dao.updateFreeBoard(freeBoard);
+			// 공지사항 수정
+			System.out.println("서비스 =========> 수정 결과: " + result);
+			return result;
+		} catch (Exception e) {
+			System.out.println("예외발생 ==> Exception in upNotice()"+e);
+			return 0;
+		}
+	}
+	
+	@Override
+	public List<FreeBoardVO> searchFreeBoard(String select, String search, Criteria cri){
+		System.out.println("Service searchFreeBoard 호출");
+		return dao.getSearchFreeBoardPaging(select, search, cri);
+	}
+	
+	@Override
+	public int searchFreeBoardCount(String select, String search) {
+		System.out.println("Service searchFreeBoardCount 호출");
+		return dao.searchFreeBoardCount(select, search);
 	}
 }
