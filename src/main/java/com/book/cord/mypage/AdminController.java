@@ -68,7 +68,6 @@ public class AdminController {
 	@PostMapping("enabledEdit")
 	@ResponseBody
 	public String enabledEdit(@RequestParam String id, @RequestParam String enabled) {
-		System.out.println("enabled : "+enabled);
 		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> 계정 활성화 상태 변경 시도");
 		if(enabled.equals("true")) {
 			service.enabledEditFalse(id);
@@ -84,6 +83,23 @@ public class AdminController {
 			return "null";
 
 		}
+	}
+	
+	@PostMapping("roleDelAdmin")
+	@ResponseBody
+	public String roleDelAdmin(@RequestParam String id) {
+		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> admin 권한 회수 시도");
+		service.roleDelAdmin(id);
+		return "revoke";
+	}
+	
+	
+	@PostMapping("roleAddAdmin")
+	@ResponseBody
+	public String roleAddAdmin(@RequestParam String id) {
+		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> admin 권한 추가 시도");
+		service.roleAddAdmin(id);
+		return "grant";
 	}
 	
 }

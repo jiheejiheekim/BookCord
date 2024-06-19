@@ -120,5 +120,13 @@
 	<update id="enabledEditTrue">
 		UPDATE MEMBER SET ENABLED = 1 WHERE ID = #{id}
 	</update>
+	
+    <delete id="roleDelAdmin">
+    	DELETE FROM MEMBER_ROLE WHERE MEMBER_ID = #{id} AND ROLE = 'ROLE_ADMIN'
+    </delete>
+    
+    <insert id="roleAddAdmin">
+    	INSERT INTO MEMBER_ROLE (MEMBER_ID, ROLE) VALUES (#{id}, 'ROLE_ADMIN')
+    </insert>
     
 </mapper>

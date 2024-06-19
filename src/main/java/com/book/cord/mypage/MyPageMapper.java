@@ -28,5 +28,7 @@ public interface MyPageMapper {
 	public List<MemberVO> getAllMemberInfo(Criteria cri);
 	public void enabledEditFalse(String id);
 	public void enabledEditTrue(String id);
+	public void roleDelAdmin(String id);
+	public void roleAddAdmin(String id);
 	
 }

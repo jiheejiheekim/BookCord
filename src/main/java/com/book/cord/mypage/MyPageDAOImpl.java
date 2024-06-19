@@ -147,4 +147,16 @@ public class MyPageDAOImpl implements MyPageDAO {
 		System.out.println("DAO enabledEditTrue 호출");
 		sqlSession.update(NAMESPACE + ".enabledEditTrue", id);
 	}
+	
+	@Override
+	public void roleDelAdmin(String id) {
+		System.out.println("DAO roleDelAdmin 호출");
+		sqlSession.delete(NAMESPACE + ".roleDelAdmin", id);
+	}
+	
+	@Override
+	public void roleAddAdmin(String id) {
+		System.out.println("DAO roleAddAdmin 호출");
+		sqlSession.insert(NAMESPACE + ".roleAddAdmin", id);
+	}
 }

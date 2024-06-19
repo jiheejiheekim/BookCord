@@ -139,4 +139,18 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("관리자 service의 enabledEdit-------------");
 		dao.enabledEditTrue(id);
 	}
+	
+	@Override
+	public void roleDelAdmin(String id) {
+		System.out.println("관리자 service의 roleDelAdmin-------------");
+		dao.roleDelAdmin(id);
+	}
+	
+	@Override
+	public void roleAddAdmin(String id) {
+		System.out.println("관리자 service의 roleAddAdmin-------------");
+		dao.roleAddAdmin(id);
+	}
+	
+	
 }

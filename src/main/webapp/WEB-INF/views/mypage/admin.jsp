@@ -84,7 +84,43 @@
 	}
 	
 	function roleEdit(id){
-		console.log('id :'+id+'\nenabled : '+enabled);
+		
+		var data = {id:id};
+		// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+		
+		console.log('id :'+id);
+		if($('.role_'+id).text().includes('ADMIN')){
+			if(confirm('\''+id+'\'의 ADMIN 권한을 회수하시겠습니까?')){
+				$.ajax({
+					type : 'post',
+					url : '/bc/roleDelAdmin',
+					data : data,
+					success:function(response){
+						//alert('성공\n'+response);
+						$('.role_'+id).text(response==='revoke'? 'ROLE_USER' : 'ROLE_ADMIN');
+					},
+					error:function(request,status,error){
+						alert("권한 회수 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+					}
+				});
+			}
+		}else{
+			if(confirm('\''+id+'\'에게 ADMIN 권한을 부여하시겠습니까?')){
+				$.ajax({
+					type : 'post',
+					url : '/bc/roleAddAdmin',
+					data : data,
+					success:function(response){
+						//alert('성공\n'+response);
+						$('.role_'+id).text(response==='grant'? 'ROLE_ADMIN ROLE_USER' : 'ROLE_USER');
+					},
+					error:function(request,status,error){
+						alert("권한 부여 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+					}
+				});
+			}
+		}
 	}
 	
 	function memberDelete(id){
@@ -177,7 +213,7 @@
 							</td>
 							<td class="enabled_${memberInfo.id}">${memberInfo.enabled}</td>
 							<td><button class="editButton" onclick="enabledEdit('${memberInfo.id}', '${memberInfo.enabled}')">ENABLED EDIT</button></td>
-							<td>
+							<td class="role_${memberInfo.id}">
 								<c:forEach items="${memberInfo.roleList}" var="role">
 									${role.auth}
 								</c:forEach>

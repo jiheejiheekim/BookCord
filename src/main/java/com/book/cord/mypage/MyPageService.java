@@ -25,5 +25,7 @@ public interface MyPageService {
 	public List<MemberVO> getAllMemberInfo();
 	public void enabledEditFalse(String id);
 	public void enabledEditTrue(String id);
+	public void roleDelAdmin(String id);
+	public void roleAddAdmin(String id);
 	
 }
