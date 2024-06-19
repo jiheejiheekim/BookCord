@@ -106,6 +106,7 @@ public class AdminController {
 	public String memberDelete(@RequestParam String id) {
 		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> 회원 삭제 시도");
 		service.memberDelete(id);
+		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> 회원 삭제 성공");
 		return "success";	
 	}
 	

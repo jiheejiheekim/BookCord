@@ -8,10 +8,10 @@
 	<select id="getListWithPaging" resultType="com.book.cord.board.NoticeVO">
 		<![CDATA[
 			SELECT 
-				NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
+				NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT
 			FROM (
 				    select  
-				    rownum rn, NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
+				    rownum rn, NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT 
 				    from NOTICE
 				    where rownum <= #{pageNum} * #{amount} ORDER BY NOTICE_NUM DESC
 				)
@@ -24,8 +24,8 @@
 	</select>
 	
 	<insert id="insertNotice">
-			INSERT INTO NOTICE (NOTICE_NUM, MEMBER_ID, TITLE, CONTENT, FILES) 
-			VALUES (test_num_seq.nextval, 'admin', #{title}, #{content}, #{files})
+			INSERT INTO NOTICE (NOTICE_NUM, MEMBER_NAME, TITLE, CONTENT, FILES) 
+			VALUES (notice_num_seq.nextval, '관리자', #{title}, #{content}, #{files})
 	</insert>
 	
 	<select id="getNoticeDetail" resultType="com.book.cord.board.NoticeVO" parameterType="int">

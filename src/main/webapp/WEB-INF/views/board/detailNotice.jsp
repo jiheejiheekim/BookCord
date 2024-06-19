@@ -105,7 +105,7 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2">${notice.member_id}</td>
+							<td class="wrt1r2d2">${notice.member_name}</td>
 						</tr>
 						<tr class="wrt1tr">
 							<td class="wrt1r1d1" colspan="3"><hr style="color:#2D9462"></td>

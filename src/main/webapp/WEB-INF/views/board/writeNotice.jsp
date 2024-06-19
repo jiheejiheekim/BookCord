@@ -37,11 +37,30 @@
             actionForm.find("input[name='pageNum']").val($(this).attr("href"));
             actionForm.submit();
     	});
+
+    	 $('.writeBt').on('click', function(e) {
+             var titleLength = $('.title').val().length;
+
+             if (titleLength > 66) {
+                 e.preventDefault(); // 서브밋 이벤트 중지
+                 alert('제목은 최대 65자까지 입력 가능합니다.');
+             }
+         });
+    	
     });
     
     function loginGo(){
 		alert('로그인 하세요');
 	}
+    
+    function titleCheck(){
+    	var title = $(".title").val();
+		
+    	if(title.length > 66){
+    		alert('제목은 65자가 넘어갈 수 없습니다');
+    		notice.title.focus();
+    	}
+    }
     
 </script>
 </head>
@@ -100,11 +119,11 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"><input type="text" class="writer" value="admin" name="member_id"></td>
+							<td class="wrt1r2d2"><input type="text" class="writer" value="관리자" name="member_name"></td>
 						</tr>
 						<tr class="wrt1tr3">
 							<td class="wrt1r3d1">제목</td>
-							<td class="wrt1r3d2"><input type="text" class="title" name="title"></td>
+							<td class="wrt1r3d2"><input type="text" class="title" name="title" onchange="titleCheck()"></td>
 						</tr>
 						<tr class="wrt1tr4">
 							<td class="wrt1r4d1">내용</td>

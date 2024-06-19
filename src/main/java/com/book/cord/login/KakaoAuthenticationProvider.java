@@ -60,8 +60,9 @@ public class KakaoAuthenticationProvider implements AuthenticationProvider {
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 		System.out.println("카카오 >>>>>>> 로그인 한 유저의 권한 : "+authorities);
 		
-		//UserDetails 생성
-		UserDetails userDetails = new User(user.getId(), user.getPwd(), authorities);
+		//UserDetails 생성---------------------------------------
+		//UserDetails userDetails = new User(user.getId(), user.getPwd(), authorities);
+		CustomUserDetails userDetails = new CustomUserDetails(user);
 	
 		// 세션에 사용자 ID 저장
 		httpSession.setAttribute("member", userDetails); // 세션에 사용자 ID 저장
