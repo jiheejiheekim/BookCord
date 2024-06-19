@@ -108,7 +108,7 @@ button:hover {
 
 .admin{
 	/* border:1px solid black;  */
-	width:80%;
+	width:100%;
 	margin-left:2.5em;
 	margin-top:1em;
 }
@@ -117,13 +117,17 @@ button:hover {
 }
 .editTable{
 	width:80%;
+	margin-top:1.5em;
 }
 .editTable tr td{
 	border:1px solid black;
-	/* width:75%; */
-	margin-top:1.5em;
+	/* width:80%; */
+	text-align: center;
 }
-
+.editTtr1{
+	width:100%;
+	background-color:#EDEDED;
+}
 .edit{
 	width:75%;
 	background-color:#EDEDED;
@@ -131,17 +135,17 @@ button:hover {
 	padding:1.3em;
 	font-size:1.1em;
 }
-
-
-
-.EditButton{
+.date{
+	font-size:80%;
+}
+.editButton{
 	border:none;
-	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
 	border-radius:15px;
 	color:white;
 	margin:0.7em;
 	padding:0.7em;
-	font-size:0.9em;
+	font-size:0.5em;
 	/* width:18%; */
+	cursor: pointer;
 }

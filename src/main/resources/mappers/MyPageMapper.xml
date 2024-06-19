@@ -89,8 +89,28 @@
 	</select>
 	
 <!-- 관리자 -->
-	<select id="getAllMemberInfo" parameterType="map" resultType="com.book.cord.login.MemberVO">
-		SELECT * FROM MEMBER
+
+	<resultMap type="com.book.cord.login.MemberVO" id="memberMap">
+        <id property="id" column="id"/>
+        <result property="pwd" column="pwd"/>
+        <result property="name" column="name"/>
+        <result property="member_num" column="member_num"/>
+        <result property="provider" column="provider"/>
+        <result property="enabled" column="enabled"/>
+        <result property="reg_date" column="reg_date"/>
+        <result property="update_date" column="update_date"/>
+        <collection property="roleList" ofType="com.book.cord.login.AuthVO" resultMap="authMap"/>
+    </resultMap>
+    
+    <resultMap type="com.book.cord.login.AuthVO" id="authMap">
+        <result property="id" column="member_id"/>
+        <result property="auth" column="role"/>
+    </resultMap>
+    
+    <select id="getAllMemberInfo" resultMap="memberMap">
+		SELECT MEMBER_NUM, M.ID, NAME, REG_DATE, PROVIDER, UPDATE_DATE, ENABLED, ROLE  
+		FROM MEMBER M JOIN MEMBER_ROLE R
+		ON M.ID = R.MEMBER_ID
 	</select>
     
 </mapper>

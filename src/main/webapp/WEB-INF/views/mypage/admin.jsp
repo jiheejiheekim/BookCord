@@ -43,6 +43,9 @@ $(document).ready(function(){
 	if(member_id==null){
 		alert('로그인 하세요 \nmember_id : '+member_id);
 		return;
+	/* }else if(member_id!='admin'){
+		alert('권한이 없습니다');
+		return; */
 	}else{
 		console.log(member_id+' >> 관리자님의 회원 관리 페이지')
 	}
@@ -108,8 +111,8 @@ $(document).ready(function(){
 				<span class="adminSpan">관리자 - 회원 관리</span>
 				
 				<table class="editTable">
-					<tr>
-						<td>MEMBER_NUM</td>
+					<tr class="editTtr1">
+						<td>NUM</td>
 						<td>ID</td>
 						<td>NAME</td>
 						<td>PROVIDER</td>
@@ -128,15 +131,24 @@ $(document).ready(function(){
 							<td>${memberInfo.id}</td>
 							<td>${memberInfo.name}</td>
 							<td>${memberInfo.provider}</td>
-							<td>${memberInfo.reg_date}</td>
-							<td>${memberInfo.update_date}</td>
+							<td class="date">
+								<fmt:formatDate value="${memberInfo.reg_date}" pattern="yy-MM-dd E HH:mm:ss" />
+							</td>
+							<td class="date">
+							    <fmt:formatDate value="${memberInfo.update_date}" pattern="yy-MM-dd E HH:mm:ss" />
+							</td>
 							<td>${memberInfo.enabled}</td>
-							<td>ENABLED EDIT</td>
-							<td><%-- ${memberInfo.role} --%>role</td>
-							<td>ROLE EDIT</td>
-							<td>DELETE</td>
+							<td><button class="editButton" onclick="">ENABLED EDIT</button></td>
+							<td>
+								<c:forEach items="${memberInfo.roleList}" var="role">
+									${role.auth}
+								</c:forEach>
+							</td>
+							<td><button class="editButton">ROLE EDIT</button></td>
+							<td><button class="editButton">DELETE</button></td>
 						</tr>
 					</c:forEach>
+					
 				</table>
 					
 			<br>
