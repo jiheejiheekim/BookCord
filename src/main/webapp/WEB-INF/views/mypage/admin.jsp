@@ -71,7 +71,7 @@
 			data : data,
 			dataType : 'JSON',
 			success:function(response){
-				alert("계정 활성화 변경 성공 : "+response);
+				alert('\''+id+'\'의 계정 활성화 변경 성공 : '+response);
 				$('.enabled_'+id).text(response? 'true' : 'false');
 				 
 			},
@@ -89,7 +89,7 @@
 		// CSRF 토큰을 데이터에 추가
 	    data[csrfParameterName] = csrfToken;
 		
-		console.log('id :'+id);
+		console.log('권한 변경 할 아이디 :'+id);
 		if($('.role_'+id).text().includes('ADMIN')){
 			if(confirm('\''+id+'\'의 ADMIN 권한을 회수하시겠습니까?')){
 				$.ajax({
@@ -97,7 +97,7 @@
 					url : '/bc/roleDelAdmin',
 					data : data,
 					success:function(response){
-						//alert('성공\n'+response);
+						alert('\''+id+'\'회원 ADMIN 권한 회수 완료');
 						$('.role_'+id).text(response==='revoke'? 'ROLE_USER' : 'ROLE_ADMIN');
 					},
 					error:function(request,status,error){
@@ -112,7 +112,7 @@
 					url : '/bc/roleAddAdmin',
 					data : data,
 					success:function(response){
-						//alert('성공\n'+response);
+						alert('\''+id+'\'회원 ADMIN 권한 부여 완료');
 						$('.role_'+id).text(response==='grant'? 'ROLE_ADMIN ROLE_USER' : 'ROLE_USER');
 					},
 					error:function(request,status,error){
@@ -124,7 +124,25 @@
 	}
 	
 	function memberDelete(id){
-		console.log(id);
+		var data = {id:id};
+		// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+		
+		console.log('삭제 할 id :'+id);
+		if(confirm('\''+id+'\'회원을 삭제하시겠습니까?')){
+			$.ajax({
+				type : 'post',
+				url : '/bc/memberDelete',
+				data : data,
+				success:function(response){
+					alert('\''+id+'\'회원 삭제 완료');
+					$('.tr_'+id).remove();
+				},
+				error:function(request,status,error){
+					alert("회원 삭제 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+				}
+			});
+		}
 	}
 	
 </script>	
@@ -135,18 +153,18 @@
 		<table class="toptable">
 			<tr>
 				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
-				<td class="top2"><a href="notice">공지사항</a></td>
+				<td class="top2"><a href="/bc/notice">공지사항</a></td>
 				<td class="top3">
 					<sec:authorize access="isAnonymous()">
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="memberEdit">마이페이지</a>
+						<a href="/bc/memberEdit">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
+						<a href="/bc/loginP">로그인</a>
 					</sec:authorize>
 					
 					<sec:authorize access="hasRole('ROLE_USER')">
@@ -200,7 +218,7 @@
 					</tr>
 					
 					<c:forEach items="${memberInfo}" var="memberInfo">
-						<tr>
+						<tr class="tr_${memberInfo.id}">
 							<td>${memberInfo.member_num}</td>
 							<td>${memberInfo.id}</td>
 							<td>${memberInfo.name}</td>

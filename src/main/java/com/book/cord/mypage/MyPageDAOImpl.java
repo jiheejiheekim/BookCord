@@ -159,4 +159,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 		System.out.println("DAO roleAddAdmin 호출");
 		sqlSession.insert(NAMESPACE + ".roleAddAdmin", id);
 	}
+	
+	@Override
+	public void memberDelete(String id) {
+		System.out.println("DAO memberDelete 호출");
+		sqlSession.delete(NAMESPACE + ".memberDelete", id);
+	}
+	
 }

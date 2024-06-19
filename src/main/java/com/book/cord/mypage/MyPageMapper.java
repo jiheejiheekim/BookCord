@@ -30,5 +30,6 @@ public interface MyPageMapper {
 	public void enabledEditTrue(String id);
 	public void roleDelAdmin(String id);
 	public void roleAddAdmin(String id);
+	public void memberDelete(String id);
 	
 }

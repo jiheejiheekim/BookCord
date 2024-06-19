@@ -93,13 +93,20 @@ public class AdminController {
 		return "revoke";
 	}
 	
-	
 	@PostMapping("roleAddAdmin")
 	@ResponseBody
 	public String roleAddAdmin(@RequestParam String id) {
 		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> admin 권한 추가 시도");
 		service.roleAddAdmin(id);
 		return "grant";
+	}
+	
+	@PostMapping("memberDelete")
+	@ResponseBody
+	public String memberDelete(@RequestParam String id) {
+		System.out.println("컨트롤러 >>>>>> 관리자 페이지에서 <<"+id+">> 회원 삭제 시도");
+		service.memberDelete(id);
+		return "success";	
 	}
 	
 }

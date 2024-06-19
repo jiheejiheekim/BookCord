@@ -152,5 +152,11 @@ public class MyPageServiceImpl implements MyPageService {
 		dao.roleAddAdmin(id);
 	}
 	
+	@Override
+	public void memberDelete(String id) {
+		System.out.println("관리자 service의 memberDelete-------------");
+		dao.memberDelete(id);
+	}
+	
 	
 }

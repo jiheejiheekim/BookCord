@@ -129,4 +129,8 @@
     	INSERT INTO MEMBER_ROLE (MEMBER_ID, ROLE) VALUES (#{id}, 'ROLE_ADMIN')
     </insert>
     
+    <delete id="memberDelete">
+    	DELETE FROM MEMBER WHERE ID = #{id}
+    </delete>
+    
 </mapper>
