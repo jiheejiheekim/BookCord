@@ -191,7 +191,7 @@ button:hover {
 	/* margin-top:3em; */
 	margin-left:17.5%;
 }
-.EditButton{
+.EditButton, .delButton{
 	border:none;
 	/* box-shadow: 2px 3px #898383; */
 	background-color:#2D9462;
@@ -201,6 +201,7 @@ button:hover {
 	padding:0.7em;
 	font-size:0.9em;
 	/* width:18%; */
+	cursor:pointer;
 }
 .p{
 	font-size:0.8em;

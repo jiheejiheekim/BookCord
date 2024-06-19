@@ -119,6 +119,12 @@ public class MyPageServiceImpl implements MyPageService {
         }
     }
 	
+	@Override
+	public void deleteAccount(String id) {
+		System.out.println("관리자 service의 deleteAccount-------------");
+		dao.deleteAccount(id);
+	}
+	
 	////////////////////////////////////////////////////////////////////
 	
 	@Override

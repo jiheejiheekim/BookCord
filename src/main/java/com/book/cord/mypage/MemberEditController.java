@@ -85,5 +85,14 @@ public class MemberEditController {
             return "redirect:/memberEdit?message=Error updating member information";
         }
 	}
+	
+	@PostMapping("deleteAccount")
+	@ResponseBody
+	public String deleteAccount(@RequestParam String id) throws Exception{
+		System.out.println("컨트롤러 >>>>>> 회원 정보 수정 페이지에서 <<"+id+">> 회원 삭제 시도");
+		service.deleteAccount(id);
+		System.out.println("컨트롤러 >>>>>> 회원 정보 수정 페이지에서 <<"+id+">> 회원 탈퇴 성공");
+		return "success";	
+	}
 
 }

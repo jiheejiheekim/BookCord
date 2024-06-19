@@ -220,6 +220,34 @@ $(document).ready(function(){
 		alert('회원정보 수정 완료');
 	}
 	
+	var csrfToken = "${_csrf.token}";
+	var csrfParameterName = "${_csrf.parameterName}";
+	console.log("csrfToken >> "+csrfToken);
+	console.log("csrfParameterName >> "+csrfParameterName);
+	
+	function deleteAccount(id){
+		event.preventDefault();
+		var data = {id:id};
+		// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+	    console.log(id+'\ndata : '+data);
+		console.log('삭제 요청 id :'+id);
+		if(confirm('\''+id+'\'회원님 탈퇴하시겠습니까?')){
+			$.ajax({
+				type : 'post',
+				url : '/bc/deleteAccount',
+				data : data,
+				success:function(response){
+					alert('\''+id+'\'회원 탈퇴 완료');
+					logout();
+				},
+				error:function(request,status,error){
+					console.log("회원 삭제 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+				}
+			});
+		}
+	}
+	
 </script>	
 </head>
 <body>
@@ -319,12 +347,13 @@ $(document).ready(function(){
 			<table class="EditTable2">
 				<tr>
 					<td class="">
-						<button class="EditButton" onclick="memberEdit('${member.name}')"><a href="">회원정보 수정</a></button>
+						<button class="EditButton" onclick="memberEdit('${member.name}')">회원정보 수정</button>
+					</td>
+					<td class="">
+						<button class="delButton" onclick="deleteAccount('${member.id}')">회원 탈퇴</button>
 					</td>
 				</tr>
-				<!-- <div class="finalEdit">
-					<button class="EditButton" onclick="memberEdit()"><a href="">회원정보 수정</a></button>
-				</div> -->
+				
 			</table>
 		
 		</form>

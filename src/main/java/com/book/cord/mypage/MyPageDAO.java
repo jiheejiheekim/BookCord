@@ -21,6 +21,7 @@ public interface MyPageDAO {
 	public MemberVO getMemberInfo(String id);
 	public int nameCheck(String name);
 	public void memberUpdate(MemberVO member);
+	public void deleteAccount(String id);
 	
 	public List<MemberVO> getAllMemberInfo(Criteria cri);
 	public void enabledEditFalse(String id);

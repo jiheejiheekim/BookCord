@@ -16,6 +16,10 @@
 	<update id="memberUpdate">
 		UPDATE MEMBER SET PWD=#{pwd}, NAME=#{name} WHERE ID=#{id} 
 	</update>
+	
+	<delete id="deleteAccount">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>
 
 <!-- 리뷰 -->
 	<insert id="insertReview">
@@ -130,7 +134,7 @@
     </insert>
     
     <delete id="memberDelete">
-    	DELETE FROM MEMBER WHERE ID = #{id}
+    	DELETE FROM MEMBER WHERE ID = #{id} 
     </delete>
     
 </mapper>

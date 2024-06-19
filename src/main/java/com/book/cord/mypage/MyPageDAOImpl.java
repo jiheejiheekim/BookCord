@@ -120,6 +120,14 @@ public class MyPageDAOImpl implements MyPageDAO {
 		sqlSession.update(NAMESPACE + ".memberUpdate", member);
 	}
 	
+	@Override
+	public void deleteAccount(String id) {
+		System.out.println("DAO.deleteAccount 지나가기 : "+id);
+		sqlSession.delete(NAMESPACE + ".deleteAccount", id);
+	}
+	
+	
+	
 	///////////////////////////////////////////////////////////
 	
 	@Override
