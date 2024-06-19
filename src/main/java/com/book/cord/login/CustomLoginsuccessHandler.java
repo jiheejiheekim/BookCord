@@ -55,16 +55,7 @@ public class CustomLoginsuccessHandler implements AuthenticationSuccessHandler {
         // 사용자의 Authentication 객체를 SecurityContext에 설정
         SecurityContextHolder.getContext().setAuthentication(auth);
 	    
-		/*if(roleNames.contains("ROLE_ADMIN")) {
-			response.sendRedirect("/bc/admin");
-			return;
-		}
-		
-		if(roleNames.contains("ROLE_USER")) {
-			response.sendRedirect("/bc/vip");
-			return;
-		}*/
-		
+				
 		response.sendRedirect("/bc/main");
         
 	}

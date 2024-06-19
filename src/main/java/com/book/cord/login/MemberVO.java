@@ -28,5 +28,7 @@ public class MemberVO {
     private boolean enabled; 	// 계정 정지 유무
     private Date update_date;
     
-   
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

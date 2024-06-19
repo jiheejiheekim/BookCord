@@ -54,6 +54,7 @@ public class CustomUserDetails implements UserDetails {
     // false: 비활성화 상태
     @Override
     public boolean isEnabled() {
-    	return true;
+    	//return true;
+    	return member.isEnabled();
     }
 }

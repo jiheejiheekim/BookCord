@@ -26,5 +26,7 @@ public interface MyPageMapper {
 	public void memberUpdate(MemberVO member);
 	
 	public List<MemberVO> getAllMemberInfo(Criteria cri);
+	public void enabledEditFalse(String id);
+	public void enabledEditTrue(String id);
 	
 }

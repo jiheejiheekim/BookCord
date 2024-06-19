@@ -13,46 +13,83 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-function logout() {
-	var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/bc/logout';
-    
-    var csrfToken = document.createElement('input');
-    csrfToken.type = 'hidden';
-    csrfToken.name = '${_csrf.parameterName}';
-    csrfToken.value = '${_csrf.token}';
-    
-    form.appendChild(csrfToken);
-    document.body.appendChild(form);
-    form.submit();
-}
-
-
-var member_id = "<c:out value='${sessionScope.member.username}'/>";
-$(document).ready(function(){
+	var csrfToken = "${_csrf.token}";
+	var csrfParameterName = "${_csrf.parameterName}";
+	console.log("csrfToken >> "+csrfToken);
+	console.log("csrfParameterName >> "+csrfParameterName);
 	
-	var urlParams = new URLSearchParams(window.location.search);
-    var errorMessage = urlParams.get('message');
-    if (errorMessage) {
-        alert(decodeURIComponent(errorMessage));
-    }
-    
-	var member_id = "<c:out value='${sessionScope.member.username}'/>";
-	
-	if(member_id==null){
-		alert('로그인 하세요 \nmember_id : '+member_id);
-		return;
-	/* }else if(member_id!='admin'){
-		alert('권한이 없습니다');
-		return; */
-	}else{
-		console.log(member_id+' >> 관리자님의 회원 관리 페이지')
+	function logout() {
+		var form = document.createElement('form');
+	    form.method = 'POST';
+	    form.action = '/bc/logout';
+	    
+	    var csrfToken = document.createElement('input');
+	    csrfToken.type = 'hidden';
+	    csrfToken.name = '${_csrf.parameterName}';
+	    csrfToken.value = '${_csrf.token}';
+	    
+	    form.appendChild(csrfToken);
+	    document.body.appendChild(form);
+	    form.submit();
 	}
 	
-});
-
 	
+	var member_id = "<c:out value='${sessionScope.member.username}'/>";
+	$(document).ready(function(){
+		
+		var urlParams = new URLSearchParams(window.location.search);
+	    var errorMessage = urlParams.get('message');
+	    if (errorMessage) {
+	        alert(decodeURIComponent(errorMessage));
+	    }
+	    
+		var member_id = "<c:out value='${sessionScope.member.username}'/>";
+		
+		if(member_id==null){
+			alert('로그인 하세요 \nmember_id : '+member_id);
+			return;
+		}else{
+			console.log(member_id+' >> 관리자님의 회원 관리 페이지')
+		}
+		
+	});
+
+	function enabledEdit(id, enabled){
+		console.log('id :'+id+'\nenabled : '+enabled);
+		
+		// 스크롤 위치 저장
+	    scrollTopPosition = $(window).scrollTop();
+		
+		var data = {id:id, enabled:enabled};
+
+	 	// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+			
+		$.ajax({
+			type : 'post',
+			url : '/bc/enabledEdit',
+			data : data,
+			dataType : 'JSON',
+			success:function(response){
+				alert("계정 활성화 변경 성공 : "+response);
+				$('.enabled_'+id).text(response? 'true' : 'false');
+				 
+			},
+			error:function(err){
+				alert('계정 비활성화 실패 : '+err);
+			}
+		});
+		
+		
+	}
+	
+	function roleEdit(id){
+		console.log('id :'+id+'\nenabled : '+enabled);
+	}
+	
+	function memberDelete(id){
+		console.log(id);
+	}
 	
 </script>	
 </head>
@@ -106,6 +143,7 @@ $(document).ready(function(){
 			</table>
 		</div>
 		
+		
 		<div class="admin">
 			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<span class="adminSpan">관리자 - 회원 관리</span>
@@ -137,19 +175,21 @@ $(document).ready(function(){
 							<td class="date">
 							    <fmt:formatDate value="${memberInfo.update_date}" pattern="yy-MM-dd E HH:mm:ss" />
 							</td>
-							<td>${memberInfo.enabled}</td>
-							<td><button class="editButton" onclick="">ENABLED EDIT</button></td>
+							<td class="enabled_${memberInfo.id}">${memberInfo.enabled}</td>
+							<td><button class="editButton" onclick="enabledEdit('${memberInfo.id}', '${memberInfo.enabled}')">ENABLED EDIT</button></td>
 							<td>
 								<c:forEach items="${memberInfo.roleList}" var="role">
 									${role.auth}
 								</c:forEach>
 							</td>
-							<td><button class="editButton">ROLE EDIT</button></td>
-							<td><button class="editButton">DELETE</button></td>
+							<td><button class="editButton" onclick="roleEdit('${memberInfo.id}')">ROLE EDIT</button></td>
+							<td><button class="editButton" onclick="memberDelete('${memberInfo.id}')">DELETE</button></td>
+							
 						</tr>
 					</c:forEach>
 					
 				</table>
+				
 					
 			<br>
 			

@@ -23,5 +23,7 @@ public interface MyPageService {
 	public void memberUpdate(MemberVO member);
 	
 	public List<MemberVO> getAllMemberInfo();
+	public void enabledEditFalse(String id);
+	public void enabledEditTrue(String id);
 	
 }

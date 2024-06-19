@@ -112,5 +112,13 @@
 		FROM MEMBER M JOIN MEMBER_ROLE R
 		ON M.ID = R.MEMBER_ID
 	</select>
+	
+	<update id="enabledEditFalse">
+		UPDATE MEMBER SET ENABLED = 0 WHERE ID = #{id}
+	</update>
+	
+	<update id="enabledEditTrue">
+		UPDATE MEMBER SET ENABLED = 1 WHERE ID = #{id}
+	</update>
     
 </mapper>

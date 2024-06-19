@@ -128,4 +128,15 @@ public class MyPageServiceImpl implements MyPageService {
 		return dao.getAllMemberInfo(cri);
 	}
 	
+	@Override
+	public void enabledEditFalse(String id) {
+		System.out.println("관리자 service의 enabledEdit-------------");
+		dao.enabledEditFalse(id);
+	}
+	
+	@Override
+	public void enabledEditTrue(String id) {
+		System.out.println("관리자 service의 enabledEdit-------------");
+		dao.enabledEditTrue(id);
+	}
 }

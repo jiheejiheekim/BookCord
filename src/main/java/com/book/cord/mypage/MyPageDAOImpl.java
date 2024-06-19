@@ -135,4 +135,16 @@ public class MyPageDAOImpl implements MyPageDAO {
 	    
 	    return sqlSession.selectList(NAMESPACE + ".getAllMemberInfo", params);
 	}
+	
+	@Override
+	public void enabledEditFalse(String id) {
+		System.out.println("DAO enabledEditFalse 호출");
+		sqlSession.update(NAMESPACE + ".enabledEditFalse", id);
+	}
+	
+	@Override
+	public void enabledEditTrue(String id) {
+		System.out.println("DAO enabledEditTrue 호출");
+		sqlSession.update(NAMESPACE + ".enabledEditTrue", id);
+	}
 }
