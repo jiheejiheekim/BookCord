@@ -28,6 +28,42 @@
 	function loginGo(){
 		alert('로그인 하세요');
 	}
+	
+	$(document).ready(function(){
+	    var midSpan = $('.midSpan');
+	    var bestseller = $('.bestseller');
+	    var newBooks = $('.newBooks');
+	    
+	    var midSpanOffset = midSpan.offset().top;
+	    var bestsellerOffset = bestseller.offset().top;
+	    var windowHeight = $(window).height();
+	    
+	    function checkAnimation() {
+	        var scrollTop = $(window).scrollTop();
+	        
+	        if (scrollTop + windowHeight > midSpanOffset) {
+	            midSpan.addClass('animate');
+	            bestseller.addClass('animate');
+	        } else {
+	            midSpan.removeClass('animate');
+	            bestseller.removeClass('animate');
+	        }
+
+	        if (scrollTop + windowHeight > bestsellerOffset + 700) {
+	            newBooks.addClass('animate');
+	        } else {
+	            newBooks.removeClass('animate');
+	        }
+	    }
+	    
+	    checkAnimation();
+	    $(window).on('scroll', function() {
+	        checkAnimation();
+	    });
+	});
+
+	
+	
 </script>
 </head>
 <body>
@@ -58,7 +94,13 @@
 	</div>
 	
 	<div class="mid">
-		문구 길게 대충 감명 깊은척
+		<span class="midSpan">
+			<span class="mid0">Book + Record</span>
+			<br>
+			<span class="mid1">방금 읽은 책을 기록해보세요</span>
+			<br>
+			<span class="mid2">북코드</span>
+		</span>
 	</div>
 	
 	<br>

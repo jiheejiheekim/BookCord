@@ -41,15 +41,15 @@ public class BookServiceImpl implements BookService {
     @Qualifier("bookDAOImpl")
     BookDAO dao;
 
-    @Override	// 신간도서
+    @Override	//메인 - 신간도서
     public NewBooks getNewBooks() {
-        String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=ItemNewAll&MaxResults=4&start=1&SearchTarget=Book&output=js&Version=20131101";
+        String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=ItemNewAll&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101";
         return restTemplate.getForObject(url, NewBooks.class);
     }
     
     @Override	//메인 - 베스트셀러
     public BestSeller getMainBestSeller() {
-    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=4"
+    	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=5"
     			/*+ "&start=1&SearchTarget=Book&output=js&Version=20131101&Year=" + year +"&Month=" + month + "&Week=3";*/
     			//현재의 베스트셀러 표출을 위해 주석처리
     	+ "&start=1&SearchTarget=Book&output=js&Version=20131101";
