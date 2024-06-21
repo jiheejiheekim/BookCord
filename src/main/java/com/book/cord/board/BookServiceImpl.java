@@ -1,4 +1,4 @@
-package com.book.cord;
+package com.book.cord.board;
 
 import java.util.List;
 
@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.book.cord.BookVO.BestSeller;
-import com.book.cord.BookVO.DetailBooks;
-import com.book.cord.BookVO.GenresBestSeller;
-import com.book.cord.BookVO.GenresNewBooks;
-import com.book.cord.BookVO.NewBooks;
-import com.book.cord.BookVO.SearchBooks;
-import com.book.cord.board.Criteria;
+import com.book.cord.board.BookVO.BestSeller;
+import com.book.cord.board.BookVO.DetailBooks;
+import com.book.cord.board.BookVO.GenresBestSeller;
+import com.book.cord.board.BookVO.GenresNewBooks;
+import com.book.cord.board.BookVO.NewBooks;
+import com.book.cord.board.BookVO.SearchBooks;
 import com.book.cord.book.BookDAO;
 import com.book.cord.mypage.ReviewVO;
 
@@ -42,7 +41,7 @@ public class BookServiceImpl implements BookService {
     BookDAO dao;
 
     @Override	//메인 - 신간도서
-    public NewBooks getNewBooks() {
+    public NewBooks getMainNewBooks() {
         String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=ItemNewAll&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101";
         return restTemplate.getForObject(url, NewBooks.class);
     }
@@ -55,7 +54,7 @@ public class BookServiceImpl implements BookService {
     	+ "&start=1&SearchTarget=Book&output=js&Version=20131101";
     	return restTemplate.getForObject(url, BestSeller.class);
     }
-    
+    /*
     @Override	// 베스트셀러
     public BestSeller getBestSeller(int year, int month) {
     	String url = API_URL1 + "?ttbkey=" + API_KEY + "&QueryType=Bestseller&MaxResults=15"
@@ -69,10 +68,10 @@ public class BookServiceImpl implements BookService {
     	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101";
     	return restTemplate.getForObject(url, SearchBooks.class);
     }
-    
+    */
     
     @Override	// 상품 검색 제목+저자(기본값)
-    public SearchBooks getSearchBooks2(String query, Integer pageNumber) {
+    public SearchBooks getSearchBooks(String query, Integer pageNumber) {
     	String url = API_URL2 + "?ttbkey=" + API_KEY + "&Query=" + query + "&QueryType=Keyword&MaxResults=10" 
     			+ "&start=" + pageNumber + "&SearchTarget=Book&output=js&Version=20131101";
         return restTemplate.getForObject(url, SearchBooks.class);

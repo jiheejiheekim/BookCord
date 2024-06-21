@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
-import com.book.cord.BookService;
-import com.book.cord.BookVO.DetailBooks;
+import com.book.cord.board.BookService;
 import com.book.cord.board.Criteria;
 import com.book.cord.board.PageDTO;
+import com.book.cord.board.BookVO.DetailBooks;
 import com.book.cord.mypage.ReviewVO;
 
 @Controller

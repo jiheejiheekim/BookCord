@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.book.cord.BookService;
-import com.book.cord.BookVO.Book;
-import com.book.cord.BookVO.SearchBooks;
+import com.book.cord.board.BookService;
+import com.book.cord.board.BookVO.Book;
+import com.book.cord.board.BookVO.SearchBooks;
 
 @Controller
 public class SearchBookController {
@@ -33,7 +33,7 @@ public class SearchBookController {
 	public String searchBook(@RequestParam("query") String query, 
 	        @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber, Model model) {
 	    System.out.println("---------- "+query+"로 검색한 결과");
-	    SearchBooks searchResult = bookService.getSearchBooks2(query,  pageNumber);
+	    SearchBooks searchResult = bookService.getSearchBooks(query,  pageNumber);
 	   
 	    if (searchResult != null && searchResult.getItem() != null && !searchResult.getItem().isEmpty()) {
 	        List<Book> books = searchResult.getItem();
@@ -53,23 +53,22 @@ public class SearchBookController {
 
 	//검색 결과에서 페이지 넘길 시 ajax 요청
 	@GetMapping("/getSearchBook")
-	@ResponseBody
-	public Map<String, Object> getSearchBook(@RequestParam("query") String query, 
-	        @RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber) {
-	    Map<String, Object> response = new HashMap<>();
-	    SearchBooks searchResult = bookService.getSearchBooks2(query, pageNumber);
+	public String getSearchBook(@RequestParam("query") String query, 
+			@RequestParam(value = "pageNumber", required = false, defaultValue = "1") Integer pageNumber, Model model) {
+	    SearchBooks searchResult = bookService.getSearchBooks(query, pageNumber);
 
 	    if (searchResult != null) {
 	        List<Book> books = searchResult.getItem();
 	        int totalResult = searchResult.getTotalResults();
 	        if (books != null) {
-	            response.put("books", books);
+	        	 model.addAttribute("books", books);
 	        }
-	        response.put("searchQuery", query);
-	        response.put("totalResult", totalResult);
+	        model.addAttribute("searchQuery", query);
+	        model.addAttribute("totalResult", totalResult);
+	        System.out.println(books);
+	        System.out.println("검색어 : "+query+" / 페이지 : "+pageNumber+" / 전체페이지 : "+totalResult);
 	    }
-	    return response;
+	    return "book/searchBook";
 	}
-
 	
 }

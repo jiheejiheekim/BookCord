@@ -1,4 +1,4 @@
-package com.book.cord;
+package com.book.cord.board;
 
 import java.util.Date;
 import java.util.List;

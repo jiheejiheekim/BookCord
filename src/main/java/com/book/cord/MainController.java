@@ -7,8 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.book.cord.BookVO.BestSeller;
-import com.book.cord.BookVO.NewBooks;
+import com.book.cord.board.BookService;
+import com.book.cord.board.BookVO.BestSeller;
+import com.book.cord.board.BookVO.NewBooks;
 
 @Controller
 public class MainController {
@@ -45,7 +46,7 @@ public class MainController {
     	}
     	
     	//신간도서
-        NewBooks searchResult2 = bookService.getNewBooks();
+        NewBooks searchResult2 = bookService.getMainNewBooks();
         if (searchResult2 != null) {
             model.addAttribute("newBook", searchResult2.getItem());
         } else {
