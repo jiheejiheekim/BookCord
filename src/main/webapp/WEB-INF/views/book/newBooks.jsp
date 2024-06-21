@@ -32,14 +32,17 @@
 	var csrfParameterName = "${_csrf.parameterName}";
 	var member_id = "<c:out value='${sessionScope.member.username}'/>";
 
-	console.log("csrfToken >> "+csrfToken);
-	console.log("csrfParameterName >> "+csrfParameterName);
+	//console.log("csrfToken >> "+csrfToken);
+	//console.log("csrfParameterName >> "+csrfParameterName);
 
 
 	function bookmark(event, title, author, isbn13, cover) {
 		event.preventDefault(); 
-		
-	    
+
+	    if(!member_id){
+	 		alert('북마크 실패 - 로그인 하세요');
+	 		return;
+	 	}
 	    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
 	    
 	    var data = {
@@ -52,6 +55,7 @@
 
 	 	// CSRF 토큰을 데이터에 추가
 	    data[csrfParameterName] = csrfToken;
+	 	
 	 	
 	 	$.ajax({
 	 		type : 'POST',
@@ -86,6 +90,72 @@
 	function loginGo(){
 		alert('로그인 하세요');
 	}
+	
+	var currentPage = '<c:out value="${currentPage}" />';
+	
+	
+	function bookMenu(){
+		event.preventDefault();
+		$(".noticeMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var bookMenu = document.getElementById('bookMenu');
+						
+        if (bookMenu.style.display === 'none' || bookMenu.style.display === '') {
+        	bookMenu.style.display = 'block';
+        } else {
+        	bookMenu.style.display = 'none';
+        }
+	}
+	
+	function searchFocus(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		alert('메인 화면에서 검색하세요');
+		window.location.href = "/bc/main";
+	}
+	
+	function noticeMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var noticeMenu = document.getElementById('noticeMenu');
+						
+        if (noticeMenu.style.display === 'none' || noticeMenu.style.display === '') {
+        	noticeMenu.style.display = 'block';
+        } else {
+        	noticeMenu.style.display = 'none';
+        }
+	}
+	
+	function myPageMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".noticeMenu").hide();
+		
+		var myPageMenu = document.getElementById('myPageMenu');
+						
+        if (myPageMenu.style.display === 'none' || myPageMenu.style.display === '') {
+        	myPageMenu.style.display = 'block';
+        } else {
+        	myPageMenu.style.display = 'none';
+        }
+	}
+	
+	// 페이지 빈 부분 클릭 시 Menu 숨기기
+	$(document).click(function(event) {
+		if (!$(event.target).closest('.myPageMenu, .top3').length) {
+			$('.myPageMenu').hide();
+		}
+		if (!$(event.target).closest('.bookMenu, .top5').length) {
+			$('.bookMenu').hide();
+		}
+		if (!$(event.target).closest('.noticeMenu, .top2').length) {
+			$('.noticeMenu').hide();
+		}
+	});
+	
 </script>
 </head>
 <body>
@@ -93,29 +163,71 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main">
-					<img class="logo" src="resources/images/logo.png"></a></td>
-				<td class="top2"><a href="notice">공지사항</a></td>
+				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
+				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">
 					<sec:authorize access="isAnonymous()">
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="memberEdit">마이페이지</a>
+						<a href="" onclick="myPageMenu()">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
+						<a href="/bc/loginP">로그인</a>
 					</sec:authorize>
-					
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>
 				</td>
 			</tr>
 		</table>
-	</div>
+		
+		<div class="bookMenu" id="bookMenu">
+			<table class="bookMenuTable">
+				<tr>
+					<td><a href="/bc/bestSeller">베스트셀러</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/newBooks">신간도서</a></td>
+				</tr>
+				<tr>
+					<td><a href="" onclick="searchFocus()">도서검색</a></td>
+				</tr>
+			</table>
+		</div>	<!-- bookMenu -->
+		
+		<div class="noticeMenu" id="noticeMenu">
+			<table class="noticeMenuTable">
+				<tr>
+					<td><a href="/bc/notice">공지사항</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/freeBoard">자유게시판</a></td>
+				</tr>
+			</table>
+		</div>	<!-- noticeMenu -->
+		
+		<div class="myPageMenu" id="myPageMenu">
+			<table class="myPageMenuTable">
+				<tr>
+					<td><a href="/bc/memberEdit">회원정보수정</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myReview">나의리뷰</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myBookMark">나의북마크</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/admin">관리자</a></td>
+				</tr>
+			</table>
+		</div>	<!-- myPageMenu -->
+	
+	</div>	<!-- top -->
 
 	<div class="content">
 	
@@ -227,9 +339,9 @@
 				<table class="nbBtTable">
 					<tr>
 						<td class="nbSpan">종합<span></td>
-						<td><button class="day"><a href="">등록일순</a></button></td>
+						<!-- <td><button class="day"><a href="">등록일순</a></button></td>
 						<td><button class="name"><a href="">상품명순</a></button></td>
-						<td><button class="starRank"><a href="">평점순</a></button></td>
+						<td><button class="starRank"><a href="">평점순</a></button></td> -->
 					</tr>
 				</table>
 			</div>
@@ -419,7 +531,7 @@
             }
         });
     }
-    
+    /*
 	function page(pageNumber) {
 		event.preventDefault();
 	    console.log('페이지 ' + pageNumber + ' 요청 중');
@@ -432,14 +544,13 @@
 	    currentPage = pageNumber;
 	    updatePageNum();
 	    bold();
-	    
-	    
+	    	    
 	    $('.pageNum').click(function(event) {
 			event.preventDefault(); 
 	    	$('.pageNum').css('font-weight', 'normal');
 	    	$(this).css('font-weight', 'bold');
 		});
-	    	rank(currentPage);
+	    rank(currentPage);
 	}
 	
 
@@ -491,7 +602,96 @@
 	        i++;
 	    }
 	}
+*/
+$('.pageNum').click(function(event) {
+	event.preventDefault(); 
+	$('.pageNum').css('font-weight', 'normal');
+	$(this).css('font-weight', 'bold');
+});
 
+function page(pageNumber) {
+    console.log('페이지 ' + pageNumber + ' 요청 중');
+    
+    if (!selectedGenreId || !selectedGenreName) {
+        console.log('장르 정보가 없습니다 ==> 종합 '+ pageNumber +'페이지 요청 중');
+        selectedGenreId=0;
+    }
+    genreNewBooks(selectedGenreId, selectedGenreName, pageNumber);
+    currentPage = pageNumber;
+    updatePageNum();
+    bold();
+    
+    
+}
+
+function bold() {
+    $('.pageNum').css('font-weight', 'normal');
+    
+    $('.pageNum').filter(function() {
+        return $(this).text() == currentPage;
+    }).css('font-weight', 'bold');
+}
+
+
+function prevPage() {
+    event.preventDefault(); 
+    if (currentPage > 1) {
+        currentPage = 5;
+        updatePageNum();
+        page(currentPage);
+        $('.pageLogo1').hide();
+        $('.pageLogo2').show();
+    }
+}
+
+function nextPage() {
+    event.preventDefault(); 
+    if (currentPage < 6) {
+        currentPage = 6;
+        updatePageNum();
+        page(currentPage);
+    }
+    if (currentPage >= 6) {
+    	$('.pageLogo1').show();
+        $('.pageLogo2').hide();
+    }
+}
+
+
+
+function updatePageNum() {
+    var startPage = currentPage < 6 ? 1 : 6;
+    var endPage = currentPage < 6 ? 5 : 10;
+
+    if (startPage < 1) {
+        startPage = 1;
+        $('.pageLogo1').hide();
+        $('.pageLogo2').show();
+    }
+
+    if (endPage < startPage) {
+        endPage = startPage;
+    }
+
+    var pageNumElements = $('.pageNum');
+    var i = 0;
+    for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
+        $(pageNumElements[i]).text(pageNum);
+        $(pageNumElements[i]).attr('onclick', 'page(' + pageNum + ')');
+        i++;
+    }
+}
+
+$(document).ready(function() {
+    $('.pageNum').first().css('font-weight', 'bold');
+    
+    if (currentPage <= 5) {
+        $('.pageLogo1').hide();
+    }
+    if (currentPage >= 6) {
+        $('.pageLogo2').hide();
+    } 
+});
 </script>
 
 </body>

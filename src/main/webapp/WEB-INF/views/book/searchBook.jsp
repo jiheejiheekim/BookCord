@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <title>BookCord - NewBooks</title>
 <link rel="stylesheet" href="resources/css/searchBook.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- jQuery 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -33,14 +32,18 @@
 	var csrfParameterName = "${_csrf.parameterName}";
 	var member_id = "<c:out value='${sessionScope.member.username}'/>";
 
-	console.log("csrfToken >> "+csrfToken);
-	console.log("csrfParameterName >> "+csrfParameterName);
+	//console.log("csrfToken >> "+csrfToken);
+	//console.log("csrfParameterName >> "+csrfParameterName);
 
 
 	function bookmark(event, title, author, isbn13, cover) {
 		event.preventDefault(); 
-		
-	    
+	 	
+	 	if(!member_id){
+	 		alert('북마크 실패 - 로그인 하세요');
+	 		return;
+	 	}
+	 	
 	    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
 	    
 	    var data = {
@@ -53,7 +56,6 @@
 
 	 	// CSRF 토큰을 데이터에 추가
 	    data[csrfParameterName] = csrfToken;
-	 	
 	 	$.ajax({
 	 		type : 'POST',
 	 		url : '/bc/isBookMarked',
@@ -72,13 +74,15 @@
 	 			            alert('북마크 성공');
 	 			        },
 	 			        error:function(request,status,error){
-	 			            console.log("북마크 FAIL >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+	 			            console.log("북마크 FAIL >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리
+	 			            alert('북마크 실패');
 	 			        }
 	 			    });
 	 			}
 	 		},
 	 		error:function(request,status,error){
-	            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+	            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리
+	            alert('북마크 실패');
 	        }
 	 	});
 	   
@@ -87,6 +91,70 @@
 	function loginGo(){
 		alert('로그인 하세요');
 	}
+	
+	
+	function bookMenu(){
+		event.preventDefault();
+		$(".noticeMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var bookMenu = document.getElementById('bookMenu');
+						
+        if (bookMenu.style.display === 'none' || bookMenu.style.display === '') {
+        	bookMenu.style.display = 'block';
+        } else {
+        	bookMenu.style.display = 'none';
+        }
+	}
+	
+	function searchFocus(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		alert('메인 화면에서 검색하세요');
+		window.location.href = "/bc/main";
+	}
+	
+	function noticeMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var noticeMenu = document.getElementById('noticeMenu');
+						
+        if (noticeMenu.style.display === 'none' || noticeMenu.style.display === '') {
+        	noticeMenu.style.display = 'block';
+        } else {
+        	noticeMenu.style.display = 'none';
+        }
+	}
+	
+	function myPageMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".noticeMenu").hide();
+		
+		var myPageMenu = document.getElementById('myPageMenu');
+						
+        if (myPageMenu.style.display === 'none' || myPageMenu.style.display === '') {
+        	myPageMenu.style.display = 'block';
+        } else {
+        	myPageMenu.style.display = 'none';
+        }
+	}
+	
+	// 페이지 빈 부분 클릭 시 Menu 숨기기
+	$(document).click(function(event) {
+		if (!$(event.target).closest('.myPageMenu, .top3').length) {
+			$('.myPageMenu').hide();
+		}
+		if (!$(event.target).closest('.bookMenu, .top5').length) {
+			$('.bookMenu').hide();
+		}
+		if (!$(event.target).closest('.noticeMenu, .top2').length) {
+			$('.noticeMenu').hide();
+		}
+	});
+	
 </script>
 </head>
 <body>
@@ -94,29 +162,71 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main">
-					<img class="logo" src="resources/images/logo.png"></a></td>
-				<td class="top2"><a href="notice">공지사항</a></td>
+				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
+				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">
 					<sec:authorize access="isAnonymous()">
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="memberEdit">마이페이지</a>
+						<a href="" onclick="myPageMenu()">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
-						<a href="loginP">로그인</a>
+						<a href="/bc/loginP">로그인</a>
 					</sec:authorize>
-					
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>
 				</td>
 			</tr>
 		</table>
-	</div>
+		
+		<div class="bookMenu" id="bookMenu">
+			<table class="bookMenuTable">
+				<tr>
+					<td><a href="/bc/bestSeller">베스트셀러</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/newBooks">신간도서</a></td>
+				</tr>
+				<tr>
+					<td><a href="" onclick="searchFocus()">도서검색</a></td>
+				</tr>
+			</table>
+		</div>	<!-- bookMenu -->
+		
+		<div class="noticeMenu" id="noticeMenu">
+			<table class="noticeMenuTable">
+				<tr>
+					<td><a href="/bc/notice">공지사항</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/freeBoard">자유게시판</a></td>
+				</tr>
+			</table>
+		</div>	<!-- noticeMenu -->
+		
+		<div class="myPageMenu" id="myPageMenu">
+			<table class="myPageMenuTable">
+				<tr>
+					<td><a href="/bc/memberEdit">회원정보수정</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myReview">나의리뷰</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myBookMark">나의북마크</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/admin">관리자</a></td>
+				</tr>
+			</table>
+		</div>	<!-- myPageMenu -->
+	
+	</div>	<!-- top -->
 
 	<div class="content">
 	
@@ -258,7 +368,7 @@
 	var currentPage = 1;
 	var ranking;
 	var query = "";
-	var totalResult = ${totalResult}; // 총 도서 개수를 JavaScript 변수에 저장
+	var totalResult = ${totalResult};
 	
 	function rank(currentPage) {
 	    for (i = 1; i <= 10; i++) {
@@ -267,60 +377,46 @@
 	    }
 	}
 	
-		
 	
 	$(document).ready(function() {
+		updatePageNum(); 
 		updatePrevPageVisibility();
 		
 	    $('.pageNum').first().css('font-weight', 'bold');
+	    
 	    rank(currentPage);
-	    console.log("검색어 >> "+query);
-	    console.log("총 검색 결과 >> "+totalResult+"개");
+	    
 	    query = "${searchQuery}";
-        totalResult = ${totalResult};
-     	// 검색 결과가 갱신되었으므로 도서 개수도 업데이트
-     	$('.totalBooks span').text("");
-        $('.totalBooks span').text("총 " + totalResult + "개의 도서가 검색되었습니다.");
-        
-     // 각 페이지 번호를 클릭할 때 해당 페이지로 이동하도록 설정
-        $('.pageNum').click(function(event) {
-            event.preventDefault(); // 기본 이벤트 동작 취소
-            var pageNumber = parseInt($(this).text()); // 클릭된 페이지 번호 가져오기
-            page(event, pageNumber); // 해당 페이지로 이동
-        });
-	});
-	
-    
-	var pageNumber = 1;
-	
-	console.log('페이지 로드 - ' + currentPage + ' 요청 중');
+	    totalResult = ${totalResult};
+	    console.log("검색어 >> " + query);
+	    console.log("총 검색 결과 >> " + totalResult + "개");
 
-	$('.naviA').click(function(event) {
-	    console.log('4. 새로운 장르 클릭');
-	    event.preventDefault(); 
+	    $('.totalBooks span').text("");
+	    $('.totalBooks span').text("총 " + totalResult + "개의 도서가 검색되었습니다.");
 	        
-	    $('.naviA').css('color', 'white');
+	    $('.pageNum').click(function(event) {
+	        event.preventDefault();
+	        var pageNumber = parseInt($(this).text());
+	        //page(pageNumber);
+	    });
 	    
-	    $(this).css('color', 'black');
-	    
-	    currentPage=1;
-	    updatePageNum();
-	    bold();
 	});
 	
+
+	var pageNumber = 1;
+	console.log('페이지 로드 - ' + currentPage + ' 요청 중');
+		
     function getSearchBook(query, pageNumber) {
         $.ajax({
             url: '/bc/getSearchBook',
             method: 'GET', 
             data: { query: query, pageNumber: pageNumber },
             success: function(response) {
-            	var $response = $(response);
-                var newBs = $response.find('.nb').html();
-                $('.nb').html(newBs);
-                $('.nbSpan').html(name);
-                rank(currentPage);
-                
-             	
+            	 var $response = $(response); 
+                 var newBs = $response.find('.nbTableDiv').html(); 
+                 //console.log(newBs); 
+                 $('.nbTableDiv').html(newBs); 
+                 rank(currentPage);
             },
             
             error: function(xhr, status, error) {
@@ -330,25 +426,17 @@
     }
 
 	
-	// 페이지 이동 함수
-	function page(event, pageNumber) {
-		if (event) {
-	        event.preventDefault();
-	    }
-		
-	    console.log('페이지 ' + pageNumber + ' 요청 중');
+	//페이지 이동
+	function page(pageNumber) {
+	    console.log('검색어 \''+query+'\'와 페이지 ' + pageNumber + ' 요청 중');
 	    getSearchBook(query, pageNumber);
 	    currentPage = pageNumber;
 	    updatePageNum();
 	    bold();
 	    rank(currentPage);
 	    updatePrevPageVisibility();
-	    
-	   /*  var newTotalResult = $('.totalBooks span').text();
-        $('.totalBooks span').text("총 " + newTotalResult + "개의 도서가 검색되었습니다."); */
 	}
 
-	
 	function bold() {
 	    $('.pageNum').css('font-weight', 'normal');
 	    
@@ -358,59 +446,68 @@
 	}
 
 
-	// 이전 페이지로 이동
+	//이전 페이지로 이동
 	function prevPage(event) {
 	    event.preventDefault(); 
-	    var startPage = Math.floor((currentPage - 1) / 5) * 5; // 현재 페이지 그룹의 첫 번째 페이지
-	    if (startPage >= 1) { // 첫 번째 페이지가 1보다 크거나 같을 때만 이동하도록 조건 추가
+	    var startPage = Math.floor((currentPage - 1) / 5) * 5; 
+	    if (startPage >= 1) { 
 	        currentPage = startPage;
 	        updatePageNum();
-	        page(event, currentPage);
+	        page(currentPage);
+	        
 	    }
 	}
 
-	// 다음 페이지로 이동
+	//다음 페이지로 이동
 	function nextPage(event) {
 	    event.preventDefault(); 
-	    var startPage = Math.floor((currentPage - 1) / 5) * 5; // 현재 페이지 그룹의 첫 번째 페이지
-	    var nextPage = startPage + 6; // 현재 페이지 그룹의 첫 번째 페이지에서 1을 더한 페이지로 이동
-	    if (nextPage <= Math.ceil(totalResult / 10)) { // 다음 페이지가 전체 페이지 수보다 작거나 같을 때만 이동하도록 조건 추가
+	    var startPage = Math.floor((currentPage - 1) / 5) * 5;
+	    var nextPage = startPage + 6; 
+	    if (nextPage <= Math.ceil(totalResult / 10)) { 
 	        currentPage = nextPage;
 	        updatePageNum();
-	        page(event, currentPage);
+	        page(currentPage);
 	    }
 	}
 	
+	//페이지 번호 업데이트
 	function updatePageNum() {
-
+		var totalPages = Math.ceil(totalResult / 10); // 전체 페이지 수
 	    var startPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
-	    var endPage = startPage + 4; // 보여줄 페이지 수 설정
-
-	    if (startPage < 1) {
-	        startPage = 1;
-	    }
-
+	    var endPage = startPage + 4;
+	    
 	    if (endPage > Math.ceil(totalResult / 10)) {
 	        endPage = Math.ceil(totalResult / 10);
 	    }
-
+	    
 	    var pageNumElements = $('.pageNum');
-	    var i = 0;
-	    for (var pageNum = startPage; pageNum <= endPage; pageNum++) {
-	        $(pageNumElements[i]).text(pageNum);
-	        $(pageNumElements[i]).attr('onclick', 'page(event, ' + pageNum + ')');
-	        i++;
+	    
+	    for (var i = 0; i < pageNumElements.length; i++) {
+	        var pageNum = startPage + i;
+	        if (pageNum <= endPage) {
+	            $(pageNumElements[i]).text(pageNum);
+	            $(pageNumElements[i]).attr('onclick', 'page(' + pageNum + ')');
+	        } else {
+	            $(pageNumElements[i]).hide(); 
+	        }
+	    }
+
+	    if (endPage >= totalPages) {
+	        $('.pageLogo2').hide();
+	    } else {
+	        $('.pageLogo2').show();
 	    }
 	}
 
-	// 이전 페이지로 가는 이미지 표시 여부 업데이트
+	//이전 페이지로 가는 이미지 표시 여부 업데이트
 	function updatePrevPageVisibility() {
 	    if (currentPage <= 5) {
-	        $('.pageLogo1').hide(); // 현재 페이지가 5 이하인 경우 이전 페이지로 가는 이미지 숨김
+	        $('.pageLogo1').hide();
 	    } else {
-	        $('.pageLogo1').show(); // 그 외의 경우에는 보이도록 설정
+	        $('.pageLogo1').show();
 	    }
 	}
+
 
  
 </script>

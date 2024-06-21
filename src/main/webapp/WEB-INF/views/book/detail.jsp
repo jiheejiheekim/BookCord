@@ -15,202 +15,268 @@
 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script>
 
-function logout() {
-	var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/bc/logout';
-    
-    var csrfToken = document.createElement('input');
-    csrfToken.type = 'hidden';
-    csrfToken.name = '${_csrf.parameterName}';
-    csrfToken.value = '${_csrf.token}';
-    
-    form.appendChild(csrfToken);
-    document.body.appendChild(form);
-    form.submit();
-  }
-  
-var csrfToken = "${_csrf.token}";
-var csrfParameterName = "${_csrf.parameterName}";
-var member_id = "<c:out value='${sessionScope.member.username}'/>";
-
-console.log("csrfToken >> "+csrfToken);
-console.log("csrfParameterName >> "+csrfParameterName);
-
-
-function bookmark(event, title, author, isbn13, cover) {
-	event.preventDefault(); 
+	function logout() {
+		var form = document.createElement('form');
+	    form.method = 'POST';
+	    form.action = '/bc/logout';
+	    
+	    var csrfToken = document.createElement('input');
+	    csrfToken.type = 'hidden';
+	    csrfToken.name = '${_csrf.parameterName}';
+	    csrfToken.value = '${_csrf.token}';
+	    
+	    form.appendChild(csrfToken);
+	    document.body.appendChild(form);
+	    form.submit();
+	  }
+	  
+	var csrfToken = "${_csrf.token}";
+	var csrfParameterName = "${_csrf.parameterName}";
+	var member_id = "<c:out value='${sessionScope.member.username}'/>";
 	
-    
-    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
-    
-    var data = {
-			member_id: member_id,
-			title: title,
-			author: author,
-			isbn13: isbn13,
-			cover: cover
-		};
-
- 	// CSRF 토큰을 데이터에 추가
-    data[csrfParameterName] = csrfToken;
- 	
- 	$.ajax({
- 		type : 'POST',
- 		url : '/bc/isBookMarked',
- 		data : data,
- 		dataType : 'JSON',
- 		success:function(response){
- 			if(response){
- 				alert('이미 북마크 된 도서입니다');
- 			}else{
- 				 $.ajax({
- 			    	type: "POST",
- 			        url: "/bc/bookmark",
- 			        data: data,
- 			        dataType: "JSON",
- 			        success: function(response) {
- 			            alert('북마크 성공');
- 			        },
- 			        error:function(request,status,error){
- 			            console.log("북마크 FAIL >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
- 			        }
- 			    });
- 			}
- 		},
- 		error:function(request,status,error){
-            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
-        }
- 	});
-   
-}
-
-  
-var stars;
-
-
-function saveScrollPosition() {
-  localStorage.setItem('scrollPosition', window.scrollY);
-}
-
-function loadScrollPosition() {
-  const scrollPosition = localStorage.getItem('scrollPosition');
-  if (scrollPosition) {
-    window.scrollTo(0, scrollPosition);
-    localStorage.removeItem('scrollPosition'); 
-  }
-}
-
-$(document).ready(function() {
-	var actionForm = $("#actionForm");
-	$(".paginate_button a").on("click", function(e) {
-    	e.preventDefault();
-        
-        console.log('click');
-        
-        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-        actionForm.submit();
-	});
+	console.log("csrfToken >> "+csrfToken);
+	console.log("csrfParameterName >> "+csrfParameterName);
 	
-    $('.radio').click(function(event) {
-        stars = $(this).attr('data-stars');
-        console.log('선택한 별점 >> ' + stars + '점');
-    });
-    
-    loadScrollPosition();
-    $(".paginate_button a").on("click", function(e) {
-      e.preventDefault();
-      saveScrollPosition(); // 페이지 이동 전 스크롤 위치 저장
-      $("#actionForm").find("input[name='pageNum']").val($(this).attr("href"));
-      $("#actionForm").submit();
-    });
-
-});
-  
-var scrollTopPosition; 
-
-function reviewRegister(event, title, author, isbn13, cover) {
-	event.preventDefault();
-	var content = $(".rTextarea").val();
-	console.log('리뷰 등록 요청 >>\n title : '+title+'\n author : '+author+'\n isbn13 : '+isbn13+'\n cover : '+cover);
 	
-	// 스크롤 위치 저장
-    scrollTopPosition = $(window).scrollTop();
-	
-	var data = {
-			member_id : member_id,
-			title : title,
-			author : author,
-			isbn13 : isbn13,
-			cover : cover,
-			stars : stars,
-			content : content
-		};
-
- 	// CSRF 토큰을 데이터에 추가
-    data[csrfParameterName] = csrfToken;
- 	
- 	console.log('member_id : '+member_id)
- 	if(!member_id){
- 		alert('로그인 하세요');
- 		return;
- 	}
-	if(!stars){
-		alert('별점을 선택하세요');
-		return;
-	}else{
-		console.log(stars+'점 선택');
-	}
-	if(!content){
-		alert('리뷰 내용을 입력하세요');
-		$(".rTextarea").focus();
-		return;
-	}else{
-		if(confirm('리뷰를 등록 하시겠습니까?')) {
+	function bookmark(event, title, author, isbn13, cover) {
+		event.preventDefault(); 
 		
-			$.ajax({
-		 		type : 'POST',
-		 		url : '/bc/reviewRegister',
-		 		data : data,
-		 		dataType : 'JSON',
-		 		success : function(response){
-		 			alert('리뷰를 등록했습니다');
-		 			
-		 			refreshReviewList(isbn13);
-	                $('.rTextarea').val('');
-                    $('input[type="radio"]').prop('checked', false);
-                    stars = undefined;
-		 		},
-		 		error : function(request, status, error){
-		 			alert('리뷰 등록 실패 >> '+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
-		 		}
-		 	});
+		if(!member_id){
+	 		alert('북마크 실패 - 로그인 하세요');
+	 		return;
+	 	}
+	    
+	    console.log('Member ID : ' + member_id + '\n제목 : ' + title + '\n작가 : ' + author + '\nisbn13 : ' + isbn13 + '\ncover : ' + cover);
+	    
+	    var data = {
+				member_id: member_id,
+				title: title,
+				author: author,
+				isbn13: isbn13,
+				cover: cover
+			};
+	
+	 	// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+	 	
+	 	$.ajax({
+	 		type : 'POST',
+	 		url : '/bc/isBookMarked',
+	 		data : data,
+	 		dataType : 'JSON',
+	 		success:function(response){
+	 			if(response){
+	 				alert('이미 북마크 된 도서입니다');
+	 			}else{
+	 				 $.ajax({
+	 			    	type: "POST",
+	 			        url: "/bc/bookmark",
+	 			        data: data,
+	 			        dataType: "JSON",
+	 			        success: function(response) {
+	 			            alert('북마크 성공');
+	 			        },
+	 			        error:function(request,status,error){
+	 			            console.log("북마크 FAIL >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+	 			        }
+	 			    });
+	 			}
+	 		},
+	 		error:function(request,status,error){
+	            console.log("북마크 실패 >>>> "+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error); // 실패 시 처리 
+	        }
+	 	});
+	   
+	}
+	
+	  
+	var stars;
+	
+	
+	function saveScrollPosition() {
+	  localStorage.setItem('scrollPosition', window.scrollY);
+	}
+	
+	function loadScrollPosition() {
+	  const scrollPosition = localStorage.getItem('scrollPosition');
+	  if (scrollPosition) {
+	    window.scrollTo(0, scrollPosition);
+	    localStorage.removeItem('scrollPosition'); 
+	  }
+	}
+	
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		$(".paginate_button a").on("click", function(e) {
+	    	e.preventDefault();
+	        
+	        console.log('click');
+	        
+	        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+	        actionForm.submit();
+		});
+		
+	    $('.radio').click(function(event) {
+	        stars = $(this).attr('data-stars');
+	        console.log('선택한 별점 >> ' + stars + '점');
+	    });
+	    
+	    loadScrollPosition();
+	    $(".paginate_button a").on("click", function(e) {
+	      e.preventDefault();
+	      saveScrollPosition(); // 페이지 이동 전 스크롤 위치 저장
+	      $("#actionForm").find("input[name='pageNum']").val($(this).attr("href"));
+	      $("#actionForm").submit();
+	    });
+	
+	});
+	  
+	var scrollTopPosition; 
+	
+	function reviewRegister(event, title, author, isbn13, cover) {
+		event.preventDefault();
+		var content = $(".rTextarea").val();
+		console.log('리뷰 등록 요청 >>\n title : '+title+'\n author : '+author+'\n isbn13 : '+isbn13+'\n cover : '+cover);
+		
+		// 스크롤 위치 저장
+	    scrollTopPosition = $(window).scrollTop();
+		
+		var data = {
+				member_id : member_id,
+				title : title,
+				author : author,
+				isbn13 : isbn13,
+				cover : cover,
+				stars : stars,
+				content : content
+			};
+	
+	 	// CSRF 토큰을 데이터에 추가
+	    data[csrfParameterName] = csrfToken;
+	 	
+	 	console.log('member_id : '+member_id)
+	 	if(!member_id){
+	 		alert('로그인 하세요');
+	 		return;
+	 	}
+		if(!stars){
+			alert('별점을 선택하세요');
+			return;
+		}else{
+			console.log(stars+'점 선택');
+		}
+		if(!content){
+			alert('리뷰 내용을 입력하세요');
+			$(".rTextarea").focus();
+			return;
+		}else{
+			if(confirm('리뷰를 등록 하시겠습니까?')) {
+			
+				$.ajax({
+			 		type : 'POST',
+			 		url : '/bc/reviewRegister',
+			 		data : data,
+			 		dataType : 'JSON',
+			 		success : function(response){
+			 			alert('리뷰를 등록했습니다');
+			 			
+			 			refreshReviewList(isbn13);
+		                $('.rTextarea').val('');
+	                    $('input[type="radio"]').prop('checked', false);
+	                    stars = undefined;
+			 		},
+			 		error : function(request, status, error){
+			 			alert('리뷰 등록 실패 >> '+ request.status + "\n message >>>> " + request.responseText + "\n error >>>> " + error);
+			 		}
+			 	});
+			}
 		}
 	}
-}
+	
+	function refreshReviewList(isbn13) {
+	    $.ajax({
+	        type: 'GET',
+	        url: '/bc/getReviewList/' + isbn13,
+	        dataType: 'html',
+	        success: function(response) {
+	            console.log('리뷰 등록 성공');
+	            
+	            var $response = $(response);
+	            var $dTable5 = $response.find('.dTable5');
+	            
+	            $('.dTable5').html($dTable5.html());
+	        },
+	        error: function(request, status, error) {
+	            console.error('AJAX Error:', error);
+	        }
+	    });
+	}
+	
+	function loginGo(){
+		alert('로그인 하세요');
+	}	
+	
+	function bookMenu(){
+		event.preventDefault();
+		$(".noticeMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var bookMenu = document.getElementById('bookMenu');
+						
+	    if (bookMenu.style.display === 'none' || bookMenu.style.display === '') {
+	    	bookMenu.style.display = 'block';
+	    } else {
+	    	bookMenu.style.display = 'none';
+	    }
+	}
+	
+	function searchFocus(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		alert('메인 화면에서 검색하세요');
+		window.location.href = "/bc/main";
+	}
+	
+	function noticeMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".myPageMenu").hide();
+		
+		var noticeMenu = document.getElementById('noticeMenu');
+						
+	    if (noticeMenu.style.display === 'none' || noticeMenu.style.display === '') {
+	    	noticeMenu.style.display = 'block';
+	    } else {
+	    	noticeMenu.style.display = 'none';
+	    }
+	}
+	
+	function myPageMenu(){
+		event.preventDefault();
+		$(".bookMenu").hide();
+		$(".noticeMenu").hide();
+		
+		var myPageMenu = document.getElementById('myPageMenu');
+						
+	    if (myPageMenu.style.display === 'none' || myPageMenu.style.display === '') {
+	    	myPageMenu.style.display = 'block';
+	    } else {
+	    	myPageMenu.style.display = 'none';
+	    }
+	}
 
-function refreshReviewList(isbn13) {
-    $.ajax({
-        type: 'GET',
-        url: '/bc/getReviewList/' + isbn13,
-        dataType: 'html',
-        success: function(response) {
-            console.log('리뷰 등록 성공');
-            
-            var $response = $(response);
-            var $dTable5 = $response.find('.dTable5');
-            
-            $('.dTable5').html($dTable5.html());
-        },
-        error: function(request, status, error) {
-            console.error('AJAX Error:', error);
-        }
-    });
-}
-
-function loginGo(){
-	alert('로그인 하세요');
-}	
+	// 페이지 빈 부분 클릭 시 Menu 숨기기
+	$(document).click(function(event) {
+		if (!$(event.target).closest('.myPageMenu, .top3').length) {
+			$('.myPageMenu').hide();
+		}
+		if (!$(event.target).closest('.bookMenu, .top5').length) {
+			$('.bookMenu').hide();
+		}
+		if (!$(event.target).closest('.noticeMenu, .top2').length) {
+			$('.noticeMenu').hide();
+		}
+	});
  
 </script>
 </head>
@@ -219,29 +285,71 @@ function loginGo(){
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="/bc/main"><img
-						class="logo" src="../resources/images/logo.png"></a></td>
-				<td class="top2"><a href="/bc/notice">공지사항</a></td>
+				<td class="top1" colspan="5"><a href="main"><img class="logo" src="../resources/images/logo.png"></a></td>
+				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
+				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">
 					<sec:authorize access="isAnonymous()">
 						<a onclick="loginGo()" href="/bc/loginP">마이페이지</a>
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
-						<a href="/bc/memberEdit">마이페이지</a>
+						<a href="" onclick="myPageMenu()">마이페이지</a>
 					</sec:authorize>
 				</td>
 				<td class="top4">
 					<sec:authorize access="isAnonymous()">
 						<a href="/bc/loginP">로그인</a>
 					</sec:authorize>
-					
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<a href="javascript:logout()">로그아웃</a>
 					</sec:authorize>
 				</td>
 			</tr>
 		</table>
-	</div>
+		
+		<div class="bookMenu" id="bookMenu">
+			<table class="bookMenuTable">
+				<tr>
+					<td><a href="/bc/bestSeller">베스트셀러</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/newBooks">신간도서</a></td>
+				</tr>
+				<tr>
+					<td><a href="" onclick="searchFocus()">도서검색</a></td>
+				</tr>
+			</table>
+		</div>	<!-- bookMenu -->
+		
+		<div class="noticeMenu" id="noticeMenu">
+			<table class="noticeMenuTable">
+				<tr>
+					<td><a href="/bc/notice">공지사항</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/freeBoard">자유게시판</a></td>
+				</tr>
+			</table>
+		</div>	<!-- noticeMenu -->
+		
+		<div class="myPageMenu" id="myPageMenu">
+			<table class="myPageMenuTable">
+				<tr>
+					<td><a href="/bc/memberEdit">회원정보수정</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myReview">나의리뷰</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/myBookMark">나의북마크</a></td>
+				</tr>
+				<tr>
+					<td><a href="/bc/admin">관리자</a></td>
+				</tr>
+			</table>
+		</div>	<!-- myPageMenu -->
+	
+	</div>	<!-- top -->
 	
 	<div class="content">
 	
