@@ -264,7 +264,7 @@ public class FreeBoardController {
 			return "redirect:/detailFreeBoard/"+freeBoard.getFreeBoard_num();
 		} else {
 			System.out.println(" 실패 >>>>> 컨트롤러에서 updateFreeBoardSubmit");
-			return "redirect:/";
+			return "redirect:/detailFreeBoard/"+freeBoard.getFreeBoard_num();
 		}
 	}
 		

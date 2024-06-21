@@ -116,7 +116,7 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5"><a href="/bc/main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
 				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">

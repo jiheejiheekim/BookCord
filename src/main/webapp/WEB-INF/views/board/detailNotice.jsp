@@ -118,7 +118,7 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img class="logo" src="../resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5"><a href="/bc/main"><img class="logo" src="../resources/images/logo.png"></a></td>
 				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
 				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">
@@ -244,8 +244,13 @@
 				</div><!-- wrTableDiv -->
 				
 				<div class="submit">
-					<button type="submit" class="updateBt"><a href="#" onclick="upNotice(${notice.notice_num})">수정</a></button>
-					<button type="submit" class="deleteBt"><a href="#" onclick="delNotice(${notice.notice_num})">삭제</a></button>
+					<sec:authorize access="isAnonymous()">
+					
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<button type="submit" class="updateBt"><a href="#" onclick="upNotice(${notice.notice_num})">수정</a></button>
+						<button type="submit" class="deleteBt"><a href="#" onclick="delNotice(${notice.notice_num})">삭제</a></button>
+					</sec:authorize>
 				</div>
 			</form>
 		</div>	<!-- writeNoticeHead -->

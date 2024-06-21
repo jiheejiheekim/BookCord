@@ -203,7 +203,7 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5"><a href="/bc/main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<!-- <td class="top2"><a href="/notice/notice">공지사항</a></td>
 				<td class="top3"><a href="/login/login">로그인</a></td> -->
 			</tr>

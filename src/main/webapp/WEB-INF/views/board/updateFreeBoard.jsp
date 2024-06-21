@@ -28,6 +28,7 @@
 	}
 
     $(document).ready(function(){
+    	var member_id = "<c:out value='${sessionScope.member.username}'/>";
     	var actionForm = $("#actionForm");
     	$(".paginate_button a").on("click", function(e) {
         	e.preventDefault();
@@ -114,7 +115,7 @@
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5"><a href="/bc/main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<td class="top5"><a href="" onclick="bookMenu()">도서</a></td>
 				<td class="top2"><a href="" onclick="noticeMenu()">공지사항</a></td>
 				<td class="top3">
@@ -199,7 +200,7 @@
 			<span class="wrHeadSpan">공지사항</span>
 			<form name="freeBoard" action="/bc/updateFreeBoardSubmit" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-			<input type="hidden" name="notice_num" value="${freeBoard.freeBoard_num}">
+			<input type="hidden" name="freeBoard_num" value="${freeBoard.freeBoard_num}">
 				<div class="wrTableDiv">
 					<table class="wrTable1">
 						<tr class="wrt1tr">

@@ -23,7 +23,7 @@ window.onload = function() {
 	<div class="top">
 		<table class="toptable">
 			<tr>
-				<td class="top1" colspan="5"><a href="main"><img class="logo" src="resources/images/logo.png"></a></td>
+				<td class="top1" colspan="5"><a href="/bc/main"><img class="logo" src="resources/images/logo.png"></a></td>
 				<!-- <td class="top2"><a href="/notice/notice">공지사항</a></td>
 				<td class="top3"><a href="/login/login">로그인</a></td> -->
 			</tr>
@@ -56,7 +56,7 @@ window.onload = function() {
 				<td><a href="https://kauth.kakao.com/oauth/authorize?client_id=7602202d7ab3fef830a0c7ae34debe13&redirect_uri=http://localhost:9089/bc/kakaoLogin&response_type=code">
 					<img class="snsKImg" src="resources/images/kakaoLogin.png">
 				</a></td>
-				<td><a><img class="snsNImg" src="resources/images/naverLogin.png"></a></td>
+				<!-- <td><a><img class="snsNImg" src="resources/images/naverLogin.png"></a></td> -->
 				<td><button class="signUpButton"><a href="signUp">회원가입</a></button></td>
 			</tr>
 		</table>
