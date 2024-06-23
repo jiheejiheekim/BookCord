@@ -78,6 +78,7 @@
 - API
 
 ![Aladin](https://img.shields.io/badge/Aladin-1ED760?&style=for-the-badge&logo=Aladin&logoColor=white)
+![KaKao](https://img.shields.io/badge/KaKao-FFFC00?style=for-the-badge&logo=snapchat&logoColor=white)
 
 - Frmaework
 
