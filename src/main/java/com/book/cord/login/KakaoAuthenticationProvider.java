@@ -37,12 +37,11 @@ public class KakaoAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String email = (String) authentication.getPrincipal(); // 카카오 로그인에서는 이메일을 principal로 사용
+		String email = (String) authentication.getPrincipal();
 		
-		// 자체 회원가입 회원이 로그인할 때는 카카오 로그인 처리를 하지 않도록 처리
-        // 예시: 만약 ID가 이메일 형식이 아니라면 카카오 로그인으로 간주하지 않음
+		//자체 회원가입 회원이 로그인할 때는 카카오 로그인 처리를 하지 않도록 처리
         if (!isValidEmailFormat(email)) {
-            return null; // 또는 다른 AuthenticationProvider로 넘기거나 예외를 던질 수 있음
+            return null; 
         }
 
 		//사용자 조회
@@ -75,9 +74,9 @@ public class KakaoAuthenticationProvider implements AuthenticationProvider {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 	
-	// 이메일 형식이 올바른지 확인하는 메서드
+	//이메일 형식이 올바른지 확인
     private boolean isValidEmailFormat(String email) {
-        // 예시로 간단히 @ 기호를 포함하는지만 확인하는 로직
+        //@ 기호를 포함하는지만 확인
         return email != null && email.contains("@");
     }
     

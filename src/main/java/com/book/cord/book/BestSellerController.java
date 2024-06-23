@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.book.cord.board.BookService;
-import com.book.cord.board.BookVO.Book;
-import com.book.cord.board.BookVO.GenresBestSeller;
+import com.book.cord.book.BookVO.Book;
+import com.book.cord.book.BookVO.GenresBestSeller;
 
 @Controller
 public class BestSellerController {

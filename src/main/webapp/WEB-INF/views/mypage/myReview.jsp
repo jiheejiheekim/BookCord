@@ -167,7 +167,7 @@
 		// CSRF 토큰을 데이터에 추가
 	    data[csrfParameterName] = csrfToken;
 		
-		if(confirm(review_num+'번 리뷰 삭제하시겠습니까?')){
+		if(confirm('리뷰를 삭제하시겠습니까?')){
 			$.ajax({
 				type : 'POST',
 				url : '/bc/reviewDelete',

@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.book.cord.board.BookService;
-import com.book.cord.board.BookVO.Book;
-import com.book.cord.board.BookVO.SearchBooks;
+import com.book.cord.book.BookVO.Book;
+import com.book.cord.book.BookVO.SearchBooks;
 
 @Controller
 public class SearchBookController {

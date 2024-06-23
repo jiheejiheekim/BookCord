@@ -32,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service("memberServiceImpl")
 public class MemberServiceImpl implements MemberService {
+	
+	APIKey api = new APIKey();
 
     @Autowired
 	@Qualifier("memberDAOImpl") 
@@ -41,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
     private MemberMapper memberMapper;
     
     @Autowired
-    private CustomPasswordEncoder passwordEncoder; // 암호화를 위한 PasswordEncoder 빈 주입
+    private CustomPasswordEncoder passwordEncoder; //암호화를 위한 PasswordEncoder 빈 주입
     
     @Autowired
     private CustomUserDetailsService customUDService;
@@ -51,11 +53,11 @@ public class MemberServiceImpl implements MemberService {
     
     @Autowired
     private KakaoAuthenticationProvider kakaoAuthenticationProvider;
-    
-    String client_secret = "xl1MIPC7TDOMHmMUXzTk2LAREqzGOCaC";
-	String client_id = "7602202d7ab3fef830a0c7ae34debe13";
-	String redirect_uri = "http://localhost:9089/bc/kakaoLogin";
 
+    String client_secret = api.getClient_secret();
+	String client_id = api.getClient_id();
+	String redirect_uri = api.getRedirect_uri();
+    
     @Override
     public void registerMember(MemberVO member) {
         try {

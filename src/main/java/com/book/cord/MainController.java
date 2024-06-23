@@ -7,9 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.book.cord.board.BookService;
-import com.book.cord.board.BookVO.BestSeller;
-import com.book.cord.board.BookVO.NewBooks;
+import com.book.cord.book.BookService;
+import com.book.cord.book.BookVO.BestSeller;
+import com.book.cord.book.BookVO.NewBooks;
 
 @Controller
 public class MainController {

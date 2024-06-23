@@ -19,25 +19,8 @@ public class LoginController {
     @Autowired
     @Qualifier("memberServiceImpl")
     MemberService memberService;
-/*
-    @GetMapping("/vip")
-    @Secured("ROLE_USER")
-    public String vip(Model model) {
-        return "vip";
-    }
 
-    @GetMapping("/admin")
-    @Secured("ROLE_ADMIN")
-    public String admin(Model model) {
-        return "admin";
-    }
 
-    @GetMapping("/index")
-    public String index(Model model) {
-        System.out.println("Index page accessed");
-        return "index";
-    }
-*/
     @GetMapping("/loginP")
     public String loginP(Model model) {
         return "login/loginP";
@@ -48,7 +31,7 @@ public class LoginController {
 		String result = memberService.kakaoRegisterMember(code, request);
 		if(result != null) {
 			System.out.println("컨트롤러 : "+result);
-			// 로그인 성공 시 사용자 정보를 세션에 저장
+			//로그인 성공 시 사용자 정보를 세션에 저장
 	        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	        if (authentication != null) {
 	            HttpSession session = request.getSession(true);
