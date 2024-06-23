@@ -55,6 +55,9 @@
 			if (!$(event.target).closest('.noticeMenu, .top2').length) {
 				$('.noticeMenu').hide();
 			}
+	        if (!$(event.target).closest('.updateForm, .menuDiv').length) {
+	            $(".updateForm").hide();
+	        }
 		});
 		
 	});
@@ -105,6 +108,8 @@
         } else {
         	updateForm.style.display = 'none';
         }
+        
+
 	}
 	
 	var stars;
