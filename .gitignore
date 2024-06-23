@@ -1,0 +1,52 @@
+# STS Specific
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+# Java Specific
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse Specific
+*.pydevproject
+.metadata
+bin/**
+tmp/**
+*.tmp
+*.bak
+*.swp
+
+# OS Specific
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Common Folders
+node_modules/
+target/
+build/
+
+# Log files
+*.log
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+
+# 무시할 파일
+APIKey.java
+root-context.xml
