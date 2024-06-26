@@ -202,7 +202,7 @@
 		</div>	<!-- navi -->
 		
 		<div class="noticeHead">
-			<span class="noticeHeadSpan">공지사항</span>
+			<span class="noticeHeadSpan">자유게시판</span>
 			
 			<div class="nhTableDiv">
 				<table class="nhTable1">

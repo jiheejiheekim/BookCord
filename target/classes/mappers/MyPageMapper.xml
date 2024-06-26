@@ -6,17 +6,17 @@
 <!-- 회원정보 수정 -->
 
 	<select id="getMemberInfo" parameterType="string" resultType="com.book.cord.login.MemberVO">
-        SELECT * FROM MEMBER WHERE ID=#{id, jdbcType=VARCHAR}
+        SELECT * FROM MEMBER WHERE ID = #{id, jdbcType=VARCHAR}
     </select>
     
     <select id="nameCheck" parameterType="String" resultType="int">
-    	SELECT COUNT(*) FROM MEMBER WHERE name=#{name}
+    	SELECT COUNT(*) FROM MEMBER WHERE name = #{name}
     </select>
     
 	<update id="memberUpdate">
-		UPDATE MEMBER SET PWD=#{pwd}, NAME=#{name} WHERE ID=#{id} 
+		UPDATE MEMBER SET PWD = #{pwd}, NAME = #{name} WHERE ID = #{id} 
 	</update>
-	
+		
 	<delete id="deleteAccount">
 		DELETE FROM MEMBER WHERE ID = #{id}
 	</delete>
@@ -28,7 +28,7 @@
 	</insert>
     
     <select id="reviewTotalCount" resultType="int">
-		SELECT COUNT(*) FROM REVIEW WHERE MEMBER_ID=#{member_id}
+		SELECT COUNT(*) FROM REVIEW WHERE MEMBER_ID = #{member_id}
 	</select>
 
 	<select id="getReviewListPaging" parameterType="map" resultType="com.book.cord.mypage.ReviewVO">
@@ -51,11 +51,11 @@
 	</select>
 	
 	<delete id="deleteReview" parameterType="int">
-		DELETE FROM REVIEW WHERE REVIEW_NUM=#{review_num}
+		DELETE FROM REVIEW WHERE REVIEW_NUM = #{review_num}
 	</delete>
 	
 	<update id="updateReview" parameterType="com.book.cord.mypage.ReviewVO">
-		UPDATE REVIEW SET STARS=#{stars}, CONTENT=#{content} WHERE REVIEW_NUM=#{review_num}
+		UPDATE REVIEW SET STARS = #{stars}, CONTENT = #{content} WHERE REVIEW_NUM=#{review_num}
 	</update>
 
 
@@ -66,7 +66,7 @@
     </insert>
     
     <select id="bookMarkTotalCount" resultType="int">
-		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID=#{member_id}
+		SELECT COUNT(*) FROM BOOKMARK WHERE MEMBER_ID = #{member_id}
 	</select>
 	
 	<select id="getBookMarkListPaging" parameterType="map" resultType="com.book.cord.mypage.BookMarkVO">
