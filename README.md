@@ -52,12 +52,8 @@
 
 
 ## 🎈  PPT : 링크 클릭
->[MU:TE](https://www.canva.com/design/DAF6fUjqFyk/oZsrp4iK5h9Hob6UTMOLgw/view?utm_content=DAF6fUjqFyk&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+>[BOOKCORD](https://www.canva.com/design/DAGJByhGdbI/52r-NSybLr02ahVwDxdLRw/view?utm_content=DAGJByhGdbI&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
-
-
-## 🎈  Team Repository : 링크 클릭
->[MU:TE_TEAM REPOSITORY](https://github.com/jiheejiheekim/MUTE)
 
 
 
