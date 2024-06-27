@@ -255,7 +255,7 @@
 						<tr class="nht3tr3">
 							<td class="nht3r3d1">${lists.notice_num}</td>
 							<td class="nht3r3d2"><a href="detailNotice/${lists.notice_num}">${lists.title}</a></td>
-							<td class="nht3r3d3">${lists.member_id}</td>
+							<td class="nht3r3d3">${lists.member_name}</td>
 							<fmt:formatDate value="${lists.reg_date}" pattern="yyyy-MM-dd" var="formattedDate" />
 							<td class="nht3r3d4">${formattedDate}</td>
 							<td class="nht3r3d5">${lists.hit}</td>
@@ -302,8 +302,18 @@
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		</form>
 		
-		<div class="write">
+		<!-- <div class="write">
 			<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>
+		</div> -->
+		
+		<div class="write">
+			<sec:authorize access="isAnonymous()">
+				
+			</sec:authorize>
+		
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<button class="writeBt"><a href="/bc/writeNotice">글쓰기</a></button>
+			</sec:authorize>
 		</div>
 	</div>	<!-- low -->
 

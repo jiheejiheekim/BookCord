@@ -209,7 +209,7 @@
 						</tr>
 						<tr class="wrt1tr2">
 							<td class="wrt1r2d1">작성자</td>
-							<td class="wrt1r2d2"><input type="text" class="writer" readonly value="${notice.member_id}" name="member_id"></td>
+							<td class="wrt1r2d2"><input type="text" class="writer" readonly value="${notice.member_name}" name="member_id"></td>
 						</tr>
 						<tr class="wrt1tr3">
 							<td class="wrt1r3d1">제목</td>

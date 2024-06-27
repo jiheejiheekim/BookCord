@@ -297,8 +297,18 @@
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		</form>
 		
-		<div class="write">
+		<!-- <div class="write">
 			<button class="writeBt"><a href="/bc/writeFreeBoard">글쓰기</a></button>
+		</div> -->
+		
+		<div class="write">
+			<sec:authorize access="isAnonymous()">
+				
+			</sec:authorize>
+		
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<button class="writeBt"><a href="/bc/writeFreeBoard">글쓰기</a></button>
+			</sec:authorize>
 		</div>
 	</div>	<!-- low -->
 

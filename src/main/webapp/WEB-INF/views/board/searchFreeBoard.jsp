@@ -303,7 +303,13 @@
 		</form>
 		
 		<div class="write">
-			<button class="writeBt"><a href="/bc/writeFreeBoard">글쓰기</a></button>
+			<sec:authorize access="isAnonymous()">
+				
+			</sec:authorize>
+		
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<button class="writeBt"><a href="/bc/writeFreeBoard">글쓰기</a></button>
+			</sec:authorize>
 		</div>
 	</div>	<!-- low -->
 
