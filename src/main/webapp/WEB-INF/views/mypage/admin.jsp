@@ -72,14 +72,18 @@
 			dataType : 'JSON',
 			success:function(response){
 				alert('\''+id+'\'의 계정 활성화 변경 성공 : '+response);
-				$('.enabled_'+id).text(response? 'true' : 'false');
-				 
+				//response = response.trim();
+				if(response){
+					$('.enabled_'+id).text('true');
+				}else{
+					$('.enabled_'+id).text('false');
+				} 
 			},
 			error:function(err){
 				alert('계정 비활성화 실패 : '+err);
 			}
 		});
-		
+		location.reload();
 	}
 	
 	function roleEdit(id){

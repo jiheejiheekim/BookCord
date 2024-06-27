@@ -80,8 +80,10 @@ public class MyReviewController {
 		vo.setContent(content);
 		service.addReview(vo);
 
+		
 		Map<String, String> response = new HashMap<>();
 		response.put("status", "success");
+		
 		return response;
 	}
 	

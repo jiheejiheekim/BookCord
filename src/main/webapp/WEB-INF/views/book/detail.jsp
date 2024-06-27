@@ -107,39 +107,41 @@
 	
 	$(document).ready(function() {
 		var actionForm = $("#actionForm");
-		$(".paginate_button a").on("click", function(e) {
-	    	e.preventDefault();
-	        
-	        console.log('click');
-	        
-	        actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-	        actionForm.submit();
-		});
-		
-	    $('.radio').click(function(event) {
-	        stars = $(this).attr('data-stars');
-	        console.log('선택한 별점 >> ' + stars + '점');
-	    });
-	    
-	    loadScrollPosition();
+				
+		loadScrollPosition();
 	    $(".paginate_button a").on("click", function(e) {
 	      e.preventDefault();
 	      saveScrollPosition(); // 페이지 이동 전 스크롤 위치 저장
 	      $("#actionForm").find("input[name='pageNum']").val($(this).attr("href"));
 	      $("#actionForm").submit();
 	    });
-	
+		
+	    $('.radio').click(function(event) {
+	        stars = $(this).attr('data-stars');
+	        console.log('선택한 별점 >> ' + stars + '점');
+	    });
+	    	    
 	});
 	  
-	var scrollTopPosition; 
+	function saveScrollPosition() {
+	    localStorage.setItem('scrollPosition', window.scrollY);
+	}
 	
+	function loadScrollPosition() {
+	    const scrollPosition = localStorage.getItem('scrollPosition');
+	    if (scrollPosition) {
+	        window.scrollTo(0, scrollPosition);
+	        localStorage.removeItem('scrollPosition');
+	    }
+	}
+
 	function reviewRegister(event, title, author, isbn13, cover) {
 		event.preventDefault();
 		var content = $(".rTextarea").val();
 		console.log('리뷰 등록 요청 >>\n title : '+title+'\n author : '+author+'\n isbn13 : '+isbn13+'\n cover : '+cover);
 		
 		// 스크롤 위치 저장
-	    scrollTopPosition = $(window).scrollTop();
+	    saveScrollPosition();
 		
 		var data = {
 				member_id : member_id,
@@ -180,7 +182,8 @@
 			 		success : function(response){
 			 			alert('리뷰를 등록했습니다');
 			 			
-			 			refreshReviewList(isbn13);
+			 			//refreshReviewList(isbn13);
+			 			window.location.href = '/bc/detail/' + encodeURIComponent(isbn13) + '?pageNum=1&amount=5';
 		                $('.rTextarea').val('');
 	                    $('input[type="radio"]').prop('checked', false);
 	                    stars = undefined;
@@ -193,7 +196,7 @@
 		}
 	}
 	
-	function refreshReviewList(isbn13) {
+	/* function refreshReviewList(isbn13) {
 	    $.ajax({
 	        type: 'GET',
 	        url: '/bc/getReviewList/' + isbn13,
@@ -203,14 +206,16 @@
 	            
 	            var $response = $(response);
 	            var $5dTable = $response.find('.5dTable');
+	            var $Page = $response.find('.Page');
 	            
 	            $('.5dTable').html($5dTable.html());
+	            $('.Page').html($Page.html());
 	        },
 	        error: function(request, status, error) {
 	            console.error('AJAX Error:', error);
 	        }
 	    });
-	}
+	} */
 	
 	function loginGo(){
 		alert('로그인 하세요');
@@ -574,14 +579,18 @@
 			</div><!-- Page -->
 			
 			<!-- </div> -->
-		</div><!-- "5dTable" -->
+		
+		
 			<c:forEach items="${myReviewList}" var="myReviewList">
 				<form id="actionForm" action="/bc/detail/${myReviewList.isbn13}" method="get">
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				</form>
-			</c:forEach>	
+			</c:forEach>
+			
+		</div><!-- "5dTable" -->
+			
 		</div>	<!-- d -->
-		</div> <!-- c -->
+	</div> <!-- c -->
 </body>
 </html>

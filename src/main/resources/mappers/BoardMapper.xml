@@ -7,16 +7,20 @@
 	
 	<select id="getListWithPaging" resultType="com.book.cord.board.NoticeVO">
 		<![CDATA[
-			SELECT 
-				NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT
-			FROM (
-				    select  
-				    rownum rn, NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT 
-				    from NOTICE
-				    where rownum <= #{pageNum} * #{amount} ORDER BY NOTICE_NUM DESC
-				)
-			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY NOTICE_NUM DESC
-		]]>
+	        SELECT 
+	            NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT
+	        FROM (
+	            SELECT 
+	                ROW_NUMBER() OVER (ORDER BY NOTICE_NUM DESC) AS rnum, NOTICE_NUM, MEMBER_NAME, TITLE, REG_DATE, HIT
+	            FROM 
+	                NOTICE
+	                
+	        ) tmp
+	        WHERE 
+	            rnum BETWEEN #{startRow} AND #{endRow}
+	        ORDER BY 
+	            rnum ASC
+	    ]]>
 	</select>
 	
 	<select id="totalCount" resultType="int">
@@ -48,10 +52,10 @@
 	<select id="getSearchNoticePaging" resultType="com.book.cord.board.NoticeVO" parameterType="map">
     <![CDATA[
         SELECT 
-            NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT
+            NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT, MEMBER_NAME
         FROM (
             SELECT 
-                ROW_NUMBER() OVER (ORDER BY NOTICE_NUM DESC) AS rnum, NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT 
+                ROW_NUMBER() OVER (ORDER BY NOTICE_NUM DESC) AS rnum, NOTICE_NUM, MEMBER_ID, TITLE, REG_DATE, HIT, MEMBER_NAME
             FROM 
                 NOTICE
             WHERE 
@@ -77,16 +81,20 @@
 	<select id="getFreeBoardListPaging" resultType="com.book.cord.board.FreeBoardVO">
 	<!-- SELECT * FROM FREEBOARD -->
 		<![CDATA[
-			SELECT 
-				FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT
-			FROM (
-				    select  
-				    rownum rn, FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT 
-				    from FREEBOARD
-				    where rownum <= #{pageNum} * #{amount} ORDER BY FREEBOARD_NUM DESC
-				)
-			WHERE rn > (#{pageNum} - 1) * #{amount} ORDER BY FREEBOARD_NUM DESC
-		]]> 
+	        SELECT 
+	            FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT
+	        FROM (
+	            SELECT 
+	                ROW_NUMBER() OVER (ORDER BY FREEBOARD_NUM DESC) AS rnum, FREEBOARD_NUM, MEMBER_NAME, MEMBER_ID, TITLE, REG_DATE, HIT
+	            FROM 
+	                FREEBOARD
+	            
+	        ) tmp
+	        WHERE 
+	            rnum BETWEEN #{startRow} AND #{endRow}
+	        ORDER BY 
+	            rnum ASC
+	    ]]>
 	</select>	
 	
 	<select id="totalFreeBoardCount" resultType="int">

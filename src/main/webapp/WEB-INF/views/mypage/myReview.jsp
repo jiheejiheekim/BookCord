@@ -348,7 +348,7 @@
 					<table class="updateFormTable">
 						<tr>
 							<td class="radioTd" colspan="4">
-								<input type="radio" name="radio" data-stars="1">
+								<input type="radio" class="radio" name="radio" data-stars="1">
 									<c:forEach var="starIndex" begin="1" end="1">
 										<img class="star" src="resources/images/star.png">
 									</c:forEach>

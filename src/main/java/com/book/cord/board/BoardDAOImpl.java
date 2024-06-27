@@ -28,7 +28,18 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<NoticeVO> getListWithPaging(Criteria cri) { 
 		System.out.println("DAO getListWithPaging 호출");
-		return sqlSession.selectList(NAMESPACE+".getListWithPaging", cri);
+		
+		Map<String, Object> params = new HashMap<>();
+	    params.put("pageNum", cri.getPageNum());
+	    params.put("amount", cri.getAmount());
+	    
+	    int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+		
+		return sqlSession.selectList(NAMESPACE+".getListWithPaging", params);
 	}
 	
 	@Override
@@ -97,7 +108,18 @@ public class BoardDAOImpl implements BoardDAO {
 	////////////////////////////////////////////
 	public List<FreeBoardVO> getFreeBoardListPaging(Criteria cri) {
 		System.out.println("DAO getFreeBoardListPaging 호출");
-		return sqlSession.selectList(NAMESPACE+".getFreeBoardListPaging", cri);
+		
+		Map<String, Object> params = new HashMap<>();
+	    params.put("pageNum", cri.getPageNum());
+	    params.put("amount", cri.getAmount());
+	    
+	    int startRow = (cri.getPageNum() - 1) * cri.getAmount() + 1;
+	    int endRow = cri.getPageNum() * cri.getAmount();
+
+	    params.put("startRow", startRow);
+	    params.put("endRow", endRow);
+		
+		return sqlSession.selectList(NAMESPACE+".getFreeBoardListPaging", params);
 	}
 
 	public int totalFreeBoardCount() {
