@@ -92,7 +92,7 @@
 
 ## 🎈 시연 영상
 
-https://github.com/jiheejiheekim/MUTE_JH/assets/142155462/583915dd-8a22-44ae-b169-6e59519aa8b6
 
+https://github.com/jiheejiheekim/BookCord/assets/142155462/6fa7ff51-7196-4c78-b7da-efb6e0041665
 
 
